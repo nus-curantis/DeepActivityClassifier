@@ -6,7 +6,7 @@ import numpy as np
 
 from sklearn.metrics import recall_score, precision_score, f1_score
 
-from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input
+from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test
 from preprocessing.time_series_reader_and_visualizer import num_to_activity
 
 
@@ -62,7 +62,11 @@ class DeepActivityClassifier:
 
         # log and save variables:
         self.loss_summary = None
+        self.accuracy_summary = None
+        self.train_summary = None
         self.validation_loss_summary = None
+        self.validation_accuracy_summary = None
+        self.validation_summary = None
         self.file_writer = None
         self.saver = None
 
@@ -95,11 +99,14 @@ class DeepActivityClassifier:
         return True
 
     def load_data(self):
-        self.train_inputs, self.train_activity_labels = data_to_rnn_input()
-
+        # self.train_inputs, self.train_activity_labels = data_to_rnn_input()
+        #
         # self.train_inputs = self.train_inputs[:, :, -1]  # todo: delete this test
         # self.train_inputs = np.reshape(self.train_inputs,
         #                                newshape=[self.train_inputs.shape[0], self.train_inputs.shape[1], 1])
+
+        self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
+            data_to_rnn_input_train_test()
 
     def build_model(self):
         with tf.name_scope('embedding'):  # for now, no embedding is used
@@ -184,6 +191,14 @@ class DeepActivityClassifier:
             self.optimizer = train_op
 
         self.loss_summary = tf.summary.scalar('prediction loss', self.cost)
+        self.accuracy_summary = tf.summary.scalar('prediction accuracy', self.accuracy)
+        self.train_summary = tf.summary.merge([self.loss_summary, self.accuracy_summary])
+
+        self.validation_loss_summary = tf.summary.scalar('pred validation loss', self.cost)
+        self.validation_accuracy_summary = tf.summary.scalar('pred validation accuracy', self.accuracy)
+        self.validation_summary = tf.summary.merge([self.validation_loss_summary,
+                                                    self.validation_accuracy_summary])
+
         self.file_writer = tf.summary.FileWriter(self.log_folder)
 
         self.saver = tf.train.Saver()
@@ -248,16 +263,24 @@ class DeepActivityClassifier:
 
                     if i == 0:
                         self.file_writer.add_summary(
-                            (sess.run(self.loss_summary,
+                            (sess.run(self.train_summary,
                                       feed_dict={self.input: inputs_batch,
                                                  self.activity_label: labels_batch}))
                             , epoch)
 
-                        # self.file_writer.add_summary(
-                        #     (sess.run(self.validation_loss_summary,
-                        #               feed_dict={self.input: self.test_inputs[0: self.batch_size * 4],
-                        #                          self.activity_label: self.test_activity_labels[0: self.batch_size * 4]}))
-                        #     , epoch)
+                        self.file_writer.add_summary(
+                            (sess.run(self.validation_summary,
+                                      feed_dict={self.input: self.test_inputs[:100],
+                                                 self.activity_label: self.test_activity_labels[:100]}))
+                            , epoch)
+
+            loss, accuracy = sess.run(
+                [self.cost, self.accuracy],
+                feed_dict={self.input: self.test_inputs[100:],
+                           self.activity_label: self.test_activity_labels[100:]})
+            print('test loss: ', loss)
+            print('test accuracy: ', accuracy)
+            print('--------------------------------')
 
             save_path = self.saver.save(sess, self.model_path)
             print("Survival model saved in file: %s" % save_path)

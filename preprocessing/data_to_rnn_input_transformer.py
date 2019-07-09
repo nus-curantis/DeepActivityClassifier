@@ -1,6 +1,7 @@
 import numpy as np
 
 from sklearn.utils import shuffle
+from sklearn.model_selection import train_test_split
 
 from preprocessing.time_series_reader_and_visualizer import *
 
@@ -53,6 +54,12 @@ def get_one_hot_labels(labels):
     return np.array(one_hots)
 
 
-rnn_data, labels = data_to_rnn_input()
-print('data shape: ', rnn_data.shape)
-print('labels shape: ', labels.shape)
+def data_to_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_max_len=360, test_size=0.2):
+    rnn_data, labels = data_to_rnn_input(data_path, split_series_max_len)
+
+    return train_test_split(rnn_data, labels, test_size=test_size)
+
+
+# rnn_data, labels = data_to_rnn_input()
+# print('data shape: ', rnn_data.shape)
+# print('labels shape: ', labels.shape)
