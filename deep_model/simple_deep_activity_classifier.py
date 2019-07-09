@@ -7,6 +7,7 @@ import numpy as np
 from sklearn.metrics import recall_score, precision_score, f1_score
 
 from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test
+from preprocessing.time_series_reader_and_visualizer import num_to_activity
 
 
 class DeepActivityClassifier:
@@ -122,19 +123,20 @@ class DeepActivityClassifier:
                 dtype=tf.float32, sequence_length=self.__length(self.embedded_input))
 
         with tf.name_scope('pooling'):
-            self.avg_pooling = tf.reduce_mean(self.rnn_output, axis=1)
-            self.max_pooling = tf.reduce_max(self.rnn_output, axis=1)
+            # self.avg_pooling = tf.reduce_mean(self.rnn_output, axis=1)
+            # self.max_pooling = tf.reduce_max(self.rnn_output, axis=1)
+            # self.last_pooling = self.rnn_output[:, -1]
             self.last_pooling = self.__last_relevant(self.rnn_output, self.__length(self.embedded_input))
 
-            self.concatenated_poolings = tf.concat(
-                [self.avg_pooling, self.max_pooling, self.last_pooling], axis=1
-            )
+            # self.concatenated_poolings = tf.concat(
+            #     [self.avg_pooling, self.max_pooling, self.last_pooling], axis=1
+            # )
 
         with tf.name_scope('predictor'):
             self.dense_weights = {
                 'first': tf.Variable(tf.truncated_normal(
-                    [3 * self.rnn_hidden_units, 2 * self.rnn_hidden_units])),
-                    # [self.rnn_hidden_units, 2 * self.rnn_hidden_units])),
+                    # [3 * self.rnn_hidden_units, 2 * self.rnn_hidden_units])),
+                    [self.rnn_hidden_units, 2 * self.rnn_hidden_units])),
                 'second': tf.Variable(tf.truncated_normal(
                     [2 * self.rnn_hidden_units, 2 * self.rnn_hidden_units])),
                 'third': tf.Variable(tf.truncated_normal([2 * self.rnn_hidden_units, self.num_classes]))
@@ -147,8 +149,8 @@ class DeepActivityClassifier:
             }
 
             self.hidden_layer_1 = batch_norm(tf.matmul(
-                self.concatenated_poolings, self.dense_weights['first']) + self.dense_biases['first'])
-                # self.last_pooling, self.dense_weights['first']) + self.dense_biases['first'])
+                # self.concatenated_poolings, self.dense_weights['first']) + self.dense_biases['first'])
+                self.last_pooling, self.dense_weights['first']) + self.dense_biases['first'])
 
             # self.hidden_layer_1 = tf.matmul(
             #     self.concatenated_poolings, self.dense_weights['first']) + self.dense_biases['first']
@@ -217,8 +219,20 @@ class DeepActivityClassifier:
 
             for epoch in range(self.num_epochs):
                 for i in range(0, len(self.train_inputs), self.batch_size):
+                # for i in [0]:
                     inputs_batch = self.train_inputs[i: i + self.batch_size]
                     labels_batch = self.train_activity_labels[i: i + self.batch_size]
+
+                    # for labels in labels_batch:
+                    #     print(labels.tolist())
+                    # print('-------------------')
+
+                    # for data in inputs_batch:
+                    #     data = np.reshape(data, newshape=[self.input_representations, -1])
+                    #     for axis in data:
+                    #         print(axis.tolist())
+                    #         print('-------')
+                    #     print('===========')
 
                     _, loss, accuracy, pred_output = sess.run(
                         [self.optimizer, self.cost, self.accuracy, self.prediction],
@@ -230,6 +244,21 @@ class DeepActivityClassifier:
                     print(accuracy)
                     print(np.argmax(pred_output, 1).tolist())
                     print(np.argmax(labels_batch, 1).tolist())
+
+                    # counter = 0
+                    # for pred in pred_output:
+                    #     try:
+                    #         print(num_to_activity[np.argmax(labels_batch[counter])] + ' -->')
+                    #     except KeyError:
+                    #         print(str(np.argmax(labels_batch[counter])) + ' -->')
+                    #
+                    #     print(pred.tolist())
+                    #     print(pred.shape)
+                    #     print(labels_batch[counter].tolist())
+                    #     print(labels_batch.shape)
+                    #
+                    #     counter += 1
+
                     print('--------------------------------')
 
                     if i == 0:
