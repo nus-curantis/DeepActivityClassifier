@@ -9,7 +9,7 @@ from sklearn.metrics import recall_score, precision_score, f1_score
 from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test
 
 
-class DeepActivityClassifier:
+class DeepConvLSTMClassifier:
     def __init__(self, config):
 
         # model parameters
@@ -109,16 +109,19 @@ class DeepActivityClassifier:
             data_to_rnn_input_train_test()
 
     def build_model(self):
-        with tf.name_scope('embedding'):
-            # self.embedded_input = self.input
+        # with tf.name_scope('embedding'):
+        #     # self.embedded_input = self.input
+        #
+        #     self.embedding = tf.Variable(tf.truncated_normal([self.input_representations, self.embedding_out_size]))
+        #     # flattened_embedded_input = tf.nn.embedding_lookup(  # todo: solve the problem of this
+        #     #     self.embedding, tf.reshape(self.input, shape=[-1, self.input_representations]))
+        #     flattened_embedded_input = tf.matmul(
+        #         tf.reshape(self.input, shape=[-1, self.input_representations]), self.embedding)
+        #     self.embedded_input = tf.reshape(flattened_embedded_input,
+        #                                      shape=[-1, self.series_max_len, self.embedding_out_size])
 
-            self.embedding = tf.Variable(tf.truncated_normal([self.input_representations, self.embedding_out_size]))
-            # flattened_embedded_input = tf.nn.embedding_lookup(  # todo: solve the problem of this
-            #     self.embedding, tf.reshape(self.input, shape=[-1, self.input_representations]))
-            flattened_embedded_input = tf.matmul(
-                tf.reshape(self.input, shape=[-1, self.input_representations]), self.embedding)
-            self.embedded_input = tf.reshape(flattened_embedded_input,
-                                             shape=[-1, self.series_max_len, self.embedding_out_size])
+        with tf.name_scope('conv_layer'):
+            pass  # todo
 
         with tf.name_scope('rnn'):
             # self.rnn_cell = rnn.GRUCell(num_units=self.rnn_hidden_units,
