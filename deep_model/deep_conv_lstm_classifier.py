@@ -4,7 +4,7 @@ from tensorflow.contrib.layers.python.layers import batch_norm
 
 import numpy as np
 
-from sklearn.metrics import recall_score, precision_score, f1_score
+from pycm import ConfusionMatrix
 
 from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test
 
@@ -18,6 +18,8 @@ class DeepConvLSTMClassifier:
         self.rnn_hidden_units = config.rnn_hidden_units
         self.input_representations = config.input_representations
         self.num_classes = config.num_classes
+        self.split_len = config.split_len
+        self.filters_num = config.filters_num
 
         # learning parameters
         self.learning_rate = config.learning_rate
@@ -44,6 +46,8 @@ class DeepConvLSTMClassifier:
         self.embedding_layer = None
         self.embedded_input = None
         self.embedding = None
+        self.conv_w = None
+        self.conv_b = None
         self.rnn_cell = None
         self.rnn_output = None
         self.avg_pooling = None
@@ -120,8 +124,39 @@ class DeepConvLSTMClassifier:
         #     self.embedded_input = tf.reshape(flattened_embedded_input,
         #                                      shape=[-1, self.series_max_len, self.embedding_out_size])
 
-        with tf.name_scope('conv_layer'):
-            pass  # todo
+        # with tf.name_scope('conv_layer'):
+        #     # [batch_size, 360, 3] -> [batch_size, 60, 6, 3]
+        #     split_input = tf.reshape(self.input, shape=[-1,
+        #                                                 int(self.series_max_len / self.split_len),
+        #                                                 self.split_len, self.input_representations])
+        #
+        #     # # [batch_size, 60, 6, 3] -> [batch_size * 60, 6, 3, 1]
+        #     split_input = tf.reshape(split_input, shape=[-1, self.split_len, self.input_representations, 1])
+        #
+        #     # ...
+        # I didn't continue the above code because I understood that actually we don't need to split the input
+
+        with tf.name_scope('cnn'):
+            self.conv_w = tf.Variable(tf.truncated_normal([self.split_len, self.input_representations,
+                                                          1, self.filters_num]))
+            self.conv_b = tf.Variable(tf.zeros([self.filters_num]))
+
+            expanded_input = tf.expand_dims(self.input, -1)
+            self.embedded_input = tf.nn.conv2d(expanded_input,
+                                               filter=self.conv_w,
+                                               strides=[1, self.split_len, 1, 1],
+                                               # strides=[1, int(self.split_len / 2), 1, 1],
+                                               padding='SAME') + self.conv_b
+
+            print('expanded_input: ', expanded_input)
+            print('self.embedded_input : ', self.embedded_input)
+
+            self.embedded_input = tf.reshape(self.embedded_input,
+                                             shape=[-1,
+                                                    self.embedded_input.shape[1] * self.filters_num,
+                                                    self.input_representations])
+
+            print('self.embedded_input : ', self.embedded_input)
 
         with tf.name_scope('rnn'):
             # self.rnn_cell = rnn.GRUCell(num_units=self.rnn_hidden_units,
@@ -257,12 +292,18 @@ class DeepConvLSTMClassifier:
                                                  self.activity_label: self.test_activity_labels[:100]}))
                             , epoch)
 
-            loss, accuracy = sess.run(
-                [self.cost, self.accuracy],
+            loss, accuracy, pred_output = sess.run(
+                [self.cost, self.accuracy, self.prediction],
                 feed_dict={self.input: self.test_inputs[100:],
                            self.activity_label: self.test_activity_labels[100:]})
             print('test loss: ', loss)
             print('test accuracy: ', accuracy)
+
+            cm = ConfusionMatrix(actual_vector=self.test_activity_labels[100:],
+                                 predict_vector=pred_output)
+            print('Confusion Matrix:')
+            print(cm)
+
             print('--------------------------------')
 
             save_path = self.saver.save(sess, self.model_path)
@@ -284,5 +325,3 @@ class DeepConvLSTMClassifier:
         flat = tf.reshape(output, [-1, out_size])
         relevant = tf.gather(flat, index)
         return relevant
-
-
