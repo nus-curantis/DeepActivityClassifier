@@ -6,7 +6,7 @@ import numpy as np
 
 from sklearn.metrics import recall_score, precision_score, f1_score
 
-from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test
+from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test, normalized_rnn_input_train_test
 
 
 class DeepActivityClassifier:
@@ -106,7 +106,8 @@ class DeepActivityClassifier:
         #                                newshape=[self.train_inputs.shape[0], self.train_inputs.shape[1], 1])
 
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
-            data_to_rnn_input_train_test()
+            normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')
+            # data_to_rnn_input_train_test()
 
     def build_model(self):
         with tf.name_scope('embedding'):
@@ -256,8 +257,11 @@ class DeepActivityClassifier:
 
             loss, accuracy = sess.run(
                 [self.cost, self.accuracy],
-                feed_dict={self.input: self.test_inputs[100:],
-                           self.activity_label: self.test_activity_labels[100:]})
+                feed_dict={self.input: self.test_inputs,
+                           self.activity_label: self.test_activity_labels})
+                # feed_dict={self.input: self.test_inputs[100:],
+                #            self.activity_label: self.test_activity_labels[100:]})
+
             print('test loss: ', loss)
             print('test accuracy: ', accuracy)
             print('--------------------------------')

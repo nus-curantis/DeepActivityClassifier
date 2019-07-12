@@ -6,7 +6,7 @@ import numpy as np
 
 from pycm import ConfusionMatrix
 
-from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test
+from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test, normalized_rnn_input_train_test
 
 
 class DeepConvLSTMClassifier:
@@ -103,14 +103,15 @@ class DeepConvLSTMClassifier:
         return True
 
     def load_data(self):
-        # self.train_inputs, self.train_activity_labels = data_to_rnn_input()
-        #
-        # self.train_inputs = self.train_inputs[:, :, -1]  # todo: delete this test
-        # self.train_inputs = np.reshape(self.train_inputs,
-        #                                newshape=[self.train_inputs.shape[0], self.train_inputs.shape[1], 1])
-
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
-            data_to_rnn_input_train_test()
+            normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')
+            # data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')
+            # data_to_rnn_input_train_test()
+
+        print(len(self.train_inputs))
+        print(len(self.train_activity_labels))
+        print(len(self.test_inputs))
+        print(len(self.test_activity_labels))
 
     def build_model(self):
         # with tf.name_scope('embedding'):
@@ -294,15 +295,17 @@ class DeepConvLSTMClassifier:
 
             loss, accuracy, pred_output = sess.run(
                 [self.cost, self.accuracy, self.prediction],
-                feed_dict={self.input: self.test_inputs[100:],
-                           self.activity_label: self.test_activity_labels[100:]})
+                # feed_dict={self.input: self.test_inputs[100:],
+                #            self.activity_label: self.test_activity_labels[100:]})
+                feed_dict={self.input: self.test_inputs,
+                           self.activity_label: self.test_activity_labels})
             print('test loss: ', loss)
             print('test accuracy: ', accuracy)
 
-            cm = ConfusionMatrix(actual_vector=self.test_activity_labels[100:],
-                                 predict_vector=pred_output)
-            print('Confusion Matrix:')
-            print(cm)
+            # cm = ConfusionMatrix(actual_vector=self.test_activity_labels[100:],
+            #                      predict_vector=pred_output)
+            # print('Confusion Matrix:')
+            # print(cm)
 
             print('--------------------------------')
 
