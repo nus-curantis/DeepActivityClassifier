@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/main_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/main_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_model/deep_model_weights.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_model_weights.data-00000-of-00001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_model/deep_model_weights.index" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_model_weights.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_model/deep_model_weights.meta" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_model_weights.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,15 +50,15 @@
         <counts>
           <entry key="dummy" value="20" />
           <entry key="md" value="436" />
-          <entry key="py" value="9040" />
-          <entry key="txt" value="199" />
+          <entry key="py" value="9158" />
+          <entry key="txt" value="220" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Markdown" value="436" />
-          <entry key="PLAIN_TEXT" value="219" />
-          <entry key="Python" value="9040" />
+          <entry key="PLAIN_TEXT" value="240" />
+          <entry key="Python" value="9158" />
         </counts>
       </usages-collector>
     </session>
@@ -90,11 +92,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
-              <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+            <state relative-caret-position="302">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -118,7 +120,7 @@
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="194" column="51" lean-forward="true" selection-start-line="194" selection-start-column="51" selection-end-line="194" selection-end-column="51" />
+              <caret line="194" column="51" selection-start-line="194" selection-start-column="51" selection-end-line="194" selection-end-column="51" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -126,14 +128,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2574">
-              <caret line="145" column="30" selection-start-line="145" selection-start-column="4" selection-end-line="145" selection-end-column="30" />
+            <state relative-caret-position="981">
+              <caret line="162" column="13" selection-start-line="162" selection-start-column="13" selection-end-line="162" selection-end-column="13" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <marker date="1562832112692" expanded="true" signature="4753:4756" ph="..." />
+                <marker date="1563178876722" expanded="true" signature="5361:5364" ph="..." />
               </folding>
             </state>
           </provider>
@@ -143,7 +145,7 @@
         <entry file="file://$PROJECT_DIR$/preprocessing/wharf_reader.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="237">
-              <caret line="75" column="18" lean-forward="true" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
+              <caret line="75" column="18" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
                 <marker date="1563176634613" expanded="true" signature="2090:2223" ph="..." />
@@ -194,13 +196,13 @@
         <option value="$PROJECT_DIR$/preprocessing/time_series_counter_and_visualizer.py" />
         <option value="$PROJECT_DIR$/deepmodel.py" />
         <option value="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer__chest_data.py" />
-        <option value="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/deep_model/deep_activity_classifier.py" />
         <option value="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" />
         <option value="$PROJECT_DIR$/preprocessing/wharf_reader.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier.py" />
+        <option value="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" />
       </list>
     </option>
   </component>
@@ -447,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1563176693252</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="TimeDistributed Layer">
+      <created>1563177876869</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1563177876869</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -461,13 +470,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1533" height="875" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="2" weight="0.24966888" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32931727" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.6751678" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5127517" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -483,10 +493,10 @@
     <layout-to-restore>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.24966888" />
+      <window_info content_ui="combo" id="Project" order="2" weight="0.24966888" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32931727" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.39463088" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5127517" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -510,7 +520,8 @@
     <MESSAGE value="cnn-lstm network" />
     <MESSAGE value="cnn-lstm network \ tuning and testing different datasets" />
     <MESSAGE value="WHARF dataset preprocessing and result test" />
-    <option name="LAST_COMMIT_MESSAGE" value="WHARF dataset preprocessing and result test" />
+    <MESSAGE value="TimeDistributed Layer" />
+    <option name="LAST_COMMIT_MESSAGE" value="TimeDistributed Layer" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/preprocessing/plots/series_initial_visualization_record_2_Jogging_axis_x.png">
@@ -573,17 +584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2574">
-          <caret line="145" column="30" selection-start-line="145" selection-start-column="4" selection-end-line="145" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <marker date="1562832112692" expanded="true" signature="4753:4756" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/tensorflow/python/ops/rnn.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10134">
@@ -597,7 +597,7 @@
     <entry file="file://$PROJECT_DIR$/preprocessing/wharf_reader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
-          <caret line="75" column="18" lean-forward="true" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
+          <caret line="75" column="18" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
             <marker date="1563176634613" expanded="true" signature="2090:2223" ph="..." />
@@ -608,7 +608,7 @@
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="194" column="51" lean-forward="true" selection-start-line="194" selection-start-column="51" selection-end-line="194" selection-end-column="51" />
+          <caret line="194" column="51" selection-start-line="194" selection-start-column="51" selection-end-line="194" selection-end-column="51" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
@@ -617,10 +617,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+        <state relative-caret-position="302">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="981">
+          <caret line="162" column="13" selection-start-line="162" selection-start-column="13" selection-end-line="162" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1563178876722" expanded="true" signature="5361:5364" ph="..." />
           </folding>
         </state>
       </provider>

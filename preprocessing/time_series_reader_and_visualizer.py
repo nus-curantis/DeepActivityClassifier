@@ -143,16 +143,29 @@ def plot_activity_data(activity, record_num, axis='x'):
         pass
 
 
-def split_segments_of_activity(activity, split_series_max_len=360):
+def split_segments_of_activity(activity, split_series_max_len=360, overlap=0.2):
     split_activities = []
 
-    for i in range(0, len(activity.acc_x_series), split_series_max_len):
+    overlap_len = int(split_series_max_len * overlap)
+
+    for i in range(0, len(activity.acc_x_series) + overlap_len, split_series_max_len):
         split_activities.append(Activity(activity.num))
-        split_activities[-1].append_acc_data_series(
-            activity.acc_x_series[i: i + split_series_max_len],
-            activity.acc_y_series[i: i + split_series_max_len],
-            activity.acc_z_series[i: i + split_series_max_len]
-        )
+
+        if i != 0:
+            split_activities[-1].append_acc_data_series(
+                activity.acc_x_series[i - overlap_len:
+                                      i + split_series_max_len - overlap_len],
+                activity.acc_y_series[i - overlap_len:
+                                      i + split_series_max_len - overlap_len],
+                activity.acc_z_series[i - overlap_len:
+                                      i + split_series_max_len - overlap_len]
+            )
+        else:
+            split_activities[-1].append_acc_data_series(
+                activity.acc_x_series[i: i + split_series_max_len],
+                activity.acc_y_series[i: i + split_series_max_len],
+                activity.acc_z_series[i: i + split_series_max_len]
+            )
 
     return split_activities
 
