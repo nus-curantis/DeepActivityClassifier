@@ -51,6 +51,9 @@ class DeepConvLSTMClassifier:
         self.conv_b = None
         self.rnn_cell = None
         self.rnn_output = None
+        self.time_distributed_w = None
+        self.time_distributed_b = None
+        self.time_distributed_output = None
         self.avg_pooling = None
         self.max_pooling = None
         self.last_pooling = None
@@ -171,10 +174,23 @@ class DeepConvLSTMClassifier:
                 cell=self.rnn_cell, inputs=self.embedded_input,
                 dtype=tf.float32, sequence_length=self.__length(self.embedded_input))
 
+        with tf.name_scope('time_distributed_layer'):
+            rnn_output_reshaped = tf.reshape(self.rnn_output, shape=[-1, self.rnn_hidden_units])
+
+            self.time_distributed_w = tf.Variable(tf.truncated_normal([self.rnn_hidden_units, self.rnn_hidden_units]))
+            self.time_distributed_b = tf.Variable(tf.zeros([self.rnn_hidden_units]))
+
+            time_distributed_output = tf.matmul(rnn_output_reshaped, self.time_distributed_w) + self.time_distributed_b
+            self.time_distributed_output = tf.reshape(time_distributed_output, shape=tf.shape(self.rnn_output))
+
         with tf.name_scope('pooling'):
-            self.avg_pooling = tf.reduce_mean(self.rnn_output, axis=1)
-            self.max_pooling = tf.reduce_max(self.rnn_output, axis=1)
-            self.last_pooling = self.__last_relevant(self.rnn_output, self.__length(self.embedded_input))
+            # self.avg_pooling = tf.reduce_mean(self.rnn_output, axis=1)
+            # self.max_pooling = tf.reduce_max(self.rnn_output, axis=1)
+            # self.last_pooling = self.__last_relevant(self.rnn_output, self.__length(self.embedded_input))
+
+            self.avg_pooling = tf.reduce_mean(self.time_distributed_output, axis=1)
+            self.max_pooling = tf.reduce_max(self.time_distributed_output, axis=1)
+            self.last_pooling = self.__last_relevant(self.time_distributed_output, self.__length(self.embedded_input))
 
             self.concatenated_poolings = tf.concat(
                 [self.avg_pooling, self.max_pooling, self.last_pooling], axis=1

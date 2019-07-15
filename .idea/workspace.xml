@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/preprocessing/wharf_reader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_model_weights.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_model_weights.data-00000-of-00001" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_model_weights.index" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_model_weights.index" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_model_weights.meta" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_model_weights.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deep_model/main_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/main_classifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,15 +48,15 @@
         <counts>
           <entry key="dummy" value="20" />
           <entry key="md" value="436" />
-          <entry key="py" value="8715" />
-          <entry key="txt" value="138" />
+          <entry key="py" value="9040" />
+          <entry key="txt" value="199" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Markdown" value="436" />
-          <entry key="PLAIN_TEXT" value="158" />
-          <entry key="Python" value="8715" />
+          <entry key="PLAIN_TEXT" value="219" />
+          <entry key="Python" value="9040" />
         </counts>
       </usages-collector>
     </session>
@@ -95,11 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="50" lean-forward="true" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
+            <state relative-caret-position="71">
+              <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -119,11 +114,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="172" lean-forward="true" selection-start-line="172" selection-end-line="172" />
+            <state relative-caret-position="360">
+              <caret line="194" column="51" lean-forward="true" selection-start-line="194" selection-start-column="51" selection-end-line="194" selection-end-column="51" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -203,9 +198,9 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/deep_model/deep_activity_classifier.py" />
         <option value="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" />
-        <option value="$PROJECT_DIR$/deep_model/main_classifier.py" />
         <option value="$PROJECT_DIR$/preprocessing/wharf_reader.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py" />
+        <option value="$PROJECT_DIR$/deep_model/main_classifier.py" />
       </list>
     </option>
   </component>
@@ -269,7 +264,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.deep_conv_lstm_classifier">
+  <component name="RunManager" selected="Python.main_classifier">
     <configuration name="data_to_rnn_input_transformer" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DeepActivityClassifier" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -384,8 +379,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.deep_conv_lstm_classifier" />
         <item itemvalue="Python.main_classifier" />
+        <item itemvalue="Python.deep_conv_lstm_classifier" />
         <item itemvalue="Python.wharf_reader" />
         <item itemvalue="Python.data_to_rnn_input_transformer" />
         <item itemvalue="Python.deep_activity_classifier" />
@@ -445,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562920397638</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="WHARF dataset preprocessing and result test">
+      <created>1563176693252</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1563176693252</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -458,15 +460,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1533" height="875" extended-state="6" />
-    <editor active="true" />
+    <frame x="67" y="25" width="1533" height="875" extended-state="7" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="2" weight="0.24966888" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32931727" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.39463088" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.6751678" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -508,7 +509,8 @@
     <MESSAGE value="embedding layer" />
     <MESSAGE value="cnn-lstm network" />
     <MESSAGE value="cnn-lstm network \ tuning and testing different datasets" />
-    <option name="LAST_COMMIT_MESSAGE" value="cnn-lstm network \ tuning and testing different datasets" />
+    <MESSAGE value="WHARF dataset preprocessing and result test" />
+    <option name="LAST_COMMIT_MESSAGE" value="WHARF dataset preprocessing and result test" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/preprocessing/plots/series_initial_visualization_record_2_Jogging_axis_x.png">
@@ -592,16 +594,6 @@
     <entry file="file://$PROJECT_DIR$/deep_model/models_archive/deep_activity_classifier_with_pooling.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="50" lean-forward="true" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing/wharf_reader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
@@ -615,8 +607,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="172" lean-forward="true" selection-start-line="172" selection-end-line="172" />
+        <state relative-caret-position="360">
+          <caret line="194" column="51" lean-forward="true" selection-start-line="194" selection-start-column="51" selection-end-line="194" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
