@@ -9,16 +9,20 @@ from preprocessing.time_series_reader_and_visualizer import *
 
 def data_to_rnn_input(data_path='../dataset/CC2650/', split_series_max_len=360):
     small_observations = split_segments_into_parts_with_same_len(data_path, split_series_max_len)
+    return data_to_rnn_input(small_observations)
+
+
+def data_to_rnn_input(split_activities):
     rnn_data = []
     labels = []
 
     series_max_len = 0
 
-    for observation in small_observations:
+    for observation in split_activities:
         if len(observation.acc_x_series) > series_max_len:
             series_max_len = len(observation.acc_x_series)
 
-    for observation in small_observations:
+    for observation in split_activities:
         acc_data = np.array([
             np.append(
                 np.array(observation.acc_x_series), np.zeros(series_max_len - len(observation.acc_x_series))
@@ -87,6 +91,13 @@ def data_to_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_ma
 
 def normalized_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_max_len=360, test_size=0.2):
     rnn_data, labels = data_to_rnn_input(data_path, split_series_max_len)
+    normalized_data = normalize_data(rnn_data)
+
+    return train_test_split(normalized_data, labels, test_size=test_size)
+
+
+def normalized_rnn_input_train_test(split_activities, test_size=0.2):
+    rnn_data, labels = data_to_rnn_input(split_activities)
     normalized_data = normalize_data(rnn_data)
 
     return train_test_split(normalized_data, labels, test_size=test_size)
