@@ -16,6 +16,8 @@ tf.flags.DEFINE_integer('split_len', 6,
                         'indicates input split len. The split segments go throw a conv layer before entering rnn')
 tf.flags.DEFINE_integer('filters_num', 5, 'num of filters in conv net')
 # tf.flags.DEFINE_integer('filters_num', 10, 'num of filters in conv net')
+tf.flags.DEFINE_float('dropout_prob', .75, 'drop out keep probability')
+
 
 # learning parameters
 tf.flags.DEFINE_float('learning_rate', 1, 'learning rate')

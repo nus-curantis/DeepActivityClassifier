@@ -21,6 +21,7 @@ class DeepConvLSTMClassifier:
         self.num_classes = config.num_classes
         self.split_len = config.split_len
         self.filters_num = config.filters_num
+        self.dropout_prob = config.dropout_prob
 
         # learning parameters
         self.learning_rate = config.learning_rate
@@ -163,6 +164,9 @@ class DeepConvLSTMClassifier:
                                                     self.input_representations])
 
             print('self.embedded_input : ', self.embedded_input)
+
+        with tf.name_scope('initial_dropout'):
+            self.embedded_input = tf.nn.dropout(x=self.embedded_input, keep_prob=self.dropout_prob)
 
         with tf.name_scope('rnn'):
             # self.rnn_cell = rnn.GRUCell(num_units=self.rnn_hidden_units,
