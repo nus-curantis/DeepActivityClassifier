@@ -1,4 +1,5 @@
 import tensorflow as tf
+from blaze.expr.strings import str
 from tensorflow.contrib import rnn
 from tensorflow.contrib.layers.python.layers import batch_norm
 
@@ -109,8 +110,8 @@ class DeepConvLSTMClassifier:
 
     def load_data(self):
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
-            normalized_wharf_rnn_input_train_test(split_series_max_len=self.series_max_len)
-            # data_to_rnn_input_train_test(split_series_max_len=self.series_max_len)  # our dataset
+            data_to_rnn_input_train_test(split_series_max_len=self.series_max_len)  # our dataset
+            # normalized_wharf_rnn_input_train_test(split_series_max_len=self.series_max_len)
             # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')
             # data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')
 
@@ -131,21 +132,30 @@ class DeepConvLSTMClassifier:
         #     self.embedded_input = tf.reshape(flattened_embedded_input,
         #                                      shape=[-1, self.series_max_len, self.embedding_out_size])
 
-        # with tf.name_scope('conv_layer'):
-        #     # [batch_size, 360, 3] -> [batch_size, 60, 6, 3]
-        #     split_input = tf.reshape(self.input, shape=[-1,
-        #                                                 int(self.series_max_len / self.split_len),
-        #                                                 self.split_len, self.input_representations])
+        # with tf.name_scope('cnn'):
+        #     self.conv_w = tf.Variable(tf.truncated_normal([self.split_len, self.input_representations,
+        #                                                   1, self.filters_num]))
+        #     self.conv_b = tf.Variable(tf.zeros([self.filters_num]))
         #
-        #     # # [batch_size, 60, 6, 3] -> [batch_size * 60, 6, 3, 1]
-        #     split_input = tf.reshape(split_input, shape=[-1, self.split_len, self.input_representations, 1])
+        #     expanded_input = tf.expand_dims(self.input, -1)
+        #     self.embedded_input = tf.nn.conv2d(expanded_input,
+        #                                        filter=self.conv_w,
+        #                                        strides=[1, self.split_len, 1, 1],
+        #                                        # strides=[1, int(self.split_len / 2), 1, 1],
+        #                                        padding='VALID') + self.conv_b
         #
-        #     # ...
-        # I didn't continue the above code because I understood that actually we don't need to split the input
+        #     print('expanded_input: ', expanded_input)
+        #     print('self.embedded_input : ', self.embedded_input)
+        #
+        #     self.embedded_input = tf.reshape(self.embedded_input,
+        #                                      shape=[-1,
+        #                                             self.embedded_input.shape[1] * self.embedded_input.shape[2],
+        #                                             self.filters_num])
+        #
+        #     print('self.embedded_input : ', self.embedded_input)
 
         with tf.name_scope('cnn'):
-            self.conv_w = tf.Variable(tf.truncated_normal([self.split_len, self.input_representations,
-                                                          1, self.filters_num]))
+            self.conv_w = tf.Variable(tf.truncated_normal([self.split_len, 1, 1, self.filters_num]))
             self.conv_b = tf.Variable(tf.zeros([self.filters_num]))
 
             expanded_input = tf.expand_dims(self.input, -1)
@@ -153,20 +163,20 @@ class DeepConvLSTMClassifier:
                                                filter=self.conv_w,
                                                strides=[1, self.split_len, 1, 1],
                                                # strides=[1, int(self.split_len / 2), 1, 1],
-                                               padding='SAME') + self.conv_b
+                                               padding='VALID') + self.conv_b
 
             print('expanded_input: ', expanded_input)
             print('self.embedded_input : ', self.embedded_input)
 
             self.embedded_input = tf.reshape(self.embedded_input,
                                              shape=[-1,
-                                                    self.embedded_input.shape[1] * self.filters_num,
-                                                    self.input_representations])
+                                                    self.embedded_input.shape[1] * self.embedded_input.shape[2],
+                                                    self.filters_num])
 
             print('self.embedded_input : ', self.embedded_input)
 
-        with tf.name_scope('initial_dropout'):
-            self.embedded_input = tf.nn.dropout(x=self.embedded_input, keep_prob=self.dropout_prob)
+        # with tf.name_scope('initial_dropout'):
+        #     self.embedded_input = tf.nn.dropout(x=self.embedded_input, keep_prob=self.dropout_prob)
 
         with tf.name_scope('rnn'):
             # self.rnn_cell = rnn.GRUCell(num_units=self.rnn_hidden_units,
