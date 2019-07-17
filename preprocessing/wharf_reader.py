@@ -1,6 +1,6 @@
 import os
 from preprocessing.time_series_reader_and_visualizer import Activity, split_segments_of_activity
-from preprocessing.data_to_rnn_input_transformer import normalized_rnn_input_train_test
+from preprocessing.data_to_rnn_input_transformer import normalized_rnn_input_train_test_
 
 activity_to_num = {
     'use_telephone': 0,
@@ -20,7 +20,7 @@ activity_to_num = {
 }
 
 
-def read_all_files(data_path='../dataset/WHARF/Data/'):
+def read_all_files(data_path='../dataset/WHARF/Data/', split_series_max_len=360):
     files = []
     activity_names = []
     task_conductors = []
@@ -45,7 +45,7 @@ def read_all_files(data_path='../dataset/WHARF/Data/'):
 
     split_activities = []
     for activity in activities:
-        split_activities += split_segments_of_activity(activity)
+        split_activities += split_segments_of_activity(activity, split_series_max_len=split_series_max_len)
 
     return activities, split_activities
 
@@ -68,9 +68,10 @@ def extract_activity(file_addr, activity_name):
         return activity
 
 
-def normalized_wharf_rnn_input_train_test(data_path='../dataset/WHARF/Data/'):
-    _, split_activities = read_all_files(data_path)
-    return normalized_rnn_input_train_test(split_activities=split_activities)
+def normalized_wharf_rnn_input_train_test(data_path='../dataset/WHARF/Data/', split_series_max_len=360):
+    _, split_activities = read_all_files(data_path, split_series_max_len=split_series_max_len)
+    return normalized_rnn_input_train_test_(split_activities=split_activities,
+                                            split_series_max_len=split_series_max_len)
 
 
 # read_all_files()

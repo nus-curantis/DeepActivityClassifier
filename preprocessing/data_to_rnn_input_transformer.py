@@ -9,10 +9,10 @@ from preprocessing.time_series_reader_and_visualizer import *
 
 def data_to_rnn_input(data_path='../dataset/CC2650/', split_series_max_len=360):
     small_observations = split_segments_into_parts_with_same_len(data_path, split_series_max_len)
-    return data_to_rnn_input(small_observations)
+    return data_to_rnn_input_(small_observations)
 
 
-def data_to_rnn_input(split_activities):
+def data_to_rnn_input_(split_activities):
     rnn_data = []
     labels = []
 
@@ -96,9 +96,9 @@ def normalized_rnn_input_train_test(data_path='../dataset/CC2650/', split_series
     return train_test_split(normalized_data, labels, test_size=test_size)
 
 
-def normalized_rnn_input_train_test(split_activities, test_size=0.2):
-    rnn_data, labels = data_to_rnn_input(split_activities)
-    normalized_data = normalize_data(rnn_data)
+def normalized_rnn_input_train_test_(split_activities, test_size=0.2, split_series_max_len=360):
+    rnn_data, labels = data_to_rnn_input_(split_activities)
+    normalized_data = normalize_data(rnn_data, split_series_max_len=split_series_max_len)
 
     return train_test_split(normalized_data, labels, test_size=test_size)
 

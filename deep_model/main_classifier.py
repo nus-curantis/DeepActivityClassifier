@@ -5,11 +5,13 @@ from deep_model.deep_conv_lstm_classifier import DeepConvLSTMClassifier
 
 # model parameters
 tf.flags.DEFINE_integer('input_representations', 3, 'num of input representations')
-# tf.flags.DEFINE_integer('num_classes', 18, 'num of classes in the output')
+# tf.flags.DEFINE_integer('num_classes', 18, 'num of classes in the output')  # our dataset
 # tf.flags.DEFINE_integer('num_classes', 8, 'num of classes in the output')  # chest accelerometer data
 tf.flags.DEFINE_integer('num_classes', 14, 'num of classes in the output')  # wharf data
 tf.flags.DEFINE_integer('embedding_out_size', 5, 'embedding layer output features')
-tf.flags.DEFINE_integer('series_max_len', 360, 'max len of an input time series')
+# tf.flags.DEFINE_integer('series_max_len', 360, 'max len of an input time series')
+# tf.flags.DEFINE_integer('series_max_len', 180, 'max len of an input time series')
+tf.flags.DEFINE_integer('series_max_len', 90, 'max len of an input time series')
 # tf.flags.DEFINE_integer('rnn_hidden_units', 32, 'hidden neurons of rnn cells')
 tf.flags.DEFINE_integer('rnn_hidden_units', 64, 'hidden neurons of rnn cells')
 tf.flags.DEFINE_integer('split_len', 6,
@@ -21,6 +23,7 @@ tf.flags.DEFINE_float('dropout_prob', .75, 'drop out keep probability')
 
 # learning parameters
 tf.flags.DEFINE_float('learning_rate', 1, 'learning rate')
+# tf.flags.DEFINE_float('learning_rate', .5, 'learning rate')
 tf.flags.DEFINE_string('activation_func', 'relu', 'activation function')
 tf.flags.DEFINE_integer('num_epochs', 150, 'number of training epochs')
 # tf.flags.DEFINE_integer('num_epochs', 100, 'number of training epochs')

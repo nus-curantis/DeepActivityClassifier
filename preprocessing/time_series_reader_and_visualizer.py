@@ -143,7 +143,7 @@ def plot_activity_data(activity, record_num, axis='x'):
         pass
 
 
-def split_segments_of_activity(activity, split_series_max_len=360, overlap=0.2):
+def split_segments_of_activity(activity, split_series_max_len=360, overlap=0):
     split_activities = []
 
     overlap_len = int(split_series_max_len * overlap)
