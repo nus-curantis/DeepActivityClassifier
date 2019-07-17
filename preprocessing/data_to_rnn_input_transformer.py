@@ -91,7 +91,7 @@ def data_to_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_ma
 
 def normalized_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_max_len=360, test_size=0.2):
     rnn_data, labels = data_to_rnn_input(data_path, split_series_max_len)
-    normalized_data = normalize_data(rnn_data)
+    normalized_data = normalize_data(rnn_data, split_series_max_len=split_series_max_len)
 
     return train_test_split(normalized_data, labels, test_size=test_size)
 

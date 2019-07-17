@@ -111,9 +111,10 @@ class DeepConvLSTMClassifier:
     def load_data(self):
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
             data_to_rnn_input_train_test(split_series_max_len=self.series_max_len)  # our dataset
-            # normalized_wharf_rnn_input_train_test(split_series_max_len=self.series_max_len)
-            # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')
-            # data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')
+            # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
+            #                                 split_series_max_len=self.series_max_len)  # chest dataset
+            # normalized_wharf_rnn_input_train_test(split_series_max_len=self.series_max_len)  # wahrf
+            # data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')  # chest without normalizing
 
         print(len(self.train_inputs))
         print(len(self.train_activity_labels))
@@ -197,6 +198,9 @@ class DeepConvLSTMClassifier:
             time_distributed_output = tf.matmul(rnn_output_reshaped, self.time_distributed_w) + self.time_distributed_b
             self.time_distributed_output = tf.reshape(time_distributed_output, shape=tf.shape(self.rnn_output))
 
+            # test:
+            self.time_distributed_output = tf.nn.dropout(self.time_distributed_output, self.dropout_prob)
+
         with tf.name_scope('pooling'):
             # self.avg_pooling = tf.reduce_mean(self.rnn_output, axis=1)
             # self.max_pooling = tf.reduce_max(self.rnn_output, axis=1)
@@ -234,6 +238,9 @@ class DeepConvLSTMClassifier:
             #     self.concatenated_poolings, self.dense_weights['first']) + self.dense_biases['first']
 
             self.hidden_layer_1 = self.activation_function(self.hidden_layer_1)
+
+            # test:
+            self.hidden_layer_1 = tf.nn.dropout(self.hidden_layer_1, self.dropout_prob)
 
             self.hidden_layer_2 = batch_norm(tf.matmul(
                 self.hidden_layer_1, self.dense_weights['second']) + self.dense_biases['second'])
