@@ -1,5 +1,9 @@
 import tensorflow as tf
+
 import os
+import sys
+sys.path.append("../../DeepActivityClassifier")
+
 # from deep_model.deep_activity_classifier import DeepActivityClassifier
 from deep_model.deep_conv_lstm_classifier import DeepConvLSTMClassifier
 
