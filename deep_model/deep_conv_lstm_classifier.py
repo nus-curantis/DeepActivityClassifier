@@ -1,11 +1,10 @@
 import tensorflow as tf
-from blaze.expr.strings import str
 from tensorflow.contrib import rnn
 from tensorflow.contrib.layers.python.layers import batch_norm
 
 import numpy as np
 
-from pycm import ConfusionMatrix
+# from pycm import ConfusionMatrix
 
 from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test, normalized_rnn_input_train_test
 from preprocessing.wharf_reader import normalized_wharf_rnn_input_train_test
