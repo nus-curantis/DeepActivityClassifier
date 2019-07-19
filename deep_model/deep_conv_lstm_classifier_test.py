@@ -216,11 +216,19 @@ class DeepConvLSTMClassifier:
             print('*****', self.rnn_output)
             print(tf.shape(self.rnn_output)[0], self.series_max_len, self.series_max_len * self.rnn_hidden_units)
 
-            self.concatenated_poolings = tf.reshape(self.time_distributed_output,
-                                                    shape=[tf.shape(self.rnn_output)[0],
-                                                           self.series_max_len * self.rnn_hidden_units])
+            # self.concatenated_poolings = tf.reshape(self.time_distributed_output,
+            #                                         shape=[tf.shape(self.rnn_output)[0],
+            #                                                self.series_max_len * self.rnn_hidden_units])
+            #
+            # print('*****', self.concatenated_poolings)
 
-            print('*****', self.concatenated_poolings)
+            self.avg_pooling = tf.reduce_mean(self.time_distributed_output, axis=1)
+            self.max_pooling = tf.reduce_max(self.time_distributed_output, axis=1)
+            self.last_pooling = self.__last_relevant(self.time_distributed_output, self.__length(self.embedded_input))
+
+            self.concatenated_poolings = tf.concat(
+                [self.avg_pooling, self.max_pooling, self.last_pooling], axis=1
+            )
 
         with tf.name_scope('predictor'):
             self.dense_weights = {

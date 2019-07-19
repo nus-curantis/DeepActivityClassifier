@@ -52,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="604">
-              <caret line="224" column="64" lean-forward="true" selection-start-line="224" selection-start-column="64" selection-end-line="224" selection-end-column="64" />
+            <state relative-caret-position="712">
+              <caret line="230" column="13" lean-forward="true" selection-start-line="224" selection-start-column="13" selection-end-line="230" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -435,7 +435,21 @@
       <option name="project" value="LOCAL" />
       <updated>1563526917890</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="testing using all rnn outputs">
+      <created>1563527029808</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1563527029808</updated>
+    </task>
+    <task id="LOCAL-00017" summary="testing using all rnn outputs">
+      <created>1563527550398</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1563527550398</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView">
@@ -596,8 +610,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="604">
-          <caret line="224" column="64" lean-forward="true" selection-start-line="224" selection-start-column="64" selection-end-line="224" selection-end-column="64" />
+        <state relative-caret-position="712">
+          <caret line="230" column="13" lean-forward="true" selection-start-line="224" selection-start-column="13" selection-end-line="230" selection-end-column="13" />
         </state>
       </provider>
     </entry>
