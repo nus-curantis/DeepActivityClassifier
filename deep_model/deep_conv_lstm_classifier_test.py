@@ -227,7 +227,8 @@ class DeepConvLSTMClassifier:
         with tf.name_scope('predictor'):
             self.dense_weights = {
                 'first': tf.Variable(tf.truncated_normal(
-                    [self.series_max_len * self.rnn_hidden_units, 2 * self.rnn_hidden_units])),
+                    [int(self.series_max_len / self.split_len) *
+                     self.input_representations * self.rnn_hidden_units, 2 * self.rnn_hidden_units])),
                     # [3 * self.rnn_hidden_units, 2 * self.rnn_hidden_units])),
                     # [self.rnn_hidden_units, 2 * self.rnn_hidden_units])),
                 'second': tf.Variable(tf.truncated_normal(
