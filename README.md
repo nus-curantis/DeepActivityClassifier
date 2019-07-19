@@ -10,3 +10,6 @@
 
 *deep_conv_lstm_classifier*: cnn + simple rnn + pooling layer
 > cnn network(single conv layer -> 5 filters of dimension [6, 3, 1]) + rnn + pooling(last pooling + max pooling + mean pooling) + fc (2 + 1 layers)
+
+*new deep_conv_lstm_classifier* cnn + simple rnn + time distributed layer (+ dropout) + pooling layer (+ dropout)
+> cnn network(single conv layer -> 15 filters of dimension [30, 1, 1]) + rnn + time distributed layer (1 layer + dropout) + pooling(last pooling + max pooling + mean pooling) + fc (2 + 1 layers + dropout)
