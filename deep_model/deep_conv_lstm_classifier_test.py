@@ -213,6 +213,9 @@ class DeepConvLSTMClassifier:
             #     [self.avg_pooling, self.max_pooling, self.last_pooling], axis=1
             # )
 
+            print('*****', self.rnn_output)
+            print(tf.shape(self.rnn_output)[0], self.series_max_len, self.series_max_len * self.rnn_hidden_units)
+
             self.concatenated_poolings = tf.reshape(self.time_distributed_output,
                                                     shape=[tf.shape(self.rnn_output)[0],
                                                            self.series_max_len * self.rnn_hidden_units])
