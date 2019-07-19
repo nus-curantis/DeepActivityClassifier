@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/DeepActivityClassifier.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DeepActivityClassifier.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/main_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/main_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +40,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
+            <state relative-caret-position="144">
               <caret line="8" column="73" selection-start-line="8" selection-start-column="73" selection-end-line="8" selection-end-column="73" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
@@ -55,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="223" column="62" selection-start-line="223" selection-start-column="62" selection-end-line="223" selection-end-column="62" />
+            <state relative-caret-position="604">
+              <caret line="224" column="64" lean-forward="true" selection-start-line="224" selection-start-column="64" selection-end-line="224" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -424,7 +421,21 @@
       <option name="project" value="LOCAL" />
       <updated>1563356868070</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="testing using all rnn outputs">
+      <created>1563526381191</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1563526381191</updated>
+    </task>
+    <task id="LOCAL-00015" summary="testing using all rnn outputs">
+      <created>1563526917890</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1563526917890</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
@@ -491,7 +502,8 @@
     <MESSAGE value="changing input len and minor tunings" />
     <MESSAGE value="1d conv @ cnn + other tunings" />
     <MESSAGE value="moving dropout to fc and time_distributed layer" />
-    <option name="LAST_COMMIT_MESSAGE" value="moving dropout to fc and time_distributed layer" />
+    <MESSAGE value="testing using all rnn outputs" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing using all rnn outputs" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/preprocessing/plots/series_initial_visualization_record_2_Jogging_axis_x.png" />
@@ -526,16 +538,6 @@
             <caret line="10" column="61" selection-start-line="10" selection-start-column="61" selection-end-line="10" selection-end-column="61" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="8" column="73" selection-start-line="8" selection-start-column="73" selection-end-line="8" selection-end-column="73" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -582,10 +584,20 @@
     <entry file="file://$PROJECT_DIR$/deep_model/models_archive/deep_activity_classifier_with_pooling.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="73" selection-start-line="8" selection-start-column="73" selection-end-line="8" selection-end-column="73" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="223" column="62" selection-start-line="223" selection-start-column="62" selection-end-line="223" selection-end-column="62" />
+        <state relative-caret-position="604">
+          <caret line="224" column="64" lean-forward="true" selection-start-line="224" selection-start-column="64" selection-end-line="224" selection-end-column="64" />
         </state>
       </provider>
     </entry>
