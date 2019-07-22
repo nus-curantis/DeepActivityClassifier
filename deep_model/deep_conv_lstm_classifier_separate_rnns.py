@@ -46,18 +46,38 @@ class DeepConvLSTMClassifier:
 
         # survival model parts:
         self.embedding_layer = None
-        self.embedded_input = None
+        self.embedded_input_x = None
+        self.embedded_input_y = None
+        self.embedded_input_z = None
         self.embedding = None
-        self.conv_w = None
-        self.conv_b = None
+        self.conv_w_x = None
+        self.conv_b_x = None
+        self.conv_w_y = None
+        self.conv_b_y = None
+        self.conv_w_z = None
+        self.conv_b_z = None
         self.rnn_cell = None
-        self.rnn_output = None
-        self.time_distributed_w = None
-        self.time_distributed_b = None
-        self.time_distributed_output = None
-        self.avg_pooling = None
-        self.max_pooling = None
-        self.last_pooling = None
+        self.rnn_output_x = None
+        self.rnn_output_y = None
+        self.rnn_output_z = None
+        self.time_distributed_w_x = None
+        self.time_distributed_b_x = None
+        self.time_distributed_output_x = None
+        self.time_distributed_w_y = None
+        self.time_distributed_b_y = None
+        self.time_distributed_output_y = None
+        self.time_distributed_w_z = None
+        self.time_distributed_b_z = None
+        self.time_distributed_output_z = None
+        self.avg_pooling_x = None
+        self.max_pooling_x = None
+        self.last_pooling_x = None
+        self.avg_pooling_y = None
+        self.max_pooling_y = None
+        self.last_pooling_y = None
+        self.avg_pooling_z = None
+        self.max_pooling_z = None
+        self.last_pooling_z = None
         self.concatenated_poolings = None
         self.dense_weights = None
         self.dense_biases = None
@@ -121,131 +141,137 @@ class DeepConvLSTMClassifier:
         print(len(self.test_activity_labels))
 
     def build_model(self):
-        # with tf.name_scope('embedding'):
-        #     # self.embedded_input = self.input
-        #
-        #     self.embedding = tf.Variable(tf.truncated_normal([self.input_representations, self.embedding_out_size]))
-        #     # flattened_embedded_input = tf.nn.embedding_lookup(  # todo: solve the problem of this
-        #     #     self.embedding, tf.reshape(self.input, shape=[-1, self.input_representations]))
-        #     flattened_embedded_input = tf.matmul(
-        #         tf.reshape(self.input, shape=[-1, self.input_representations]), self.embedding)
-        #     self.embedded_input = tf.reshape(flattened_embedded_input,
-        #                                      shape=[-1, self.series_max_len, self.embedding_out_size])
-
-        # with tf.name_scope('cnn'):
-        #     self.conv_w = tf.Variable(tf.truncated_normal([self.split_len, self.input_representations,
-        #                                                   1, self.filters_num]))
-        #     self.conv_b = tf.Variable(tf.zeros([self.filters_num]))
-        #
-        #     expanded_input = tf.expand_dims(self.input, -1)
-        #     self.embedded_input = tf.nn.conv2d(expanded_input,
-        #                                        filter=self.conv_w,
-        #                                        strides=[1, self.split_len, 1, 1],
-        #                                        # strides=[1, int(self.split_len / 2), 1, 1],
-        #                                        padding='VALID') + self.conv_b
-        #
-        #     print('expanded_input: ', expanded_input)
-        #     print('self.embedded_input : ', self.embedded_input)
-        #
-        #     self.embedded_input = tf.reshape(self.embedded_input,
-        #                                      shape=[-1,
-        #                                             self.embedded_input.shape[1] * self.embedded_input.shape[2],
-        #                                             self.filters_num])
-        #
-        #     print('self.embedded_input : ', self.embedded_input)
-
         with tf.name_scope('cnn'):
-            self.conv_w = tf.Variable(tf.truncated_normal([self.split_len, 1, 1, self.filters_num]))
-            self.conv_b = tf.Variable(tf.zeros([self.filters_num]))
+            input_x = tf.expand_dims(self.input[:, :, 0], -1)
+            input_y = tf.expand_dims(self.input[:, :, 1], -1)
+            input_z = tf.expand_dims(self.input[:, :, 2], -1)
 
-            expanded_input = tf.expand_dims(self.input, -1)
-            self.embedded_input = tf.nn.conv2d(expanded_input,
-                                               filter=self.conv_w,
-                                               strides=[1, self.split_len, 1, 1],
-                                               # strides=[1, int(self.split_len / 2), 1, 1],
-                                               padding='VALID') + self.conv_b
+            self.conv_w_x = tf.Variable(tf.truncated_normal([self.split_len, 1, 1, self.filters_num]))
+            self.conv_b_x = tf.Variable(tf.zeros([self.filters_num]))
 
-            print('expanded_input: ', expanded_input)
-            print('self.embedded_input : ', self.embedded_input)
+            self.conv_w_y = tf.Variable(tf.truncated_normal([self.split_len, 1, 1, self.filters_num]))
+            self.conv_b_y = tf.Variable(tf.zeros([self.filters_num]))
 
-            self.embedded_input = tf.reshape(self.embedded_input,
-                                             shape=[-1,
-                                                    self.embedded_input.shape[1] * self.embedded_input.shape[2],
-                                                    self.filters_num])
+            self.conv_w_z = tf.Variable(tf.truncated_normal([self.split_len, 1, 1, self.filters_num]))
+            self.conv_b_z = tf.Variable(tf.zeros([self.filters_num]))
 
-            print('self.embedded_input : ', self.embedded_input)
+            self.embedded_input_x = tf.nn.conv2d(input_x,
+                                                 filter=self.conv_w_x,
+                                                 strides=[1, self.split_len, 1, 1],
+                                                 padding='VALID') + self.conv_b_x
 
-        # with tf.name_scope('initial_dropout'):
-        #     self.embedded_input = tf.nn.dropout(x=self.embedded_input, keep_prob=self.dropout_prob)
+            self.embedded_input_x = tf.reshape(self.embedded_input_x,
+                                               shape=[-1,
+                                                      self.embedded_input_x.shape[1] * self.embedded_input_x.shape[2],
+                                                      self.filters_num])
+
+            self.embedded_input_y = tf.nn.conv2d(input_y,
+                                                 filter=self.conv_w_y,
+                                                 strides=[1, self.split_len, 1, 1],
+                                                 padding='VALID') + self.conv_b_y
+
+            self.embedded_input_y = tf.reshape(self.embedded_input_y,
+                                               shape=[-1,
+                                                      self.embedded_input_y.shape[1] * self.embedded_input_y.shape[2],
+                                                      self.filters_num])
+
+            self.embedded_input_z = tf.nn.conv2d(input_z,
+                                                 filter=self.conv_w_z,
+                                                 strides=[1, self.split_len, 1, 1],
+                                                 padding='VALID') + self.conv_b_z
+
+            self.embedded_input_z = tf.reshape(self.embedded_input_z,
+                                               shape=[-1,
+                                                      self.embedded_input_z.shape[1] * self.embedded_input_z.shape[2],
+                                                      self.filters_num])
 
         with tf.name_scope('rnn'):
-            # self.rnn_cell = rnn.GRUCell(num_units=self.rnn_hidden_units,
-            #                             kernel_initializer=tf.orthogonal_initializer())
-
             self.rnn_cell = rnn.LSTMCell(num_units=self.rnn_hidden_units)
 
-            self.rnn_output, _ = tf.nn.dynamic_rnn(
-                cell=self.rnn_cell, inputs=self.embedded_input,
-                dtype=tf.float32, sequence_length=self.__length(self.embedded_input))
+            self.rnn_output_x, _ = tf.nn.dynamic_rnn(
+                cell=self.rnn_cell, inputs=self.embedded_input_x,
+                dtype=tf.float32, sequence_length=self.__length(self.embedded_input_x))
+
+            self.rnn_output_y, _ = tf.nn.dynamic_rnn(
+                cell=self.rnn_cell, inputs=self.embedded_input_y,
+                dtype=tf.float32, sequence_length=self.__length(self.embedded_input_y))
+
+            self.rnn_output_z, _ = tf.nn.dynamic_rnn(
+                cell=self.rnn_cell, inputs=self.embedded_input_z,
+                dtype=tf.float32, sequence_length=self.__length(self.embedded_input_z))
 
         with tf.name_scope('time_distributed_layer'):
-            rnn_output_reshaped = tf.reshape(self.rnn_output, shape=[-1, self.rnn_hidden_units])
+            self.time_distributed_w_x = tf.Variable(tf.truncated_normal([self.rnn_hidden_units, self.rnn_hidden_units]))
+            self.time_distributed_b_x = tf.Variable(tf.zeros([self.rnn_hidden_units]))
+            self.time_distributed_w_y = tf.Variable(tf.truncated_normal([self.rnn_hidden_units, self.rnn_hidden_units]))
+            self.time_distributed_b_y = tf.Variable(tf.zeros([self.rnn_hidden_units]))
+            self.time_distributed_w_z = tf.Variable(tf.truncated_normal([self.rnn_hidden_units, self.rnn_hidden_units]))
+            self.time_distributed_b_z = tf.Variable(tf.zeros([self.rnn_hidden_units]))
 
-            self.time_distributed_w = tf.Variable(tf.truncated_normal([self.rnn_hidden_units, self.rnn_hidden_units]))
-            self.time_distributed_b = tf.Variable(tf.zeros([self.rnn_hidden_units]))
+            rnn_output_x_reshaped = tf.reshape(self.rnn_output_x, shape=[-1, self.rnn_hidden_units])
+            time_distributed_output_x = tf.matmul(rnn_output_x_reshaped,
+                                                  self.time_distributed_w_x) + self.time_distributed_b_x
+            self.time_distributed_output_x = tf.reshape(time_distributed_output_x, shape=tf.shape(self.rnn_output_x))
+            self.time_distributed_output_x = tf.nn.dropout(self.time_distributed_output_x, self.dropout_prob)
 
-            time_distributed_output = tf.matmul(rnn_output_reshaped, self.time_distributed_w) + self.time_distributed_b
-            self.time_distributed_output = tf.reshape(time_distributed_output, shape=tf.shape(self.rnn_output))
+            rnn_output_y_reshaped = tf.reshape(self.rnn_output_y, shape=[-1, self.rnn_hidden_units])
+            time_distributed_output_y = tf.matmul(rnn_output_y_reshaped,
+                                                  self.time_distributed_w_y) + self.time_distributed_b_y
+            self.time_distributed_output_y = tf.reshape(time_distributed_output_y, shape=tf.shape(self.rnn_output_y))
+            self.time_distributed_output_y = tf.nn.dropout(self.time_distributed_output_y, self.dropout_prob)
 
-            # test:
-            self.time_distributed_output = tf.nn.dropout(self.time_distributed_output, self.dropout_prob)
+            rnn_output_z_reshaped = tf.reshape(self.rnn_output_z, shape=[-1, self.rnn_hidden_units])
+            time_distributed_output_z = tf.matmul(rnn_output_z_reshaped,
+                                                  self.time_distributed_w_z) + self.time_distributed_b_z
+            self.time_distributed_output_z = tf.reshape(time_distributed_output_z, shape=tf.shape(self.rnn_output_z))
+            self.time_distributed_output_z = tf.nn.dropout(self.time_distributed_output_z, self.dropout_prob)
 
         with tf.name_scope('pooling'):
-            # self.avg_pooling = tf.reduce_mean(self.rnn_output, axis=1)
-            # self.max_pooling = tf.reduce_max(self.rnn_output, axis=1)
-            # self.last_pooling = self.__last_relevant(self.rnn_output, self.__length(self.embedded_input))
+            self.avg_pooling_x = tf.reduce_mean(self.time_distributed_output_x, axis=1)
+            self.max_pooling_x = tf.reduce_max(self.time_distributed_output_x, axis=1)
+            self.last_pooling_x = self.__last_relevant(self.time_distributed_output_x,
+                                                       self.__length(self.embedded_input_x))
 
-            self.avg_pooling = tf.reduce_mean(self.time_distributed_output, axis=1)
-            self.max_pooling = tf.reduce_max(self.time_distributed_output, axis=1)
-            self.last_pooling = self.__last_relevant(self.time_distributed_output, self.__length(self.embedded_input))
+            self.avg_pooling_y = tf.reduce_mean(self.time_distributed_output_y, axis=1)
+            self.max_pooling_y = tf.reduce_max(self.time_distributed_output_y, axis=1)
+            self.last_pooling_y = self.__last_relevant(self.time_distributed_output_y,
+                                                       self.__length(self.embedded_input_y))
+
+            self.avg_pooling_z = tf.reduce_mean(self.time_distributed_output_z, axis=1)
+            self.max_pooling_z = tf.reduce_max(self.time_distributed_output_z, axis=1)
+            self.last_pooling_z = self.__last_relevant(self.time_distributed_output_z,
+                                                       self.__length(self.embedded_input_z))
 
             self.concatenated_poolings = tf.concat(
-                [self.avg_pooling, self.max_pooling, self.last_pooling], axis=1
+                [self.avg_pooling_x, self.max_pooling_x, self.last_pooling_x,
+                 self.avg_pooling_y, self.max_pooling_y, self.last_pooling_y,
+                 self.avg_pooling_z, self.max_pooling_z, self.last_pooling_z], axis=1
             )
 
         with tf.name_scope('predictor'):
             self.dense_weights = {
                 'first': tf.Variable(tf.truncated_normal(
-                    [3 * self.rnn_hidden_units, 2 * self.rnn_hidden_units])),
-                    # [self.rnn_hidden_units, 2 * self.rnn_hidden_units])),
+                    [9 * self.rnn_hidden_units, 6 * self.rnn_hidden_units])),
                 'second': tf.Variable(tf.truncated_normal(
-                    [2 * self.rnn_hidden_units, 2 * self.rnn_hidden_units])),
-                'third': tf.Variable(tf.truncated_normal([2 * self.rnn_hidden_units, self.num_classes]))
+                    [6 * self.rnn_hidden_units, 3 * self.rnn_hidden_units])),
+                'third': tf.Variable(tf.truncated_normal([3 * self.rnn_hidden_units, self.num_classes]))
             }
 
             self.dense_biases = {
-                'first': tf.Variable(tf.zeros([2 * self.rnn_hidden_units])),
-                'second': tf.Variable(tf.zeros([2 * self.rnn_hidden_units])),
+                'first': tf.Variable(tf.zeros([6 * self.rnn_hidden_units])),
+                'second': tf.Variable(tf.zeros([3 * self.rnn_hidden_units])),
                 'third': tf.Variable(tf.zeros([self.num_classes])),
             }
 
             self.hidden_layer_1 = batch_norm(tf.matmul(
                 self.concatenated_poolings, self.dense_weights['first']) + self.dense_biases['first'])
-                # self.last_pooling, self.dense_weights['first']) + self.dense_biases['first'])
-
-            # self.hidden_layer_1 = tf.matmul(
-            #     self.concatenated_poolings, self.dense_weights['first']) + self.dense_biases['first']
 
             self.hidden_layer_1 = self.activation_function(self.hidden_layer_1)
 
-            # test:
             self.hidden_layer_1 = tf.nn.dropout(self.hidden_layer_1, self.dropout_prob)
 
             self.hidden_layer_2 = batch_norm(tf.matmul(
                 self.hidden_layer_1, self.dense_weights['second']) + self.dense_biases['second'])
-
-            # self.hidden_layer_2 = tf.matmul(
-            #     self.hidden_layer_1, self.dense_weights['second']) + self.dense_biases['second']
 
             self.hidden_layer_2 = self.activation_function(self.hidden_layer_2)
 
