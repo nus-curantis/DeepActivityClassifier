@@ -142,9 +142,9 @@ class DeepConvLSTMClassifier:
 
     def build_model(self):
         with tf.name_scope('cnn'):
-            input_x = tf.expand_dims(self.input[:, :, 0], -1)
-            input_y = tf.expand_dims(self.input[:, :, 1], -1)
-            input_z = tf.expand_dims(self.input[:, :, 2], -1)
+            input_x = tf.reshape(self.input[:, :, 0], shape=[-1, self.series_max_len, 1, 1])
+            input_y = tf.reshape(self.input[:, :, 1], shape=[-1, self.series_max_len, 1, 1])
+            input_z = tf.reshape(self.input[:, :, 2], shape=[-1, self.series_max_len, 1, 1])
 
             self.conv_w_x = tf.Variable(tf.truncated_normal([self.split_len, 1, 1, self.filters_num]))
             self.conv_b_x = tf.Variable(tf.zeros([self.filters_num]))
