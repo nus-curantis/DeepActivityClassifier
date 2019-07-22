@@ -7,7 +7,8 @@ sys.path.append("../../DeepActivityClassifier")
 # from deep_model.deep_activity_classifier import DeepActivityClassifier
 # from deep_model.deep_conv_lstm_classifier import DeepConvLSTMClassifier
 # from deep_model.deep_conv_lstm_classifier_test import DeepConvLSTMClassifier
-from deep_model.deep_conv_lstm_classifier_separate_rnns import DeepConvLSTMClassifier
+# from deep_model.deep_conv_lstm_classifier_separate_rnns import DeepConvLSTMClassifier
+from deep_model.deep_conv_lstm_classifier_bi_dir_rnn import DeepConvLSTMClassifier
 
 # model parameters
 tf.flags.DEFINE_integer('input_representations', 3, 'num of input representations')
@@ -22,7 +23,7 @@ tf.flags.DEFINE_integer('series_max_len', 90, 'max len of an input time series')
 tf.flags.DEFINE_integer('rnn_hidden_units', 64, 'hidden neurons of rnn cells')
 # tf.flags.DEFINE_integer('split_len', 6,
 # tf.flags.DEFINE_integer('split_len', 36,
-tf.flags.DEFINE_integer('split_len', 15,
+tf.flags.DEFINE_integer('split_len', 30,
                         'indicates input split len. The split segments go throw a conv layer before entering rnn')
 tf.flags.DEFINE_integer('filters_num', 5, 'num of filters in conv net')
 # tf.flags.DEFINE_integer('filters_num', 10, 'num of filters in conv net')
