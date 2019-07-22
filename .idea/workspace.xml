@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="testing using all rnn outputs">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/pouya.xml" afterDir="false" />
+    <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_separate_rnns.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_separate_rnns.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_all_pooling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/main_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/main_classifier.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="838">
-              <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+            <state relative-caret-position="352">
+              <caret line="26" column="71" lean-forward="true" selection-start-line="26" selection-start-column="71" selection-end-line="26" selection-end-column="71" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -63,13 +59,17 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_separate_rnns.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="158" column="70" lean-forward="true" selection-start-line="158" selection-start-column="70" selection-end-line="158" selection-end-column="70" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_activity_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4212">
+            <state relative-caret-position="4348">
               <caret line="242" column="61" selection-start-line="242" selection-start-column="61" selection-end-line="242" selection-end-column="61" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
@@ -78,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="291" />
+            <state relative-caret-position="216">
+              <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -158,8 +158,8 @@
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_test.py" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_separate_rnns.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier.py" />
+        <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_separate_rnns.py" />
       </list>
     </option>
   </component>
@@ -515,7 +515,21 @@
       <option name="project" value="LOCAL" />
       <updated>1563530503494</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="separate RNNs for x,y,z axis">
+      <created>1563774723199</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1563774723199</updated>
+    </task>
+    <task id="LOCAL-00025" summary="separate RNNs for x,y,z axis">
+      <created>1563775080298</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1563775080298</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TodoView">
@@ -528,7 +542,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
@@ -583,7 +597,8 @@
     <MESSAGE value="1d conv @ cnn + other tunings" />
     <MESSAGE value="moving dropout to fc and time_distributed layer" />
     <MESSAGE value="testing using all rnn outputs" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing using all rnn outputs" />
+    <MESSAGE value="separate RNNs for x,y,z axis" />
+    <option name="LAST_COMMIT_MESSAGE" value="separate RNNs for x,y,z axis" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/preprocessing/plots/series_initial_visualization_record_2_Jogging_axis_x.png" />
@@ -628,26 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/deep_activity_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4212">
-          <caret line="242" column="61" selection-start-line="242" selection-start-column="61" selection-end-line="242" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="291" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2106">
@@ -671,13 +666,37 @@
     <entry file="file://$PROJECT_DIR$/deep_model/models_archive/deep_activity_classifier_with_pooling.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_separate_rnns.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="838">
-          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+        <state relative-caret-position="352">
+          <caret line="26" column="71" lean-forward="true" selection-start-line="26" selection-start-column="71" selection-end-line="26" selection-end-column="71" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_separate_rnns.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="158" column="70" lean-forward="true" selection-start-line="158" selection-start-column="70" selection-end-line="158" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/deep_activity_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4348">
+          <caret line="242" column="61" selection-start-line="242" selection-start-column="61" selection-end-line="242" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
