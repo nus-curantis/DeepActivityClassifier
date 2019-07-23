@@ -351,10 +351,10 @@ class DeepConvLSTMClassifier:
             print(np.shape(pred_output))
             print(np.shape(self.test_activity_labels))
 
-            print('test precision score: ', precision_score(y_true=self.test_activity_labels,
-                                                            y_pred=pred_output, average=None))
-            print('test recall score: ', recall_score(y_true=self.test_activity_labels,
-                                                      y_pred=pred_output, average=None))
+            print('test precision score: ', precision_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                                            y_pred=np.argmax(pred_output, 1), average=None))
+            print('test recall score: ', recall_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                                      y_pred=np.argmax(pred_output, 1), average=None))
 
             print('--------------------------------')
 
