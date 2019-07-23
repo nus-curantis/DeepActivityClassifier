@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_activity_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_activity_classifier.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_model/main_classifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/main_classifier.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+            <state relative-caret-position="360">
+              <caret line="35" column="42" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -37,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_activity_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="194" column="40" lean-forward="true" selection-start-line="194" selection-start-column="40" selection-end-line="194" selection-end-column="40" />
+            <state relative-caret-position="274">
+              <caret line="194" column="32" selection-start-line="194" selection-start-column="32" selection-end-line="194" selection-end-column="32" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -52,7 +52,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3132">
+            <state relative-caret-position="727">
               <caret line="183" selection-start-line="183" selection-end-line="183" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
@@ -64,8 +64,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3924">
-              <caret line="227" selection-start-line="227" selection-end-line="227" />
+            <state relative-caret-position="292">
+              <caret line="276" column="40" selection-start-line="276" selection-start-column="40" selection-end-line="276" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -120,6 +120,8 @@
       <find>normalized_rnn_input_train_test</find>
       <find>pooli</find>
       <find>dropout</find>
+      <find>adam</find>
+      <find>ada</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -138,9 +140,9 @@
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_test.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_separate_rnns.py" />
-        <option value="$PROJECT_DIR$/deep_model/main_classifier.py" />
-        <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_activity_classifier.py" />
+        <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py" />
+        <option value="$PROJECT_DIR$/deep_model/main_classifier.py" />
       </list>
     </option>
   </component>
@@ -524,7 +526,21 @@
       <option name="project" value="LOCAL" />
       <updated>1563787620038</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="adam instead of AdaDelta">
+      <created>1563853113553</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1563853113553</updated>
+    </task>
+    <task id="LOCAL-00029" summary="adam instead of AdaDelta">
+      <created>1563854172946</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1563854172946</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView">
@@ -594,7 +610,8 @@
     <MESSAGE value="testing using all rnn outputs" />
     <MESSAGE value="separate RNNs for x,y,z axis" />
     <MESSAGE value="BiDirectional rnn" />
-    <option name="LAST_COMMIT_MESSAGE" value="BiDirectional rnn" />
+    <MESSAGE value="adam instead of AdaDelta" />
+    <option name="LAST_COMMIT_MESSAGE" value="adam instead of AdaDelta" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/preprocessing/plots/series_initial_visualization_record_2_Jogging_axis_x.png" />
@@ -646,23 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3132">
-          <caret line="183" selection-start-line="183" selection-end-line="183" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3924">
-          <caret line="227" selection-start-line="227" selection-end-line="227" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2106">
@@ -686,10 +686,10 @@
     <entry file="file://$PROJECT_DIR$/deep_model/models_archive/deep_activity_classifier_with_pooling.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
+    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+        <state relative-caret-position="727">
+          <caret line="183" selection-start-line="183" selection-end-line="183" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
@@ -698,8 +698,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_activity_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="194" column="40" lean-forward="true" selection-start-line="194" selection-start-column="40" selection-end-line="194" selection-end-column="40" />
+        <state relative-caret-position="274">
+          <caret line="194" column="32" selection-start-line="194" selection-start-column="32" selection-end-line="194" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="276" column="40" selection-start-line="276" selection-start-column="40" selection-end-line="276" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="35" column="42" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
