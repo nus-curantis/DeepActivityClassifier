@@ -291,7 +291,8 @@ class DeepConvLSTMClassifier:
         self.validation_summary = tf.summary.merge([self.validation_loss_summary,
                                                     self.validation_accuracy_summary])
 
-        self.conv_filters_summary = tf.summary.image('conv filters', self.conv_w)
+        self.conv_filters_summary = tf.summary.image(
+            'conv filters', tf.reshape(self.conv_w, shape=[self.filters_num, self.split_len, 1, 1]))
         self.conv_output_summary = tf.summary.image('conv outputs', self.embedded_input)
         self.avg_pooling_summary = tf.summary.image('avg pooling', self.avg_pooling)
         self.max_pooling_summary = tf.summary.image('max pooling', self.max_pooling)
