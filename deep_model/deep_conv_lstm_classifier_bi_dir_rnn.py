@@ -294,9 +294,12 @@ class DeepConvLSTMClassifier:
         self.conv_filters_summary = tf.summary.image(
             'conv filters', tf.reshape(self.conv_w, shape=[self.filters_num, self.split_len, 1, 1]))
         self.conv_output_summary = tf.summary.image('conv outputs', tf.expand_dims(self.embedded_input, -1))
-        self.avg_pooling_summary = tf.summary.image('avg pooling', self.avg_pooling)
-        self.max_pooling_summary = tf.summary.image('max pooling', self.max_pooling)
-        self.last_pooling_summary = tf.summary.image('mean pooling', self.last_pooling)
+        self.avg_pooling_summary = tf.summary.image(
+            'avg pooling', tf.reshape(self.avg_pooling, shape=[-1, 2 * self.rnn_hidden_units, 1, 1]))
+        self.max_pooling_summary = tf.summary.image(
+            'max pooling', tf.reshape(self.max_pooling, shape=[-1, 2 * self.rnn_hidden_units, 1, 1]))
+        self.last_pooling_summary = tf.summary.image(
+            'mean pooling', tf.reshape(self.last_pooling, shape=[-1, 2 * self.rnn_hidden_units, 1, 1]))
 
         self.images_summary = tf.summary.merge([self.conv_filters_summary, self.conv_output_summary,
                                                 self.avg_pooling_summary, self.max_pooling_summary,
