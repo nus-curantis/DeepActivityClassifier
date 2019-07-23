@@ -37,7 +37,8 @@ tf.flags.DEFINE_float('dropout_prob', .9, 'drop out keep probability')
 # tf.flags.DEFINE_float('learning_rate', .01, 'learning rate')
 tf.flags.DEFINE_float('learning_rate', .001, 'learning rate')
 tf.flags.DEFINE_string('activation_func', 'relu', 'activation function')
-tf.flags.DEFINE_integer('num_epochs', 150, 'number of training epochs')
+# tf.flags.DEFINE_integer('num_epochs', 150, 'number of training epochs')
+tf.flags.DEFINE_integer('num_epochs', 1, 'number of training epochs')
 tf.flags.DEFINE_integer('batch_size', 64, 'batch size')
 
 # logging parameters
