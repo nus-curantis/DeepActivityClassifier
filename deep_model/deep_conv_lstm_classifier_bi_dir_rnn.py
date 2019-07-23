@@ -4,7 +4,7 @@ from tensorflow.contrib.layers.python.layers import batch_norm
 
 import numpy as np
 
-# from pycm import ConfusionMatrix
+from sklearn.metrics import precision_score, recall_score
 
 from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test, normalized_rnn_input_train_test
 from preprocessing.wharf_reader import normalized_wharf_rnn_input_train_test
@@ -348,10 +348,10 @@ class DeepConvLSTMClassifier:
             print('test loss: ', loss)
             print('test accuracy: ', accuracy)
 
-            # cm = ConfusionMatrix(actual_vector=self.test_activity_labels[100:],
-            #                      predict_vector=pred_output)
-            # print('Confusion Matrix:')
-            # print(cm)
+            print('test precision score: ', precision_score(y_true=self.test_activity_labels,
+                                                            y_pred=pred_output, average=None))
+            print('test recall score: ', recall_score(y_true=self.test_activity_labels,
+                                                            y_pred=pred_output, average=None))
 
             print('--------------------------------')
 
