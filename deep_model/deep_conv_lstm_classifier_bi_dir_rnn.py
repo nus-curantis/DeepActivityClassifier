@@ -291,7 +291,15 @@ class DeepConvLSTMClassifier:
         self.validation_summary = tf.summary.merge([self.validation_loss_summary,
                                                     self.validation_accuracy_summary])
 
-        # self.conv_filters_summary = tf.summary.image('conv filters', self.conv_w)
+        self.conv_filters_summary = tf.summary.image('conv filters', self.conv_w)
+        self.conv_output_summary = tf.summary.image('conv outputs', self.embedded_input)
+        self.avg_pooling_summary = tf.summary.image('avg pooling', self.avg_pooling)
+        self.max_pooling_summary = tf.summary.image('max pooling', self.max_pooling)
+        self.last_pooling_summary = tf.summary.image('mean pooling', self.last_pooling)
+
+        self.images_summary = tf.summary.merge([self.conv_filters_summary, self.conv_output_summary,
+                                                self.avg_pooling_summary, self.max_pooling_summary,
+                                                self.last_pooling_summary])
 
         self.file_writer = tf.summary.FileWriter(self.log_folder)
 
@@ -359,6 +367,12 @@ class DeepConvLSTMClassifier:
                                                       y_pred=np.argmax(pred_output, 1), average=None))
 
             print('--------------------------------')
+
+            self.file_writer.add_summary(
+                (sess.run(self.images_summary,
+                          feed_dict={self.input: self.test_inputs[:100],
+                                     self.activity_label: self.test_activity_labels[:100]}))
+                , epoch)
 
             save_path = self.saver.save(sess, self.model_path)
             print("Survival model saved in file: %s" % save_path)
