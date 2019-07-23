@@ -12,7 +12,8 @@ from deep_model.deep_conv_lstm_classifier_bi_dir_rnn import DeepConvLSTMClassifi
 
 # model parameters
 tf.flags.DEFINE_integer('input_representations', 3, 'num of input representations')
-tf.flags.DEFINE_integer('num_classes', 18, 'num of classes in the output')  # our dataset
+tf.flags.DEFINE_integer('num_classes', 13, 'num of classes in the output')  # mhealth dataset
+# tf.flags.DEFINE_integer('num_classes', 18, 'num of classes in the output')  # our dataset
 # tf.flags.DEFINE_integer('num_classes', 8, 'num of classes in the output')  # chest accelerometer data
 # tf.flags.DEFINE_integer('num_classes', 14, 'num of classes in the output')  # wharf data
 tf.flags.DEFINE_integer('embedding_out_size', 5, 'embedding layer output features')

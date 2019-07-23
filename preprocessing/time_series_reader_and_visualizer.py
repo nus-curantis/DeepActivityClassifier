@@ -111,7 +111,8 @@ def extract_activities(file_addr):
 
         previous_activity_num = -10
         for row in reader:
-            activity_num = int(row[-1])
+            # activity_num = int(row[-1])
+            activity_num = int(float(row[-1]))  # int(float()) can handle 0.0 but int() can't
             if activity_num != previous_activity_num:
                 previous_activity_num = activity_num
 
