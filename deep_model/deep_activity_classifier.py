@@ -192,7 +192,8 @@ class DeepActivityClassifier:
 
             print(var_list)
 
-            opt = tf.train.AdadeltaOptimizer(learning_rate=self.learning_rate)
+            # opt = tf.train.AdadeltaOptimizer(learning_rate=self.learning_rate)
+            opt = tf.train.AdamOptimizer(learning_rate=self.learning_rate)
             grads = tf.gradients(self.cost, var_list)
             train_op = opt.apply_gradients(zip(grads, var_list))
 
