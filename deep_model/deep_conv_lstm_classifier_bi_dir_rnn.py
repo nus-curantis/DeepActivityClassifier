@@ -291,6 +291,8 @@ class DeepConvLSTMClassifier:
         self.validation_summary = tf.summary.merge([self.validation_loss_summary,
                                                     self.validation_accuracy_summary])
 
+        # self.conv_filters_summary = tf.summary.image('conv filters', self.conv_w)
+
         self.file_writer = tf.summary.FileWriter(self.log_folder)
 
         self.saver = tf.train.Saver()
