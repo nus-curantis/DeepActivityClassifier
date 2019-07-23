@@ -109,9 +109,9 @@ class DeepConvLSTMClassifier:
 
     def load_data(self):
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
-            data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/',
-                                         split_series_max_len=self.series_max_len)  # big dataset
-            # data_to_rnn_input_train_test(split_series_max_len=self.series_max_len)  # our dataset
+            data_to_rnn_input_train_test(split_series_max_len=self.series_max_len)  # our dataset
+            # data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/',
+            #                              split_series_max_len=self.series_max_len)  # big dataset
             # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
             #                                 split_series_max_len=self.series_max_len)  # chest dataset
             # normalized_wharf_rnn_input_train_test(split_series_max_len=self.series_max_len)  # wahrf
