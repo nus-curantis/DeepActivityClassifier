@@ -98,8 +98,9 @@ def data_to_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_ma
     return train_data, test_data, train_labels, test_labels
 
 
-def normalized_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_max_len=360, test_size=0.2):
-    rnn_data, labels = data_to_rnn_input(data_path, split_series_max_len)
+def normalized_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_max_len=360,
+                                    ignore_classes=[], test_size=0.2):
+    rnn_data, labels = data_to_rnn_input(data_path, split_series_max_len, ignore_classes=ignore_classes)
     normalized_data = normalize_data(rnn_data, split_series_max_len=split_series_max_len)
 
     return train_test_split(normalized_data, labels, test_size=test_size)
@@ -145,5 +146,5 @@ def analyze_train_test_data(train_labels, test_labels, ignore_classes=[]):
 # print(rnn_data[0, :, 0].tolist())
 
 # data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/', ignore_classes=[0, 12])
-# data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')
+data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/', ignore_classes=[0, 2, 5, 6])
 # data_to_rnn_input_train_test(ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])
