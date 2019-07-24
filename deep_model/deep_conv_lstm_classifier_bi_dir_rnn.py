@@ -109,7 +109,8 @@ class DeepConvLSTMClassifier:
 
     def load_data(self):
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
-            data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/', ignore_classes=[0, 12])
+            data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/', ignore_classes=[0, 12],
+                                         split_series_max_len=self.series_max_len)
         # data_to_rnn_input_train_test(
             #     split_series_max_len=self.series_max_len,
             #     ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])  # our dataset
