@@ -52,6 +52,9 @@ def get_one_hot_labels(labels, ignore_classes=[]):
     # labels_num = max(labels) + 1
     labels_num = len(set(labels)) + len(ignore_classes)
 
+    print(len(set(labels)))
+    print(len(ignore_classes))
+
     one_hots = []
     for label in labels:
         one_hot = np.zeros(labels_num)
@@ -143,4 +146,4 @@ def analyze_train_test_data(train_labels, test_labels, ignore_classes=[]):
 
 # data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/')
 # data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')
-# data_to_rnn_input_train_test(ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])
+data_to_rnn_input_train_test(ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])
