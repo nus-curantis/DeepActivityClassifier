@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/results_summary.ods" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="144" column="95" lean-forward="true" selection-start-line="144" selection-start-column="31" selection-end-line="144" selection-end-column="95" />
+            <state relative-caret-position="472">
+              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -64,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="113" column="16" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="16" />
+            <state relative-caret-position="334">
+              <caret line="111" column="21" selection-start-line="111" selection-start-column="21" selection-end-line="111" selection-end-column="21" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -149,8 +145,8 @@
         <option value="$PROJECT_DIR$/preprocessing/mhealth_reader.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier.py" />
         <option value="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" />
-        <option value="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py" />
+        <option value="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" />
       </list>
     </option>
   </component>
@@ -660,7 +656,14 @@
       <option name="project" value="LOCAL" />
       <updated>1563884513565</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="data analyze">
+      <created>1563952852933</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1563952852933</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TodoView">
@@ -734,7 +737,8 @@
     <MESSAGE value="mhealth dataset" />
     <MESSAGE value="precision and recall" />
     <MESSAGE value="images summary" />
-    <option name="LAST_COMMIT_MESSAGE" value="images summary" />
+    <MESSAGE value="data analyze" />
+    <option name="LAST_COMMIT_MESSAGE" value="data analyze" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/preprocessing/plots/series_initial_visualization_record_2_Jogging_axis_x.png" />
@@ -847,22 +851,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py">
+    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="144" column="95" lean-forward="true" selection-start-line="144" selection-start-column="31" selection-end-line="144" selection-end-column="95" />
+        <state relative-caret-position="334">
+          <caret line="111" column="21" selection-start-line="111" selection-start-column="21" selection-end-line="111" selection-end-column="21" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py">
+    <entry file="file://$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="113" column="16" selection-start-line="113" selection-start-column="16" selection-end-line="113" selection-end-column="16" />
+        <state relative-caret-position="472">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
