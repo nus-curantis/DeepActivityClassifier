@@ -7,8 +7,9 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from preprocessing.time_series_reader_and_visualizer import *
 
 
-def data_to_rnn_input(data_path='../dataset/CC2650/', split_series_max_len=360):
-    small_observations = split_segments_into_parts_with_same_len(data_path, split_series_max_len)
+def data_to_rnn_input(data_path='../dataset/CC2650/', split_series_max_len=360, ignore_classes=[]):
+    small_observations = split_segments_into_parts_with_same_len(data_path, split_series_max_len,
+                                                                 ignore_classes=ignore_classes)
     return data_to_rnn_input_(small_observations)
 
 
@@ -83,10 +84,14 @@ def normalize_data(rnn_data, split_series_max_len=360):  # todo: test different 
     return np.transpose(scaled_data)
 
 
-def data_to_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_max_len=360, test_size=0.2):
-    rnn_data, labels = data_to_rnn_input(data_path, split_series_max_len)
+def data_to_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_max_len=360,
+                                 ignore_classes=[], test_size=0.2):
+    rnn_data, labels = data_to_rnn_input(data_path, split_series_max_len, ignore_classes=ignore_classes)
 
-    return train_test_split(rnn_data, labels, test_size=test_size)
+    train_data, test_data, train_labels, test_labels = train_test_split(rnn_data, labels, test_size=test_size)
+    analyze_train_test_data(train_labels, test_labels, ignore_classes=ignore_classes)
+
+    return train_data, test_data, train_labels, test_labels
 
 
 def normalized_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_max_len=360, test_size=0.2):
@@ -103,6 +108,30 @@ def normalized_rnn_input_train_test_(split_activities, test_size=0.2, split_seri
     return train_test_split(normalized_data, labels, test_size=test_size)
 
 
+def analyze_train_test_data(train_labels, test_labels, ignore_classes=[]):
+    train_labels = np.argmax(train_labels, 1)
+    test_labels = np.argmax(test_labels, 1)
+    ignore_classes = np.array(ignore_classes)
+
+    all_labels = np.concatenate([train_labels, test_labels, ignore_classes])
+    num_labels = len(set(all_labels))
+
+    print('~~~~~~~~~~~~~~~~~~~ analyzing test, train data:')
+    print('train samples:', len(train_labels))
+    print('test samples:', len(test_labels))
+
+    labels_num_in_train_data = np.zeros(num_labels)
+    labels_num_in_test_data = np.zeros(num_labels)
+
+    for label in train_labels:
+        labels_num_in_train_data[label] += 1
+
+    for label in test_labels:
+        labels_num_in_test_data[label] += 1
+
+    print(labels_num_in_train_data)
+    print(labels_num_in_test_data)
+
 # rnn_data, labels = data_to_rnn_input(data_path='../dataset/Chest_Accelerometer/data/')
 # print('data shape: ', rnn_data.shape)
 # print('labels shape: ', labels.shape)
@@ -110,3 +139,7 @@ def normalized_rnn_input_train_test_(split_activities, test_size=0.2, split_seri
 # print(normalized_data.shape)
 # print(normalized_data[0, :, 0].tolist())
 # print(rnn_data[0, :, 0].tolist())
+
+# data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/')
+# data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')
+# data_to_rnn_input_train_test(ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])

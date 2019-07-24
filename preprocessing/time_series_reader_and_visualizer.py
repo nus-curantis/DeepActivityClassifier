@@ -171,13 +171,15 @@ def split_segments_of_activity(activity, split_series_max_len=360, overlap=0):
     return split_activities
 
 
-def split_segments_into_parts_with_same_len(data_path='../dataset/CC2650/', split_series_max_len=360):
+def split_segments_into_parts_with_same_len(data_path='../dataset/CC2650/', split_series_max_len=360,
+                                            ignore_classes=[]):
     recorded_activities = read_all_files(data_path)
 
     split_activities = []
 
     for activity in recorded_activities:
-        split_activities += split_segments_of_activity(activity, split_series_max_len)
+        if activity.num not in ignore_classes:
+            split_activities += split_segments_of_activity(activity, split_series_max_len)
 
     return split_activities
 
