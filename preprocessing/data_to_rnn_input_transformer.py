@@ -10,10 +10,10 @@ from preprocessing.time_series_reader_and_visualizer import *
 def data_to_rnn_input(data_path='../dataset/CC2650/', split_series_max_len=360, ignore_classes=[]):
     small_observations = split_segments_into_parts_with_same_len(data_path, split_series_max_len,
                                                                  ignore_classes=ignore_classes)
-    return data_to_rnn_input_(small_observations)
+    return data_to_rnn_input_(small_observations, ignore_classes=ignore_classes)
 
 
-def data_to_rnn_input_(split_activities):
+def data_to_rnn_input_(split_activities, ignore_classes=[]):
     rnn_data = []
     labels = []
 
@@ -44,12 +44,13 @@ def data_to_rnn_input_(split_activities):
 
         labels.append(observation.num)
 
-    return shuffle(np.array(rnn_data), get_one_hot_labels(labels),
+    return shuffle(np.array(rnn_data), get_one_hot_labels(labels, ignore_classes=ignore_classes),
                    random_state=0)  # todo: this needs to be removed at some point
 
 
-def get_one_hot_labels(labels):
-    labels_num = max(labels) + 1
+def get_one_hot_labels(labels, ignore_classes=[]):
+    # labels_num = max(labels) + 1
+    labels_num = len(set(labels)) + len(ignore_classes)
 
     one_hots = []
     for label in labels:
