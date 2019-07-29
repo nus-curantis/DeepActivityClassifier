@@ -46,7 +46,7 @@ def read_all_files(target_dir='../dataset/', columns_to_use=
     activities = []
     for data in selected_datas:
         print(data)
-        activities += extract_activities(data)
+        activities += extract_activities(data, map_classes)
 
     print('total recorded activities: ', len(activities))
 
@@ -61,12 +61,12 @@ def read_all_files(target_dir='../dataset/', columns_to_use=
     return activities, split_activities
 
 
-def extract_activities(selected_data):
+def extract_activities(selected_data, map_classes):
     activities = []
 
     previous_activity_num = -10
     for row in selected_data:
-        activity_num = int(float(row[0]))
+        activity_num = int(float(map_classes[row[0]]))
         if activity_num != previous_activity_num:
             previous_activity_num = activity_num
 
