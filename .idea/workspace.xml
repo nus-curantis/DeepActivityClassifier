@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/pouya.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/pouya.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_all_pooling.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/logs_classifier/deep_conv_lstm_classifier_all_pooling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/pamap2_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/pamap2_reader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/pamap2_reader_.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/pamap2_reader_help_code.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_model/logs_classifier/deep_conv_lstm_classifier_all_pooling.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/models_archive/deep_conv_lstm_classifier_all_pooling.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,6 +14,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="432">
+                <caret line="24" selection-start-line="24" selection-end-line="24" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -56,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="117" column="53" selection-start-line="117" selection-start-column="53" selection-end-line="117" selection-end-column="53" />
+            <state relative-caret-position="378">
+              <caret line="120" column="52" lean-forward="true" selection-start-line="120" selection-start-column="52" selection-end-line="120" selection-end-column="52" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -68,7 +77,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
+            <state relative-caret-position="2300">
               <caret line="146" column="4" selection-start-line="146" selection-start-column="4" selection-end-line="146" selection-end-column="4" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
@@ -77,23 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader_help_code.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="73" lean-forward="true" selection-start-line="1" selection-start-column="73" selection-end-line="1" selection-end-column="73" />
-              <folding>
-                <element signature="e#295#313#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2772">
-              <caret line="154" lean-forward="true" selection-start-line="154" selection-end-line="154" />
+            <state relative-caret-position="367">
+              <caret line="149" column="20" lean-forward="true" selection-start-line="149" selection-start-column="20" selection-end-line="149" selection-end-column="20" />
               <folding>
                 <element signature="e#129#147#0" expanded="true" />
               </folding>
@@ -103,7 +100,11 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/models_archive/deep_activity_classifier_with_pooling.py">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="8" column="84" lean-forward="true" selection-start-line="8" selection-start-column="84" selection-end-line="8" selection-end-column="84" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -150,17 +151,17 @@
         <option value="$PROJECT_DIR$/preprocessing/wharf_reader.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_test.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_separate_rnns.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_activity_classifier.py" />
         <option value="$PROJECT_DIR$/preprocessing/mhealth_reader.py" />
         <option value="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" />
-        <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier.py" />
         <option value="$PROJECT_DIR$/preprocessing/pamap2_reader_.py" />
         <option value="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" />
-        <option value="$PROJECT_DIR$/preprocessing/pamap2_reader.py" />
         <option value="$PROJECT_DIR$/preprocessing/pamap2_reader_help_code.py" />
+        <option value="$PROJECT_DIR$/preprocessing/pamap2_reader.py" />
+        <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -191,6 +192,18 @@
             <path>
               <item name="DeepActivityClassifier" type="b2602c69:ProjectViewProjectNode" />
               <item name="DeepActivityClassifier" type="462c0819:PsiDirectoryNode" />
+              <item name="deep_model" type="462c0819:PsiDirectoryNode" />
+              <item name="logs_classifier" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DeepActivityClassifier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepActivityClassifier" type="462c0819:PsiDirectoryNode" />
+              <item name="deep_model" type="462c0819:PsiDirectoryNode" />
+              <item name="models_archive" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DeepActivityClassifier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepActivityClassifier" type="462c0819:PsiDirectoryNode" />
               <item name="preprocessing" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -211,8 +224,9 @@
       <recent name="$PROJECT_DIR$/deep_model" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/deep_model/logs_classifier" />
       <recent name="$PROJECT_DIR$/deep_model/models_archive" />
+      <recent name="$PROJECT_DIR$/preprocessing/archive" />
+      <recent name="$PROJECT_DIR$/deep_model/logs_classifier" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -360,20 +374,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
-    </task>
-    <task id="LOCAL-00007" summary="WHARF dataset preprocessing and result test">
-      <created>1563176693252</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1563176693252</updated>
-    </task>
-    <task id="LOCAL-00008" summary="TimeDistributed Layer">
-      <created>1563177876869</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1563177876869</updated>
     </task>
     <task id="LOCAL-00009" summary="Overlapping input segments">
       <created>1563179637555</created>
@@ -704,7 +704,21 @@
       <option name="project" value="LOCAL" />
       <updated>1563960334943</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="PAMAP2 datset">
+      <created>1564390668088</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1564390668088</updated>
+    </task>
+    <task id="LOCAL-00057" summary="PAMAP2 datset">
+      <created>1564390967762</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1564390967762</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TodoView">
@@ -780,7 +794,8 @@
     <MESSAGE value="images summary" />
     <MESSAGE value="data analyze" />
     <MESSAGE value="data analysis" />
-    <option name="LAST_COMMIT_MESSAGE" value="data analysis" />
+    <MESSAGE value="PAMAP2 datset" />
+    <option name="LAST_COMMIT_MESSAGE" value="PAMAP2 datset" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/preprocessing/plots/series_initial_visualization_record_2_Jogging_axis_x.png" />
@@ -805,7 +820,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/logs_classifier/deep_conv_lstm_classifier_all_pooling.py">
+    <entry file="file://$PROJECT_DIR$/deep_model/models_archive/deep_conv_lstm_classifier_all_pooling.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="177" column="40" selection-start-line="177" selection-start-column="40" selection-end-line="177" selection-end-column="40" />
@@ -840,16 +855,6 @@
     <entry file="file://$PROJECT_DIR$/results_summary.ods">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="270">
-            <caret line="15" selection-start-line="15" selection-end-line="15" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -870,33 +875,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/models_archive/deep_activity_classifier_with_pooling.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.7/site-packages/pandas/io/parsers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
           <caret line="709" selection-start-line="709" selection-end-line="709" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="146" column="4" selection-start-line="146" selection-start-column="4" selection-end-line="146" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="117" column="53" selection-start-line="117" selection-start-column="53" selection-end-line="117" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -920,23 +902,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/preprocessing/archive/pamap2_reader_help_code.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="41" column="34" lean-forward="true" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+          <folding>
+            <element signature="e#295#313#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2300">
+          <caret line="146" column="4" selection-start-line="146" selection-start-column="4" selection-end-line="146" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2772">
-          <caret line="154" lean-forward="true" selection-start-line="154" selection-end-line="154" />
+        <state relative-caret-position="367">
+          <caret line="149" column="20" lean-forward="true" selection-start-line="149" selection-start-column="20" selection-end-line="149" selection-end-column="20" />
           <folding>
             <element signature="e#129#147#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader_help_code.py">
+    <entry file="file://$PROJECT_DIR$/deep_model/models_archive/deep_activity_classifier_with_pooling.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="73" lean-forward="true" selection-start-line="1" selection-start-column="73" selection-end-line="1" selection-end-column="73" />
+        <state>
+          <caret line="8" column="84" lean-forward="true" selection-start-line="8" selection-start-column="84" selection-end-line="8" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="120" column="52" lean-forward="true" selection-start-line="120" selection-start-column="52" selection-end-line="120" selection-end-column="52" />
           <folding>
-            <element signature="e#295#313#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="432">
+            <caret line="24" selection-start-line="24" selection-end-line="24" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
