@@ -98,6 +98,16 @@ def data_to_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_ma
     return train_data, test_data, train_labels, test_labels
 
 
+def data_to_rnn_input_train_test_(split_activities, split_series_max_len=360,
+                                  ignore_classes=[], test_size=0.2):
+    rnn_data, labels = data_to_rnn_input_(split_activities)
+
+    train_data, test_data, train_labels, test_labels = train_test_split(rnn_data, labels, test_size=test_size)
+    analyze_train_test_data(train_labels, test_labels, ignore_classes=ignore_classes)
+
+    return train_data, test_data, train_labels, test_labels
+
+
 def normalized_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_max_len=360,
                                     ignore_classes=[], test_size=0.2):
     rnn_data, labels = data_to_rnn_input(data_path, split_series_max_len, ignore_classes=ignore_classes)

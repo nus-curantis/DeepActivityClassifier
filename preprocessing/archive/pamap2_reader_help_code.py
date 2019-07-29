@@ -1,4 +1,6 @@
 """
+    WARNING: DO NOT USE THIS CODE, THIS IS JUST A HELPER FOR READING DATA
+
  Summary:
  Function fetch_and_preprocess from tutorial_pamap2.py helps to fetch and
  preproces the data.
@@ -210,13 +212,13 @@ def fetch_data(directory_to_extract_to):
 
 
 def map_class(datasets_filled, exclude_activities):
-    ysetall = [set(np.array(data.activityID)) - set(exclude_activities)
-               for data in datasets_filled]
-    class_ids = list(set.union(*[set(y) for y in ysetall]))
+    y_set_all = [set(np.array(data.activityID)) - set(exclude_activities)
+                 for data in datasets_filled]
+    class_ids = list(set.union(*[set(y) for y in y_set_all]))
     class_labels = [ACTIVITIES_MAP[i] for i in class_ids]
     nr_classes = len(class_ids)
-    mapclasses = {class_ids[i]: i for i in range(len(class_ids))}
-    return class_labels, nr_classes, mapclasses
+    map_classes = {class_ids[i]: i for i in range(len(class_ids))}
+    return class_labels, nr_classes, map_classes
 
 
 def split_data(Xlists, ybinarylists, indices):
@@ -263,17 +265,17 @@ def split_data_random(X, y, val_size, test_size):
     return X_train, y_train, X_val, y_val, X_test, y_test
 
 
-def preprocess(targetdir, outdatapath, columns_to_use, exclude_activities, fold,
+def preprocess(target_dir, out_data_path, columns_to_use, exclude_activities, fold,
                val_test_size=None):
     """ Function to preprocess the PAMAP2 data after it is fetched
     Parameters
     ----------
-    targetdir : str
+    target_dir : str
         subdirectory of directory_to_extract_to, targetdir
         is defined by function fetch_data
-    outdatapath : str
+    out_data_path : str
         a subdirectory of directory_to_extract_to, outdatapath
-        is the direcotry where the Numpy output will be stored.
+        is the directory where the Numpy output will be stored.
     columns_to_use : list
         list of column names to use
     exclude_activities : list or tuple
@@ -285,31 +287,51 @@ def preprocess(targetdir, outdatapath, columns_to_use, exclude_activities, fold,
     -------
     None
     """
-    datadir = os.path.join(targetdir, 'PAMAP2_Dataset', 'Protocol')
-    filenames = listdir(datadir)
-    filenames.sort()
+    data_dir = os.path.join(target_dir, 'PAMAP2_Dataset', 'Protocol')
+    file_names = listdir(data_dir)
+    file_names.sort()
 
-    print(datadir)
-    print(filenames)
+    print(data_dir)
+    print(file_names)
 
-    print('Start pre-processing all ' + str(len(filenames)) + ' files...')
+    print('Start pre-processing all ' + str(len(file_names)) + ' files...')
+
     # load the files and put them in a list of pandas dataframes:
-    # datasets = [pd.read_csv(os.path.join(datadir, fn), header=None, sep=' ')
-    #             for fn in filenames]
-    # datasets = addheader(datasets)  # add headers to the datasets
-    # # Interpolate dataset to get same sample rate between channels
-    # datasets_filled = [d.interpolate() for d in datasets]
-    # # Create mapping for class labels
-    # class_labels, nr_classes, mapclasses = map_class(datasets_filled, exclude_activities)
-    # # Save class labels
+    datasets = [pd.read_csv(os.path.join(data_dir, fn), header=None, sep=' ')
+                for fn in file_names]
+    datasets = addheader(datasets)  # add headers to the datasets
+
+    # for dataset in datasets:
+    #     print(dataset)
+
+    # Interpolate dataset to get same sample rate between channels
+    datasets_filled = [d.interpolate() for d in datasets]
+
+    # Create mapping for class labels
+    class_labels, nr_classes, map_classes = map_class(datasets_filled, exclude_activities)
+
+    # print(class_labels)
+    # print(nr_classes)
+    # print(map_classes)
+
+    # Save class labels
     # with open(os.path.join(outdatapath, 'labels.json'), 'w') as fp:
     #     json.dump(class_labels, fp)
-    # # Create input (x) and output (y) sets
-    # xall = [np.array(data[columns_to_use]) for data in datasets_filled]
-    # yall = [np.array(data.activityID) for data in datasets_filled]
-    # xylists = [split_activities(y, x, exclude_activities) for x, y in zip(xall, yall)]
+
+    for data in datasets_filled:
+        print(data.columns)
+
+    # Create input (x) and output (y) sets
+    x_all = [np.array(data[columns_to_use]) for data in datasets_filled]
+    y_all = [np.array(data.activityID) for data in datasets_filled]
+
+    print(x_all[0].shape)
+    print(x_all[0])
+
+
+    # xylists = [split_activities(y, x, exclude_activities) for x, y in zip(x_all, y_all)]
     # Xlists, ylists = zip(*xylists)
-    # ybinarylists = [transform_y(y, mapclasses, nr_classes) for y in ylists]
+    # ybinarylists = [transform_y(y, map_classes, nr_classes) for y in ylists]
     # frame_length = int(5.12 * 100)
     # step = 1 * 100
     # if not fold:
@@ -451,6 +473,7 @@ def download_preprocessed_data(directory_to_extract_to):
 
     return data_path
 
+
 ACTIVITIES_MAP = {
     0: 'no_activity',
     1: 'lying',
@@ -473,5 +496,7 @@ ACTIVITIES_MAP = {
     24: 'rope_jumping'
 }
 
-preprocess(targetdir='../dataset/', outdatapath="", columns_to_use=[], exclude_activities=[], fold=False,
+preprocess(target_dir='../dataset/', out_data_path="", columns_to_use=[
+    'activityID', 'hand_acc_16g_x', 'hand_acc_16g_y', 'hand_acc_16g_z'],
+           exclude_activities=[], fold=False,
            val_test_size=None)

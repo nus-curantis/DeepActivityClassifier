@@ -2,6 +2,8 @@
   <dictionary name="pouya">
     <words>
       <w>conv</w>
+      <w>dataset</w>
+      <w>datasets</w>
     </words>
   </dictionary>
 </component>
