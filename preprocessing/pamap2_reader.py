@@ -153,4 +153,4 @@ def pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=3
                                          split_series_max_len=split_series_max_len)
 
 
-read_all_files()
+# read_all_files()
