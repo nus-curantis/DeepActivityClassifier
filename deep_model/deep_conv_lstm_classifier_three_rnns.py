@@ -198,25 +198,25 @@ class DeepConvLSTMClassifier:
             # self.rnn_cell = rnn.GRUCell(num_units=self.rnn_hidden_units,
             #                             kernel_initializer=tf.orthogonal_initializer())
 
-            self.rnn_cell_1 = rnn.LSTMCell(num_units=self.rnn_hidden_units)
+            self.rnn_cell_1 = rnn.LSTMCell(num_units=self.rnn_hidden_units, name='cell_1')
 
             self.rnn_output_1, _ = tf.nn.dynamic_rnn(
                 cell=self.rnn_cell_1, inputs=self.embedded_input,
-                dtype=tf.float32, sequence_length=self.__length(self.embedded_input))
+                dtype=tf.float32, sequence_length=self.__length(self.embedded_input), name='rnn_1')
 
         with tf.name_scope('rnn_2'):
-            self.rnn_cell_2 = rnn.LSTMCell(num_units=self.rnn_hidden_units)
+            self.rnn_cell_2 = rnn.LSTMCell(num_units=self.rnn_hidden_units, name='cell_2')
 
             self.rnn_output_2, _ = tf.nn.dynamic_rnn(
                 cell=self.rnn_cell_2, inputs=self.rnn_output_1,
-                dtype=tf.float32, sequence_length=self.__length(self.embedded_input))
+                dtype=tf.float32, sequence_length=self.__length(self.embedded_input), name='rnn_2')
 
         with tf.name_scope('rnn_3'):
-            self.rnn_cell_3 = rnn.LSTMCell(num_units=self.rnn_hidden_units)
+            self.rnn_cell_3 = rnn.LSTMCell(num_units=self.rnn_hidden_units, name='cell_3')
 
             self.rnn_output_3, _ = tf.nn.dynamic_rnn(
                 cell=self.rnn_cell_3, inputs=self.rnn_output_2,
-                dtype=tf.float32, sequence_length=self.__length(self.embedded_input))
+                dtype=tf.float32, sequence_length=self.__length(self.embedded_input), name='rnn_3')
 
         # with tf.name_scope('time_distributed_layer'):
         #     rnn_output_reshaped = tf.reshape(self.rnn_output_3, shape=[-1, self.rnn_hidden_units])
