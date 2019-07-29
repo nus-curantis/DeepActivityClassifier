@@ -147,6 +147,7 @@ def normalized_pamap2_rnn_input_train_test(target_dir='../dataset/', split_serie
 
 
 def pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=360):
+    # todo: add 'ignore classes' and etc
     _, split_activities = read_all_files(target_dir, split_series_max_len=split_series_max_len)
     return data_to_rnn_input_train_test_(split_activities=split_activities,
                                          split_series_max_len=split_series_max_len)
