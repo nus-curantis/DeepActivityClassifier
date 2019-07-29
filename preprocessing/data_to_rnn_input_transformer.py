@@ -146,5 +146,6 @@ def analyze_train_test_data(train_labels, test_labels, ignore_classes=[]):
 # print(rnn_data[0, :, 0].tolist())
 
 # data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/', ignore_classes=[0, 12])
-data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/', ignore_classes=[0, 2, 5, 6])
-# data_to_rnn_input_train_test(ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])
+# data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/', ignore_classes=[0, 2, 5, 6])
+data_to_rnn_input_train_test(ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])
+data_to_rnn_input_train_test()
