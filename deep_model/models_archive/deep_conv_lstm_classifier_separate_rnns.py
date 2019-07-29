@@ -155,6 +155,7 @@ class DeepConvLSTMClassifier:
             self.conv_w_z = tf.Variable(tf.truncated_normal([self.split_len, 1, 1, self.filters_num]))
             self.conv_b_z = tf.Variable(tf.zeros([self.filters_num]))
 
+            # TODO: revise reshape method!!
             self.embedded_input_x = tf.nn.conv2d(input_x,
                                                  filter=self.conv_w_x,
                                                  strides=[1, self.split_len, 1, 1],

@@ -20,7 +20,7 @@ class DeepConvLSTMClassifier:
         self.rnn_hidden_units = config.rnn_hidden_units
         self.input_representations = config.input_representations
         self.num_classes = config.num_classes
-        self.split_len = config.split_len
+        self.filter_1_x = config.split_len
         self.filters_num = config.filters_num
         self.dropout_prob = config.dropout_prob
 
@@ -49,14 +49,10 @@ class DeepConvLSTMClassifier:
         self.embedding_layer = None
         self.embedded_input = None
         self.embedding = None
-        self.conv_w = None
-        self.conv_b = None
-        self.rnn_cell_1 = None
-        self.rnn_cell_2 = None
-        self.rnn_cell_3 = None
-        self.rnn_output_1 = None
-        self.rnn_output_2 = None
-        self.rnn_output_3 = None
+        self.conv_w_1 = None
+        self.conv_b_1 = None
+        self.rnn_cell = None
+        self.rnn_output = None
         self.time_distributed_w = None
         self.time_distributed_b = None
         self.time_distributed_output = None
@@ -171,56 +167,57 @@ class DeepConvLSTMClassifier:
         #     print('self.embedded_input : ', self.embedded_input)
 
         with tf.name_scope('cnn'):
-            self.conv_w = tf.Variable(tf.truncated_normal([self.split_len, 1, 1, self.filters_num]))
-            self.conv_b = tf.Variable(tf.zeros([self.filters_num]))
+            self.conv_w_1 = tf.Variable(tf.truncated_normal([self.filter_1_x, self.filter_1_y, 1, self.filters_num]))
+            self.conv_b_1 = tf.Variable(tf.zeros([self.filters_num]))
+
+            self.conv_w_2 = tf.Variable(tf.truncated_normal([self.filter_2_x, self.filter_2_y, 1, self.filters_num]))
+            self.conv_b_2 = tf.Variable(tf.zeros([self.filters_num]))
+
+            self.conv_w_3 = tf.Variable(tf.truncated_normal([self.filter_3_x, self.filter_3_y, 1, self.filters_num]))
+            self.conv_b_3 = tf.Variable(tf.zeros([self.filters_num]))
 
             expanded_input = tf.expand_dims(self.input, -1)
-            self.embedded_input = tf.nn.conv2d(expanded_input,
-                                               filter=self.conv_w,
-                                               strides=[1, self.split_len, 1, 1],
-                                               # strides=[1, int(self.split_len / 2), 1, 1],
-                                               padding='VALID') + self.conv_b
+            self.cnn_layer_1_out = tf.nn.conv2d(expanded_input,
+                                                filter=self.conv_w_1,
+                                                strides=[1, self.filter_1_x, self.filter_1_y, 1],
+                                                padding='VALID') + self.conv_b_1
 
             print('expanded_input: ', expanded_input)
-            print('self.embedded_input : ', self.embedded_input)
 
-            # self.embedded_input = tf.reshape(self.embedded_input,
-            #                                  shape=[-1,
-            #                                         self.embedded_input.shape[1] * self.embedded_input.shape[2],
-            #                                         self.filters_num])
+            self.cnn_layer_1_out = tf.reshape(self.cnn_layer_1_out,
+                                              shape=[-1,
+                                                     self.cnn_layer_1_out.shape[1],
+                                                     self.filters_num * self.cnn_layer_1_out.shape[2]])
 
-            self.embedded_input = tf.reshape(self.embedded_input,
-                                             shape=[-1,
-                                                    self.embedded_input.shape[1],
-                                                    self.filters_num * self.embedded_input.shape[2]])
+            self.cnn_layer_1_out = self.activation_function(batch_norm(self.cnn_layer_1_out))
+            # todo: Is normalization correct?
 
-            print('self.embedded_input : ', self.embedded_input)
+            print('self.cnn_layer_1_out : ', self.cnn_layer_1_out)
 
-        # with tf.name_scope('initial_dropout'):
-        #     self.embedded_input = tf.nn.dropout(x=self.embedded_input, keep_prob=self.dropout_prob)
+            self.cnn_layer_2_out = tf.nn.conv2d(self.cnn_layer_1_out,
+                                                filter=self.conv_w_2,
+                                                strides=[1, self.filter_2_x, self.filter_2_y, 1],
+                                                padding='VALID') + self.conv_b_2
 
-        with tf.name_scope('rnn_1'):
+            print('expanded_input: ', expanded_input)
+
+            self.cnn_layer_1_out = tf.reshape(self.cnn_layer_1_out,
+                                              shape=[-1,
+                                                     self.cnn_layer_1_out.shape[1] * self.cnn_layer_1_out.shape[2],
+                                                     self.filters_num])
+
+            print('self.cnn_layer_1_out : ', self.cnn_layer_1_out)
+
+
+
+        with tf.name_scope('rnn'):
             # self.rnn_cell = rnn.GRUCell(num_units=self.rnn_hidden_units,
             #                             kernel_initializer=tf.orthogonal_initializer())
 
-            self.rnn_cell_1 = rnn.LSTMCell(num_units=self.rnn_hidden_units, name='cell_1')
+            self.rnn_cell = rnn.LSTMCell(num_units=self.rnn_hidden_units, name='cell_1')
 
-            self.rnn_output_1, _ = tf.nn.dynamic_rnn(
-                cell=self.rnn_cell_1, inputs=self.embedded_input,
-                dtype=tf.float32, sequence_length=self.__length(self.embedded_input))
-
-        with tf.name_scope('rnn_2'):
-            self.rnn_cell_2 = rnn.LSTMCell(num_units=self.rnn_hidden_units, name='cell_2')
-
-            self.rnn_output_2, _ = tf.nn.dynamic_rnn(
-                cell=self.rnn_cell_2, inputs=self.rnn_output_1,
-                dtype=tf.float32, sequence_length=self.__length(self.embedded_input))
-
-        with tf.name_scope('rnn_3'):
-            self.rnn_cell_3 = rnn.LSTMCell(num_units=self.rnn_hidden_units, name='cell_3')
-
-            self.rnn_output_3, _ = tf.nn.dynamic_rnn(
-                cell=self.rnn_cell_3, inputs=self.rnn_output_2,
+            self.rnn_output, _ = tf.nn.dynamic_rnn(
+                cell=self.rnn_cell, inputs=self.embedded_input,
                 dtype=tf.float32, sequence_length=self.__length(self.embedded_input))
 
         # with tf.name_scope('time_distributed_layer'):
@@ -236,9 +233,9 @@ class DeepConvLSTMClassifier:
         #     self.time_distributed_output = tf.nn.dropout(self.time_distributed_output, self.dropout_prob)
 
         with tf.name_scope('pooling'):
-            self.avg_pooling = tf.reduce_mean(self.rnn_output_3, axis=1)
-            self.max_pooling = tf.reduce_max(self.rnn_output_3, axis=1)
-            self.last_pooling = self.__last_relevant(self.rnn_output_3, self.__length(self.embedded_input))
+            self.avg_pooling = tf.reduce_mean(self.rnn_output, axis=1)
+            self.max_pooling = tf.reduce_max(self.rnn_output, axis=1)
+            self.last_pooling = self.__last_relevant(self.rnn_output, self.__length(self.embedded_input))
 
             # self.avg_pooling = tf.reduce_mean(self.time_distributed_output, axis=1)
             # self.max_pooling = tf.reduce_max(self.time_distributed_output, axis=1)

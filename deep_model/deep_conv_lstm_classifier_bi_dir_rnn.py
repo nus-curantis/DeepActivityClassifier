@@ -180,10 +180,15 @@ class DeepConvLSTMClassifier:
             print('expanded_input: ', expanded_input)
             print('self.embedded_input : ', self.embedded_input)
 
+            # self.embedded_input = tf.reshape(self.embedded_input,
+            #                                  shape=[-1,
+            #                                         self.embedded_input.shape[1] * self.embedded_input.shape[2],
+            #                                         self.filters_num])
+
             self.embedded_input = tf.reshape(self.embedded_input,
                                              shape=[-1,
-                                                    self.embedded_input.shape[1] * self.embedded_input.shape[2],
-                                                    self.filters_num])
+                                                    self.embedded_input.shape[1],
+                                                    self.filters_num * self.embedded_input.shape[2]])
 
             print('self.embedded_input : ', self.embedded_input)
 
