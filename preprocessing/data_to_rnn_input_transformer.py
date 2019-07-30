@@ -89,40 +89,40 @@ def normalize_data(rnn_data, split_series_max_len=360):  # todo: test different 
 
 
 def data_to_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_max_len=360,
-                                 ignore_classes=[], test_size=0.2, stratify=True):
+                                 ignore_classes=[], test_size=0.2):
     rnn_data, labels = data_to_rnn_input(data_path, split_series_max_len, ignore_classes=ignore_classes)
 
     train_data, test_data, train_labels, test_labels = train_test_split(rnn_data, labels, test_size=test_size,
-                                                                        stratify=stratify)
+                                                                        stratify=labels)
     analyze_train_test_data(train_labels, test_labels, ignore_classes=ignore_classes)
 
     return train_data, test_data, train_labels, test_labels
 
 
 def data_to_rnn_input_train_test_(split_activities, split_series_max_len=360,
-                                  ignore_classes=[], test_size=0.2, stratify=True):
+                                  ignore_classes=[], test_size=0.2):
     rnn_data, labels = data_to_rnn_input_(split_activities)
 
     train_data, test_data, train_labels, test_labels = train_test_split(rnn_data, labels, test_size=test_size,
-                                                                        stratify=stratify)
+                                                                        stratify=labels)
     analyze_train_test_data(train_labels, test_labels, ignore_classes=ignore_classes)
 
     return train_data, test_data, train_labels, test_labels
 
 
 def normalized_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_max_len=360,
-                                    ignore_classes=[], test_size=0.2, stratify=True):
+                                    ignore_classes=[], test_size=0.2):
     rnn_data, labels = data_to_rnn_input(data_path, split_series_max_len, ignore_classes=ignore_classes)
     normalized_data = normalize_data(rnn_data, split_series_max_len=split_series_max_len)
 
-    return train_test_split(normalized_data, labels, test_size=test_size, stratify=stratify)
+    return train_test_split(normalized_data, labels, test_size=test_size, stratify=labels)
 
 
-def normalized_rnn_input_train_test_(split_activities, test_size=0.2, split_series_max_len=360, stratify=True):
+def normalized_rnn_input_train_test_(split_activities, test_size=0.2, split_series_max_len=360):
     rnn_data, labels = data_to_rnn_input_(split_activities)
     normalized_data = normalize_data(rnn_data, split_series_max_len=split_series_max_len)
 
-    return train_test_split(normalized_data, labels, test_size=test_size, stratify=stratify)
+    return train_test_split(normalized_data, labels, test_size=test_size, stratify=labels)
 
 
 def analyze_train_test_data(train_labels, test_labels, ignore_classes=[]):
