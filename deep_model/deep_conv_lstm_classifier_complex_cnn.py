@@ -130,7 +130,8 @@ class DeepConvLSTMClassifier:
 
     def load_data(self):
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
-            pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
+            pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len, include_gyr_data=True)  # pamap2 dataset
+            # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
             # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
             #                                 ignore_classes=[0, 2, 5, 6],
             #                                 split_series_max_len=self.series_max_len)  # chest dataset

@@ -7,13 +7,46 @@ import pandas as pd
 from os import listdir
 import os.path
 
-from preprocessing.time_series_reader_and_visualizer import Activity, split_segments_of_activity
 from preprocessing.data_to_rnn_input_transformer import normalized_rnn_input_train_test_, data_to_rnn_input_train_test_
 
 
-def read_all_files(target_dir='../dataset/', columns_to_use=
-                   ['activityID', 'hand_acc_16g_x', 'hand_acc_16g_y', 'hand_acc_16g_z'],
+class Activity:
+    def __init__(self, num):
+        self.num = num
+        self.acc_x_series = []
+        self.acc_y_series = []
+        self.acc_z_series = []
+        self.gyr_x_series = []
+        self.gyr_y_series = []
+        self.gyr_z_series = []
+
+    def append_acc_data(self, x, y, z):
+        self.acc_x_series.append(x)
+        self.acc_y_series.append(y)
+        self.acc_z_series.append(z)
+
+    def append_gyr_data(self, x, y, z):
+        self.gyr_x_series.append(x)
+        self.gyr_y_series.append(y)
+        self.gyr_z_series.append(z)
+
+    def append_acc_data_series(self, x_series, y_series, z_series):
+        self.acc_x_series += x_series
+        self.acc_y_series += y_series
+        self.acc_z_series += z_series
+
+    def append_gyr_data_series(self, x_series, y_series, z_series):
+        self.gyr_x_series += x_series
+        self.gyr_y_series += y_series
+        self.gyr_z_series += z_series
+
+
+def read_all_files(target_dir='../dataset/', include_gyr_data=False,
                    exclude_activities=[], split_series_max_len=360):
+    columns_to_use = ['activityID', 'hand_acc_16g_x', 'hand_acc_16g_y', 'hand_acc_16g_z']
+    if include_gyr_data:
+        columns_to_use += ['hand_gyroscope_x', 'hand_gyroscope_y', 'hand_gyroscope_z']
+
     data_dir = os.path.join(target_dir, 'PAMAP2_Dataset', 'Protocol')
     file_names = listdir(data_dir)
     file_names.sort()
@@ -34,6 +67,8 @@ def read_all_files(target_dir='../dataset/', columns_to_use=
     # interpolate dataset to get same sample rate between channels
     datasets_filled = [d.interpolate() for d in datasets]
 
+    # print(datasets_filled[0].columns)
+
     # Create mapping for class labels
     class_labels, nr_classes, map_classes = map_class(datasets_filled, exclude_activities)
 
@@ -46,22 +81,24 @@ def read_all_files(target_dir='../dataset/', columns_to_use=
     activities = []
     for data in selected_datas:
         print(data)
-        activities += extract_activities(data, map_classes)
+        activities += extract_activities(data, map_classes, include_gyr_data=include_gyr_data)
 
     print('total recorded activities: ', len(activities))
 
-    for activity in activities:
-        print(activity.num, len(activity.acc_x_series))
-        print(activity.acc_x_series[0:10])
+    # for activity in activities:
+    #     print(activity.num, len(activity.acc_x_series))
+    #     print(activity.acc_x_series[0:10])
 
     split_activities = []
     for activity in activities:
-        split_activities += split_segments_of_activity(activity, split_series_max_len=split_series_max_len)
+        split_activities += split_segments_of_activity(activity,
+                                                       split_series_max_len=split_series_max_len,
+                                                       include_gyr_data=include_gyr_data)
 
     return activities, split_activities
 
 
-def extract_activities(selected_data, map_classes):
+def extract_activities(selected_data, map_classes, include_gyr_data=False):
     activities = []
 
     previous_activity_num = -10
@@ -74,7 +111,55 @@ def extract_activities(selected_data, map_classes):
 
         activities[-1].append_acc_data(float(row[1]), float(row[2]), float(row[3]))
 
+        if include_gyr_data:
+            activities[-1].append_gyr_data(float(row[4]), float(row[5]), float(row[6]))
+
     return activities
+
+
+def split_segments_of_activity(activity, split_series_max_len=360, overlap=0, include_gyr_data=False):
+    split_activities = []
+
+    overlap_len = int(split_series_max_len * overlap)
+
+    for i in range(0, len(activity.acc_x_series) + overlap_len, split_series_max_len):
+        split_activities.append(Activity(activity.num))
+
+        if i != 0:
+            split_activities[-1].append_acc_data_series(
+                activity.acc_x_series[i - overlap_len:
+                                      i + split_series_max_len - overlap_len],
+                activity.acc_y_series[i - overlap_len:
+                                      i + split_series_max_len - overlap_len],
+                activity.acc_z_series[i - overlap_len:
+                                      i + split_series_max_len - overlap_len]
+            )
+
+            if include_gyr_data:
+                split_activities[-1].append_gyr_data_series(
+                    activity.gyr_x_series[i - overlap_len:
+                                          i + split_series_max_len - overlap_len],
+                    activity.gyr_y_series[i - overlap_len:
+                                          i + split_series_max_len - overlap_len],
+                    activity.gyr_z_series[i - overlap_len:
+                                          i + split_series_max_len - overlap_len]
+                )
+
+        else:
+            split_activities[-1].append_acc_data_series(
+                activity.acc_x_series[i: i + split_series_max_len],
+                activity.acc_y_series[i: i + split_series_max_len],
+                activity.acc_z_series[i: i + split_series_max_len]
+            )
+
+            if include_gyr_data:
+                split_activities[-1].append_gyr_data_series(
+                    activity.gyr_x_series[i: i + split_series_max_len],
+                    activity.gyr_y_series[i: i + split_series_max_len],
+                    activity.gyr_z_series[i: i + split_series_max_len]
+                )
+
+    return split_activities
 
 
 def add_header(datasets):
@@ -140,17 +225,21 @@ ACTIVITIES_MAP = {
 }
 
 
-def normalized_pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=360):
-    _, split_activities = read_all_files(target_dir, split_series_max_len=split_series_max_len)
+def normalized_pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=360, include_gyr_data=False):
+    _, split_activities = read_all_files(target_dir, split_series_max_len=split_series_max_len,
+                                         include_gyr_data=include_gyr_data)
     return normalized_rnn_input_train_test_(split_activities=split_activities,
-                                            split_series_max_len=split_series_max_len)
+                                            split_series_max_len=split_series_max_len,
+                                            include_gyr_data=include_gyr_data)
 
 
-def pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=360):
+def pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=360, include_gyr_data=False):
     # todo: add 'ignore classes' and etc
-    _, split_activities = read_all_files(target_dir, split_series_max_len=split_series_max_len)
+    _, split_activities = read_all_files(target_dir, split_series_max_len=split_series_max_len,
+                                         include_gyr_data=include_gyr_data)
     return data_to_rnn_input_train_test_(split_activities=split_activities,
-                                         split_series_max_len=split_series_max_len)
+                                         split_series_max_len=split_series_max_len,
+                                         include_gyr_data=include_gyr_data)
 
 
-# read_all_files()
+read_all_files()

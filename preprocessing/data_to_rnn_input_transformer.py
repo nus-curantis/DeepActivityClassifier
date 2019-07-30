@@ -7,13 +7,49 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from preprocessing.time_series_reader_and_visualizer import *
 
 
-def data_to_rnn_input(data_path='../dataset/CC2650/', split_series_max_len=360, ignore_classes=[]):
+def data_to_rnn_input(data_path='../dataset/CC2650/', split_series_max_len=360, ignore_classes=[],
+                      include_gyr_data=False):
     small_observations = split_segments_into_parts_with_same_len(data_path, split_series_max_len,
                                                                  ignore_classes=ignore_classes)
-    return data_to_rnn_input_(small_observations, ignore_classes=ignore_classes)
+    return data_to_rnn_input_(small_observations, ignore_classes=ignore_classes, include_gyr_data=include_gyr_data)
 
 
-def data_to_rnn_input_(split_activities, ignore_classes=[]):
+# def data_to_rnn_input_(split_activities, ignore_classes=[]):
+#     rnn_data = []
+#     labels = []
+#
+#     series_max_len = 0
+#
+#     for observation in split_activities:
+#         if len(observation.acc_x_series) > series_max_len:
+#             series_max_len = len(observation.acc_x_series)
+#
+#     for observation in split_activities:
+#         acc_data = np.array([
+#             np.append(
+#                 np.array(observation.acc_x_series), np.zeros(series_max_len - len(observation.acc_x_series))
+#             )
+#             ,
+#             np.append(
+#                 np.array(observation.acc_y_series), np.zeros(series_max_len - len(observation.acc_y_series))
+#             )
+#             ,
+#             np.append(
+#                 np.array(observation.acc_z_series), np.zeros(series_max_len - len(observation.acc_z_series))
+#             )
+#         ])
+#
+#         acc_data = np.reshape(acc_data, newshape=[acc_data.shape[1], -1])
+#
+#         rnn_data.append(np.array(acc_data))
+#
+#         labels.append(observation.num)
+#
+#     return shuffle(np.array(rnn_data), get_one_hot_labels(labels, ignore_classes=ignore_classes),
+#                    random_state=0)  # todo: this needs to be removed at some point
+
+
+def data_to_rnn_input_(split_activities, ignore_classes=[], include_gyr_data=False):
     rnn_data = []
     labels = []
 
@@ -24,19 +60,46 @@ def data_to_rnn_input_(split_activities, ignore_classes=[]):
             series_max_len = len(observation.acc_x_series)
 
     for observation in split_activities:
-        acc_data = np.array([
-            np.append(
-                np.array(observation.acc_x_series), np.zeros(series_max_len - len(observation.acc_x_series))
-            )
-            ,
-            np.append(
-                np.array(observation.acc_y_series), np.zeros(series_max_len - len(observation.acc_y_series))
-            )
-            ,
-            np.append(
-                np.array(observation.acc_z_series), np.zeros(series_max_len - len(observation.acc_z_series))
-            )
-        ])
+        if not include_gyr_data:
+            acc_data = np.array([
+                np.append(
+                    np.array(observation.acc_x_series), np.zeros(series_max_len - len(observation.acc_x_series))
+                )
+                ,
+                np.append(
+                    np.array(observation.acc_y_series), np.zeros(series_max_len - len(observation.acc_y_series))
+                )
+                ,
+                np.append(
+                    np.array(observation.acc_z_series), np.zeros(series_max_len - len(observation.acc_z_series))
+                )
+            ])
+        else:
+            acc_data = np.array([
+                np.append(
+                    np.array(observation.acc_x_series), np.zeros(series_max_len - len(observation.acc_x_series))
+                )
+                ,
+                np.append(
+                    np.array(observation.acc_y_series), np.zeros(series_max_len - len(observation.acc_y_series))
+                )
+                ,
+                np.append(
+                    np.array(observation.acc_z_series), np.zeros(series_max_len - len(observation.acc_z_series))
+                ),
+                np.append(
+                    np.array(observation.gyr_x_series), np.zeros(series_max_len - len(observation.gyr_x_series))
+                )
+                ,
+                np.append(
+                    np.array(observation.gyr_y_series), np.zeros(series_max_len - len(observation.gyr_y_series))
+                )
+                ,
+                np.append(
+                    np.array(observation.gyr_z_series), np.zeros(series_max_len - len(observation.gyr_z_series))
+                )
+
+            ])
 
         acc_data = np.reshape(acc_data, newshape=[acc_data.shape[1], -1])
 
@@ -89,8 +152,9 @@ def normalize_data(rnn_data, split_series_max_len=360):  # todo: test different 
 
 
 def data_to_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_max_len=360,
-                                 ignore_classes=[], test_size=0.2):
-    rnn_data, labels = data_to_rnn_input(data_path, split_series_max_len, ignore_classes=ignore_classes)
+                                 ignore_classes=[], test_size=0.2, include_gyr_data=False):
+    rnn_data, labels = data_to_rnn_input(data_path, split_series_max_len, ignore_classes=ignore_classes,
+                                         include_gyr_data=include_gyr_data)
 
     train_data, test_data, train_labels, test_labels = train_test_split(rnn_data, labels, test_size=test_size,
                                                                         stratify=labels)
@@ -100,8 +164,8 @@ def data_to_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_ma
 
 
 def data_to_rnn_input_train_test_(split_activities, split_series_max_len=360,
-                                  ignore_classes=[], test_size=0.2):
-    rnn_data, labels = data_to_rnn_input_(split_activities)
+                                  ignore_classes=[], test_size=0.2, include_gyr_data=False):
+    rnn_data, labels = data_to_rnn_input_(split_activities, include_gyr_data=include_gyr_data)
 
     train_data, test_data, train_labels, test_labels = train_test_split(rnn_data, labels, test_size=test_size,
                                                                         stratify=labels)
@@ -111,15 +175,17 @@ def data_to_rnn_input_train_test_(split_activities, split_series_max_len=360,
 
 
 def normalized_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_max_len=360,
-                                    ignore_classes=[], test_size=0.2):
-    rnn_data, labels = data_to_rnn_input(data_path, split_series_max_len, ignore_classes=ignore_classes)
+                                    ignore_classes=[], test_size=0.2, include_gyr_data=False):
+    rnn_data, labels = data_to_rnn_input(data_path, split_series_max_len, ignore_classes=ignore_classes,
+                                         include_gyr_data=False)
     normalized_data = normalize_data(rnn_data, split_series_max_len=split_series_max_len)
 
     return train_test_split(normalized_data, labels, test_size=test_size, stratify=labels)
 
 
-def normalized_rnn_input_train_test_(split_activities, test_size=0.2, split_series_max_len=360):
-    rnn_data, labels = data_to_rnn_input_(split_activities)
+def normalized_rnn_input_train_test_(split_activities, test_size=0.2, split_series_max_len=360,
+                                     include_gyr_data=False):
+    rnn_data, labels = data_to_rnn_input_(split_activities, include_gyr_data=include_gyr_data)
     normalized_data = normalize_data(rnn_data, split_series_max_len=split_series_max_len)
 
     return train_test_split(normalized_data, labels, test_size=test_size, stratify=labels)

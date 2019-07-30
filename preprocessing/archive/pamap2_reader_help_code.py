@@ -496,7 +496,7 @@ ACTIVITIES_MAP = {
     24: 'rope_jumping'
 }
 
-preprocess(target_dir='../dataset/', out_data_path="", columns_to_use=[
+preprocess(target_dir='../../dataset/', out_data_path="", columns_to_use=[
     'activityID', 'hand_acc_16g_x', 'hand_acc_16g_y', 'hand_acc_16g_z'],
            exclude_activities=[], fold=False,
            val_test_size=None)
