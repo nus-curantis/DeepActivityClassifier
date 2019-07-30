@@ -395,6 +395,9 @@ class DeepConvLSTMClassifier:
                     inputs_batch = self.train_inputs[i: i + self.batch_size]
                     labels_batch = self.train_activity_labels[i: i + self.batch_size]
 
+                    print(np.shape(inputs_batch))
+                    print(np.shape(labels_batch))
+
                     _, loss, accuracy, pred_output = sess.run(
                         [self.optimizer, self.cost, self.accuracy, self.prediction],
                         feed_dict={self.input: inputs_batch,
