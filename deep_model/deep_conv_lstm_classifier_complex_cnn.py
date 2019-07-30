@@ -15,7 +15,6 @@ class DeepConvLSTMClassifier:
     def __init__(self, config):
 
         # model parameters
-        self.embedding_out_size = config.embedding_out_size
         self.series_max_len = config.series_max_len
         self.rnn_hidden_units = config.rnn_hidden_units
         self.input_representations = config.input_representations
@@ -34,7 +33,7 @@ class DeepConvLSTMClassifier:
         self.stride_2_y = config.stride_2_y
         self.filter_3_x = config.filter_3_x
         self.filter_3_y = config.filter_3_y
-        self.filters_num_3 = config.filters_num_2
+        self.filters_num_3 = config.filters_num_3
         self.stride_3_x = config.stride_3_x
         self.stride_3_y = config.stride_3_y
 
@@ -194,7 +193,8 @@ class DeepConvLSTMClassifier:
             self.conv_w_2 = tf.Variable(tf.truncated_normal([self.filter_2_x, self.filter_2_y, 1, self.filters_num_2]))
             self.conv_b_2 = tf.Variable(tf.zeros([self.filters_num_2]))
 
-            self.conv_w_3 = tf.Variable(tf.truncated_normal([self.filter_3_x, self.filter_3_y, 1, self.filters_num_3]))
+            self.conv_w_3 = tf.Variable(tf.truncated_normal([self.filter_3_x, self.filter_3_y,
+                                                             self.filters_num_2, self.filters_num_3]))
             self.conv_b_3 = tf.Variable(tf.zeros([self.filters_num_3]))
 
             expanded_input = tf.expand_dims(self.input, -1)
@@ -204,11 +204,12 @@ class DeepConvLSTMClassifier:
                                                 padding='VALID') + self.conv_b_1
 
             print('expanded_input: ', expanded_input)
+            print('self.cnn_layer_1_out before reshape : ', self.cnn_layer_1_out)
 
             self.cnn_layer_1_out = tf.reshape(self.cnn_layer_1_out,
                                               shape=[-1,
                                                      self.cnn_layer_1_out.shape[1],
-                                                     self.filters_num_1 * self.cnn_layer_1_out.shape[2]])
+                                                     self.filters_num_1 * self.cnn_layer_1_out.shape[2], 1])
 
             self.cnn_layer_1_out = self.activation_function(batch_norm(self.cnn_layer_1_out))
             # todo: Is normalization correct?
@@ -220,19 +221,23 @@ class DeepConvLSTMClassifier:
                                                 strides=[1, self.stride_2_x, self.stride_2_y, 1],
                                                 padding='VALID') + self.conv_b_2
 
-            self.cnn_layer_2_out = tf.reshape(self.cnn_layer_2_out,
-                                              shape=[-1,
-                                                     self.cnn_layer_2_out.shape[1],
-                                                     self.filters_num_2 * self.cnn_layer_2_out.shape[2]])
+            # print('self.cnn_layer_2_out before reshape : ', self.cnn_layer_2_out)
+            #
+            # self.cnn_layer_2_out = tf.reshape(self.cnn_layer_2_out,
+            #                                   shape=[-1,
+            #                                          self.cnn_layer_2_out.shape[1],
+            #                                          self.filters_num_2 * self.cnn_layer_2_out.shape[2], 1])
 
             self.cnn_layer_2_out = self.activation_function(batch_norm(self.cnn_layer_2_out))
 
             print('self.cnn_layer_2_out : ', self.cnn_layer_2_out)
 
-            self.cnn_layer_3_out = tf.nn.conv2d(self.cnn_layer_3_out,
+            self.cnn_layer_3_out = tf.nn.conv2d(self.cnn_layer_2_out,
                                                 filter=self.conv_w_3,
                                                 strides=[1, self.stride_3_x, self.stride_3_y, 1],
                                                 padding='VALID') + self.conv_b_3
+
+            print('self.cnn_layer_3_out before reshape : ', self.cnn_layer_3_out)
 
             self.cnn_layer_3_out = tf.reshape(self.cnn_layer_3_out,
                                               shape=[-1,
