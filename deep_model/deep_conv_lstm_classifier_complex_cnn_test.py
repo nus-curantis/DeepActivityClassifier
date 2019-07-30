@@ -8,8 +8,8 @@ from sklearn.metrics import precision_score, recall_score
 
 from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test, normalized_rnn_input_train_test
 from preprocessing.wharf_reader import normalized_wharf_rnn_input_train_test
-# from preprocessing.pamap2_reader import normalized_pamap2_rnn_input_train_test, pamap2_rnn_input_train_test
-from preprocessing.pamap2_reader_flexible import pamap2_rnn_input_train_test
+from preprocessing.pamap2_reader import normalized_pamap2_rnn_input_train_test, pamap2_rnn_input_train_test
+# from preprocessing.pamap2_reader_flexible import pamap2_rnn_input_train_test
 
 
 class DeepConvLSTMClassifier:
@@ -460,18 +460,10 @@ class DeepConvLSTMClassifier:
 
     @staticmethod
     def __last_relevant(output, length_):
-        print('lest_rel')
-        print(output)
-        print(length_)
-
         batch_size_ = tf.shape(output)[0]
         max_length = tf.shape(output)[1]
         out_size = int(output.get_shape()[2])
         index = tf.range(0, batch_size_) * max_length + (length_ - 1)
         flat = tf.reshape(output, [-1, out_size])
-
-        print(flat)
-        print(index)
-
         relevant = tf.gather(flat, index)
         return relevant
