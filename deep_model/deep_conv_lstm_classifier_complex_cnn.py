@@ -166,7 +166,7 @@ class DeepConvLSTMClassifier:
         #
         #     print('self.embedded_input : ', self.embedded_input)
 
-        with tf.name_scope('cnn'):
+        with tf.name_scope('cnn'):  # TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11111
             self.conv_w_1 = tf.Variable(tf.truncated_normal([self.filter_1_x, self.filter_1_y, 1, self.filters_num]))
             self.conv_b_1 = tf.Variable(tf.zeros([self.filters_num]))
 

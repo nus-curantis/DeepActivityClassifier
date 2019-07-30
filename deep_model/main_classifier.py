@@ -26,7 +26,8 @@ tf.flags.DEFINE_integer('series_max_len', 90, 'max len of an input time series')
 tf.flags.DEFINE_integer('rnn_hidden_units', 64, 'hidden neurons of rnn cells')
 # tf.flags.DEFINE_integer('split_len', 6,
 # tf.flags.DEFINE_integer('split_len', 36,
-tf.flags.DEFINE_integer('split_len', 30,
+# tf.flags.DEFINE_integer('split_len', 30,
+tf.flags.DEFINE_integer('split_len', 15,
                         'indicates input split len. The split segments go throw a conv layer before entering rnn')
 tf.flags.DEFINE_integer('filters_num', 5, 'num of filters in conv net')
 # tf.flags.DEFINE_integer('filters_num', 10, 'num of filters in conv net')
