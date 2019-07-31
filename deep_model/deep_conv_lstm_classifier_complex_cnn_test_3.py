@@ -455,7 +455,7 @@ class DeepConvLSTMClassifier:
                                               labels=self.dataset_labels))
 
             print('test confusion matrix: ', confusion_matrix(y_true=np.argmax(self.test_activity_labels, 1),
-                                                              y_pred=np.argmax(pred_output, 1), average=None,
+                                                              y_pred=np.argmax(pred_output, 1),
                                                               labels=self.dataset_labels))
 
             print('--------------------------------')
