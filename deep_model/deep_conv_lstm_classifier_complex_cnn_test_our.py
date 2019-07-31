@@ -137,7 +137,7 @@ class DeepConvLSTMClassifier:
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
             data_to_rnn_input_train_test(
                 split_series_max_len=self.series_max_len,
-                ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 18])  # our dataset
+                ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])  # our dataset
             # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
             # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len, include_gyr_data=True)  # pamap2 dataset
             # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
@@ -160,7 +160,7 @@ class DeepConvLSTMClassifier:
         # self.dataset_labels = get_pamap_dataset_labels_names()
 
         self.dataset_labels = get_our_dataset_labels_names(
-            ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 18])
+            ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])
 
         print('len(self.train_inputs):', len(self.train_inputs))
         print('len(self.train_activity_labels):', len(self.train_activity_labels))
