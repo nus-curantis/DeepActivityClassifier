@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="f1 score, confusion mat plots">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/pouya.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/pouya.xml" afterDir="false" />
+    <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_test_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_test_our.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_our.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_our.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/preprocessing/pamap2_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/pamap2_reader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,14 +25,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="3" />
-          <entry key="py" value="1863" />
+          <entry key="py" value="1901" />
           <entry key="txt" value="63" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="66" />
-          <entry key="Python" value="1863" />
+          <entry key="Python" value="1901" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -80,13 +74,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="52" column="57" selection-start-line="52" selection-start-column="57" selection-end-line="52" selection-end-column="57" />
+            <state relative-caret-position="460">
+              <caret line="58" column="29" lean-forward="true" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/data_loader.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
@@ -119,11 +113,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="251" lean-forward="true" selection-start-line="251" selection-end-line="251" />
+            <state relative-caret-position="410">
+              <caret line="247" selection-start-line="247" selection-end-line="247" />
               <folding>
                 <element signature="e#129#147#0" expanded="true" />
               </folding>
@@ -233,11 +227,11 @@
         <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_our.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_test_3.py" />
         <option value="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" />
-        <option value="$PROJECT_DIR$/preprocessing/pamap2_reader.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier.py" />
-        <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" />
         <option value="$PROJECT_DIR$/utils/data_loader.py" />
+        <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" />
+        <option value="$PROJECT_DIR$/preprocessing/pamap2_reader.py" />
       </list>
     </option>
   </component>
@@ -443,20 +437,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
-    </task>
-    <task id="LOCAL-00031" summary="adam instead of AdaDelta">
-      <created>1563859144317</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1563859144317</updated>
-    </task>
-    <task id="LOCAL-00032" summary="mhealth dataset">
-      <created>1563867515114</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1563867515114</updated>
     </task>
     <task id="LOCAL-00033" summary="mhealth dataset">
       <created>1563867785656</created>
@@ -787,7 +767,21 @@
       <option name="project" value="LOCAL" />
       <updated>1564547463172</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="f1 score, confusion mat plots">
+      <created>1564548994370</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1564548994370</updated>
+    </task>
+    <task id="LOCAL-00081" summary="f1 score, confusion mat plots">
+      <created>1564549015037</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1564549015037</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TodoView">
@@ -845,7 +839,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="WHARF dataset preprocessing and result test" />
     <MESSAGE value="TimeDistributed Layer" />
     <MESSAGE value="Overlapping input segments" />
     <MESSAGE value="dropout" />
@@ -870,7 +863,8 @@
     <MESSAGE value="complex (3 layers) cnn + rnn, architecture 1, test with acc + gyr data" />
     <MESSAGE value="night tuning tests" />
     <MESSAGE value="f1 score, confusion mat, ..." />
-    <option name="LAST_COMMIT_MESSAGE" value="f1 score, confusion mat, ..." />
+    <MESSAGE value="f1 score, confusion mat plots" />
+    <option name="LAST_COMMIT_MESSAGE" value="f1 score, confusion mat plots" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1095,16 +1089,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="251" lean-forward="true" selection-start-line="251" selection-end-line="251" />
-          <folding>
-            <element signature="e#129#147#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="892">
@@ -1123,19 +1107,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="52" column="57" selection-start-line="52" selection-start-column="57" selection-end-line="52" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/data_loader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
           <folding>
             <marker date="1564548988411" expanded="true" signature="408:415" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="58" column="29" lean-forward="true" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="247" selection-start-line="247" selection-end-line="247" />
+          <folding>
+            <element signature="e#129#147#0" expanded="true" />
           </folding>
         </state>
       </provider>
