@@ -484,6 +484,8 @@ class DeepConvLSTMClassifier:
         col_label = self.dataset_labels
 
         print('len:', len(col_label))
+        print(precision.shape)
+        print(confusion_mat.shape)
 
         axs[0].axis('tight')
         axs[0].axis('off')
