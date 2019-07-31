@@ -74,9 +74,10 @@ def read_all_files(target_dir='../dataset/', include_gyr_data=False,
 
     selected_datas = [np.array(data[columns_to_use]) for data in datasets_filled]
 
-    # print(class_labels)
-    # print(nr_classes)
-    # print(map_classes)
+    print('kherrrrrrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss')
+    print(class_labels)
+    print(nr_classes)
+    print(map_classes)
 
     activities = []
     for data in selected_datas:

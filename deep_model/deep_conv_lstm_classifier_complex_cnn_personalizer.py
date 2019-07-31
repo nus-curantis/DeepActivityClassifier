@@ -3,12 +3,14 @@ from tensorflow.contrib import rnn
 from tensorflow.contrib.layers.python.layers import batch_norm
 
 import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
 
-from sklearn.metrics import precision_score, recall_score
-
+from preprocessing.time_series_reader_and_visualizer import get_our_dataset_labels_names
 from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test, normalized_rnn_input_train_test
 from preprocessing.wharf_reader import normalized_wharf_rnn_input_train_test
-from preprocessing.pamap2_reader import normalized_pamap2_rnn_input_train_test, pamap2_rnn_input_train_test
+from preprocessing.pamap2_reader import pamap2_rnn_input_train_test, get_pamap_dataset_labels_names
+# todo: also test normalized pamap input
 # from preprocessing.pamap2_reader_flexible import pamap2_rnn_input_train_test
 
 
@@ -107,6 +109,8 @@ class DeepConvLSTMClassifier:
         self.train_activity_labels = None
         self.test_activity_labels = None
 
+        self.dataset_labels = None
+
     def set_data(self,
                  train_inputs,
                  test_inputs,
@@ -150,10 +154,15 @@ class DeepConvLSTMClassifier:
             # normalized_wharf_rnn_input_train_test(split_series_max_len=self.series_max_len)  # wahrf
             # data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')  # chest without normalizing
 
-        print(len(self.train_inputs))
-        print(len(self.train_activity_labels))
-        print(len(self.test_inputs))
-        print(len(self.test_activity_labels))
+        self.dataset_labels = get_pamap_dataset_labels_names()
+        #
+        # self.dataset_labels = get_our_dataset_labels_names(
+        #     ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])
+
+        print('len(self.train_inputs):', len(self.train_inputs))
+        print('len(self.train_activity_labels):', len(self.train_activity_labels))
+        print('len(self.test_inputs):', len(self.test_inputs))
+        print('len(self.test_activity_labels):', len(self.test_activity_labels))
 
     def build_model(self):
         # with tf.name_scope('embedding'):
@@ -261,26 +270,26 @@ class DeepConvLSTMClassifier:
                 cell=self.rnn_cell, inputs=self.embedded_input,
                 dtype=tf.float32, sequence_length=self.__length(self.embedded_input))
 
-        with tf.name_scope('time_distributed_layer'):
-            rnn_output_reshaped = tf.reshape(self.rnn_output, shape=[-1, self.rnn_hidden_units])
-
-            self.time_distributed_w = tf.Variable(tf.truncated_normal([self.rnn_hidden_units, self.rnn_hidden_units]))
-            self.time_distributed_b = tf.Variable(tf.zeros([self.rnn_hidden_units]))
-
-            time_distributed_output = tf.matmul(rnn_output_reshaped, self.time_distributed_w) + self.time_distributed_b
-            self.time_distributed_output = tf.reshape(time_distributed_output, shape=tf.shape(self.rnn_output))
-
-            # test:
-            self.time_distributed_output = tf.nn.dropout(self.time_distributed_output, self.dropout_prob)
+        # with tf.name_scope('time_distributed_layer'):
+        #     rnn_output_reshaped = tf.reshape(self.rnn_output_3, shape=[-1, self.rnn_hidden_units])
+        #
+        #     self.time_distributed_w = tf.Variable(tf.truncated_normal([self.rnn_hidden_units, self.rnn_hidden_units]))
+        #     self.time_distributed_b = tf.Variable(tf.zeros([self.rnn_hidden_units]))
+        #
+        #     time_distributed_output = tf.matmul(rnn_output_reshaped, self.time_distributed_w) + self.time_distributed_b
+        #     self.time_distributed_output = tf.reshape(time_distributed_output, shape=tf.shape(self.rnn_output_1))
+        #
+        #     # test:
+        #     self.time_distributed_output = tf.nn.dropout(self.time_distributed_output, self.dropout_prob)
 
         with tf.name_scope('pooling'):
-            # self.avg_pooling = tf.reduce_mean(self.rnn_output, axis=1)
-            # self.max_pooling = tf.reduce_max(self.rnn_output, axis=1)
-            # self.last_pooling = self.__last_relevant(self.rnn_output, self.__length(self.embedded_input))
+            self.avg_pooling = tf.reduce_mean(self.rnn_output, axis=1)
+            self.max_pooling = tf.reduce_max(self.rnn_output, axis=1)
+            self.last_pooling = self.__last_relevant(self.rnn_output, self.__length(self.embedded_input))
 
-            self.avg_pooling = tf.reduce_mean(self.time_distributed_output, axis=1)
-            self.max_pooling = tf.reduce_max(self.time_distributed_output, axis=1)
-            self.last_pooling = self.__last_relevant(self.time_distributed_output, self.__length(self.embedded_input))
+            # self.avg_pooling = tf.reduce_mean(self.time_distributed_output, axis=1)
+            # self.max_pooling = tf.reduce_max(self.time_distributed_output, axis=1)
+            # self.last_pooling = self.__last_relevant(self.time_distributed_output, self.__length(self.embedded_input))
 
             self.concatenated_poolings = tf.concat(
                 [self.avg_pooling, self.max_pooling, self.last_pooling], axis=1
@@ -440,6 +449,16 @@ class DeepConvLSTMClassifier:
             print('test recall score: ', recall_score(y_true=np.argmax(self.test_activity_labels, 1),
                                                       y_pred=np.argmax(pred_output, 1), average=None))
 
+            print('test f1 score: ', f1_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                              y_pred=np.argmax(pred_output, 1), average=None))
+
+            print('test confusion matrix: ', confusion_matrix(y_true=np.argmax(self.test_activity_labels, 1),
+                                                              y_pred=np.argmax(pred_output, 1)))
+
+            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
+                                         y_pred=np.argmax(pred_output, 1),
+                                         save_addr=self.log_folder)
+
             print('--------------------------------')
 
             # self.file_writer.add_summary(
@@ -451,6 +470,40 @@ class DeepConvLSTMClassifier:
             save_path = self.saver.save(sess, self.model_path)
             print("Survival model saved in file: %s" % save_path)
 
+    def __draw_pred_score_plots(self, y_true, y_pred, save_addr):
+        precision = np.array([precision_score(y_true=y_true, y_pred=y_pred, average=None)])
+        recall = np.array([recall_score(y_true=y_true, y_pred=y_pred, average=None)])
+        f1 = np.array([f1_score(y_true=y_true, y_pred=y_pred, average=None)])
+        confusion_mat = confusion_matrix(y_true=y_true, y_pred=y_pred)
+
+        plt.clf()
+        fig, axs = plt.subplots(4, 1)
+        fig.set_figheight(20)
+        fig.set_figwidth(20)
+        col_label = self.dataset_labels
+
+        print('len:', len(col_label))
+        print(precision.shape)
+        print(confusion_mat.shape)
+
+        axs[0].axis('tight')
+        axs[0].axis('off')
+        precision_table = axs[0].table(cellText=precision, colLabels=col_label, rowLabels=['precision'], loc='center')
+
+        axs[1].axis('tight')
+        axs[1].axis('off')
+        recall_table = axs[1].table(cellText=recall, colLabels=col_label, rowLabels=['recall'], loc='center')
+
+        axs[2].axis('tight')
+        axs[2].axis('off')
+        f1_table = axs[2].table(cellText=f1, colLabels=col_label, rowLabels=['f1 score'], loc='center')
+
+        axs[3].axis('tight')
+        axs[3].axis('off')
+        confusion_table = axs[3].table(cellText=confusion_mat, colLabels=col_label, rowLabels=col_label, loc='center')
+
+        plt.savefig(save_addr + '/score_plots.png')
+
     @staticmethod
     def __length(sequence):
         used = tf.sign(tf.reduce_max(tf.abs(sequence), 2))
@@ -460,10 +513,18 @@ class DeepConvLSTMClassifier:
 
     @staticmethod
     def __last_relevant(output, length_):
+        print('lest_rel')
+        print(output)
+        print(length_)
+
         batch_size_ = tf.shape(output)[0]
         max_length = tf.shape(output)[1]
         out_size = int(output.get_shape()[2])
         index = tf.range(0, batch_size_) * max_length + (length_ - 1)
         flat = tf.reshape(output, [-1, out_size])
+
+        print(flat)
+        print(index)
+
         relevant = tf.gather(flat, index)
         return relevant
