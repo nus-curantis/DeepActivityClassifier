@@ -243,9 +243,9 @@ def pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=3
 
 
 def get_pamap_dataset_labels_names():
-    labels_names = np.zeros(len(ACTIVITIES_MAP))
+    labels_names = []
     for i in range(0, len(ACTIVITIES_MAP)):
-        labels_names[i] = ACTIVITIES_MAP[i]
+        labels_names.append(ACTIVITIES_MAP[i])
 
     return labels_names
 

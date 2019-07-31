@@ -1,7 +1,6 @@
 import os
 import csv
 import matplotlib.pyplot as plt
-import numpy as np
 
 num_to_activity = {
     -1: 'Not tagged',
@@ -189,9 +188,11 @@ def split_segments_into_parts_with_same_len(data_path='../dataset/CC2650/', spli
 
 
 def get_our_dataset_labels_names():
-    labels_names = np.zeros(len(num_to_activity))
-    for i in range(-1, len(num_to_activity) - 1):
-        labels_names[i] = num_to_activity[i]
+    labels_names = []
+    for i in range(0, len(num_to_activity) - 1):
+        labels_names.append(num_to_activity[i])
+
+    labels_names.append(num_to_activity[-1])
 
     return labels_names
 
