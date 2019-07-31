@@ -43,6 +43,7 @@ class DeepConvLSTMClassifier:
         # learning parameters
         self.learning_rate = config.learning_rate
         self.num_epochs = config.num_epochs
+        self.num_epochs_tuning = config.num_epochs_tuning
         self.batch_size = config.batch_size
 
         if config.activation_func == 'relu':
