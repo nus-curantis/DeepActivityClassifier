@@ -479,8 +479,8 @@ class DeepConvLSTMClassifier:
         f1 = np.array([f1_score(y_true=y_true, y_pred=y_pred, average=None)])
         confusion_mat = confusion_matrix(y_true=y_true, y_pred=y_pred)
 
-        plt.clf()
         plt.figure(figsize=(20, 20))
+        plt.clf()
         fig, axs = plt.subplots(4, 1)
         col_label = self.dataset_labels
 
