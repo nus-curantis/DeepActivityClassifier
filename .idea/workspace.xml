@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="162" selection-start-line="162" selection-end-line="162" />
+            <state relative-caret-position="360">
+              <caret line="478" column="77" lean-forward="true" selection-start-line="478" selection-start-column="77" selection-end-line="478" selection-end-column="77" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -385,20 +385,6 @@
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
     </task>
-    <task id="LOCAL-00042" summary="images summary">
-      <created>1563883629962</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1563883629962</updated>
-    </task>
-    <task id="LOCAL-00043" summary="images summary">
-      <created>1563883832927</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1563883832927</updated>
-    </task>
     <task id="LOCAL-00044" summary="images summary">
       <created>1563884065432</created>
       <option name="number" value="00044" />
@@ -728,7 +714,21 @@
       <option name="project" value="LOCAL" />
       <updated>1564554258373</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="f1 score, confusion mat plots">
+      <created>1564554346252</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1564554346252</updated>
+    </task>
+    <task id="LOCAL-00092" summary="f1 score, confusion mat plots">
+      <created>1564554486957</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1564554486957</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1041,8 +1041,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="162" selection-start-line="162" selection-end-line="162" />
+        <state relative-caret-position="360">
+          <caret line="478" column="77" lean-forward="true" selection-start-line="478" selection-start-column="77" selection-end-line="478" selection-end-column="77" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>

@@ -474,9 +474,9 @@ class DeepConvLSTMClassifier:
             print("Survival model saved in file: %s" % save_path)
 
     def __draw_pred_score_plots(self, y_true, y_pred, save_addr):
-        precision = np.transpose(np.array([precision_score(y_true=y_true, y_pred=y_pred, average=None)]))
-        recall = np.transpose(np.array([recall_score(y_true=y_true, y_pred=y_pred, average=None)]))
-        f1 = np.transpose(np.array([f1_score(y_true=y_true, y_pred=y_pred, average=None)]))
+        precision = np.array([precision_score(y_true=y_true, y_pred=y_pred, average=None)])
+        recall = np.array([recall_score(y_true=y_true, y_pred=y_pred, average=None)])
+        f1 = np.array([f1_score(y_true=y_true, y_pred=y_pred, average=None)])
         confusion_mat = confusion_matrix(y_true=y_true, y_pred=y_pred)
 
         plt.clf()
