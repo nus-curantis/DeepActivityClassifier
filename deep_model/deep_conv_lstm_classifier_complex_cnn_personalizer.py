@@ -137,7 +137,7 @@ class DeepConvLSTMClassifier:
         return True
 
     def load_data(self):
-        self.train_inputs, _, self.train_activity_labels, _ = \
+        self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
             pamap2_rnn_input_train_test(target_dir='../dataset/PAMAP2_Dataset/split/1/',
                                         split_series_max_len=self.series_max_len)  # pamap2 dataset
 
