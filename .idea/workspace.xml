@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_our.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_our.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+            <state relative-caret-position="-134">
+              <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -51,10 +50,21 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_our.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="54" column="66" selection-start-line="54" selection-start-column="66" selection-end-line="54" selection-end-column="66" />
+            <state relative-caret-position="514">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
             </state>
           </provider>
         </entry>
@@ -131,8 +141,8 @@
         <option value="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_test_our.py" />
-        <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_our.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" />
+        <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_our.py" />
       </list>
     </option>
   </component>
@@ -328,20 +338,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
-    </task>
-    <task id="LOCAL-00045" summary="images summary">
-      <created>1563884513565</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1563884513565</updated>
-    </task>
-    <task id="LOCAL-00046" summary="data analyze">
-      <created>1563952852933</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1563952852933</updated>
     </task>
     <task id="LOCAL-00047" summary="data analyze">
       <created>1563953703842</created>
@@ -672,7 +668,21 @@
       <option name="project" value="LOCAL" />
       <updated>1564555576004</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="f1 score, confusion mat plots">
+      <created>1564555904393</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1564555904394</updated>
+    </task>
+    <task id="LOCAL-00095" summary="f1 score, confusion mat plots">
+      <created>1564556202761</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1564556202761</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TodoView">
@@ -865,20 +875,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_our.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="54" column="66" selection-start-line="54" selection-start-column="66" selection-end-line="54" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+        <state relative-caret-position="-134">
+          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_our.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
         </state>
       </provider>
     </entry>
