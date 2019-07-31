@@ -106,8 +106,10 @@ class DeepConvLSTMClassifier:
 
         # loaded train, test data
         self.train_inputs = None
+        self.train_inputs_tuning = None
         self.test_inputs = None
         self.train_activity_labels = None
+        self.train_activity_labels_tuning = None
         self.test_activity_labels = None
 
         self.dataset_labels = None
@@ -135,30 +137,15 @@ class DeepConvLSTMClassifier:
         return True
 
     def load_data(self):
-        self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
-            pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
-            # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len, include_gyr_data=True)  # pamap2 dataset
-            # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
-            # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
-            #                                 ignore_classes=[0, 2, 5, 6],
-            #                                 split_series_max_len=self.series_max_len)  # chest dataset
-            # data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/', ignore_classes=[0, 12],
-            #                              split_series_max_len=self.series_max_len)
-            # data_to_rnn_input_train_test(
-            #     split_series_max_len=self.series_max_len,
-            #     ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])  # our dataset
-            # data_to_rnn_input_train_test(split_series_max_len=self.series_max_len)  # our dataset
-            # data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/',
-            #                              split_series_max_len=self.series_max_len)  # big dataset
-            # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
-            #                                 split_series_max_len=self.series_max_len)  # chest dataset
-            # normalized_wharf_rnn_input_train_test(split_series_max_len=self.series_max_len)  # wahrf
-            # data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')  # chest without normalizing
+        self.train_inputs, _, self.train_activity_labels, _ = \
+            pamap2_rnn_input_train_test(target_dir='../dataset/PAMAP2_Dataset/split/1',
+                                        split_series_max_len=self.series_max_len)  # pamap2 dataset
+
+        self.train_inputs_tuning, self.test_inputs, self.train_activity_labels_tuning, self.train_activity_labels = \
+            pamap2_rnn_input_train_test(target_dir='../dataset/PAMAP2_Dataset/split/2',
+                                        split_series_max_len=self.series_max_len)  # pamap2 dataset
 
         self.dataset_labels = get_pamap_dataset_labels_names()
-        #
-        # self.dataset_labels = get_our_dataset_labels_names(
-        #     ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])
 
         print('len(self.train_inputs):', len(self.train_inputs))
         print('len(self.train_activity_labels):', len(self.train_activity_labels))
@@ -405,9 +392,6 @@ class DeepConvLSTMClassifier:
                     inputs_batch = self.train_inputs[i: i + self.batch_size]
                     labels_batch = self.train_activity_labels[i: i + self.batch_size]
 
-                    print(np.shape(inputs_batch))
-                    print(np.shape(labels_batch))
-
                     _, loss, accuracy, pred_output = sess.run(
                         [self.optimizer, self.cost, self.accuracy, self.prediction],
                         feed_dict={self.input: inputs_batch,
@@ -433,10 +417,38 @@ class DeepConvLSTMClassifier:
                                                  self.activity_label: self.test_activity_labels[:100]}))
                             , epoch)
 
+            for epoch in range(self.num_epochs_tuning):
+                for i in range(0, len(self.train_inputs_tuning), self.batch_size):
+                    inputs_batch = self.train_inputs_tuning[i: i + self.batch_size]
+                    labels_batch = self.train_activity_labels_tuning[i: i + self.batch_size]
+
+                    _, loss, accuracy, pred_output = sess.run(
+                        [self.optimizer, self.cost, self.accuracy, self.prediction],
+                        feed_dict={self.input: inputs_batch,
+                                   self.activity_label: labels_batch})
+
+                    print(i, ',', epoch + self.num_epochs)
+                    print(loss)
+                    print(accuracy)
+                    print(np.argmax(pred_output, 1).tolist())
+                    print(np.argmax(labels_batch, 1).tolist())
+                    print('--------------------------------')
+
+                    if i == 0:
+                        self.file_writer.add_summary(
+                            (sess.run(self.train_summary,
+                                      feed_dict={self.input: inputs_batch,
+                                                 self.activity_label: labels_batch}))
+                            , epoch + self.num_epochs)
+
+                        self.file_writer.add_summary(
+                            (sess.run(self.validation_summary,
+                                      feed_dict={self.input: self.test_inputs[:100],
+                                                 self.activity_label: self.test_activity_labels[:100]}))
+                            , epoch + self.num_epochs)
+
             loss, accuracy, pred_output = sess.run(
                 [self.cost, self.accuracy, self.prediction],
-                # feed_dict={self.input: self.test_inputs[100:],
-                #            self.activity_label: self.test_activity_labels[100:]})
                 feed_dict={self.input: self.test_inputs,
                            self.activity_label: self.test_activity_labels})
             print('test loss: ', loss)
