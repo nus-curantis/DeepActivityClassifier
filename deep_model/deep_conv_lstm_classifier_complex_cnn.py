@@ -158,8 +158,10 @@ class DeepConvLSTMClassifier:
             # data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')  # chest without normalizing
 
         # self.dataset_labels = get_pamap_dataset_labels_names()
-        self.dataset_labels = get_our_dataset_labels_names(
-            ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])
+
+        # self.dataset_labels = get_our_dataset_labels_names(
+        #     ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])
+        self.dataset_labels = get_our_dataset_labels_names()
 
         print('len(self.train_inputs):', len(self.train_inputs))
         print('len(self.train_activity_labels):', len(self.train_activity_labels))
