@@ -15,24 +15,24 @@
     <session id="752244306">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.7" value="2" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="3" />
-          <entry key="py" value="1952" />
+          <entry key="py" value="1981" />
           <entry key="txt" value="63" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="66" />
-          <entry key="Python" value="1952" />
+          <entry key="Python" value="1981" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -52,11 +52,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="478" column="36" selection-start-line="478" selection-start-column="36" selection-end-line="478" selection-end-column="36" />
+            <state relative-caret-position="522">
+              <caret line="160" column="12" selection-start-line="160" selection-start-column="12" selection-end-line="160" selection-end-column="12" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
-                <marker date="1564549941708" expanded="true" signature="23524:24768" ph="..." />
+                <marker date="1564552024525" expanded="true" signature="23952:25196" ph="..." />
               </folding>
             </state>
           </provider>
@@ -65,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="46" column="53" lean-forward="true" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
+            <state relative-caret-position="774">
+              <caret line="46" column="53" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -74,7 +74,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
+            <state relative-caret-position="342">
               <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
             </state>
           </provider>
@@ -84,7 +84,7 @@
         <entry file="file://$PROJECT_DIR$/utils/data_loader.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <marker date="1564548988411" expanded="true" signature="408:415" ph="..." />
               </folding>
@@ -95,7 +95,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_three_rnns.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1640">
+            <state relative-caret-position="3312">
               <caret line="194" column="101" selection-start-line="194" selection-start-column="101" selection-end-line="194" selection-end-column="101" />
             </state>
           </provider>
@@ -104,7 +104,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_test_our.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
+            <state relative-caret-position="234">
               <caret line="454" column="94" selection-start-line="454" selection-start-column="94" selection-end-line="454" selection-end-column="94" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
@@ -116,8 +116,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="250" column="23" lean-forward="true" selection-start-line="250" selection-start-column="23" selection-end-line="250" selection-end-column="23" />
+            <state relative-caret-position="4410">
+              <caret line="250" column="23" selection-start-line="250" selection-start-column="23" selection-end-line="250" selection-end-column="23" />
               <folding>
                 <element signature="e#129#147#0" expanded="true" />
               </folding>
@@ -129,7 +129,7 @@
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_our.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1080">
-              <caret line="63" column="13" lean-forward="true" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
+              <caret line="63" column="13" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -137,8 +137,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="216" lean-forward="true" selection-start-line="216" selection-end-line="216" />
+            <state relative-caret-position="3780">
+              <caret line="216" selection-start-line="216" selection-end-line="216" />
               <folding>
                 <marker date="1564545794352" expanded="true" signature="8527:8528" ph="..." />
               </folding>
@@ -149,8 +149,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="197" column="39" lean-forward="true" selection-start-line="196" selection-start-column="4" selection-end-line="197" selection-end-column="39" />
+            <state relative-caret-position="3510">
+              <caret line="197" column="39" selection-start-line="196" selection-start-column="4" selection-end-line="197" selection-end-column="39" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
                 <marker date="1564547777545" expanded="true" signature="5705:5980" ph="..." />
@@ -247,6 +247,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -273,7 +274,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -437,13 +437,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
-    </task>
-    <task id="LOCAL-00036" summary="precision and recall">
-      <created>1563876758623</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1563876758623</updated>
     </task>
     <task id="LOCAL-00037" summary="precision and recall">
       <created>1563877162877</created>
@@ -781,7 +774,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564549696290</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="f1 score, confusion mat plots">
+      <created>1564549944775</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1564549944775</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TodoView">
@@ -802,7 +802,7 @@
       <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.24900663" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32829374" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.046979867" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.046979867" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.14794816" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -999,9 +999,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1009,9 +1006,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3132">
           <caret line="183" column="101" selection-start-line="180" selection-start-column="12" selection-end-line="183" selection-end-column="101" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1026,35 +1020,46 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="571">
           <caret line="244" lean-forward="true" selection-start-line="244" selection-end-line="244" />
-          <folding>
-            <element signature="e#308#326#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py">
+    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="216" lean-forward="true" selection-start-line="216" selection-end-line="216" />
+        <state relative-caret-position="774">
+          <caret line="46" column="53" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/data_loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
           <folding>
-            <marker date="1564545794352" expanded="true" signature="8527:8528" ph="..." />
+            <marker date="1564548988411" expanded="true" signature="408:415" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_three_rnns.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1640">
+        <state relative-caret-position="3312">
           <caret line="194" column="101" selection-start-line="194" selection-start-column="101" selection-end-line="194" selection-end-column="101" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_test_our.py">
+    <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="454" column="94" selection-start-line="454" selection-start-column="94" selection-end-line="454" selection-end-column="94" />
+        <state relative-caret-position="4410">
+          <caret line="250" column="23" selection-start-line="250" selection-start-column="23" selection-end-line="250" selection-end-column="23" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#129#147#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1062,14 +1067,24 @@
     <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_our.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1080">
-          <caret line="63" column="13" lean-forward="true" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
+          <caret line="63" column="13" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3780">
+          <caret line="216" selection-start-line="216" selection-end-line="216" />
+          <folding>
+            <marker date="1564545794352" expanded="true" signature="8527:8528" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="197" column="39" lean-forward="true" selection-start-line="196" selection-start-column="4" selection-end-line="197" selection-end-column="39" />
+        <state relative-caret-position="3510">
+          <caret line="197" column="39" selection-start-line="196" selection-start-column="4" selection-end-line="197" selection-end-column="39" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
             <marker date="1564547777545" expanded="true" signature="5705:5980" ph="..." />
@@ -1077,47 +1092,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier.py">
+    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_test_our.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="46" column="53" lean-forward="true" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/data_loader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="234">
+          <caret line="454" column="94" selection-start-line="454" selection-start-column="94" selection-end-line="454" selection-end-column="94" />
           <folding>
-            <marker date="1564548988411" expanded="true" signature="408:415" ph="..." />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="250" column="23" lean-forward="true" selection-start-line="250" selection-start-column="23" selection-end-line="250" selection-end-column="23" />
-          <folding>
-            <element signature="e#129#147#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="478" column="36" selection-start-line="478" selection-start-column="36" selection-end-line="478" selection-end-column="36" />
+        <state relative-caret-position="522">
+          <caret line="160" column="12" selection-start-line="160" selection-start-column="12" selection-end-line="160" selection-end-column="12" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <marker date="1564549941708" expanded="true" signature="23524:24768" ph="..." />
+            <marker date="1564552024525" expanded="true" signature="23952:25196" ph="..." />
           </folding>
         </state>
       </provider>

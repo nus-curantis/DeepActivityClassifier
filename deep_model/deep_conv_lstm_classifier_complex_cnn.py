@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
 
+from preprocessing.time_series_reader_and_visualizer import get_our_dataset_labels_names
 from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test, normalized_rnn_input_train_test
 from preprocessing.wharf_reader import normalized_wharf_rnn_input_train_test
 from preprocessing.pamap2_reader import pamap2_rnn_input_train_test, get_pamap_dataset_labels_names
@@ -134,7 +135,10 @@ class DeepConvLSTMClassifier:
 
     def load_data(self):
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
-            pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
+            data_to_rnn_input_train_test(
+                split_series_max_len=self.series_max_len,
+                ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])  # our dataset
+            # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
             # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len, include_gyr_data=True)  # pamap2 dataset
             # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
             # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
@@ -153,7 +157,9 @@ class DeepConvLSTMClassifier:
             # normalized_wharf_rnn_input_train_test(split_series_max_len=self.series_max_len)  # wahrf
             # data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')  # chest without normalizing
 
-        self.dataset_labels = get_pamap_dataset_labels_names()
+        # self.dataset_labels = get_pamap_dataset_labels_names()
+        self.dataset_labels = get_our_dataset_labels_names(
+            ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])
 
         print('len(self.train_inputs):', len(self.train_inputs))
         print('len(self.train_activity_labels):', len(self.train_activity_labels))
