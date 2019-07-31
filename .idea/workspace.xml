@@ -25,14 +25,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="3" />
-          <entry key="py" value="1908" />
+          <entry key="py" value="1952" />
           <entry key="txt" value="63" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="66" />
-          <entry key="Python" value="1908" />
+          <entry key="Python" value="1952" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -52,11 +52,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="487" column="26" lean-forward="true" selection-start-line="487" selection-start-column="26" selection-end-line="487" selection-end-column="26" />
+            <state relative-caret-position="212">
+              <caret line="478" column="36" selection-start-line="478" selection-start-column="36" selection-end-line="478" selection-end-column="36" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
-                <marker date="1564549693693" expanded="true" signature="23524:24657" ph="..." />
+                <marker date="1564549941708" expanded="true" signature="23524:24768" ph="..." />
               </folding>
             </state>
           </provider>
@@ -438,13 +438,6 @@
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
     </task>
-    <task id="LOCAL-00035" summary="precision and recall">
-      <created>1563876245085</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1563876245085</updated>
-    </task>
     <task id="LOCAL-00036" summary="precision and recall">
       <created>1563876758623</created>
       <option name="number" value="00036" />
@@ -781,7 +774,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564549414002</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="f1 score, confusion mat plots">
+      <created>1564549696290</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1564549696290</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TodoView">
@@ -865,18 +865,6 @@
     <MESSAGE value="f1 score, confusion mat, ..." />
     <MESSAGE value="f1 score, confusion mat plots" />
     <option name="LAST_COMMIT_MESSAGE" value="f1 score, confusion mat plots" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="NONE" type="python-line">
-          <url>file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py</url>
-          <line>478</line>
-          <log-expression expression="preci" language="Python" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointLogExpression">
@@ -1125,11 +1113,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="487" column="26" lean-forward="true" selection-start-line="487" selection-start-column="26" selection-end-line="487" selection-end-column="26" />
+        <state relative-caret-position="212">
+          <caret line="478" column="36" selection-start-line="478" selection-start-column="36" selection-end-line="478" selection-end-column="36" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <marker date="1564549693693" expanded="true" signature="23524:24657" ph="..." />
+            <marker date="1564549941708" expanded="true" signature="23524:24768" ph="..." />
           </folding>
         </state>
       </provider>

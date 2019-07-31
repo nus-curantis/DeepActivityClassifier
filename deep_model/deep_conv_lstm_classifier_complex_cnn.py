@@ -467,26 +467,28 @@ class DeepConvLSTMClassifier:
             print("Survival model saved in file: %s" % save_path)
 
     def __draw_pred_score_plots(self, y_true, y_pred, save_addr):
-        precision = precision_score(y_true=y_true, y_pred=y_pred, average=None)
-        recall = recall_score(y_true=y_true, y_pred=y_pred, average=None)
-        f1 = f1_score(y_true=y_true, y_pred=y_pred, average=None)
+        precision = np.transpose(np.array([precision_score(y_true=y_true, y_pred=y_pred, average=None)]))
+        recall = np.transpose(np.array([recall_score(y_true=y_true, y_pred=y_pred, average=None)]))
+        f1 = np.transpose(np.array([f1_score(y_true=y_true, y_pred=y_pred, average=None)]))
         confusion_mat = confusion_matrix(y_true=y_true, y_pred=y_pred)
 
         plt.clf()
         fig, axs = plt.subplots(4, 1)
         col_label = self.dataset_labels
 
+        print('len:', len(col_label))
+
         axs[0].axis('tight')
         axs[0].axis('off')
-        precision_table = axs[0].table(cellText=[precision], colLabels=col_label, rowLabels=['precision'], loc='center')
+        precision_table = axs[0].table(cellText=precision, colLabels=col_label, rowLabels=['precision'], loc='center')
 
         axs[1].axis('tight')
         axs[1].axis('off')
-        recall_table = axs[1].table(cellText=[recall], colLabels=col_label, rowLabels=['recall'], loc='center')
+        recall_table = axs[1].table(cellText=recall, colLabels=col_label, rowLabels=['recall'], loc='center')
 
         axs[2].axis('tight')
         axs[2].axis('off')
-        f1_table = axs[2].table(cellText=[f1], colLabels=col_label, rowLabels=['f1 score'], loc='center')
+        f1_table = axs[2].table(cellText=f1, colLabels=col_label, rowLabels=['f1 score'], loc='center')
 
         axs[3].axis('tight')
         axs[3].axis('off')
