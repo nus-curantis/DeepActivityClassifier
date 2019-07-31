@@ -111,17 +111,32 @@ def data_to_rnn_input_(split_activities, ignore_classes=[], include_gyr_data=Fal
                    random_state=0)  # todo: this needs to be removed at some point
 
 
-def get_one_hot_labels(labels, ignore_classes=[]):
-    # labels_num = max(labels) + 1
-    labels_num = len(set(labels)) + len(ignore_classes)
+# def get_one_hot_labels(labels, ignore_classes=[]):
+#     # labels_num = max(labels) + 1
+#     labels_num = len(set(labels)) + len(ignore_classes)
+#
+#     print(len(set(labels)))
+#     print(len(ignore_classes))
+#
+#     one_hots = []
+#     for label in labels:
+#         one_hot = np.zeros(labels_num)
+#         one_hot[label] = 1
+#         one_hots.append(one_hot)
+#
+#     return np.array(one_hots)
 
-    print(len(set(labels)))
-    print(len(ignore_classes))
+
+def get_one_hot_labels(labels, ignore_classes=[]):
+    used_labels = sorted(set(labels))
+
+    print('used labels:', len(set(labels)))
+    print('ignored labels:', len(ignore_classes))
 
     one_hots = []
     for label in labels:
-        one_hot = np.zeros(labels_num)
-        one_hot[label] = 1
+        one_hot = np.zeros(len(used_labels))
+        one_hot[used_labels.index(label)] = 1
         one_hots.append(one_hot)
 
     return np.array(one_hots)

@@ -12,7 +12,8 @@ tf.flags.DEFINE_integer('input_representations', 3, 'num of input representation
 # tf.flags.DEFINE_integer('input_representations', 52, 'num of input representations')
 
 # tf.flags.DEFINE_integer('num_classes', 13, 'num of classes in the output')  # mhealth dataset and pamap2
-tf.flags.DEFINE_integer('num_classes', 19, 'num of classes in the output')  # our dataset
+tf.flags.DEFINE_integer('num_classes', 5, 'num of classes in the output')  # our dataset after ignoring some classes
+# tf.flags.DEFINE_integer('num_classes', 19, 'num of classes in the output')  # our dataset
 # tf.flags.DEFINE_integer('num_classes', 18, 'num of classes in the output')  # our dataset
 # tf.flags.DEFINE_integer('num_classes', 8, 'num of classes in the output')  # chest accelerometer data
 # tf.flags.DEFINE_integer('num_classes', 14, 'num of classes in the output')  # wharf data
