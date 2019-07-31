@@ -4,7 +4,7 @@ import os
 import sys
 sys.path.append("../../DeepActivityClassifier")
 
-from deep_model.deep_conv_lstm_classifier_complex_cnn_test_3 import DeepConvLSTMClassifier
+from deep_model.deep_conv_lstm_classifier_complex_cnn_test_our import DeepConvLSTMClassifier
 
 # model parameters
 tf.flags.DEFINE_integer('input_representations', 3, 'num of input representations')

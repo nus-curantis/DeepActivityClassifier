@@ -242,10 +242,13 @@ def pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=3
                                          include_gyr_data=include_gyr_data)
 
 
-def get_pamap_dataset_labels_names():
+def get_pamap_dataset_labels_names(ignore_classes=[]):
     labels_names = []
     for i in range(0, len(ACTIVITIES_MAP)):
         labels_names.append(ACTIVITIES_MAP[i])
+
+    for ignored_class in ignore_classes:
+        labels_names.pop(ignored_class)
 
     return labels_names
 
