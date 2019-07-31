@@ -196,9 +196,6 @@ def get_our_dataset_labels_names(ignore_classes=[]):
     if -1 not in ignore_classes and 19 - 1 not in ignore_classes:  # todo: clean this code
         labels_names.append(num_to_activity[-1])
 
-    for ignored_class in ignore_classes:
-        labels_names.pop(ignored_class)
-
     return labels_names
 
 
