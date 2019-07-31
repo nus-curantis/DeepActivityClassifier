@@ -444,19 +444,15 @@ class DeepConvLSTMClassifier:
             print(np.shape(self.test_activity_labels))
 
             print('test precision score: ', precision_score(y_true=np.argmax(self.test_activity_labels, 1),
-                                                            y_pred=np.argmax(pred_output, 1), average=None,
-                                                            labels=self.dataset_labels))
+                                                            y_pred=np.argmax(pred_output, 1), average=None))
             print('test recall score: ', recall_score(y_true=np.argmax(self.test_activity_labels, 1),
-                                                      y_pred=np.argmax(pred_output, 1), average=None,
-                                                      labels=self.dataset_labels))
+                                                      y_pred=np.argmax(pred_output, 1), average=None))
 
             print('test f1 score: ', f1_score(y_true=np.argmax(self.test_activity_labels, 1),
-                                              y_pred=np.argmax(pred_output, 1), average=None,
-                                              labels=self.dataset_labels))
+                                              y_pred=np.argmax(pred_output, 1), average=None))
 
             print('test confusion matrix: ', confusion_matrix(y_true=np.argmax(self.test_activity_labels, 1),
-                                                              y_pred=np.argmax(pred_output, 1),
-                                                              labels=self.dataset_labels))
+                                                              y_pred=np.argmax(pred_output, 1)))
 
             print('--------------------------------')
 
