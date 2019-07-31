@@ -470,7 +470,19 @@ class DeepConvLSTMClassifier:
 
             self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
                                          y_pred=np.argmax(pred_output, 1),
-                                         save_addr=self.log_folder)
+                                         save_addr=self.log_folder + '/score_plots.png')
+
+            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
+                                         y_pred=np.argmax(pred_output, 1),
+                                         save_addr=self.log_folder + '/score_plots_2.png', fig_size=[20, 20])
+
+            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
+                                         y_pred=np.argmax(pred_output, 1),
+                                         save_addr=self.log_folder + '/score_plots_3.png', fig_size=[5, 5])
+
+            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
+                                         y_pred=np.argmax(pred_output, 1),
+                                         save_addr=self.log_folder + '/score_plots_4.png', fig_size=[30, 30])
 
             print('--------------------------------')
 
@@ -483,7 +495,7 @@ class DeepConvLSTMClassifier:
             save_path = self.saver.save(sess, self.model_path)
             print("Survival model saved in file: %s" % save_path)
 
-    def __draw_pred_score_plots(self, y_true, y_pred, save_addr):
+    def __draw_pred_score_plots(self, y_true, y_pred, save_addr, fig_size=[8.27, 11.69]):
         precision = np.array([precision_score(y_true=y_true, y_pred=y_pred, average=None)])
         recall = np.array([recall_score(y_true=y_true, y_pred=y_pred, average=None)])
         f1 = np.array([f1_score(y_true=y_true, y_pred=y_pred, average=None)])
@@ -491,8 +503,8 @@ class DeepConvLSTMClassifier:
 
         plt.clf()
         fig, axs = plt.subplots(4, 1)
-        fig.set_figheight(20)
-        fig.set_figwidth(20)
+        fig.set_figheight(fig_size[1])
+        fig.set_figwidth(fig_size[0])
         col_label = self.dataset_labels
 
         print('len:', len(col_label))
@@ -515,7 +527,7 @@ class DeepConvLSTMClassifier:
         axs[3].axis('off')
         confusion_table = axs[3].table(cellText=confusion_mat, colLabels=col_label, rowLabels=col_label, loc='center')
 
-        plt.savefig(save_addr + '/score_plots.png')
+        plt.savefig(save_addr)
 
     @staticmethod
     def __length(sequence):
