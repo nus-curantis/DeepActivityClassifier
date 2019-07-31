@@ -141,7 +141,7 @@ class DeepConvLSTMClassifier:
             pamap2_rnn_input_train_test(target_dir='../dataset/PAMAP2_Dataset/split/1/',
                                         split_series_max_len=self.series_max_len)  # pamap2 dataset
 
-        self.train_inputs_tuning, self.test_inputs, self.train_activity_labels_tuning, self.train_activity_labels = \
+        self.train_inputs_tuning, self.test_inputs, self.train_activity_labels_tuning, self.test_activity_labels = \
             pamap2_rnn_input_train_test(target_dir='../dataset/PAMAP2_Dataset/split/2/',
                                         split_series_max_len=self.series_max_len)  # pamap2 dataset
 
