@@ -149,6 +149,8 @@ class DeepConvLSTMClassifier:
 
         print('len(self.train_inputs):', len(self.train_inputs))
         print('len(self.train_activity_labels):', len(self.train_activity_labels))
+        print('len(self.train_inputs_tuning):', len(self.train_inputs_tuning))
+        print('len(self.train_activity_labels_tuning):', len(self.train_activity_labels_tuning))
         print('len(self.test_inputs):', len(self.test_inputs))
         print('len(self.test_activity_labels):', len(self.test_activity_labels))
 
