@@ -478,8 +478,8 @@ class DeepConvLSTMClassifier:
 
         plt.clf()
         fig, axs = plt.subplots(4, 1)
-        fig.set_figheight(20)
-        fig.set_figwidth(20)
+        fig.set_figheight(11.69)
+        fig.set_figwidth(8.27)
         col_label = self.dataset_labels
 
         print('len:', len(col_label))

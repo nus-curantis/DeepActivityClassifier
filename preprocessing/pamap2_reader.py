@@ -243,13 +243,18 @@ def pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=3
                                          include_gyr_data=include_gyr_data)
 
 
-def get_pamap_dataset_labels_names(ignore_classes=[]):
-    labels_names = []
-    for i in range(0, len(ACTIVITIES_MAP)):
-        if i in ACTIVITIES_MAP.keys() and i not in ignore_classes:
-            labels_names.append(ACTIVITIES_MAP[i])
+def get_pamap_dataset_labels_names(ignore_classes=[]):  # todo: clean this code
+    return ['no_activity', 'lying', 'sitting', 'standing', 'walking', 'running', 'cycling', 'nordic_walking',
+            'ascending_stairs', 'descending_stairs', 'vaccuum_cleaning', 'ironing', 'rope_jumping']
 
-    return labels_names
+    # {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 12: 8, 13: 9, 16: 10, 17: 11, 24: 12}
+
+    # labels_names = []
+    # for i in range(0, len(ACTIVITIES_MAP)):
+    #     if i in ACTIVITIES_MAP.keys() and i not in ignore_classes:
+    #         labels_names.append(ACTIVITIES_MAP[i])
+    #
+    # return labels_names
 
 
 # read_all_files()
