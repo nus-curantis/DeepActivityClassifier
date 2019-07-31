@@ -190,9 +190,11 @@ def split_segments_into_parts_with_same_len(data_path='../dataset/CC2650/', spli
 def get_our_dataset_labels_names(ignore_classes=[]):
     labels_names = []
     for i in range(0, len(num_to_activity) - 1):
-        labels_names.append(num_to_activity[i])
+        if i not in ignore_classes:
+            labels_names.append(num_to_activity[i])
 
-    labels_names.append(num_to_activity[-1])
+    if -1 not in ignore_classes and 19 - 1 not in ignore_classes:  # todo: clean this code
+        labels_names.append(num_to_activity[-1])
 
     for ignored_class in ignore_classes:
         labels_names.pop(ignored_class)
