@@ -241,4 +241,4 @@ def data_to_rnn_input_train_test_flexible(split_activities, split_series_max_len
     return train_data, test_data, train_labels, test_labels
 
 
-read_all_files()
+# read_all_files()

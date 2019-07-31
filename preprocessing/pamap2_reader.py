@@ -250,4 +250,4 @@ def get_pamap_dataset_labels_names():
     return labels_names
 
 
-read_all_files()
+# read_all_files()
