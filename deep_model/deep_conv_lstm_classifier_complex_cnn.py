@@ -478,15 +478,15 @@ class DeepConvLSTMClassifier:
 
         axs[0].axis('tight')
         axs[0].axis('off')
-        precision_table = axs[0].table(cellText=precision, colLabels=col_label, rowLabels=['precision'], loc='center')
+        precision_table = axs[0].table(cellText=[precision], colLabels=col_label, rowLabels=['precision'], loc='center')
 
         axs[1].axis('tight')
         axs[1].axis('off')
-        recall_table = axs[1].table(cellText=recall, colLabels=col_label, rowLabels=['recall'], loc='center')
+        recall_table = axs[1].table(cellText=[recall], colLabels=col_label, rowLabels=['recall'], loc='center')
 
         axs[2].axis('tight')
         axs[2].axis('off')
-        f1_table = axs[2].table(cellText=f1, colLabels=col_label, rowLabels=['f1 score'], loc='center')
+        f1_table = axs[2].table(cellText=[f1], colLabels=col_label, rowLabels=['f1 score'], loc='center')
 
         axs[3].axis('tight')
         axs[3].axis('off')
