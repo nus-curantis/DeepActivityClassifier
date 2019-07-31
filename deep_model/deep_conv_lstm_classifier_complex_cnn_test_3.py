@@ -6,6 +6,7 @@ import numpy as np
 
 from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
 
+from preprocessing.time_series_reader_and_visualizer import get_our_dataset_labels_names
 from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test, normalized_rnn_input_train_test
 from preprocessing.wharf_reader import normalized_wharf_rnn_input_train_test
 # from preprocessing.pamap2_reader import normalized_pamap2_rnn_input_train_test, pamap2_rnn_input_train_test
@@ -133,7 +134,10 @@ class DeepConvLSTMClassifier:
 
     def load_data(self):
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
-            pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
+            data_to_rnn_input_train_test(
+                split_series_max_len=self.series_max_len,
+                ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])  # our dataset
+            # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
             # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len, include_gyr_data=True)  # pamap2 dataset
             # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
             # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
@@ -151,6 +155,8 @@ class DeepConvLSTMClassifier:
             #                                 split_series_max_len=self.series_max_len)  # chest dataset
             # normalized_wharf_rnn_input_train_test(split_series_max_len=self.series_max_len)  # wahrf
             # data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')  # chest without normalizing
+
+        self.dataset_labels = get_our_dataset_labels_names()
 
         print('len(self.train_inputs):', len(self.train_inputs))
         print('len(self.train_activity_labels):', len(self.train_activity_labels))
@@ -438,15 +444,19 @@ class DeepConvLSTMClassifier:
             print(np.shape(self.test_activity_labels))
 
             print('test precision score: ', precision_score(y_true=np.argmax(self.test_activity_labels, 1),
-                                                            y_pred=np.argmax(pred_output, 1), average=None))
+                                                            y_pred=np.argmax(pred_output, 1), average=None,
+                                                            labels=self.dataset_labels))
             print('test recall score: ', recall_score(y_true=np.argmax(self.test_activity_labels, 1),
-                                                      y_pred=np.argmax(pred_output, 1), average=None))
+                                                      y_pred=np.argmax(pred_output, 1), average=None,
+                                                      labels=self.dataset_labels))
 
             print('test f1 score: ', f1_score(y_true=np.argmax(self.test_activity_labels, 1),
-                                              y_pred=np.argmax(pred_output, 1), average=None))
+                                              y_pred=np.argmax(pred_output, 1), average=None,
+                                              labels=self.dataset_labels))
 
             print('test confusion matrix: ', confusion_matrix(y_true=np.argmax(self.test_activity_labels, 1),
-                                                              y_pred=np.argmax(pred_output, 1), average=None))
+                                                              y_pred=np.argmax(pred_output, 1), average=None,
+                                                              labels=self.dataset_labels))
 
             print('--------------------------------')
 

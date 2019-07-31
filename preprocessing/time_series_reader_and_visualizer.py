@@ -1,6 +1,7 @@
 import os
 import csv
 import matplotlib.pyplot as plt
+import numpy as np
 
 num_to_activity = {
     -1: 'Not tagged',
@@ -19,7 +20,10 @@ num_to_activity = {
     12: 'Standing',
     13: 'Climbing upstairs',
     14: 'Jogging',
-    15: 'Video chat while sitting'
+    15: 'Video chat while sitting',
+    16: 'Sleeping',
+    17: 'Walking with hand in pocket'#,
+    # 18: 'Writing'
 }
 
 
@@ -182,6 +186,14 @@ def split_segments_into_parts_with_same_len(data_path='../dataset/CC2650/', spli
             split_activities += split_segments_of_activity(activity, split_series_max_len)
 
     return split_activities
+
+
+def get_our_dataset_labels_names():
+    labels_names = np.zeros(len(num_to_activity))
+    for i in range(-1, len(num_to_activity) - 1):
+        labels_names[i] = num_to_activity[i]
+
+    return labels_names
 
 
 if __name__ == '__main__':

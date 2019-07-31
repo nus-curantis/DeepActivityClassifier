@@ -242,4 +242,12 @@ def pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=3
                                          include_gyr_data=include_gyr_data)
 
 
+def get_pamap_dataset_labels_names():
+    labels_names = np.zeros(len(ACTIVITIES_MAP))
+    for i in range(0, len(ACTIVITIES_MAP)):
+        labels_names[i] = ACTIVITIES_MAP[i]
+
+    return labels_names
+
+
 read_all_files()
