@@ -3,14 +3,15 @@ from tensorflow.contrib import rnn
 from tensorflow.contrib.layers.python.layers import batch_norm
 
 import numpy as np
-
+import matplotlib.pyplot as plt
 from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
 
 from preprocessing.time_series_reader_and_visualizer import get_our_dataset_labels_names
 from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test, normalized_rnn_input_train_test
 from preprocessing.wharf_reader import normalized_wharf_rnn_input_train_test
-# from preprocessing.pamap2_reader import normalized_pamap2_rnn_input_train_test, pamap2_rnn_input_train_test
-from preprocessing.pamap2_reader_flexible import pamap2_rnn_input_train_test
+from preprocessing.pamap2_reader import pamap2_rnn_input_train_test, get_pamap_dataset_labels_names
+# todo: also test normalized pamap input
+# from preprocessing.pamap2_reader_flexible import pamap2_rnn_input_train_test
 
 
 class DeepConvLSTMClassifier:
@@ -156,7 +157,10 @@ class DeepConvLSTMClassifier:
             # normalized_wharf_rnn_input_train_test(split_series_max_len=self.series_max_len)  # wahrf
             # data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')  # chest without normalizing
 
-        self.dataset_labels = get_our_dataset_labels_names()
+        # self.dataset_labels = get_pamap_dataset_labels_names()
+
+        self.dataset_labels = get_our_dataset_labels_names(
+            ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])
 
         print('len(self.train_inputs):', len(self.train_inputs))
         print('len(self.train_activity_labels):', len(self.train_activity_labels))
@@ -454,6 +458,10 @@ class DeepConvLSTMClassifier:
             print('test confusion matrix: ', confusion_matrix(y_true=np.argmax(self.test_activity_labels, 1),
                                                               y_pred=np.argmax(pred_output, 1)))
 
+            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
+                                         y_pred=np.argmax(pred_output, 1),
+                                         save_addr=self.log_folder)
+
             print('--------------------------------')
 
             # self.file_writer.add_summary(
@@ -464,6 +472,39 @@ class DeepConvLSTMClassifier:
 
             save_path = self.saver.save(sess, self.model_path)
             print("Survival model saved in file: %s" % save_path)
+
+    def __draw_pred_score_plots(self, y_true, y_pred, save_addr):
+        precision = np.array([precision_score(y_true=y_true, y_pred=y_pred, average=None)])
+        recall = np.array([recall_score(y_true=y_true, y_pred=y_pred, average=None)])
+        f1 = np.array([f1_score(y_true=y_true, y_pred=y_pred, average=None)])
+        confusion_mat = confusion_matrix(y_true=y_true, y_pred=y_pred)
+
+        plt.clf()
+        plt.figure(figsize=(20, 20))
+        fig, axs = plt.subplots(4, 1)
+        col_label = self.dataset_labels
+
+        print('len:', len(col_label))
+        print(precision.shape)
+        print(confusion_mat.shape)
+
+        axs[0].axis('tight')
+        axs[0].axis('off')
+        precision_table = axs[0].table(cellText=precision, colLabels=col_label, rowLabels=['precision'], loc='center')
+
+        axs[1].axis('tight')
+        axs[1].axis('off')
+        recall_table = axs[1].table(cellText=recall, colLabels=col_label, rowLabels=['recall'], loc='center')
+
+        axs[2].axis('tight')
+        axs[2].axis('off')
+        f1_table = axs[2].table(cellText=f1, colLabels=col_label, rowLabels=['f1 score'], loc='center')
+
+        axs[3].axis('tight')
+        axs[3].axis('off')
+        confusion_table = axs[3].table(cellText=confusion_mat, colLabels=col_label, rowLabels=col_label, loc='center')
+
+        plt.savefig(save_addr + '/score_plots.png')
 
     @staticmethod
     def __length(sequence):
