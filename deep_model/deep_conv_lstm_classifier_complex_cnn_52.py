@@ -389,7 +389,7 @@ class DeepConvLSTMClassifier:
     def train(self):
         init = tf.global_variables_initializer()
 
-        config = tf.ConfigProto()  # (log_device_placement=True)
+        config = tf.ConfigProto(log_device_placement=True)
         config.gpu_options.allow_growth = True
 
         with tf.Session(config=config) as sess:
