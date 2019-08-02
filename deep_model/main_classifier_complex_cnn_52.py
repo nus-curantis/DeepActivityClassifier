@@ -56,8 +56,7 @@ tf.flags.DEFINE_string('model_path', './deep_model_weights', 'saved model folder
 
 config = tf.flags.FLAGS
 
-# Setting the device to GPU 1
-# os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 model = DeepConvLSTMClassifier(config=config)
 model.build_model()
