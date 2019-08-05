@@ -67,7 +67,7 @@ def read_all_files(target_dir='../dataset/', include_gyr_data=False,
     # interpolate dataset to get same sample rate between channels
     datasets_filled = [d.interpolate() for d in datasets]
 
-    # print(datasets_filled[0].columns)
+    print(datasets_filled[0].columns)
 
     # Create mapping for class labels
     class_labels, nr_classes, map_classes = map_class(datasets_filled, exclude_activities)
@@ -257,4 +257,4 @@ def get_pamap_dataset_labels_names(ignore_classes=[]):  # todo: clean this code
     # return labels_names
 
 
-# read_all_files()
+read_all_files()
