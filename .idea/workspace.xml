@@ -67,8 +67,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="445" column="34" selection-start-line="445" selection-start-column="34" selection-end-line="445" selection-end-column="34" />
+            <state relative-caret-position="339">
+              <caret line="434" column="111" selection-start-line="434" selection-start-column="111" selection-end-line="434" selection-end-column="111" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -394,20 +394,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
-    </task>
-    <task id="LOCAL-00068" summary="complex (3 layers) cnn + rnn, architecture 1">
-      <created>1564476368772</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1564476368772</updated>
-    </task>
-    <task id="LOCAL-00069" summary="complex (3 layers) cnn + rnn, architecture 1, test with acc + gyr data">
-      <created>1564483769156</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1564483769156</updated>
     </task>
     <task id="LOCAL-00070" summary="complex (3 layers) cnn + rnn, architecture 1, test with acc + gyr data">
       <created>1564494157420</created>
@@ -738,7 +724,21 @@
       <option name="project" value="LOCAL" />
       <updated>1565097059902</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="tuning model with 52 dim input">
+      <created>1565097411206</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1565097411206</updated>
+    </task>
+    <task id="LOCAL-00118" summary="tuning model with 52 dim input">
+      <created>1565097672302</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1565097672302</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="TodoView">
@@ -996,8 +996,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="445" column="34" selection-start-line="445" selection-start-column="34" selection-end-line="445" selection-end-column="34" />
+        <state relative-caret-position="339">
+          <caret line="434" column="111" selection-start-line="434" selection-start-column="111" selection-end-line="434" selection-end-column="111" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
