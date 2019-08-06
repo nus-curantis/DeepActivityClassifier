@@ -211,6 +211,7 @@ class DeepConvLSTMClassifier:
             self.conv_b_3 = tf.Variable(tf.zeros([self.filters_num_3]))
 
             expanded_input = tf.expand_dims(self.input, -1)
+            self.a = expanded_input
             self.cnn_layer_1_out = tf.nn.conv2d(expanded_input,
                                                 filter=self.conv_w_1,
                                                 strides=[1, self.stride_1_x, self.stride_1_y, 1],
@@ -423,9 +424,10 @@ class DeepConvLSTMClassifier:
                     # print(np.argmax(labels_batch, 1).tolist())
                     # print('--------------------------------')
 
-                    _, loss, accuracy, pred_output, pred_logits, conv_1, conv_2, conv_3, con = sess.run(
+                    _, loss, accuracy, pred_output, pred_logits, conv_1, conv_2, conv_3, con, ex = sess.run(
                         [self.optimizer, self.cost, self.accuracy, self.prediction, self.prediction_logits,
-                         self.cnn_layer_1_out, self.cnn_layer_2_out, self.cnn_layer_3_out, self.concatenated_poolings],
+                         self.cnn_layer_1_out, self.cnn_layer_2_out, self.cnn_layer_3_out, self.concatenated_poolings,
+                         self.a],
                         feed_dict={self.input: inputs_batch,
                                    self.activity_label: labels_batch})
 
@@ -436,9 +438,10 @@ class DeepConvLSTMClassifier:
                     # print(np.argmax(pred_logits, 1).tolist())
                     # print(np.argmax(labels_batch, 1).tolist())
                     print("1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_1)
-                    print("2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_2)
-                    print("3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_3)
-                    print("4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", con)
+                    # print("2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_2)
+                    # print("3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_3)
+                    # print("4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", con)
+                    print('ex: ', self.a)
                     print('--------------------------------')
 
                     if i == 0:
