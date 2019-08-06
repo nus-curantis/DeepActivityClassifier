@@ -423,9 +423,9 @@ class DeepConvLSTMClassifier:
                     # print(np.argmax(labels_batch, 1).tolist())
                     # print('--------------------------------')
 
-                    _, loss, accuracy, pred_output, pred_logits, conv_1, conv_2, conv_3 = sess.run(
+                    _, loss, accuracy, pred_output, pred_logits, conv_1, conv_2, conv_3, con = sess.run(
                         [self.optimizer, self.cost, self.accuracy, self.prediction, self.prediction_logits,
-                         self.cnn_layer_1_out, self.cnn_layer_2_out, self.cnn_layer_3_out],
+                         self.cnn_layer_1_out, self.cnn_layer_2_out, self.cnn_layer_3_out, self.concatenated_poolings],
                         feed_dict={self.input: inputs_batch,
                                    self.activity_label: labels_batch})
 
@@ -438,6 +438,7 @@ class DeepConvLSTMClassifier:
                     print(conv_1)
                     print(conv_2)
                     print(conv_3)
+                    print(con)
                     print('--------------------------------')
 
                     if i == 0:
