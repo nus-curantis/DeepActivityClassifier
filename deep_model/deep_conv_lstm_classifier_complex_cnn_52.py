@@ -428,11 +428,11 @@ class DeepConvLSTMClassifier:
                     # print(np.argmax(labels_batch, 1).tolist())
                     # print('--------------------------------')
 
-                    _, loss, accuracy, pred_output, pred_logits, conv_1, conv_2, conv_3, con, ex, b, c, w1, b1, sx, xy = \
+                    _, loss, accuracy, pred_output, pred_logits, conv_1, conv_2, conv_3, con, ex, b, c, w1, b1 = \
                         sess.run(
                         [self.optimizer, self.cost, self.accuracy, self.prediction, self.prediction_logits,
                          self.cnn_layer_1_out, self.cnn_layer_2_out, self.cnn_layer_3_out, self.concatenated_poolings,
-                         self.a, self.b, self.c, self.conv_w_1, self.conv_b_1, self.stride_1_x, self.stride_1_y],
+                         self.a, self.b, self.c, self.conv_w_1, self.conv_b_1],
                         feed_dict={self.input: inputs_batch,
                                    self.activity_label: labels_batch})
 
@@ -451,8 +451,8 @@ class DeepConvLSTMClassifier:
                     print('c: ', c)
                     print('b1: ', b1)
                     print('w1: ', w1)
-                    print('sx: ', sx)
-                    print('sy: ', xy)
+                    print('sx: ', self.stride_1_x)
+                    print('sy: ', self.stride_1_y)
                     print('--------------------------------')
 
                     if i == 0:
