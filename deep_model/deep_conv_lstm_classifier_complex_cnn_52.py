@@ -407,6 +407,8 @@ class DeepConvLSTMClassifier:
 
                     print(np.shape(inputs_batch))
                     print(np.shape(labels_batch))
+                    print(inputs_batch[0][0:10])
+                    print(labels_batch[0:20])
 
                     _, loss, accuracy, pred_output = sess.run(
                         [self.optimizer, self.cost, self.accuracy, self.prediction],
