@@ -227,7 +227,7 @@ class DeepConvLSTMClassifier:
                                                      self.cnn_layer_1_out.shape[1],
                                                      self.filters_num_1 * self.cnn_layer_1_out.shape[2], 1])
 
-            self.c = self.cnn_layer_2_out
+            self.c = self.cnn_layer_1_out
 
             self.cnn_layer_1_out = self.activation_function(batch_norm(self.cnn_layer_1_out))
             # todo: Is normalization correct?
