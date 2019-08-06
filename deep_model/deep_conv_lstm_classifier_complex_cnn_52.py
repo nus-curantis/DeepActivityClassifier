@@ -410,8 +410,8 @@ class DeepConvLSTMClassifier:
                     print(inputs_batch[0][0:10])
                     print(labels_batch[0:20])
 
-                    _, loss, accuracy, pred_output = sess.run(
-                        [self.optimizer, self.cost, self.accuracy, self.prediction],
+                    _, loss, accuracy, pred_output, pred_logits = sess.run(
+                        [self.optimizer, self.cost, self.accuracy, self.prediction, self.prediction_logits],
                         feed_dict={self.input: inputs_batch,
                                    self.activity_label: labels_batch})
 
@@ -419,6 +419,7 @@ class DeepConvLSTMClassifier:
                     print(loss)
                     print(accuracy)
                     print(np.argmax(pred_output, 1).tolist())
+                    print(np.argmax(pred_logits, 1).tolist())
                     print(np.argmax(labels_batch, 1).tolist())
                     print('--------------------------------')
 
