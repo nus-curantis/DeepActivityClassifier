@@ -220,10 +220,14 @@ class DeepConvLSTMClassifier:
             print('expanded_input: ', expanded_input)
             print('self.cnn_layer_1_out before reshape : ', self.cnn_layer_1_out)
 
+            self.b = self.cnn_layer_1_out
+
             self.cnn_layer_1_out = tf.reshape(self.cnn_layer_1_out,
                                               shape=[-1,
                                                      self.cnn_layer_1_out.shape[1],
                                                      self.filters_num_1 * self.cnn_layer_1_out.shape[2], 1])
+
+            self.c = self.cnn_layer_2_out
 
             self.cnn_layer_1_out = self.activation_function(batch_norm(self.cnn_layer_1_out))
             # todo: Is normalization correct?
@@ -424,10 +428,10 @@ class DeepConvLSTMClassifier:
                     # print(np.argmax(labels_batch, 1).tolist())
                     # print('--------------------------------')
 
-                    _, loss, accuracy, pred_output, pred_logits, conv_1, conv_2, conv_3, con, ex = sess.run(
+                    _, loss, accuracy, pred_output, pred_logits, conv_1, conv_2, conv_3, con, ex, b, c = sess.run(
                         [self.optimizer, self.cost, self.accuracy, self.prediction, self.prediction_logits,
                          self.cnn_layer_1_out, self.cnn_layer_2_out, self.cnn_layer_3_out, self.concatenated_poolings,
-                         self.a],
+                         self.a, self.b, self.c],
                         feed_dict={self.input: inputs_batch,
                                    self.activity_label: labels_batch})
 
@@ -442,6 +446,8 @@ class DeepConvLSTMClassifier:
                     # print("3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_3)
                     # print("4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", con)
                     print('ex: ', ex)
+                    print('b: ', b)
+                    print('c: ', c)
                     print('--------------------------------')
 
                     if i == 0:
