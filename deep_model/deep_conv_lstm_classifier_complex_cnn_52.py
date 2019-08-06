@@ -435,10 +435,10 @@ class DeepConvLSTMClassifier:
                     # print(np.argmax(pred_output, 1).tolist())
                     # print(np.argmax(pred_logits, 1).tolist())
                     # print(np.argmax(labels_batch, 1).tolist())
-                    print(conv_1)
-                    print(conv_2)
-                    print(conv_3)
-                    print(con)
+                    print("1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_1)
+                    print("2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_2)
+                    print("3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_3)
+                    print("4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", con)
                     print('--------------------------------')
 
                     if i == 0:
