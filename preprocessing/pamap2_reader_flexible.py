@@ -253,7 +253,10 @@ def data_to_rnn_input_train_test_flexible(split_activities, split_series_max_len
 def data_to_normalized_rnn_input_train_test_flexible(split_activities, split_series_max_len=360,
                                                      ignore_classes=[], test_size=0.2):
     rnn_data, labels = data_to_rnn_input_flexible(split_activities)
-    rnn_data = preprocessing.scale(rnn_data)
+
+    rnn_data_shape = np.shape(rnn_data)
+    normalized_data = preprocessing.scale(np.reshape(rnn_data, newshape=[-1, rnn_data_shape[-1]]))
+    rnn_data = np.reshape(normalized_data, newshape=rnn_data_shape)
 
     train_data, test_data, train_labels, test_labels = train_test_split(rnn_data, labels, test_size=test_size,
                                                                         stratify=labels)
