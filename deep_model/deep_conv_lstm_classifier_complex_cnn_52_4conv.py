@@ -216,6 +216,10 @@ class DeepConvLSTMClassifier:
                                                              self.filters_num_2, self.filters_num_3]))
             self.conv_b_3 = tf.Variable(tf.zeros([self.filters_num_3]))
 
+            self.conv_w_4 = tf.Variable(tf.truncated_normal([self.filter_4_x, self.filter_4_y,
+                                                             self.filters_num_3, self.filters_num_4]))
+            self.conv_b_4 = tf.Variable(tf.zeros([self.filters_num_4]))
+
             expanded_input = tf.expand_dims(self.input, -1)
             self.cnn_layer_1_out = tf.nn.conv2d(expanded_input,
                                                 filter=self.conv_w_1,
@@ -258,17 +262,27 @@ class DeepConvLSTMClassifier:
                                                 strides=[1, self.stride_3_x, self.stride_3_y, 1],
                                                 padding='VALID') + self.conv_b_3
 
-            print('self.cnn_layer_3_out before reshape : ', self.cnn_layer_3_out)
+            # self.cnn_layer_3_out = self.activation_function(batch_norm(self.cnn_layer_3_out))
+            self.cnn_layer_3_out = self.activation_function(self.cnn_layer_3_out)
 
-            self.cnn_layer_3_out = tf.reshape(self.cnn_layer_3_out,
+            print('self.cnn_layer_3_out : ', self.cnn_layer_3_out)
+
+            self.cnn_layer_4_out = tf.nn.conv2d(self.cnn_layer_3_out,
+                                                filter=self.conv_w_4,
+                                                strides=[1, self.stride_4_x, self.stride_4_y, 1],
+                                                padding='VALID') + self.conv_b_4
+
+            print('self.cnn_layer_4_out before reshape : ', self.cnn_layer_4_out)
+
+            self.cnn_layer_4_out = tf.reshape(self.cnn_layer_4_out,
                                               shape=[-1,
-                                                     self.cnn_layer_3_out.shape[1],
-                                                     self.filters_num_3 * self.cnn_layer_3_out.shape[2]])
+                                                     self.cnn_layer_4_out.shape[1],
+                                                     self.filters_num_4 * self.cnn_layer_4_out.shape[2]])
 
             # self.embedded_input = self.activation_function(batch_norm(self.cnn_layer_3_out))
-            self.embedded_input = self.activation_function(self.cnn_layer_3_out)
+            self.embedded_input = self.activation_function(self.cnn_layer_4_out)
 
-            print('self.cnn_layer_3_out : ', self.embedded_input)
+            print('self.cnn_layer_4_out : ', self.embedded_input)
 
         with tf.name_scope('rnn'):
             # self.rnn_cell = rnn.GRUCell(num_units=self.rnn_hidden_units,
