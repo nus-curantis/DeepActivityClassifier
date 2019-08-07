@@ -215,6 +215,7 @@ class DeepConvLSTMClassifier:
 
             expanded_input = tf.expand_dims(self.input, -1)
             # expanded_input = batch_norm(expanded_input)  # test
+            self.nan_test = tf.reduce_sum(tf.where(tf.is_nan(expanded_input)))
             self.a = expanded_input
             self.cnn_layer_1_out = tf.nn.conv2d(expanded_input,
                                                 filter=self.conv_w_1,
@@ -435,11 +436,12 @@ class DeepConvLSTMClassifier:
                     # print(np.argmax(labels_batch, 1).tolist())
                     # print('--------------------------------')
 
-                    _, loss, accuracy, pred_output, pred_logits, conv_1, conv_2, conv_3, con, ex, b, c, w1, b1, w2, b2, w3, b3 = \
+                    _, loss, accuracy, pred_output, pred_logits, conv_1, conv_2, conv_3, con, ex, b, c, w1, b1, w2, b2, w3, b3, nan_test = \
                         sess.run(
                         [self.optimizer, self.cost, self.accuracy, self.prediction, self.prediction_logits,
                          self.cnn_layer_1_out, self.cnn_layer_2_out, self.cnn_layer_3_out, self.concatenated_poolings,
-                         self.a, self.b, self.c, self.conv_w_1, self.conv_b_1, self.conv_w_2, self.conv_b_2, self.conv_w_3, self.conv_b_3],
+                         self.a, self.b, self.c, self.conv_w_1, self.conv_b_1, self.conv_w_2, self.conv_b_2, self.conv_w_3, self.conv_b_3,
+                         self.nan_test],
                         feed_dict={self.input: inputs_batch,
                                    self.activity_label: labels_batch})
 
@@ -454,6 +456,7 @@ class DeepConvLSTMClassifier:
                     # print("3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_3)
                     # print("4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", con)
                     print('ex: ', ex)
+                    print('nan_test: ', nan_test)
                     print('b: ', b)
                     print('c: ', c)
                     print('b1: ', b1)
