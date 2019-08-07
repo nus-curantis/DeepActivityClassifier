@@ -2,7 +2,8 @@ import numpy as np
 
 from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
+# from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn import preprocessing
 
 from preprocessing.time_series_reader_and_visualizer import *
 
@@ -143,27 +144,31 @@ def get_one_hot_labels(labels, ignore_classes=[]):
 
 
 def normalize_data(rnn_data, split_series_max_len=360):  # todo: test different methods of normalizing
-    x_data = np.transpose(np.reshape(rnn_data[:, :, 0], newshape=[-1, split_series_max_len]))
-    y_data = np.transpose(np.reshape(rnn_data[:, :, 1], newshape=[-1, split_series_max_len]))
-    z_data = np.transpose(np.reshape(rnn_data[:, :, 2], newshape=[-1, split_series_max_len]))
+    # x_data = np.transpose(np.reshape(rnn_data[:, :, 0], newshape=[-1, split_series_max_len]))
+    # y_data = np.transpose(np.reshape(rnn_data[:, :, 1], newshape=[-1, split_series_max_len]))
+    # z_data = np.transpose(np.reshape(rnn_data[:, :, 2], newshape=[-1, split_series_max_len]))
+    #
+    # # scaler = MinMaxScaler()
+    # scaler = StandardScaler()
+    #
+    # scaler.fit(x_data)
+    # x_data = scaler.transform(x_data)
+    #
+    # scaler.fit(y_data)
+    # y_data = scaler.transform(y_data)
+    #
+    # scaler.fit(z_data)
+    # z_data = scaler.transform(z_data)
+    #
+    # scaled_data = np.array([
+    #     x_data, y_data, z_data
+    # ])
+    #
+    # return np.transpose(scaled_data)
 
-    # scaler = MinMaxScaler()
-    scaler = StandardScaler()
-
-    scaler.fit(x_data)
-    x_data = scaler.transform(x_data)
-
-    scaler.fit(y_data)
-    y_data = scaler.transform(y_data)
-
-    scaler.fit(z_data)
-    z_data = scaler.transform(z_data)
-
-    scaled_data = np.array([
-        x_data, y_data, z_data
-    ])
-
-    return np.transpose(scaled_data)
+    rnn_data_shape = np.shape(rnn_data)
+    normalized_data = preprocessing.scale(np.reshape(rnn_data, newshape=[-1, rnn_data_shape[-1]]))
+    return np.reshape(normalized_data, newshape=rnn_data_shape)
 
 
 def data_to_rnn_input_train_test(data_path='../dataset/CC2650/', split_series_max_len=360,
