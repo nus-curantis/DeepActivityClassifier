@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52_1d.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_sussex.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_sussex.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,18 +15,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_mat_reader.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="954">
-              <caret line="58" selection-start-line="58" selection-end-line="58" />
-              <folding>
-                <element signature="e#112#127#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_test_our.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -50,7 +39,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
+            <state relative-caret-position="694">
               <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
             </state>
           </provider>
@@ -59,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3402">
-              <caret line="432" column="112" selection-start-line="432" selection-start-column="112" selection-end-line="432" selection-end-column="112" />
+            <state relative-caret-position="5400">
+              <caret line="414" lean-forward="true" selection-start-line="414" selection-end-line="414" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -76,6 +65,15 @@
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52_1d.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="730">
+              <caret line="52" column="39" lean-forward="true" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -210,6 +208,7 @@
         <option value="$PROJECT_DIR$/preprocessing/pamap2_mat_reader.py" />
         <option value="$PROJECT_DIR$/preprocessing/pamap2_reader_flexible.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py" />
+        <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52_1d.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52.py" />
       </list>
     </option>
@@ -411,20 +410,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
-    </task>
-    <task id="LOCAL-00082" summary="f1 score, confusion mat plots">
-      <created>1564549265542</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1564549265542</updated>
-    </task>
-    <task id="LOCAL-00083" summary="f1 score, confusion mat plots">
-      <created>1564549414001</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1564549414002</updated>
     </task>
     <task id="LOCAL-00084" summary="f1 score, confusion mat plots">
       <created>1564549696290</created>
@@ -755,7 +740,21 @@
       <option name="project" value="LOCAL" />
       <updated>1565160458599</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="tuning model with 52 dim input">
+      <created>1565161626916</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1565161626916</updated>
+    </task>
+    <task id="LOCAL-00132" summary="tuning model with 52 dim input">
+      <created>1565161693479</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1565161693479</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1011,6 +1010,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5400">
+          <caret line="414" lean-forward="true" selection-start-line="414" selection-end-line="414" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_sussex.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1021,19 +1030,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py">
+    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52_1d.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3402">
-          <caret line="432" column="112" selection-start-line="432" selection-start-column="112" selection-end-line="432" selection-end-column="112" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="730">
+          <caret line="52" column="39" lean-forward="true" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
+        <state relative-caret-position="694">
           <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
         </state>
       </provider>
