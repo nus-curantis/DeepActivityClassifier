@@ -214,7 +214,7 @@ class DeepConvLSTMClassifier:
             self.conv_b_3 = tf.Variable(tf.zeros([self.filters_num_3]))
 
             expanded_input = tf.expand_dims(self.input, -1)
-            expanded_input = batch_norm(expanded_input)  # test
+            # expanded_input = batch_norm(expanded_input)  # test
             self.a = expanded_input
             self.cnn_layer_1_out = tf.nn.conv2d(expanded_input,
                                                 filter=self.conv_w_1,
@@ -233,7 +233,8 @@ class DeepConvLSTMClassifier:
 
             self.c = self.cnn_layer_1_out
 
-            self.cnn_layer_1_out = self.activation_function(batch_norm(self.cnn_layer_1_out))
+            # self.cnn_layer_1_out = self.activation_function(batch_norm(self.cnn_layer_1_out))
+            self.cnn_layer_1_out = self.activation_function(self.cnn_layer_1_out)
             # todo: Is normalization correct?
 
             print('self.cnn_layer_1_out : ', self.cnn_layer_1_out)
@@ -250,7 +251,8 @@ class DeepConvLSTMClassifier:
             #                                          self.cnn_layer_2_out.shape[1],
             #                                          self.filters_num_2 * self.cnn_layer_2_out.shape[2], 1])
 
-            self.cnn_layer_2_out = self.activation_function(batch_norm(self.cnn_layer_2_out))
+            # self.cnn_layer_2_out = self.activation_function(batch_norm(self.cnn_layer_2_out))
+            self.cnn_layer_2_out = self.activation_function(self.cnn_layer_2_out)
 
             print('self.cnn_layer_2_out : ', self.cnn_layer_2_out)
 
@@ -266,7 +268,8 @@ class DeepConvLSTMClassifier:
                                                      self.cnn_layer_3_out.shape[1],
                                                      self.filters_num_3 * self.cnn_layer_3_out.shape[2]])
 
-            self.embedded_input = self.activation_function(batch_norm(self.cnn_layer_3_out))
+            # self.embedded_input = self.activation_function(batch_norm(self.cnn_layer_3_out))
+            self.embedded_input = self.activation_function(self.cnn_layer_3_out)
 
             print('self.cnn_layer_3_out : ', self.embedded_input)
 
