@@ -29,7 +29,7 @@ class Activity:
 
 
 def read_all_files(target_dir='../dataset/',
-                   columns_to_use=['activityID', 'hand_temperature',
+                   columns_to_use=['activityID', 'heartrate', 'hand_temperature',
                                    'hand_acc_16g_x', 'hand_acc_16g_y', 'hand_acc_16g_z', 'hand_acc_6g_x',
                                    'hand_acc_6g_y', 'hand_acc_6g_z', 'hand_gyroscope_x',
                                    'hand_gyroscope_y', 'hand_gyroscope_z', 'hand_magnometer_x',
@@ -67,7 +67,7 @@ def read_all_files(target_dir='../dataset/',
 
     # interpolate dataset to get same sample rate between channels
     datasets_filled = [d.interpolate() for d in datasets]
-    # datasets_filled = [d.fillna(value=0) for d in datasets]
+    datasets_filled = [d.fillna(value=0) for d in datasets]
 
     for d in datasets_filled:
         print('nan_check: ', d.isnull().values.sum())
