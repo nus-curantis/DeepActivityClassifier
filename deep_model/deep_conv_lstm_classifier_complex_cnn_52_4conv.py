@@ -40,6 +40,11 @@ class DeepConvLSTMClassifier:
         self.filters_num_3 = config.filters_num_3
         self.stride_3_x = config.stride_3_x
         self.stride_3_y = config.stride_3_y
+        self.filter_4_x = config.filter_4_x
+        self.filter_4_y = config.filter_4_y
+        self.filters_num_4 = config.filters_num_4
+        self.stride_4_x = config.stride_4_x
+        self.stride_4_y = config.stride_4_y
 
         # learning parameters
         self.learning_rate = config.learning_rate
@@ -409,10 +414,10 @@ class DeepConvLSTMClassifier:
                     inputs_batch = self.train_inputs[i: i + self.batch_size]
                     labels_batch = self.train_activity_labels[i: i + self.batch_size]
 
-                    print(np.shape(inputs_batch))
-                    print(np.shape(labels_batch))
-                    print(inputs_batch[0][0:10])
-                    print(labels_batch[0:20])
+                    # print(np.shape(inputs_batch))
+                    # print(np.shape(labels_batch))
+                    # print(inputs_batch[0][0:10])
+                    # print(labels_batch[0:20])
 
                     _, loss, accuracy, pred_output, pred_logits = sess.run(
                         [self.optimizer, self.cost, self.accuracy, self.prediction, self.prediction_logits],
@@ -423,8 +428,7 @@ class DeepConvLSTMClassifier:
                     print(loss)
                     print(accuracy)
                     print(np.argmax(pred_output, 1).tolist())
-                    print(np.argmax(pred_logits, 1).tolist())
-                    print(np.argmax(labels_batch, 1).tolist())
+                    # print(np.argmax(labels_batch, 1).tolist())
                     print('--------------------------------')
 
                     # _, loss, accuracy, pred_output, pred_logits, conv_1, conv_2, conv_3, con, ex, b, c, w1, b1, w2, b2, w3, b3, nan_test = \
