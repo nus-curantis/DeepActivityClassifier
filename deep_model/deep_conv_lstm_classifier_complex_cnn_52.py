@@ -200,8 +200,11 @@ class DeepConvLSTMClassifier:
         #     print('self.embedded_input : ', self.embedded_input)
 
         with tf.name_scope('cnn'):
-            self.conv_w_1 = tf.Variable(tf.truncated_normal([self.filter_1_x, self.filter_1_y, 1, self.filters_num_1]))
-            self.conv_b_1 = tf.Variable(tf.zeros([self.filters_num_1]))
+            # self.conv_w_1 = tf.Variable(tf.truncated_normal([self.filter_1_x, self.filter_1_y, 1, self.filters_num_1]))
+            # self.conv_b_1 = tf.Variable(tf.zeros([self.filters_num_1]))
+
+            self.conv_w_1 = tf.Variable(tf.truncated_normal([self.filter_2_x, self.filter_2_y, 1, self.filters_num_2]))
+            self.conv_b_1 = tf.Variable(tf.zeros([self.filters_num_2]))
 
             self.conv_w_2 = tf.Variable(tf.truncated_normal([self.filter_2_x, self.filter_2_y, 1, self.filters_num_2]))
             self.conv_b_2 = tf.Variable(tf.zeros([self.filters_num_2]))
