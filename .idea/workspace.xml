@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_sussex.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_sussex.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,20 +47,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="24" column="55" selection-start-line="24" selection-start-column="55" selection-end-line="24" selection-end-column="55" />
+            <state relative-caret-position="496">
+              <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="425" column="30" lean-forward="true" selection-start-line="425" selection-start-column="30" selection-end-line="425" selection-end-column="30" />
+            <state relative-caret-position="3402">
+              <caret line="432" column="112" selection-start-line="432" selection-start-column="112" selection-end-line="432" selection-end-column="112" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_sussex.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="17" column="16" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -77,11 +90,6 @@
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_sussex.py">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -201,8 +209,8 @@
         <option value="$PROJECT_DIR$/preprocessing/pamap2_reader.py" />
         <option value="$PROJECT_DIR$/preprocessing/pamap2_mat_reader.py" />
         <option value="$PROJECT_DIR$/preprocessing/pamap2_reader_flexible.py" />
-        <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py" />
+        <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52.py" />
       </list>
     </option>
   </component>
@@ -244,18 +252,18 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/deep_model" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/deep_model" />
+      <recent name="$PROJECT_DIR$/preprocessing" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/deep_model/models_archive" />
       <recent name="$PROJECT_DIR$/preprocessing/archive" />
       <recent name="$PROJECT_DIR$/deep_model/logs_classifier" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/deep_model" />
-      <recent name="$PROJECT_DIR$/preprocessing" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -403,13 +411,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
-    </task>
-    <task id="LOCAL-00081" summary="f1 score, confusion mat plots">
-      <created>1564549015037</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1564549015037</updated>
     </task>
     <task id="LOCAL-00082" summary="f1 score, confusion mat plots">
       <created>1564549265542</created>
@@ -747,7 +748,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565159854632</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="tuning model with 52 dim input">
+      <created>1565160458599</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1565160458599</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="TodoView">
@@ -765,7 +773,7 @@
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" weight="0.28360656" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.28360656" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.25161988" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.31965443" />
@@ -959,9 +967,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_sussex.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2646">
@@ -1006,20 +1011,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52.py">
+    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_sussex.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="24" column="55" selection-start-line="24" selection-start-column="55" selection-end-line="24" selection-end-column="55" />
+        <state relative-caret-position="306">
+          <caret line="17" column="16" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="425" column="30" lean-forward="true" selection-start-line="425" selection-start-column="30" selection-end-line="425" selection-end-column="30" />
+        <state relative-caret-position="3402">
+          <caret line="432" column="112" selection-start-line="432" selection-start-column="112" selection-end-line="432" selection-end-column="112" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
         </state>
       </provider>
     </entry>

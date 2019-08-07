@@ -9,9 +9,10 @@ from sklearn.metrics import precision_score, recall_score, f1_score, confusion_m
 from preprocessing.time_series_reader_and_visualizer import get_our_dataset_labels_names
 from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test, normalized_rnn_input_train_test
 from preprocessing.wharf_reader import normalized_wharf_rnn_input_train_test
-from preprocessing.pamap2_reader import pamap2_rnn_input_train_test, get_pamap_dataset_labels_names
+# from preprocessing.pamap2_reader import pamap2_rnn_input_train_test, get_pamap_dataset_labels_names
 # todo: also test normalized pamap input
-# from preprocessing.pamap2_reader_flexible import pamap2_rnn_input_train_test
+from preprocessing.pamap2_reader_flexible import pamap2_rnn_input_train_test, normalized_pamap2_rnn_input_train_test
+from preprocessing.pamap2_reader import get_pamap_dataset_labels_names
 
 
 class DeepConvLSTMClassifier:
@@ -135,7 +136,8 @@ class DeepConvLSTMClassifier:
 
     def load_data(self):
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
-            pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
+            normalized_pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
+            # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
             # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len, include_gyr_data=True)  # pamap2 dataset
             # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
             # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
@@ -223,7 +225,8 @@ class DeepConvLSTMClassifier:
                                                      self.cnn_layer_1_out.shape[1],
                                                      self.filters_num_1 * self.cnn_layer_1_out.shape[2], 1])
 
-            self.cnn_layer_1_out = self.activation_function(batch_norm(self.cnn_layer_1_out))
+            # self.cnn_layer_1_out = self.activation_function(batch_norm(self.cnn_layer_1_out))
+            self.cnn_layer_1_out = self.activation_function(self.cnn_layer_1_out)
             # todo: Is normalization correct?
 
             print('self.cnn_layer_1_out : ', self.cnn_layer_1_out)
@@ -240,7 +243,8 @@ class DeepConvLSTMClassifier:
             #                                          self.cnn_layer_2_out.shape[1],
             #                                          self.filters_num_2 * self.cnn_layer_2_out.shape[2], 1])
 
-            self.cnn_layer_2_out = self.activation_function(batch_norm(self.cnn_layer_2_out))
+            # self.cnn_layer_2_out = self.activation_function(batch_norm(self.cnn_layer_2_out))
+            self.cnn_layer_2_out = self.activation_function(self.cnn_layer_2_out)
 
             print('self.cnn_layer_2_out : ', self.cnn_layer_2_out)
 
@@ -256,7 +260,8 @@ class DeepConvLSTMClassifier:
                                                      self.cnn_layer_3_out.shape[1],
                                                      self.filters_num_3 * self.cnn_layer_3_out.shape[2]])
 
-            self.embedded_input = self.activation_function(batch_norm(self.cnn_layer_3_out))
+            # self.embedded_input = self.activation_function(batch_norm(self.cnn_layer_3_out))
+            self.embedded_input = self.activation_function(self.cnn_layer_3_out)
 
             print('self.cnn_layer_3_out : ', self.embedded_input)
 
@@ -388,7 +393,7 @@ class DeepConvLSTMClassifier:
     def train(self):
         init = tf.global_variables_initializer()
 
-        config = tf.ConfigProto()  # (log_device_placement=True)
+        config = tf.ConfigProto(log_device_placement=True)
         config.gpu_options.allow_growth = True
 
         with tf.Session(config=config) as sess:
@@ -406,9 +411,11 @@ class DeepConvLSTMClassifier:
 
                     print(np.shape(inputs_batch))
                     print(np.shape(labels_batch))
+                    print(inputs_batch[0][0:10])
+                    print(labels_batch[0:20])
 
-                    _, loss, accuracy, pred_output = sess.run(
-                        [self.optimizer, self.cost, self.accuracy, self.prediction],
+                    _, loss, accuracy, pred_output, pred_logits = sess.run(
+                        [self.optimizer, self.cost, self.accuracy, self.prediction, self.prediction_logits],
                         feed_dict={self.input: inputs_batch,
                                    self.activity_label: labels_batch})
 
@@ -416,8 +423,41 @@ class DeepConvLSTMClassifier:
                     print(loss)
                     print(accuracy)
                     print(np.argmax(pred_output, 1).tolist())
+                    print(np.argmax(pred_logits, 1).tolist())
                     print(np.argmax(labels_batch, 1).tolist())
                     print('--------------------------------')
+
+                    # _, loss, accuracy, pred_output, pred_logits, conv_1, conv_2, conv_3, con, ex, b, c, w1, b1, w2, b2, w3, b3, nan_test = \
+                    #     sess.run(
+                    #     [self.optimizer, self.cost, self.accuracy, self.prediction, self.prediction_logits,
+                    #      self.cnn_layer_1_out, self.cnn_layer_2_out, self.cnn_layer_3_out, self.concatenated_poolings,
+                    #      self.a, self.b, self.c, self.conv_w_1, self.conv_b_1, self.conv_w_2, self.conv_b_2, self.conv_w_3, self.conv_b_3,
+                    #      self.nan_test],
+                    #     feed_dict={self.input: inputs_batch,
+                    #                self.activity_label: labels_batch})
+                    #
+                    # print(i, ',', epoch)
+                    # print(loss)
+                    # print(accuracy)
+                    # # print(np.argmax(pred_output, 1).tolist())
+                    # # print(np.argmax(pred_logits, 1).tolist())
+                    # # print(np.argmax(labels_batch, 1).tolist())
+                    # print("1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_1)
+                    # # print("2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_2)
+                    # # print("3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_3)
+                    # # print("4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", con)
+                    # print('ex: ', ex)
+                    # print('nan_test: ', nan_test)
+                    # print('b: ', b)
+                    # print('c: ', c)
+                    # print('b1: ', b1)
+                    # print('w1: ', w1)
+                    # print('b2: ', b2)
+                    # print('w2: ', w2)
+                    # print('b3: ', b3)
+                    # print('w3: ', w3)
+                    # print('sx: ', self.filters_num_1, self.filter_1_x, self.filter_1_y)
+                    # print('--------------------------------')
 
                     if i == 0:
                         self.file_writer.add_summary(
