@@ -422,7 +422,7 @@ class DeepConvLSTMClassifier:
                     print(i, ',', epoch)
                     print(loss)
                     print(accuracy)
-                    # print(np.argmax(pred_output, 1).tolist())
+                    print(np.argmax(pred_output, 1).tolist())
                     # print(np.argmax(labels_batch, 1).tolist())
                     print('--------------------------------')
 
