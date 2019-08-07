@@ -29,7 +29,7 @@ class Activity:
 
 
 def read_all_files(target_dir='../dataset/',
-                   columns_to_use=['activityID', 'heartrate', 'hand_temperature',
+                   columns_to_use=['activityID', 'hand_temperature',
                                    'hand_acc_16g_x', 'hand_acc_16g_y', 'hand_acc_16g_z', 'hand_acc_6g_x',
                                    'hand_acc_6g_y', 'hand_acc_6g_z', 'hand_gyroscope_x',
                                    'hand_gyroscope_y', 'hand_gyroscope_z', 'hand_magnometer_x',
@@ -67,6 +67,11 @@ def read_all_files(target_dir='../dataset/',
 
     # interpolate dataset to get same sample rate between channels
     datasets_filled = [d.interpolate() for d in datasets]
+    # datasets_filled = [d.fillna(value=0) for d in datasets]
+
+    for d in datasets_filled:
+        print('nan_check: ', d.isnull().values.sum())
+        print(d.columns[d.isna().any()].tolist())
 
     # print(datasets_filled[0].columns)
 
@@ -265,4 +270,4 @@ def data_to_normalized_rnn_input_train_test_flexible(split_activities, split_ser
     return train_data, test_data, train_labels, test_labels
 
 
-# read_all_files()
+read_all_files()
