@@ -214,6 +214,7 @@ class DeepConvLSTMClassifier:
             self.conv_b_3 = tf.Variable(tf.zeros([self.filters_num_3]))
 
             expanded_input = tf.expand_dims(self.input, -1)
+            expanded_input = batch_norm(expanded_input)  # test
             self.a = expanded_input
             self.cnn_layer_1_out = tf.nn.conv2d(expanded_input,
                                                 filter=self.conv_w_1,
