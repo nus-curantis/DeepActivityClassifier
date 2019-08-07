@@ -13,6 +13,8 @@ import os.path
 from preprocessing.data_to_rnn_input_transformer import get_one_hot_labels, shuffle, train_test_split, \
     analyze_train_test_data
 
+from sklearn import preprocessing
+
 
 class Activity:
     def __init__(self, num):
@@ -203,6 +205,13 @@ def pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=3
                                                  split_series_max_len=split_series_max_len)
 
 
+def normalized_pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=360):
+    # todo: add 'ignore classes' and etc
+    _, split_activities = read_all_files(target_dir, split_series_max_len=split_series_max_len)
+    return data_to_normalized_rnn_input_train_test_flexible(split_activities=split_activities,
+                                                            split_series_max_len=split_series_max_len)
+
+
 def data_to_rnn_input_flexible(split_activities, ignore_classes=[]):
     rnn_data = []
     labels = []
@@ -233,6 +242,18 @@ def data_to_rnn_input_flexible(split_activities, ignore_classes=[]):
 def data_to_rnn_input_train_test_flexible(split_activities, split_series_max_len=360,
                                           ignore_classes=[], test_size=0.2):
     rnn_data, labels = data_to_rnn_input_flexible(split_activities)
+
+    train_data, test_data, train_labels, test_labels = train_test_split(rnn_data, labels, test_size=test_size,
+                                                                        stratify=labels)
+    analyze_train_test_data(train_labels, test_labels, ignore_classes=ignore_classes)
+
+    return train_data, test_data, train_labels, test_labels
+
+
+def data_to_normalized_rnn_input_train_test_flexible(split_activities, split_series_max_len=360,
+                                                     ignore_classes=[], test_size=0.2):
+    rnn_data, labels = data_to_rnn_input_flexible(split_activities)
+    rnn_data = preprocessing.scale(rnn_data)
 
     train_data, test_data, train_labels, test_labels = train_test_split(rnn_data, labels, test_size=test_size,
                                                                         stratify=labels)
