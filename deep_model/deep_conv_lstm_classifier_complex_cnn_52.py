@@ -201,11 +201,8 @@ class DeepConvLSTMClassifier:
         #     print('self.embedded_input : ', self.embedded_input)
 
         with tf.name_scope('cnn'):
-            # self.conv_w_1 = tf.Variable(tf.truncated_normal([self.filter_1_x, self.filter_1_y, 1, self.filters_num_1]))
-            # self.conv_b_1 = tf.Variable(tf.zeros([self.filters_num_1]))
-
-            self.conv_w_1 = tf.Variable(tf.truncated_normal([self.filter_2_x, self.filter_2_y, 1, self.filters_num_2]))
-            self.conv_b_1 = tf.Variable(tf.zeros([self.filters_num_2]))
+            self.conv_w_1 = tf.Variable(tf.truncated_normal([self.filter_1_x, self.filter_1_y, 1, self.filters_num_1]))
+            self.conv_b_1 = tf.Variable(tf.zeros([self.filters_num_1]))
 
             self.conv_w_2 = tf.Variable(tf.truncated_normal([self.filter_2_x, self.filter_2_y, 1, self.filters_num_2]))
             self.conv_b_2 = tf.Variable(tf.zeros([self.filters_num_2]))
@@ -215,9 +212,6 @@ class DeepConvLSTMClassifier:
             self.conv_b_3 = tf.Variable(tf.zeros([self.filters_num_3]))
 
             expanded_input = tf.expand_dims(self.input, -1)
-            # expanded_input = batch_norm(expanded_input)  # test
-            self.nan_test = tf.reduce_sum(tf.where(tf.is_nan(expanded_input)))
-            self.a = expanded_input
             self.cnn_layer_1_out = tf.nn.conv2d(expanded_input,
                                                 filter=self.conv_w_1,
                                                 strides=[1, self.stride_1_x, self.stride_1_y, 1],
@@ -226,14 +220,10 @@ class DeepConvLSTMClassifier:
             print('expanded_input: ', expanded_input)
             print('self.cnn_layer_1_out before reshape : ', self.cnn_layer_1_out)
 
-            self.b = self.cnn_layer_1_out
-
             self.cnn_layer_1_out = tf.reshape(self.cnn_layer_1_out,
                                               shape=[-1,
                                                      self.cnn_layer_1_out.shape[1],
                                                      self.filters_num_1 * self.cnn_layer_1_out.shape[2], 1])
-
-            self.c = self.cnn_layer_1_out
 
             # self.cnn_layer_1_out = self.activation_function(batch_norm(self.cnn_layer_1_out))
             self.cnn_layer_1_out = self.activation_function(self.cnn_layer_1_out)
@@ -424,50 +414,50 @@ class DeepConvLSTMClassifier:
                     print(inputs_batch[0][0:10])
                     print(labels_batch[0:20])
 
-                    # _, loss, accuracy, pred_output, pred_logits = sess.run(
-                    #     [self.optimizer, self.cost, self.accuracy, self.prediction, self.prediction_logits],
-                    #     feed_dict={self.input: inputs_batch,
-                    #                self.activity_label: labels_batch})
-                    #
-                    # print(i, ',', epoch)
-                    # print(loss)
-                    # print(accuracy)
-                    # print(np.argmax(pred_output, 1).tolist())
-                    # print(np.argmax(pred_logits, 1).tolist())
-                    # print(np.argmax(labels_batch, 1).tolist())
-                    # print('--------------------------------')
-
-                    _, loss, accuracy, pred_output, pred_logits, conv_1, conv_2, conv_3, con, ex, b, c, w1, b1, w2, b2, w3, b3, nan_test = \
-                        sess.run(
-                        [self.optimizer, self.cost, self.accuracy, self.prediction, self.prediction_logits,
-                         self.cnn_layer_1_out, self.cnn_layer_2_out, self.cnn_layer_3_out, self.concatenated_poolings,
-                         self.a, self.b, self.c, self.conv_w_1, self.conv_b_1, self.conv_w_2, self.conv_b_2, self.conv_w_3, self.conv_b_3,
-                         self.nan_test],
+                    _, loss, accuracy, pred_output, pred_logits = sess.run(
+                        [self.optimizer, self.cost, self.accuracy, self.prediction, self.prediction_logits],
                         feed_dict={self.input: inputs_batch,
                                    self.activity_label: labels_batch})
 
                     print(i, ',', epoch)
                     print(loss)
                     print(accuracy)
-                    # print(np.argmax(pred_output, 1).tolist())
-                    # print(np.argmax(pred_logits, 1).tolist())
-                    # print(np.argmax(labels_batch, 1).tolist())
-                    print("1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_1)
-                    # print("2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_2)
-                    # print("3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_3)
-                    # print("4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", con)
-                    print('ex: ', ex)
-                    print('nan_test: ', nan_test)
-                    print('b: ', b)
-                    print('c: ', c)
-                    print('b1: ', b1)
-                    print('w1: ', w1)
-                    print('b2: ', b2)
-                    print('w2: ', w2)
-                    print('b3: ', b3)
-                    print('w3: ', w3)
-                    print('sx: ', self.filters_num_1, self.filter_1_x, self.filter_1_y)
+                    print(np.argmax(pred_output, 1).tolist())
+                    print(np.argmax(pred_logits, 1).tolist())
+                    print(np.argmax(labels_batch, 1).tolist())
                     print('--------------------------------')
+
+                    # _, loss, accuracy, pred_output, pred_logits, conv_1, conv_2, conv_3, con, ex, b, c, w1, b1, w2, b2, w3, b3, nan_test = \
+                    #     sess.run(
+                    #     [self.optimizer, self.cost, self.accuracy, self.prediction, self.prediction_logits,
+                    #      self.cnn_layer_1_out, self.cnn_layer_2_out, self.cnn_layer_3_out, self.concatenated_poolings,
+                    #      self.a, self.b, self.c, self.conv_w_1, self.conv_b_1, self.conv_w_2, self.conv_b_2, self.conv_w_3, self.conv_b_3,
+                    #      self.nan_test],
+                    #     feed_dict={self.input: inputs_batch,
+                    #                self.activity_label: labels_batch})
+                    #
+                    # print(i, ',', epoch)
+                    # print(loss)
+                    # print(accuracy)
+                    # # print(np.argmax(pred_output, 1).tolist())
+                    # # print(np.argmax(pred_logits, 1).tolist())
+                    # # print(np.argmax(labels_batch, 1).tolist())
+                    # print("1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_1)
+                    # # print("2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_2)
+                    # # print("3,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", conv_3)
+                    # # print("4,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,", con)
+                    # print('ex: ', ex)
+                    # print('nan_test: ', nan_test)
+                    # print('b: ', b)
+                    # print('c: ', c)
+                    # print('b1: ', b1)
+                    # print('w1: ', w1)
+                    # print('b2: ', b2)
+                    # print('w2: ', w2)
+                    # print('b3: ', b3)
+                    # print('w3: ', w3)
+                    # print('sx: ', self.filters_num_1, self.filter_1_x, self.filter_1_y)
+                    # print('--------------------------------')
 
                     if i == 0:
                         self.file_writer.add_summary(
