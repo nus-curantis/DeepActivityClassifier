@@ -4,6 +4,8 @@
 """
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+
 from os import listdir
 import os.path
 
@@ -255,6 +257,31 @@ def get_pamap_dataset_labels_names(ignore_classes=[]):  # todo: clean this code
     #         labels_names.append(ACTIVITIES_MAP[i])
     #
     # return labels_names
+
+
+def plot_series(save_folder, record_num, time_series, axis_name, label, pred_label=None):
+    save_folder += ACTIVITIES_MAP[label] + '/'
+    if pred_label is None:
+        save_folder += 'no_pred_done/'
+    elif label == pred_label:
+        save_folder += 'correct_pred/'
+    else:
+        save_folder += 'wrong_pred/'
+
+    if not os.path.exists(save_folder):
+        os.makedirs(save_folder)
+
+    plt.clf()
+    plt.plot(time_series)
+
+    if pred_label is not None:
+        plt.xlabel('activity: ' + str(ACTIVITIES_MAP[label]) + ' - pred as: ' + str(ACTIVITIES_MAP[pred_label]))
+    else:
+        plt.xlabel('activity: ' + str(ACTIVITIES_MAP[label]))
+
+    plt.ylabel('accelerometer ' + axis_name + ' series')
+    plt.savefig(save_folder + 'series_' +
+                str(record_num) + '_' + str(ACTIVITIES_MAP[label]) + '_axis_' + axis_name + '.png')
 
 
 read_all_files()

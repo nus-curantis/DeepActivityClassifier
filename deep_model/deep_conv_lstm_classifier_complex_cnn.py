@@ -9,7 +9,8 @@ from sklearn.metrics import precision_score, recall_score, f1_score, confusion_m
 from preprocessing.time_series_reader_and_visualizer import get_our_dataset_labels_names
 from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test, normalized_rnn_input_train_test
 from preprocessing.wharf_reader import normalized_wharf_rnn_input_train_test
-from preprocessing.pamap2_reader import pamap2_rnn_input_train_test, get_pamap_dataset_labels_names
+from preprocessing.pamap2_reader import pamap2_rnn_input_train_test, get_pamap_dataset_labels_names, \
+    normalized_pamap2_rnn_input_train_test, plot_series
 # todo: also test normalized pamap input
 # from preprocessing.pamap2_reader_flexible import pamap2_rnn_input_train_test
 
@@ -135,7 +136,8 @@ class DeepConvLSTMClassifier:
 
     def load_data(self):
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
-            pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
+            normalized_pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
+            # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
             # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len, include_gyr_data=True)  # pamap2 dataset
             # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
             # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
@@ -471,6 +473,8 @@ class DeepConvLSTMClassifier:
                                          y_pred=np.argmax(pred_output, 1),
                                          save_addr=self.log_folder + '/score_plots_4.png', fig_size=[30, 30])
 
+            self.__visualize_data(start=0, end=self.test_inputs.shape[0], predicted_labels=pred_output, test_data=True)
+
             print('--------------------------------')
 
             # self.file_writer.add_summary(
@@ -515,6 +519,34 @@ class DeepConvLSTMClassifier:
         confusion_table = axs[3].table(cellText=confusion_mat, colLabels=col_label, rowLabels=col_label, loc='center')
 
         plt.savefig(save_addr)
+
+    def __visualize_data(self, start, end, predicted_labels=[], test_data=False):
+        if self.train_inputs is None:
+            raise Exception('visualization data is empty!')
+
+        vis_batch = self.train_inputs[start: end]
+        vis_labels_batch = self.train_activity_labels[start: end]
+        if test_data:
+            vis_batch = self.test_inputs[start: end]
+            vis_labels_batch = self.test_activity_labels[start: end]
+
+        save_folder = 'model_output_visualization/train_data/'
+        if test_data:
+            save_folder = 'model_output_visualization/test_data/'
+
+        counter = 0
+        for data in vis_batch:
+            x_series = data[:, 0]
+            y_series = data[:, 1]
+            z_series = data[:, 2]
+
+            pred_label = predicted_labels[counter] if len(predicted_labels) > 0 else None
+            plot_series(time_series=x_series, axis_name='x', label=vis_labels_batch[counter], pred_label=pred_label,
+                        save_folder=save_folder, record_num=counter)
+            plot_series(time_series=y_series, axis_name='y', label=vis_labels_batch[counter], pred_label=pred_label,
+                        save_folder=save_folder, record_num=counter)
+            plot_series(time_series=z_series, axis_name='z', label=vis_labels_batch[counter], pred_label=pred_label,
+                        save_folder=save_folder, record_num=counter)
 
     @staticmethod
     def __length(sequence):

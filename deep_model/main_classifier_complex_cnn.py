@@ -24,7 +24,8 @@ tf.flags.DEFINE_integer('series_max_len', 180, 'max len of an input time series'
 # tf.flags.DEFINE_integer('rnn_hidden_units', 32, 'hidden neurons of rnn cells')
 tf.flags.DEFINE_integer('rnn_hidden_units', 64, 'hidden neurons of rnn cells')
 
-tf.flags.DEFINE_integer('filter_1_x', 10, 'conv layer 1 - filter x dim')
+# tf.flags.DEFINE_integer('filter_1_x', 10, 'conv layer 1 - filter x dim')
+tf.flags.DEFINE_integer('filter_1_x', 6, 'conv layer 1 - filter x dim')
 tf.flags.DEFINE_integer('filter_1_y', 3, 'conv layer 1 - filter y dim')
 tf.flags.DEFINE_integer('filters_num_1', 20, 'num of filters in conv layer 1')
 tf.flags.DEFINE_integer('stride_1_x', 3, 'conv layer 1 - filter movement in x dim')
@@ -47,7 +48,8 @@ tf.flags.DEFINE_float('dropout_prob', .9, 'drop out keep probability')
 # learning parameters
 tf.flags.DEFINE_float('learning_rate', .001, 'learning rate')
 tf.flags.DEFINE_string('activation_func', 'relu', 'activation function')
-tf.flags.DEFINE_integer('num_epochs', 150, 'number of training epochs')
+# tf.flags.DEFINE_integer('num_epochs', 150, 'number of training epochs')
+tf.flags.DEFINE_integer('num_epochs', 1, 'number of training epochs')
 tf.flags.DEFINE_integer('batch_size', 64, 'batch size')
 
 # logging parameters
