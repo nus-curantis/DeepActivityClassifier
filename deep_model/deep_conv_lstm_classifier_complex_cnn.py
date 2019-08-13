@@ -542,11 +542,14 @@ class DeepConvLSTMClassifier:
             z_series = data[:, 2]
 
             pred_label = predicted_labels[counter] if len(predicted_labels) > 0 else None
-            plot_series(time_series=x_series, axis_name='x', label=vis_labels_batch[counter], pred_label=pred_label,
+            plot_series(time_series=x_series, axis_name='x',
+                        label=vis_labels_batch[counter], pred_label=pred_label[counter],
                         save_folder=save_folder, record_num=counter)
-            plot_series(time_series=y_series, axis_name='y', label=vis_labels_batch[counter], pred_label=pred_label,
+            plot_series(time_series=y_series, axis_name='y',
+                        label=vis_labels_batch[counter], pred_label=pred_label[counter],
                         save_folder=save_folder, record_num=counter)
-            plot_series(time_series=z_series, axis_name='z', label=vis_labels_batch[counter], pred_label=pred_label,
+            plot_series(time_series=z_series, axis_name='z',
+                        label=vis_labels_batch[counter], pred_label=pred_label[counter],
                         save_folder=save_folder, record_num=counter)
 
     @staticmethod
