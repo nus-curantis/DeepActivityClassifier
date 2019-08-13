@@ -473,7 +473,8 @@ class DeepConvLSTMClassifier:
                                          y_pred=np.argmax(pred_output, 1),
                                          save_addr=self.log_folder + '/score_plots_4.png', fig_size=[30, 30])
 
-            self.__visualize_data(start=0, end=self.test_inputs.shape[0], predicted_labels=pred_output, test_data=True)
+            self.__visualize_data(start=0, end=self.test_inputs.shape[0], predicted_labels=np.argmax(pred_output, 1),
+                                  test_data=True)
 
             print('--------------------------------')
 
@@ -520,7 +521,7 @@ class DeepConvLSTMClassifier:
 
         plt.savefig(save_addr)
 
-    def __visualize_data(self, start, end, predicted_labels=[], test_data=False):
+    def __visualize_data(self, start, end, predicted_labels=np.array([]), test_data=False):
         if self.train_inputs is None:
             raise Exception('visualization data is empty!')
 
