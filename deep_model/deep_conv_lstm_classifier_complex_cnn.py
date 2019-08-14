@@ -526,7 +526,7 @@ class DeepConvLSTMClassifier:
             raise Exception('visualization data is empty!')
 
         vis_batch = self.train_inputs[start: end]
-        vis_labels_batch = self.train_activity_labels[start: end]
+        vis_labels_batch = np.argmax(self.train_activity_labels[start: end], 1)
         if test_data:
             vis_batch = self.test_inputs[start: end]
             vis_labels_batch = self.test_activity_labels[start: end]
@@ -541,9 +541,9 @@ class DeepConvLSTMClassifier:
             y_series = data[:, 1]
             z_series = data[:, 2]
 
-            print('vis -> counter:', counter)
-            print(len(vis_labels_batch), vis_labels_batch.shape)
-            print(len(predicted_labels), predicted_labels.shape)
+            # print('vis -> counter:', counter)
+            # print(len(vis_labels_batch), vis_labels_batch.shape)
+            # print(len(predicted_labels), predicted_labels.shape)
 
             pred_label = predicted_labels[counter] if len(predicted_labels) > 0 else None
             plot_series(time_series=x_series, axis_name='x',
