@@ -529,7 +529,7 @@ class DeepConvLSTMClassifier:
         vis_labels_batch = np.argmax(self.train_activity_labels[start: end], 1)
         if test_data:
             vis_batch = self.test_inputs[start: end]
-            vis_labels_batch = self.test_activity_labels[start: end]
+            vis_labels_batch = np.argmax(self.test_activity_labels[start: end], 1)
 
         save_folder = 'model_output_visualization/train_data/'
         if test_data:
@@ -547,13 +547,13 @@ class DeepConvLSTMClassifier:
 
             pred_label = predicted_labels[counter] if len(predicted_labels) > 0 else None
             plot_series(time_series=x_series, axis_name='x',
-                        label=vis_labels_batch[counter], pred_label=pred_label[counter],
+                        label=vis_labels_batch[counter], pred_label=pred_label,
                         save_folder=save_folder, record_num=counter)
             plot_series(time_series=y_series, axis_name='y',
-                        label=vis_labels_batch[counter], pred_label=pred_label[counter],
+                        label=vis_labels_batch[counter], pred_label=pred_label,
                         save_folder=save_folder, record_num=counter)
             plot_series(time_series=z_series, axis_name='z',
-                        label=vis_labels_batch[counter], pred_label=pred_label[counter],
+                        label=vis_labels_batch[counter], pred_label=pred_label,
                         save_folder=save_folder, record_num=counter)
 
     @staticmethod
