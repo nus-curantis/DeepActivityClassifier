@@ -556,6 +556,8 @@ class DeepConvLSTMClassifier:
                         label=vis_labels_batch[counter], pred_label=pred_label,
                         save_folder=save_folder, record_num=counter)
 
+            counter += 1
+
     @staticmethod
     def __length(sequence):
         used = tf.sign(tf.reduce_max(tf.abs(sequence), 2))
