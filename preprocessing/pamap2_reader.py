@@ -205,6 +205,35 @@ def map_class(datasets_filled, exclude_activities):
     return class_labels, nr_classes, map_classes
 
 
+def get_inverted_map_class(target_dir='../dataset/', include_gyr_data=False,
+                           exclude_activities=[], split_series_max_len=360):
+    columns_to_use = ['activityID', 'hand_acc_16g_x', 'hand_acc_16g_y', 'hand_acc_16g_z']
+    if include_gyr_data:
+        columns_to_use += ['hand_gyroscope_x', 'hand_gyroscope_y', 'hand_gyroscope_z']
+
+    data_dir = os.path.join(target_dir, 'PAMAP2_Dataset', 'Protocol')
+    file_names = listdir(data_dir)
+    file_names.sort()
+
+    # load the files and put them in a list of pandas dataframes:
+    datasets = [pd.read_csv(os.path.join(data_dir, fn), header=None, sep=' ')
+                for fn in file_names]
+    datasets = add_header(datasets)  # add headers to the datasets
+
+    # for dataset in datasets:
+    #     print(dataset)
+
+    # interpolate dataset to get same sample rate between channels
+    datasets_filled = [d.interpolate() for d in datasets]
+
+    print(datasets_filled[0].columns)
+
+    # Create mapping for class labels
+    class_labels, nr_classes, map_classes = map_class(datasets_filled, exclude_activities)
+
+    return dict(map(reversed, map_classes.items()))
+
+
 ACTIVITIES_MAP = {
     0: 'no_activity',
     1: 'lying',
@@ -260,6 +289,10 @@ def get_pamap_dataset_labels_names(ignore_classes=[]):  # todo: clean this code
 
 
 def plot_series(save_folder, record_num, time_series, axis_name, label, pred_label=None):
+    inverted_class_map = get_inverted_map_class()
+    corrected_label = inverted_class_map[label]
+    corrected_pred_label = inverted_class_map[pred_label]
+
     save_folder += ACTIVITIES_MAP[label] + '/'
     if pred_label is None:
         save_folder += 'no_pred_done/'
@@ -275,13 +308,14 @@ def plot_series(save_folder, record_num, time_series, axis_name, label, pred_lab
     plt.plot(time_series)
 
     if pred_label is not None:
-        plt.xlabel('activity: ' + str(ACTIVITIES_MAP[label]) + ' - pred as: ' + str(ACTIVITIES_MAP[pred_label]))
+        plt.xlabel('activity: ' + str(ACTIVITIES_MAP[corrected_label]) + ' - pred as: ' +
+                   str(ACTIVITIES_MAP[corrected_pred_label]))
     else:
-        plt.xlabel('activity: ' + str(ACTIVITIES_MAP[label]))
+        plt.xlabel('activity: ' + str(ACTIVITIES_MAP[corrected_label]))
 
     plt.ylabel('accelerometer ' + axis_name + ' series')
     plt.savefig(save_folder + 'series_' +
-                str(record_num) + '_' + str(ACTIVITIES_MAP[label]) + '_axis_' + axis_name + '.png')
+                str(record_num) + '_' + str(ACTIVITIES_MAP[corrected_label]) + '_axis_' + axis_name + '.png')
 
 
 read_all_files()
