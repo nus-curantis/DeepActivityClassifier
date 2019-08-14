@@ -299,7 +299,7 @@ def plot_series(save_folder, record_num, time_series, axis_name, label, pred_lab
     if pred_label is None:
         save_folder += 'no_pred_done/'
     elif label == pred_label:
-        save_folder += 'correct_pred/'
+        save_folder += 'correct_pred/' + ACTIVITIES_MAP[corrected_pred_label] + '/'
     else:
         save_folder += 'wrong_pred/'
 
