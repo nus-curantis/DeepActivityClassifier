@@ -4,7 +4,6 @@
     <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/pamap2_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/pamap2_reader.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,15 +13,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52_4d.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="73" selection-start-line="73" selection-end-line="73" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -44,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="51" column="39" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
+            <state relative-caret-position="172">
+              <caret line="51" selection-start-line="51" selection-end-line="51" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -77,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="694">
-              <caret line="315" column="56" lean-forward="true" selection-start-line="315" selection-start-column="56" selection-end-line="315" selection-end-column="56" />
+            <state relative-caret-position="331">
+              <caret line="318" column="41" lean-forward="true" selection-start-line="318" selection-start-column="41" selection-end-line="318" selection-end-column="41" />
               <folding>
                 <element signature="e#129#147#0" expanded="true" />
               </folding>
@@ -213,8 +203,8 @@
         <option value="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier.py" />
-        <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" />
         <option value="$PROJECT_DIR$/preprocessing/pamap2_reader.py" />
+        <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" />
       </list>
     </option>
   </component>
@@ -242,6 +232,19 @@
               <item name="DeepActivityClassifier" type="b2602c69:ProjectViewProjectNode" />
               <item name="DeepActivityClassifier" type="462c0819:PsiDirectoryNode" />
               <item name="deep_model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DeepActivityClassifier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepActivityClassifier" type="462c0819:PsiDirectoryNode" />
+              <item name="deep_model" type="462c0819:PsiDirectoryNode" />
+              <item name="model_output_visualization" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DeepActivityClassifier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepActivityClassifier" type="462c0819:PsiDirectoryNode" />
+              <item name="deep_model" type="462c0819:PsiDirectoryNode" />
+              <item name="model_output_visualization" type="462c0819:PsiDirectoryNode" />
+              <item name="test_data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DeepActivityClassifier" type="b2602c69:ProjectViewProjectNode" />
@@ -415,20 +418,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
-    </task>
-    <task id="LOCAL-00100" summary="f1 score, confusion mat plots">
-      <created>1564559590370</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1564559590370</updated>
-    </task>
-    <task id="LOCAL-00101" summary="f1 score, confusion mat plots">
-      <created>1564561712991</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1564561712991</updated>
     </task>
     <task id="LOCAL-00102" summary="f1 score, confusion mat plots">
       <created>1564562101294</created>
@@ -759,7 +748,21 @@
       <option name="project" value="LOCAL" />
       <updated>1565768203893</updated>
     </task>
-    <option name="localTasksCounter" value="149" />
+    <task id="LOCAL-00149" summary="model result visualizer - bug fix">
+      <created>1565772333139</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1565772333139</updated>
+    </task>
+    <task id="LOCAL-00150" summary="model result visualizer - bug fix">
+      <created>1565773385710</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1565773385710</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
     <servers />
   </component>
   <component name="TodoView">
@@ -780,7 +783,7 @@
       <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.28360656" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.25161988" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3725702" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3725702" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.14794816" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -796,10 +799,10 @@
     <layout-to-restore>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.28360656" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.28360656" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.25161988" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3725702" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3725702" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.14794816" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1057,22 +1060,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
+    <entry file="file://$PROJECT_DIR$/deep_model/model_output_visualization/test_data/cycling/correct_pred/series_0_cycling_axis_x.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="51" column="39" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
+        <state relative-caret-position="331">
+          <caret line="318" column="41" lean-forward="true" selection-start-line="318" selection-start-column="41" selection-end-line="318" selection-end-column="41" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#129#147#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
+    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="315" column="56" lean-forward="true" selection-start-line="315" selection-start-column="56" selection-end-line="315" selection-end-column="56" />
+        <state relative-caret-position="172">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
           <folding>
-            <element signature="e#129#147#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
