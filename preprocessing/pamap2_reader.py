@@ -288,12 +288,14 @@ def get_pamap_dataset_labels_names(ignore_classes=[]):  # todo: clean this code
     # return labels_names
 
 
+inverted_class_map = get_inverted_map_class()
+
+
 def plot_series(save_folder, record_num, time_series, axis_name, label, pred_label=None):
-    inverted_class_map = get_inverted_map_class()
     corrected_label = inverted_class_map[label]
     corrected_pred_label = inverted_class_map[pred_label]
 
-    save_folder += ACTIVITIES_MAP[label] + '/'
+    save_folder += ACTIVITIES_MAP[corrected_label] + '/'
     if pred_label is None:
         save_folder += 'no_pred_done/'
     elif label == pred_label:
@@ -318,4 +320,4 @@ def plot_series(save_folder, record_num, time_series, axis_name, label, pred_lab
                 str(record_num) + '_' + str(ACTIVITIES_MAP[corrected_label]) + '_axis_' + axis_name + '.png')
 
 
-read_all_files()
+# read_all_files()
