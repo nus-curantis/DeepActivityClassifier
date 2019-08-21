@@ -114,7 +114,7 @@ def extract_activities(selected_data, map_classes, include_gyr_data=False):
 
             activities.append(Activity(activity_num))
 
-        if counter % 2 == 0:  # Sampling rate test, TODO: remove this test
+        if counter % 4 == 0:  # Sampling rate test, TODO: remove this test
             activities[-1].append_acc_data(float(row[1]), float(row[2]), float(row[3]))
 
             if include_gyr_data:

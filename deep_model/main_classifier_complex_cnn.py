@@ -20,7 +20,7 @@ tf.flags.DEFINE_integer('num_classes', 13, 'num of classes in the output')  # mh
 
 # tf.flags.DEFINE_integer('series_max_len', 360, 'max len of an input time series')
 # tf.flags.DEFINE_integer('series_max_len', 180, 'max len of an input time series')
-tf.flags.DEFINE_integer('series_max_len', 90, 'max len of an input time series')  # Sampling rate test
+tf.flags.DEFINE_integer('series_max_len', 45, 'max len of an input time series')  # Sampling rate test
 
 # tf.flags.DEFINE_integer('rnn_hidden_units', 32, 'hidden neurons of rnn cells')
 tf.flags.DEFINE_integer('rnn_hidden_units', 64, 'hidden neurons of rnn cells')
