@@ -9,7 +9,8 @@ import matplotlib.pyplot as plt
 from os import listdir
 import os.path
 
-from preprocessing.data_to_rnn_input_transformer import normalized_rnn_input_train_test_, data_to_rnn_input_train_test_
+from preprocessing.data_to_rnn_input_transformer import normalized_rnn_input_train_test_, data_to_rnn_input_train_test_, \
+    analyze_train_test_data
 
 
 class Activity:
@@ -105,6 +106,7 @@ def extract_activities(selected_data, map_classes, include_gyr_data=False):
     activities = []
 
     previous_activity_num = -10
+    counter = 0
     for row in selected_data:
         activity_num = int(float(map_classes[row[0]]))
         if activity_num != previous_activity_num:
@@ -112,10 +114,13 @@ def extract_activities(selected_data, map_classes, include_gyr_data=False):
 
             activities.append(Activity(activity_num))
 
-        activities[-1].append_acc_data(float(row[1]), float(row[2]), float(row[3]))
+        if counter % 2 == 0:  # Sampling rate test, TODO: remove this test
+            activities[-1].append_acc_data(float(row[1]), float(row[2]), float(row[3]))
 
-        if include_gyr_data:
-            activities[-1].append_gyr_data(float(row[4]), float(row[5]), float(row[6]))
+            if include_gyr_data:
+                activities[-1].append_gyr_data(float(row[4]), float(row[5]), float(row[6]))
+
+        counter += 1
 
     return activities
 
@@ -321,3 +326,5 @@ def plot_series(save_folder, record_num, time_series, axis_name, label, pred_lab
 
 
 # read_all_files()
+# tr, ts, tr_l, ts_l = normalized_pamap2_rnn_input_train_test()  # pamap2 dataset
+# analyze_train_test_data(tr_l, ts_l)
