@@ -114,11 +114,11 @@ def extract_activities(selected_data, map_classes, include_gyr_data=False):
 
             activities.append(Activity(activity_num))
 
-        if counter % 4 == 0:  # Sampling rate test, TODO: remove this test
-            activities[-1].append_acc_data(float(row[1]), float(row[2]), float(row[3]))
+        # if counter % 4 == 0:  # Sampling rate test, TODO: remove this test
+        activities[-1].append_acc_data(float(row[1]), float(row[2]), float(row[3]))
 
-            if include_gyr_data:
-                activities[-1].append_gyr_data(float(row[4]), float(row[5]), float(row[6]))
+        if include_gyr_data:
+            activities[-1].append_gyr_data(float(row[4]), float(row[5]), float(row[6]))
 
         counter += 1
 
@@ -210,8 +210,8 @@ def map_class(datasets_filled, exclude_activities):
     return class_labels, nr_classes, map_classes
 
 
-def get_inverted_map_class(target_dir='../dataset/', include_gyr_data=False,
-                           exclude_activities=[], split_series_max_len=360):
+def get_map_class(target_dir='../dataset/', include_gyr_data=False,
+                  exclude_activities=[], split_series_max_len=360):
     columns_to_use = ['activityID', 'hand_acc_16g_x', 'hand_acc_16g_y', 'hand_acc_16g_z']
     if include_gyr_data:
         columns_to_use += ['hand_gyroscope_x', 'hand_gyroscope_y', 'hand_gyroscope_z']
@@ -236,6 +236,36 @@ def get_inverted_map_class(target_dir='../dataset/', include_gyr_data=False,
     # Create mapping for class labels
     class_labels, nr_classes, map_classes = map_class(datasets_filled, exclude_activities)
 
+    return map_classes
+
+
+def get_inverted_map_class(target_dir='../dataset/', include_gyr_data=False,
+                           exclude_activities=[], split_series_max_len=360):
+    # columns_to_use = ['activityID', 'hand_acc_16g_x', 'hand_acc_16g_y', 'hand_acc_16g_z']
+    # if include_gyr_data:
+    #     columns_to_use += ['hand_gyroscope_x', 'hand_gyroscope_y', 'hand_gyroscope_z']
+    #
+    # data_dir = os.path.join(target_dir, 'PAMAP2_Dataset', 'Protocol')
+    # file_names = listdir(data_dir)
+    # file_names.sort()
+    #
+    # # load the files and put them in a list of pandas dataframes:
+    # datasets = [pd.read_csv(os.path.join(data_dir, fn), header=None, sep=' ')
+    #             for fn in file_names]
+    # datasets = add_header(datasets)  # add headers to the datasets
+    #
+    # # for dataset in datasets:
+    # #     print(dataset)
+    #
+    # # interpolate dataset to get same sample rate between channels
+    # datasets_filled = [d.interpolate() for d in datasets]
+    #
+    # print(datasets_filled[0].columns)
+    #
+    # # Create mapping for class labels
+    # class_labels, nr_classes, map_classes = map_class(datasets_filled, exclude_activities)
+
+    map_classes = get_map_class(target_dir, include_gyr_data, exclude_activities, split_series_max_len)
     return dict(map(reversed, map_classes.items()))
 
 

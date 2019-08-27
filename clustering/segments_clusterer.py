@@ -1,0 +1,165 @@
+"""
+Some parts of this code are copied from nus_curantis/medoid project developed by Zhang Tianyang
+"""
+
+import random
+
+import numpy as np
+from scipy.spatial.distance import euclidean
+from tqdm import tqdm
+from scipy.cluster.hierarchy import dendrogram, linkage
+from scipy.spatial.distance import pdist
+from matplotlib import pyplot as plt
+
+from preprocessing.pamap2_reader import get_map_class, ACTIVITIES_MAP, normalized_pamap2_rnn_input_train_test
+from dtw_lib import _dtw_lib
+
+
+class ClusteringExecutor:
+    def __init__(self):
+        self.all_train_data = None
+        self.all_test_data = None
+        self.all_train_labels = None
+        self.all_test_labels = None
+
+        self.selected_train_segments = []  # These segments are going to be clustered
+        self.selected_test_segments = []  # These segments are going to be clustered
+        self.class_name = None
+        pass
+
+    def load_all_data(self, series_max_len=360):
+        self.all_train_data, self.all_test_data, self.all_train_labels, self.all_test_labels = \
+            normalized_pamap2_rnn_input_train_test(split_series_max_len=series_max_len)  # pamap2 dataset
+
+    def load_data_of_one_class(self, class_name='ironing', axis='x', series_max_len=360, num_segments=10):
+        map_class = get_map_class()
+        invert_activities_map = {v: k for k, v in ACTIVITIES_MAP.items()}
+        class_label = map_class[invert_activities_map[class_name]]
+
+        cartesian_axises = ['x', 'y', 'z']
+        axis_num = cartesian_axises.index(axis)
+
+        self.class_name = class_name
+
+        for data in [self.all_train_labels, self.all_test_labels, self.all_train_data, self.all_test_data]:
+            if data is None:
+                self.load_all_data(series_max_len)
+                break
+
+        class_train_inputs = []
+        class_test_inputs = []
+
+        counter = 0
+        for segment in self.all_train_data:
+            if np.argmax(self.all_train_labels[counter]) == class_label:
+                class_train_inputs.append(segment[:, axis_num])
+
+            if len(class_train_inputs) > num_segments:
+                break
+
+            counter += 1
+
+        counter = 0
+        for segment in self.all_test_data:
+            if np.argmax(self.all_test_labels[counter]) == class_label:
+                class_test_inputs.append(segment[:, axis_num])
+
+            if len(class_test_inputs) > num_segments:
+                break
+
+            counter += 1
+
+        # print(np.array(class_train_inputs).shape)
+        # print(np.array(class_test_inputs).shape)
+
+        self.selected_train_segments = np.array(class_train_inputs)
+        self.selected_test_segments = np.array(class_test_inputs)
+
+    def calculate_medoids(self):
+        def distance(seg1, seg2, relax):
+            distance, path, D = _dtw_lib.fastdtw(seg1, seg2, relax=relax, dist=euclidean)
+            return distance
+
+        def find_medoid_seg(segs):
+            print('len(segs): ', len(segs))
+            print(segs.shape)
+
+            length = len(segs)
+            result = [0 for _ in range(length)]
+            table = [[-1 for _ in range(length)] for _ in range(length)]  # initialize the table to all -1
+
+            for i in tqdm(range(length)):
+                for j in range(length):
+                    if i == j:
+                        table[i][j] = 0
+                        continue
+                    elif table[j][i] != -1:  # using memoization
+                        table[i][j] = table[j][i]
+                        result[i] += table[i][j]
+                    else:
+                        table[i][j] = distance(segs[i], segs[j], 1)
+                        result[i] += table[i][j]
+
+            # store([table], ['user' + str(user) + '_' + activity + '_matrix_' + str(duration)])
+
+            min_medoid = min(result)
+            for i in range(len(result)):
+                if min_medoid == result[i]:
+                    return segs[i], min_medoid / len(segs), table
+
+        segs = self.selected_train_segments
+        representations, min_medoid, table = find_medoid_seg(segs)
+
+        # print(min_medoid)
+        # print(representations)
+        # print(table)
+        # print('-----------------------------------------')
+
+        # self.plot_matrix(table, title=self.class_name)
+        self.hieratical_plot(matrix=table, segments=self.selected_train_segments, method='single')
+
+    @staticmethod
+    def plot_matrix(matrix, title):
+        fig, ax = plt.subplots()
+        im = ax.imshow(matrix)
+
+        title = "distance distribution for %s " % title
+        ax.set_title(title)
+        fig.tight_layout()
+        fig.colorbar(im, ax=ax)
+        plt.show()
+
+    def hieratical_plot(self, matrix, segments, method):
+        f = lambda x, y: matrix[x[1]][y[1]]
+        X = list(map(lambda x: [0, x], range(len(segments))))
+        Y = pdist(X, f)
+        linked = linkage(Y, method, metric='')
+
+        labels_list = range(0, len(segments))
+
+        plt.figure(figsize=(10, 7))
+        dendrogram(linked,
+                   orientation='top',
+                   labels=labels_list,
+                   distance_sort='descending',
+                   show_leaf_counts=True)
+        plt.title(self.class_name + "======" + method)
+        plt.show()
+
+c = ClusteringExecutor()
+c.load_data_of_one_class()
+c.calculate_medoids()
+
+# #test:
+# from scipy.spatial.distance import euclidean
+#
+# x = [(1, 2, 1), (2, 3, 2), (6, 4, 1), (3, 5, 3), (2, 3, 3), (4, 5, 6)]
+# y = [(2, 4, 1), (5, 6, 2), (6, 4, 1), (3, 7, 3)]
+# relax = 1
+#
+# distance, path, D = _dtw_lib.dtw(x, y, relax=relax, dist=euclidean) #classic
+#
+# distance, path, D = _dtw_lib.fastdtw(x, y, relax=relax, dist=euclidean ) #fast
+# print(distance)
+# print(path)
+# print(D)

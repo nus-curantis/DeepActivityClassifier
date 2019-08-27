@@ -19,8 +19,7 @@ tf.flags.DEFINE_integer('num_classes', 13, 'num of classes in the output')  # mh
 # tf.flags.DEFINE_integer('num_classes', 14, 'num of classes in the output')  # wharf data
 
 # tf.flags.DEFINE_integer('series_max_len', 360, 'max len of an input time series')
-# tf.flags.DEFINE_integer('series_max_len', 180, 'max len of an input time series')
-tf.flags.DEFINE_integer('series_max_len', 45, 'max len of an input time series')  # Sampling rate test
+tf.flags.DEFINE_integer('series_max_len', 180, 'max len of an input time series')
 
 # tf.flags.DEFINE_integer('rnn_hidden_units', 32, 'hidden neurons of rnn cells')
 tf.flags.DEFINE_integer('rnn_hidden_units', 64, 'hidden neurons of rnn cells')
@@ -53,7 +52,7 @@ tf.flags.DEFINE_integer('num_epochs', 150, 'number of training epochs')
 tf.flags.DEFINE_integer('batch_size', 64, 'batch size')
 
 # logging parameters
-tf.flags.DEFINE_string('log_folder', 'logs_classifier_new/sampling_rate_test', 'tensorboard logs folder')
+tf.flags.DEFINE_string('log_folder', 'logs_classifier_new', 'tensorboard logs folder')
 tf.flags.DEFINE_string('model_path', './deep_model_weights', 'saved model folder')
 
 config = tf.flags.FLAGS
