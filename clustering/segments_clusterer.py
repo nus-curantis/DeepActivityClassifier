@@ -1,8 +1,10 @@
 """
 Some parts of this code are copied from nus_curantis/medoid project developed by Zhang Tianyang
+Codes are changeed by Pouya Kananian
 """
 
 import random
+import os
 
 import numpy as np
 from scipy.spatial.distance import euclidean
@@ -10,6 +12,7 @@ from tqdm import tqdm
 from scipy.cluster.hierarchy import dendrogram, linkage
 from scipy.spatial.distance import pdist
 from matplotlib import pyplot as plt
+from sklearn.cluster import AgglomerativeClustering
 
 from preprocessing.pamap2_reader import get_map_class, ACTIVITIES_MAP, normalized_pamap2_rnn_input_train_test
 from dtw_lib import _dtw_lib
@@ -25,13 +28,14 @@ class ClusteringExecutor:
         self.selected_train_segments = []  # These segments are going to be clustered
         self.selected_test_segments = []  # These segments are going to be clustered
         self.class_name = None
-        pass
+
+        self.plots_address = None
 
     def load_all_data(self, series_max_len=360):
         self.all_train_data, self.all_test_data, self.all_train_labels, self.all_test_labels = \
             normalized_pamap2_rnn_input_train_test(split_series_max_len=series_max_len)  # pamap2 dataset
 
-    def load_data_of_one_class(self, class_name='ironing', axis='x', series_max_len=360, num_segments=10):
+    def load_data_of_one_class(self, class_name='ironing', axis='x', series_max_len=360, num_segments=200):
         map_class = get_map_class()
         invert_activities_map = {v: k for k, v in ACTIVITIES_MAP.items()}
         class_label = map_class[invert_activities_map[class_name]]
@@ -40,6 +44,7 @@ class ClusteringExecutor:
         axis_num = cartesian_axises.index(axis)
 
         self.class_name = class_name
+        self.plots_address = 'plots/' + self.class_name
 
         for data in [self.all_train_labels, self.all_test_labels, self.all_train_data, self.all_test_data]:
             if data is None:
@@ -115,11 +120,14 @@ class ClusteringExecutor:
         # print(table)
         # print('-----------------------------------------')
 
-        # self.plot_matrix(table, title=self.class_name)
-        self.hieratical_plot(matrix=table, segments=self.selected_train_segments, method='single')
+        self.plot_matrix(table, title=self.class_name, save_folder=self.plots_address + '/train/',
+                         plot_name='dist_mat.png')
+        self.hierarchical_plot(matrix=table, segments=self.selected_train_segments, method='single',
+                               save_folder=self.plots_address + '/train/', plot_name='dist_mat.png')
+        # print(self.get_hierarchical_cluster(num_cluster=2, matrix=table))
 
     @staticmethod
-    def plot_matrix(matrix, title):
+    def plot_matrix(matrix, title, save_folder, plot_name):
         fig, ax = plt.subplots()
         im = ax.imshow(matrix)
 
@@ -127,9 +135,13 @@ class ClusteringExecutor:
         ax.set_title(title)
         fig.tight_layout()
         fig.colorbar(im, ax=ax)
-        plt.show()
 
-    def hieratical_plot(self, matrix, segments, method):
+        # plt.show()
+        if not os.path.exists(save_folder):
+            os.makedirs(save_folder)
+        plt.savefig(save_folder + plot_name)
+
+    def hierarchical_plot(self, matrix, segments, method, save_folder, plot_name):
         f = lambda x, y: matrix[x[1]][y[1]]
         X = list(map(lambda x: [0, x], range(len(segments))))
         Y = pdist(X, f)
@@ -144,22 +156,18 @@ class ClusteringExecutor:
                    distance_sort='descending',
                    show_leaf_counts=True)
         plt.title(self.class_name + "======" + method)
-        plt.show()
+
+        # plt.show()
+        if not os.path.exists(save_folder):
+            os.makedirs(save_folder)
+        plt.savefig(save_folder + plot_name)
+
+    @staticmethod
+    def get_hierarchical_cluster(num_cluster, matrix):
+        cluster = AgglomerativeClustering(n_clusters=num_cluster, affinity='precomputed', linkage='complete')
+        return cluster.fit_predict(matrix)
+
 
 c = ClusteringExecutor()
 c.load_data_of_one_class()
 c.calculate_medoids()
-
-# #test:
-# from scipy.spatial.distance import euclidean
-#
-# x = [(1, 2, 1), (2, 3, 2), (6, 4, 1), (3, 5, 3), (2, 3, 3), (4, 5, 6)]
-# y = [(2, 4, 1), (5, 6, 2), (6, 4, 1), (3, 7, 3)]
-# relax = 1
-#
-# distance, path, D = _dtw_lib.dtw(x, y, relax=relax, dist=euclidean) #classic
-#
-# distance, path, D = _dtw_lib.fastdtw(x, y, relax=relax, dist=euclidean ) #fast
-# print(distance)
-# print(path)
-# print(D)
