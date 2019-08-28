@@ -92,6 +92,7 @@ class DeepConvLSTMClassifier:
         self.prediction = None
         self.accuracy = None
         self.cost = None
+        self.detailed_cost = None
         self.optimizer = None
 
         # log and save variables:
@@ -342,11 +343,16 @@ class DeepConvLSTMClassifier:
             self.accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
 
         with tf.name_scope('prediction_optimizer'):
-            self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(
-                # logits=tf.reshape(self.prediction_logits, shape=[-1]),
-                # labels=tf.reshape(self.activity_label, shape=[-1])))
+            # self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(
+            #     # logits=tf.reshape(self.prediction_logits, shape=[-1]),
+            #     # labels=tf.reshape(self.activity_label, shape=[-1])))
+            #     logits=self.prediction_logits,
+            #     labels=self.activity_label))
+
+            self.detailed_cost = tf.nn.softmax_cross_entropy_with_logits(
                 logits=self.prediction_logits,
-                labels=self.activity_label))
+                labels=self.activity_label)
+            self.cost = tf.reduce_mean(self.detailed_cost)
 
             var_list = [var for var in tf.trainable_variables()]
 
