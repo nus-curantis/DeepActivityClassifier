@@ -123,7 +123,7 @@ class ClusteringExecutor:
         self.plot_matrix(table, title=self.class_name, save_folder=self.plots_address + '/train/',
                          plot_name='dist_mat.png')
         self.hierarchical_plot(matrix=table, segments=self.selected_train_segments, method='single',
-                               save_folder=self.plots_address + '/train/', plot_name='dist_mat.png')
+                               save_folder=self.plots_address + '/train/', plot_name='dendrogram.png')
         # print(self.get_hierarchical_cluster(num_cluster=2, matrix=table))
 
     @staticmethod
@@ -169,5 +169,5 @@ class ClusteringExecutor:
 
 
 c = ClusteringExecutor()
-c.load_data_of_one_class()
+c.load_data_of_one_class(class_name='vaccuum_cleaning')
 c.calculate_medoids()
