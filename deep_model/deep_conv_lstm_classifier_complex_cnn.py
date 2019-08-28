@@ -16,9 +16,10 @@ from preprocessing.pamap2_reader import pamap2_rnn_input_train_test, get_pamap_d
 
 
 class DeepConvLSTMClassifier:
-    def __init__(self, config):
+    def __init__(self, config, model_name=''):
 
         # model parameters
+        self.model_name = model_name
         self.series_max_len = config.series_max_len
         self.rnn_hidden_units = config.rnn_hidden_units
         self.input_representations = config.input_representations
@@ -201,7 +202,7 @@ class DeepConvLSTMClassifier:
         #
         #     print('self.embedded_input : ', self.embedded_input)
 
-        with tf.name_scope('cnn'):
+        with tf.name_scope(self.model_name + 'cnn'):
             self.conv_w_1 = tf.Variable(tf.truncated_normal([self.filter_1_x, self.filter_1_y, 1, self.filters_num_1]))
             self.conv_b_1 = tf.Variable(tf.zeros([self.filters_num_1]))
 
@@ -263,7 +264,7 @@ class DeepConvLSTMClassifier:
 
             print('self.cnn_layer_3_out : ', self.embedded_input)
 
-        with tf.name_scope('rnn'):
+        with tf.name_scope(self.model_name + 'rnn'):
             # self.rnn_cell = rnn.GRUCell(num_units=self.rnn_hidden_units,
             #                             kernel_initializer=tf.orthogonal_initializer())
 
@@ -285,7 +286,7 @@ class DeepConvLSTMClassifier:
         #     # test:
         #     self.time_distributed_output = tf.nn.dropout(self.time_distributed_output, self.dropout_prob)
 
-        with tf.name_scope('pooling'):
+        with tf.name_scope(self.model_name + 'pooling'):
             self.avg_pooling = tf.reduce_mean(self.rnn_output, axis=1)
             self.max_pooling = tf.reduce_max(self.rnn_output, axis=1)
             self.last_pooling = self.__last_relevant(self.rnn_output, self.__length(self.embedded_input))
@@ -298,7 +299,7 @@ class DeepConvLSTMClassifier:
                 [self.avg_pooling, self.max_pooling, self.last_pooling], axis=1
             )
 
-        with tf.name_scope('predictor'):
+        with tf.name_scope(self.model_name + 'predictor'):
             self.dense_weights = {
                 'first': tf.Variable(tf.truncated_normal(
                     [3 * self.rnn_hidden_units, 2 * self.rnn_hidden_units])),
@@ -342,7 +343,7 @@ class DeepConvLSTMClassifier:
             correct_pred = tf.equal(tf.argmax(self.prediction, 1), tf.argmax(self.activity_label, 1))
             self.accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
 
-        with tf.name_scope('prediction_optimizer'):
+        with tf.name_scope(self.model_name + 'prediction_optimizer'):
             # self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(
             #     # logits=tf.reshape(self.prediction_logits, shape=[-1]),
             #     # labels=tf.reshape(self.activity_label, shape=[-1])))
@@ -365,12 +366,12 @@ class DeepConvLSTMClassifier:
 
             self.optimizer = train_op
 
-        self.loss_summary = tf.summary.scalar('prediction loss', self.cost)
-        self.accuracy_summary = tf.summary.scalar('prediction accuracy', self.accuracy)
+        self.loss_summary = tf.summary.scalar(self.model_name + 'prediction loss', self.cost)
+        self.accuracy_summary = tf.summary.scalar(self.model_name + 'prediction accuracy', self.accuracy)
         self.train_summary = tf.summary.merge([self.loss_summary, self.accuracy_summary])
 
-        self.validation_loss_summary = tf.summary.scalar('pred validation loss', self.cost)
-        self.validation_accuracy_summary = tf.summary.scalar('pred validation accuracy', self.accuracy)
+        self.validation_loss_summary = tf.summary.scalar(self.model_name + 'pred validation loss', self.cost)
+        self.validation_accuracy_summary = tf.summary.scalar(self.model_name + 'pred validation accuracy', self.accuracy)
         self.validation_summary = tf.summary.merge([self.validation_loss_summary,
                                                     self.validation_accuracy_summary])
 

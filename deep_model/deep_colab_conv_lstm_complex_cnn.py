@@ -14,9 +14,9 @@ class CoTeaching:
 
         log_folder = config.log_folder
         config.log_folder += '__1'
-        self.learner_1 = DeepConvLSTMClassifier(config=config)
+        self.learner_1 = DeepConvLSTMClassifier(config=config, model_name='model_1__')
         config.log_folder = log_folder + '__2'
-        self.learner_2 = DeepConvLSTMClassifier(config=config)
+        self.learner_2 = DeepConvLSTMClassifier(config=config, model_name='model_2__')
         self.learner_1.build_model()
         self.learner_2.build_model()
 
