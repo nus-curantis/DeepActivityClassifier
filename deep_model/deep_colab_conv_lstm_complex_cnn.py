@@ -33,8 +33,8 @@ class CoTeaching:
 
         train_set_len = len(train_inputs)
 
-        self.learner_1_train_inputs = train_inputs[0:(train_set_len/2)]
-        self.learner_2_train_inputs = train_inputs[(train_set_len/2):]
+        self.learner_1_train_inputs = train_inputs[0:int(train_set_len/2)]
+        self.learner_2_train_inputs = train_inputs[int(train_set_len/2):]
         self.learner_1_train_labels = train_activity_labels[0:(train_set_len / 2)]
         self.learner_2_train_labels = train_activity_labels[(train_set_len / 2):]
 
