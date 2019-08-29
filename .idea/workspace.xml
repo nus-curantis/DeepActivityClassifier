@@ -391,9 +391,9 @@
     <list>
       <item itemvalue="Python.data_to_rnn_input_transformer" />
       <item itemvalue="Python.pamap2_reader" />
-      <item itemvalue="Python.segments_clusterer" />
       <item itemvalue="Python.time_series_reader_and_visualizer" />
       <item itemvalue="Python.wharf_reader" />
+      <item itemvalue="Python.segments_clusterer" />
     </list>
     <recent_temporary>
       <list>
