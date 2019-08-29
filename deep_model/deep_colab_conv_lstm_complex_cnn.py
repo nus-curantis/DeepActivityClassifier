@@ -73,7 +73,7 @@ class CoTeaching:
                     learner1_samples_shape = np.shape(learner1_min_loss_samples)
                     print('learner1_all_batches_shape: ', self.learner_1_train_inputs.shape)
                     print('learner1_all_samples_shape: ', learner_1_inputs_batch.shape)
-                    print('detailed_loss_1.shape', detailed_loss_1.shape)
+                    print('detailed_loss_1.shape', np.array(detailed_loss_1).shape)
                     print('learner1_samples_shape: ', learner1_samples_shape)
                     learner1_min_loss_samples = np.reshape(learner1_min_loss_samples,
                                                            newshape=[learner1_samples_shape[1],
