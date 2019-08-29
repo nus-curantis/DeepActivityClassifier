@@ -69,7 +69,12 @@ class CoTeaching:
                                                           self.learner_1.activity_label: learner_1_labels_batch})
 
                     learner1_min_loss_indices = np.argsort(detailed_loss_1)[0:int(len(detailed_loss_1)*remember_rate)]
-                    learner1_min_loss_smaples = np.array([learner_1_inputs_batch for i in learner1_min_loss_indices])
+                    learner1_min_loss_samples = np.array([learner_1_inputs_batch for i in learner1_min_loss_indices])
+                    learner1_samples_shape = np.shape(learner1_min_loss_samples)
+                    learner1_min_loss_samples = np.reshape(learner1_min_loss_indices,
+                                                           newshape=[learner1_samples_shape[1],
+                                                                     learner1_samples_shape[2],
+                                                                     learner1_samples_shape[3]])
                     learner1_min_loss_labels = np.array([learner_1_labels_batch for i in learner1_min_loss_indices])
 
                     detailed_loss_2 = sess.run([self.learner_2.detailed_cost],
@@ -77,18 +82,23 @@ class CoTeaching:
                                                           self.learner_2.activity_label: learner_2_labels_batch})
 
                     learner2_min_loss_indices = np.argsort(detailed_loss_2)[0:int(len(detailed_loss_2) * remember_rate)]
-                    learner2_min_loss_smaples = np.array([learner_2_inputs_batch for i in learner2_min_loss_indices])
+                    learner2_min_loss_samples = np.array([learner_2_inputs_batch for i in learner2_min_loss_indices])
+                    learner2_samples_shape = np.shape(learner2_min_loss_samples)
+                    learner2_min_loss_samples = np.reshape(learner2_min_loss_indices,
+                                                           newshape=[learner2_samples_shape[1],
+                                                                     learner2_samples_shape[2],
+                                                                     learner2_samples_shape[3]])
                     learner2_min_loss_labels = np.array([learner_2_labels_batch for i in learner2_min_loss_indices])
 
                     _, loss_1, accuracy_1 = sess.run(
                         [self.learner_1.optimizer, self.learner_1.cost, self.learner_1.accuracy],
-                        feed_dict={self.learner_1.input: learner2_min_loss_smaples,
+                        feed_dict={self.learner_1.input: learner2_min_loss_samples,
                                    self.learner_1.activity_label: learner2_min_loss_labels})
 
                     _, loss_2, accuracy_2 = sess.run(
                         [self.learner_2.optimizer, self.learner_2.cost, self.learner_2.accuracy],
-                        feed_dict={self.learner_2.input: learner1_min_loss_smaples,
-                                   self.learner_2.activity_label: learner1_min_loss_indices})
+                        feed_dict={self.learner_2.input: learner1_min_loss_samples,
+                                   self.learner_2.activity_label: learner1_min_loss_labels})
 
                     print(i, ',', epoch)
                     print('learner1 loss: ', loss_1)
