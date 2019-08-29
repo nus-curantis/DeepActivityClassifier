@@ -268,7 +268,7 @@ class DeepConvLSTMClassifier:
             # self.rnn_cell = rnn.GRUCell(num_units=self.rnn_hidden_units,
             #                             kernel_initializer=tf.orthogonal_initializer())
 
-            self.rnn_cell = rnn.LSTMCell(num_units=self.rnn_hidden_units)  # , name='cell_1')
+            self.rnn_cell = rnn.LSTMCell(num_units=self.rnn_hidden_units, name=self.model_name + 'cell_1')
             print('self.rnn_cell: ', self.rnn_cell.name)
 
             self.rnn_output, _ = tf.nn.dynamic_rnn(
