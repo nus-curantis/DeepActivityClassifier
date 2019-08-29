@@ -35,8 +35,8 @@ class CoTeaching:
 
         self.learner_1_train_inputs = train_inputs[0:int(train_set_len/2)]
         self.learner_2_train_inputs = train_inputs[int(train_set_len/2):]
-        self.learner_1_train_labels = train_activity_labels[0:(train_set_len / 2)]
-        self.learner_2_train_labels = train_activity_labels[(train_set_len / 2):]
+        self.learner_1_train_labels = train_activity_labels[0:int(train_set_len / 2)]
+        self.learner_2_train_labels = train_activity_labels[int(train_set_len / 2):]
 
     def train_two_networks(self, forget_rate=0.2):
         init = tf.global_variables_initializer()
