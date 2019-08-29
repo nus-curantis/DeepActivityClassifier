@@ -33,10 +33,10 @@ class CoTeaching:
 
         train_set_len = len(train_inputs)
 
-        self.learner_1_train_inputs = train_inputs[0:int(train_set_len/2)]
-        self.learner_2_train_inputs = train_inputs[int(train_set_len/2):]
-        self.learner_1_train_labels = train_activity_labels[0:int(train_set_len / 2)]
-        self.learner_2_train_labels = train_activity_labels[int(train_set_len / 2):]
+        self.learner_1_train_inputs = train_inputs[0:np.floor(train_set_len/2)]
+        self.learner_2_train_inputs = train_inputs[np.floor(train_set_len/2):]
+        self.learner_1_train_labels = train_activity_labels[0:np.floor(train_set_len / 2)]
+        self.learner_2_train_labels = train_activity_labels[np.floor(train_set_len / 2):]
 
     def train_two_networks(self, forget_rate=0.2):
         init = tf.global_variables_initializer()
@@ -68,7 +68,7 @@ class CoTeaching:
                                                feed_dict={self.learner_1.input: learner_1_inputs_batch,
                                                           self.learner_1.activity_label: learner_1_labels_batch})
 
-                    learner1_min_loss_indices = np.argsort(detailed_loss_1)[0:int(len(detailed_loss_1)*remember_rate)]
+                    learner1_min_loss_indices = np.argsort(detailed_loss_1)[0:np.floor(len(detailed_loss_1)*remember_rate)]
                     learner1_min_loss_samples = np.array([learner_1_inputs_batch for i in learner1_min_loss_indices])
                     learner1_samples_shape = np.shape(learner1_min_loss_samples)
                     print('rem rate:', remember_rate)
@@ -94,7 +94,7 @@ class CoTeaching:
                                                feed_dict={self.learner_2.input: learner_2_inputs_batch,
                                                           self.learner_2.activity_label: learner_2_labels_batch})
 
-                    learner2_min_loss_indices = np.argsort(detailed_loss_2)[0:int(len(detailed_loss_2) * remember_rate)]
+                    learner2_min_loss_indices = np.argsort(detailed_loss_2)[0:np.floor(len(detailed_loss_2) * remember_rate)]
                     learner2_min_loss_samples = np.array([learner_2_inputs_batch for i in learner2_min_loss_indices])
                     learner2_samples_shape = np.shape(learner2_min_loss_samples)
                     # print('learner2_samples_shape: ', learner2_samples_shape)
