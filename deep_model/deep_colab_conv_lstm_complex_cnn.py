@@ -71,6 +71,8 @@ class CoTeaching:
                     learner1_min_loss_indices = np.argsort(detailed_loss_1)[0:int(len(detailed_loss_1)*remember_rate)]
                     learner1_min_loss_samples = np.array([learner_1_inputs_batch for i in learner1_min_loss_indices])
                     learner1_samples_shape = np.shape(learner1_min_loss_samples)
+                    print('learner1_all_samples_shape: ', learner_1_inputs_batch.shape)
+                    print('detailed_loss_1.shape', detailed_loss_1.shape)
                     print('learner1_samples_shape: ', learner1_samples_shape)
                     learner1_min_loss_samples = np.reshape(learner1_min_loss_samples,
                                                            newshape=[learner1_samples_shape[1],

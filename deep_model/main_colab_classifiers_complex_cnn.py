@@ -61,4 +61,4 @@ config = tf.flags.FLAGS
 # os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 model = CoTeaching(config=config)
-model.train_two_networks(forget_rate=0.1)
+model.train_two_networks(forget_rate=0.05)
