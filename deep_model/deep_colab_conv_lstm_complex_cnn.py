@@ -76,6 +76,8 @@ class CoTeaching:
                                                                      learner1_samples_shape[2],
                                                                      learner1_samples_shape[3]])
                     learner1_min_loss_labels = np.array([learner_1_labels_batch for i in learner1_min_loss_indices])
+                    learner1_min_loss_labels = np.reshape(learner1_min_loss_labels,
+                                                          newshape=[-1, np.shape(learner1_min_loss_labels)[-1]])
 
                     detailed_loss_2 = sess.run([self.learner_2.detailed_cost],
                                                feed_dict={self.learner_2.input: learner_2_inputs_batch,
@@ -89,6 +91,8 @@ class CoTeaching:
                                                                      learner2_samples_shape[2],
                                                                      learner2_samples_shape[3]])
                     learner2_min_loss_labels = np.array([learner_2_labels_batch for i in learner2_min_loss_indices])
+                    learner2_min_loss_labels = np.reshape(learner2_min_loss_labels,
+                                                          newshape=[-1, np.shape(learner2_min_loss_labels)[-1]])
 
                     _, loss_1, accuracy_1 = sess.run(
                         [self.learner_1.optimizer, self.learner_1.cost, self.learner_1.accuracy],
