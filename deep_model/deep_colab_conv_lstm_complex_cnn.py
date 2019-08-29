@@ -152,7 +152,7 @@ class CoTeaching:
                                                  self.learner_2.activity_label: self.test_labels[:100]}))
                             , epoch)
 
-                if epoch % 5 == 0:
+                if epoch % 5 == 1:
                     remember_rate *= 1 - forget_rate
 
             loss_1, accuracy_1, pred_output = sess.run(
