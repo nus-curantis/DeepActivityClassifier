@@ -31,6 +31,8 @@ class ClusteringExecutor:
 
         self.plots_address = None
 
+        self.load_all_data()
+
     def load_all_data(self, series_max_len=360):
         self.all_train_data, self.all_test_data, self.all_train_labels, self.all_test_labels = \
             normalized_pamap2_rnn_input_train_test(split_series_max_len=series_max_len)  # pamap2 dataset
@@ -169,5 +171,16 @@ class ClusteringExecutor:
 
 
 c = ClusteringExecutor()
-c.load_data_of_one_class(class_name='vaccuum_cleaning')
-c.calculate_medoids()
+for class_name in ['lying',
+                   'sitting',
+                   'standing',
+                   'walking',
+                   'running',
+                   'cycling',
+                   'nordic_walking',
+                   'no_activity']:
+    c.load_data_of_one_class(class_name=class_name)
+    c.calculate_medoids()
+
+# c.load_data_of_one_class(class_name='vaccuum_cleaning')
+# c.calculate_medoids()
