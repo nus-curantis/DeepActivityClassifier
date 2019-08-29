@@ -71,15 +71,15 @@ class CoTeaching:
                     learner1_min_loss_indices = np.argsort(detailed_loss_1)[0:int(len(detailed_loss_1)*remember_rate)]
                     learner1_min_loss_samples = np.array([learner_1_inputs_batch for i in learner1_min_loss_indices])
                     learner1_samples_shape = np.shape(learner1_min_loss_samples)
-                    # print('rem rate:', remember_rate)
-                    # print('int(len(detailed_loss_1)*remember_rate)', int(len(detailed_loss_1)*remember_rate))
-                    # print('khers', np.argsort(detailed_loss_1))
-                    # print('learner1_all_batches_shape: ', self.learner_1_train_inputs.shape)
-                    # print('learner1_all_samples_shape: ', learner_1_inputs_batch.shape)
-                    # print('detailed_loss_1.shape', np.array(detailed_loss_1).shape)
-                    # print('learner1_min_loss_indices.shape', learner1_min_loss_indices.shape)
-                    # print('learner1_min_loss_indices', learner1_min_loss_indices)
-                    # print('learner1_samples_shape: ', learner1_samples_shape)
+                    print('rem rate:', remember_rate)
+                    print('int(len(detailed_loss_1)*remember_rate)', int(len(detailed_loss_1)*remember_rate))
+                    print('khers', np.argsort(detailed_loss_1))
+                    print('learner1_all_batches_shape: ', self.learner_1_train_inputs.shape)
+                    print('learner1_all_samples_shape: ', learner_1_inputs_batch.shape)
+                    print('detailed_loss_1.shape', np.array(detailed_loss_1).shape)
+                    print('learner1_min_loss_indices.shape', learner1_min_loss_indices.shape)
+                    print('learner1_min_loss_indices', learner1_min_loss_indices)
+                    print('learner1_samples_shape: ', learner1_samples_shape)
                     # if len(learner1_min_loss_samples) == 0:  # todo: UNTOF
                     #     break
                     learner1_min_loss_samples = np.reshape(learner1_min_loss_samples,
