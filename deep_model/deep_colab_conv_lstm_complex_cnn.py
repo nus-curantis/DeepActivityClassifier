@@ -53,7 +53,7 @@ class CoTeaching:
 
             remember_rate = 1
             for epoch in range(self.num_epochs):
-                for i in range(0, len(self.learner_1_train_labels), self.batch_size):
+                for i in range(0, len(self.learner_1_train_labels) - self.batch_size, self.batch_size):
                     learner_1_inputs_batch = self.learner_1_train_inputs[i: i + self.batch_size]
                     learner_1_labels_batch = self.learner_1_train_labels[i: i + self.batch_size]
                     learner_2_inputs_batch = self.learner_2_train_inputs[i: i + self.batch_size]
@@ -77,8 +77,8 @@ class CoTeaching:
                     # print('learner1_min_loss_indices.shape', learner1_min_loss_indices.shape)
                     # print('learner1_min_loss_indices', learner1_min_loss_indices)
                     # print('learner1_samples_shape: ', learner1_samples_shape)
-                    if len(learner1_min_loss_samples) == 0:  # todo: UNTOF
-                        break
+                    # if len(learner1_min_loss_samples) == 0:  # todo: UNTOF
+                    #     break
                     learner1_min_loss_samples = np.reshape(learner1_min_loss_samples,
                                                            newshape=[learner1_samples_shape[1],
                                                                      learner1_samples_shape[2],
@@ -95,8 +95,8 @@ class CoTeaching:
                     learner2_min_loss_samples = np.array([learner_2_inputs_batch for i in learner2_min_loss_indices])
                     learner2_samples_shape = np.shape(learner2_min_loss_samples)
                     print('learner2_samples_shape: ', learner2_samples_shape)
-                    if len(learner2_min_loss_samples) == 0:  # todo: UNTOF
-                        break
+                    # if len(learner2_min_loss_samples) == 0:  # todo: UNTOF
+                    #     break
                     learner2_min_loss_samples = np.reshape(learner2_min_loss_samples,
                                                            newshape=[learner2_samples_shape[1],
                                                                      learner2_samples_shape[2],
