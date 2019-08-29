@@ -27,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_colab_conv_lstm_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="78" column="77" lean-forward="true" selection-start-line="73" selection-start-column="89" selection-end-line="78" selection-end-column="77" />
+            <state relative-caret-position="396">
+              <caret line="74" column="108" lean-forward="true" selection-start-line="74" selection-start-column="108" selection-end-line="74" selection-end-column="108" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -218,9 +218,9 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="993" />
-    <option name="y" value="25" />
+    <option name="y" value="114" />
     <option name="width" value="927" />
-    <option name="height" value="1055" />
+    <option name="height" value="789" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -389,9 +389,9 @@
     <list>
       <item itemvalue="Python.data_to_rnn_input_transformer" />
       <item itemvalue="Python.pamap2_reader" />
+      <item itemvalue="Python.segments_clusterer" />
       <item itemvalue="Python.time_series_reader_and_visualizer" />
       <item itemvalue="Python.wharf_reader" />
-      <item itemvalue="Python.segments_clusterer" />
     </list>
     <recent_temporary>
       <list>
@@ -413,20 +413,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
-    </task>
-    <task id="LOCAL-00128" summary="tuning model with 52 dim input">
-      <created>1565159576245</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1565159576245</updated>
-    </task>
-    <task id="LOCAL-00129" summary="tuning model with 52 dim input">
-      <created>1565159854632</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1565159854632</updated>
     </task>
     <task id="LOCAL-00130" summary="tuning model with 52 dim input">
       <created>1565160458599</created>
@@ -757,7 +743,21 @@
       <option name="project" value="LOCAL" />
       <updated>1567053656302</updated>
     </task>
-    <option name="localTasksCounter" value="177" />
+    <task id="LOCAL-00177" summary="CoTeaching implementation - bug fix">
+      <created>1567053954347</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1567053954347</updated>
+    </task>
+    <task id="LOCAL-00178" summary="CoTeaching implementation - bug fix">
+      <created>1567053997767</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1567053997767</updated>
+    </task>
+    <option name="localTasksCounter" value="179" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1119,8 +1119,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_colab_conv_lstm_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="78" column="77" lean-forward="true" selection-start-line="73" selection-start-column="89" selection-end-line="78" selection-end-column="77" />
+        <state relative-caret-position="396">
+          <caret line="74" column="108" lean-forward="true" selection-start-line="74" selection-start-column="108" selection-end-line="74" selection-end-column="108" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
