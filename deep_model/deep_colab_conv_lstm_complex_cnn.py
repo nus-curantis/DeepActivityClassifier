@@ -67,8 +67,9 @@ class CoTeaching:
                     detailed_loss_1 = sess.run([self.learner_1.detailed_cost],
                                                feed_dict={self.learner_1.input: learner_1_inputs_batch,
                                                           self.learner_1.activity_label: learner_1_labels_batch})
+                    detailed_loss_1 = np.array(detailed_loss_1)
 
-                    learner1_min_loss_indices = np.argsort(detailed_loss_1)[0:int(np.floor(len(detailed_loss_1)*remember_rate))]
+                    learner1_min_loss_indices = np.argsort(detailed_loss_1)[0:int(np.floor(detailed_loss_1.shape[1]*remember_rate))]
                     learner1_min_loss_samples = np.array([learner_1_inputs_batch for i in learner1_min_loss_indices])
                     learner1_samples_shape = np.shape(learner1_min_loss_samples)
                     print('rem rate:', remember_rate)
@@ -76,7 +77,7 @@ class CoTeaching:
                     print('khers', np.argsort(detailed_loss_1))
                     print('learner1_all_batches_shape: ', self.learner_1_train_inputs.shape)
                     print('learner1_all_samples_shape: ', learner_1_inputs_batch.shape)
-                    print('detailed_loss_1.shape', np.array(detailed_loss_1).shape)
+                    print('detailed_loss_1.shape', detailed_loss_1.shape)
                     print('learner1_min_loss_indices.shape', learner1_min_loss_indices.shape)
                     print('learner1_min_loss_indices', learner1_min_loss_indices)
                     print('learner1_samples_shape: ', learner1_samples_shape)
@@ -93,8 +94,9 @@ class CoTeaching:
                     detailed_loss_2 = sess.run([self.learner_2.detailed_cost],
                                                feed_dict={self.learner_2.input: learner_2_inputs_batch,
                                                           self.learner_2.activity_label: learner_2_labels_batch})
+                    detailed_loss_2 = np.array(detailed_loss_2)
 
-                    learner2_min_loss_indices = np.argsort(detailed_loss_2)[0:int(np.floor(len(detailed_loss_2) * remember_rate))]
+                    learner2_min_loss_indices = np.argsort(detailed_loss_2)[0:int(np.floor(detailed_loss_2.shape[1]*remember_rate))]
                     learner2_min_loss_samples = np.array([learner_2_inputs_batch for i in learner2_min_loss_indices])
                     learner2_samples_shape = np.shape(learner2_min_loss_samples)
                     # print('learner2_samples_shape: ', learner2_samples_shape)
