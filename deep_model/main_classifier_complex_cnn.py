@@ -53,7 +53,7 @@ tf.flags.DEFINE_integer('batch_size', 64, 'batch size')
 
 # logging parameters
 tf.flags.DEFINE_string('log_folder', 'logs_classifier_new', 'tensorboard logs folder')
-tf.flags.DEFINE_string('model_path', './deep_model_weights', 'saved model folder')
+tf.flags.DEFINE_string('model_path', './deep_model_weights_', 'saved model folder')
 
 config = tf.flags.FLAGS
 
@@ -62,5 +62,5 @@ config = tf.flags.FLAGS
 
 model = DeepConvLSTMClassifier(config=config)
 model.build_model()
-# model.train()
+model.train()
 model.test()
