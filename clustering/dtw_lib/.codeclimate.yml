@@ -1,0 +1,12 @@
+engines:
+ pep8:
+   enabled: true
+ratings:
+ paths:
+  -"**.py
+      
+ plugins:
+  radon: 
+    enabled: true
+    config: 
+      python_version: 3

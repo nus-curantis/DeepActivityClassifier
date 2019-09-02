@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/clustering/segments_clusterer.py" beforeDir="false" afterPath="$PROJECT_DIR$/clustering/segments_clusterer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py" afterDir="false" />
-    </list>
+    <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="64" column="12" lean-forward="true" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
+            <state relative-caret-position="676">
+              <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -70,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="558" column="78" selection-start-line="558" selection-start-column="78" selection-end-line="558" selection-end-column="78" />
+            <state relative-caret-position="496">
+              <caret line="571" column="53" selection-start-line="571" selection-start-column="53" selection-end-line="571" selection-end-column="53" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -222,10 +219,10 @@
         <option value="$PROJECT_DIR$/clustering.py" />
         <option value="$PROJECT_DIR$/preprocessing/pamap2_reader.py" />
         <option value="$PROJECT_DIR$/deep_model/main_colab_classifiers_complex_cnn.py" />
-        <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" />
         <option value="$PROJECT_DIR$/clustering/segments_clusterer.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_colab_conv_lstm_complex_cnn.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py" />
+        <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" />
       </list>
     </option>
   </component>
@@ -426,27 +423,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
-    </task>
-    <task id="LOCAL-00139" summary="tuning model with 3 dim input - normalization correction">
-      <created>1565167300214</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1565167300214</updated>
-    </task>
-    <task id="LOCAL-00140" summary="model result visualizer">
-      <created>1565697590929</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1565697590930</updated>
-    </task>
-    <task id="LOCAL-00141" summary="model result visualizer">
-      <created>1565698299229</created>
-      <option name="number" value="00141" />
-      <option name="presentableId" value="LOCAL-00141" />
-      <option name="project" value="LOCAL" />
-      <updated>1565698299229</updated>
     </task>
     <task id="LOCAL-00142" summary="model result visualizer">
       <created>1565698504071</created>
@@ -770,7 +746,28 @@
       <option name="project" value="LOCAL" />
       <updated>1567407885209</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <task id="LOCAL-00188" summary="model weights save-restore">
+      <created>1567425780734</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1567425780734</updated>
+    </task>
+    <task id="LOCAL-00189" summary="model performance analysis on clustered data">
+      <created>1567425819845</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1567425819845</updated>
+    </task>
+    <task id="LOCAL-00190" summary="model performance analysis on clustered data">
+      <created>1567425885590</created>
+      <option name="number" value="00190" />
+      <option name="presentableId" value="LOCAL-00190" />
+      <option name="project" value="LOCAL" />
+      <updated>1567425885590</updated>
+    </task>
+    <option name="localTasksCounter" value="191" />
     <servers />
   </component>
   <component name="TodoView">
@@ -783,7 +780,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
@@ -825,7 +822,6 @@
     </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="PAMAP2 datset" />
     <MESSAGE value="PAMAP2 dataset" />
     <MESSAGE value="three consecutive RNNs" />
     <MESSAGE value="complex cnn (incomplete) + minor reshape bug fix" />
@@ -850,7 +846,8 @@
     <MESSAGE value="CoTeaching implementation" />
     <MESSAGE value="CoTeaching implementation - bug fix" />
     <MESSAGE value="model weights save-restore" />
-    <option name="LAST_COMMIT_MESSAGE" value="model weights save-restore" />
+    <MESSAGE value="model performance analysis on clustered data" />
+    <option name="LAST_COMMIT_MESSAGE" value="model performance analysis on clustered data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1100,16 +1097,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="64" column="12" lean-forward="true" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/clustering/segments_clusterer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="496">
@@ -1132,8 +1119,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="558" column="78" selection-start-line="558" selection-start-column="78" selection-end-line="558" selection-end-column="78" />
+        <state relative-caret-position="496">
+          <caret line="571" column="53" selection-start-line="571" selection-start-column="53" selection-end-line="571" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>

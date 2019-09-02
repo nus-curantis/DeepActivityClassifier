@@ -1,0 +1,4 @@
+__pycache__/
+build/
+_dtw_lib.cpython-36m-x86_64-linux-gnu.so
+test.py 
