@@ -15,7 +15,7 @@ from matplotlib import pyplot as plt
 from sklearn.cluster import AgglomerativeClustering
 
 from preprocessing.pamap2_reader import get_map_class, ACTIVITIES_MAP, normalized_pamap2_rnn_input_train_test
-from dtw_lib import _dtw_lib
+from clustering.dtw_lib import _dtw_lib
 
 
 class ClusteringExecutor:
