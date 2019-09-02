@@ -27,6 +27,12 @@ class ClusteringExecutor:
 
         self.selected_train_segments = []  # These segments are going to be clustered
         self.selected_test_segments = []  # These segments are going to be clustered
+        self.selected_train_data = []  # This array contains all 3 dimensions of the selected data
+        self.selected_test_data = []  # This array contains all 3 dimensions of the selected test data
+        self.selected_train_labels = []  # label specifying type of activity not num of cluster data belongs to
+        self.selected_test_labels = []
+        self.train_cluster_nums = []
+        self.test_cluster_nums = []
         self.class_name = None
 
         self.plots_address = None
@@ -53,15 +59,21 @@ class ClusteringExecutor:
                 self.load_all_data(series_max_len)
                 break
 
-        class_train_inputs = []
-        class_test_inputs = []
+        class_train_segments = []
+        class_test_segments = []
+        class_train_data = []
+        class_test_data = []
+        class_train_labels = []
+        class_test_labels = []
 
         counter = 0
         for segment in self.all_train_data:
             if np.argmax(self.all_train_labels[counter]) == class_label:
-                class_train_inputs.append(segment[:, axis_num])
+                class_train_segments.append(segment[:, axis_num])
+                class_train_data.append(segment[:, :])
+                class_train_labels.append(self.all_train_labels[counter])
 
-            if len(class_train_inputs) > num_segments:
+            if len(class_train_segments) > num_segments:
                 break
 
             counter += 1
@@ -69,21 +81,27 @@ class ClusteringExecutor:
         counter = 0
         for segment in self.all_test_data:
             if np.argmax(self.all_test_labels[counter]) == class_label:
-                class_test_inputs.append(segment[:, axis_num])
+                class_test_segments.append(segment[:, axis_num])
+                class_test_data.append(segment[:, :])
+                class_test_labels.append(self.all_test_labels[counter])
 
-            if len(class_test_inputs) > num_segments:
+            if len(class_test_segments) > num_segments:
                 break
 
             counter += 1
 
-        # print(np.array(class_train_inputs).shape)
-        # print(np.array(class_test_inputs).shape)
-        print(class_train_inputs[0])
+        # print(np.array(class_train_segments).shape)
+        # print(np.array(class_test_segments).shape)
+        # print(class_train_segments[0])
 
-        self.selected_train_segments = np.array(class_train_inputs)
-        self.selected_test_segments = np.array(class_test_inputs)
+        self.selected_train_segments = np.array(class_train_segments)
+        self.selected_test_segments = np.array(class_test_segments)
+        self.selected_train_data = np.array(class_train_data)
+        self.selected_test_data = np.array(class_test_data)
+        self.selected_train_labels = np.array(class_train_labels)
+        self.selected_test_labels = np.array(class_test_labels)
 
-    def calculate_medoids(self):
+    def calculate_medoids_and_clusters(self, num_clusters=2):
         def distance(seg1, seg2, relax):
             distance, path, D = _dtw_lib.fastdtw(seg1, seg2, relax=relax, dist=euclidean)
             return distance
@@ -127,7 +145,19 @@ class ClusteringExecutor:
                          plot_name='dist_mat.png')
         self.hierarchical_plot(matrix=table, segments=self.selected_train_segments, method='single',
                                save_folder=self.plots_address + '/train/', plot_name='dendrogram.png')
-        # print(self.get_hierarchical_cluster(num_cluster=2, matrix=table))
+
+        self.train_cluster_nums = self.get_hierarchical_cluster(num_cluster=num_clusters, matrix=table)
+
+        segs = self.selected_test_segments
+        representations, min_medoid, table = find_medoid_seg(segs)
+        self.test_cluster_nums = self.get_hierarchical_cluster(num_cluster=num_clusters, matrix=table)
+
+    def get_clustered_data(self, class_name='lying', num_segments=200, num_clusters=2):
+        self.load_data_of_one_class(class_name=class_name, num_segments=num_segments)
+        self.calculate_medoids_and_clusters(num_clusters=num_clusters)
+
+        return self.selected_train_data, self.selected_train_labels, self.train_cluster_nums, \
+            self.selected_test_data, self.selected_test_labels, self.test_cluster_nums
 
     @staticmethod
     def plot_matrix(matrix, title, save_folder, plot_name):
@@ -171,17 +201,14 @@ class ClusteringExecutor:
         return cluster.fit_predict(matrix)
 
 
-c = ClusteringExecutor()
-for class_name in ['lying',
-                   'sitting',
-                   'standing',
-                   'walking',
-                   'running',
-                   'cycling',
-                   'nordic_walking',
-                   'no_activity']:
-    c.load_data_of_one_class(class_name=class_name)
-    c.calculate_medoids()
-
-c.load_data_of_one_class(class_name='vaccuum_cleaning')
-# c.calculate_medoids()
+# c = ClusteringExecutor()
+# for class_name in ['lying',
+#                    'sitting',
+#                    'standing',
+#                    'walking',
+#                    'running',
+#                    'cycling',
+#                    'nordic_walking',
+#                    'no_activity']:
+#     c.load_data_of_one_class(class_name=class_name)
+#     c.calculate_medoids_and_clusters()
