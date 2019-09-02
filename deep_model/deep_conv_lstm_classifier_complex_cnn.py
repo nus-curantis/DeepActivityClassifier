@@ -14,6 +14,8 @@ from preprocessing.pamap2_reader import pamap2_rnn_input_train_test, get_pamap_d
 # todo: also test normalized pamap input
 # from preprocessing.pamap2_reader_flexible import pamap2_rnn_input_train_test
 
+import sys
+sys.path.append("../../DeepActivityClassifier")
 from clustering.segments_clusterer import ClusteringExecutor
 
 
