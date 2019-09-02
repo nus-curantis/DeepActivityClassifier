@@ -63,3 +63,4 @@ config = tf.flags.FLAGS
 model = DeepConvLSTMClassifier(config=config)
 model.build_model()
 model.train()
+model.test()

@@ -78,6 +78,7 @@ class ClusteringExecutor:
 
         # print(np.array(class_train_inputs).shape)
         # print(np.array(class_test_inputs).shape)
+        print(class_train_inputs[0])
 
         self.selected_train_segments = np.array(class_train_inputs)
         self.selected_test_segments = np.array(class_test_inputs)
@@ -182,5 +183,5 @@ for class_name in ['lying',
     c.load_data_of_one_class(class_name=class_name)
     c.calculate_medoids()
 
-# c.load_data_of_one_class(class_name='vaccuum_cleaning')
+c.load_data_of_one_class(class_name='vaccuum_cleaning')
 # c.calculate_medoids()

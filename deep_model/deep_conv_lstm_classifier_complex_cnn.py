@@ -442,6 +442,72 @@ class DeepConvLSTMClassifier:
                                                  self.activity_label: self.test_activity_labels[:100]}))
                             , epoch)
 
+            # loss, accuracy, pred_output = sess.run(
+            #     [self.cost, self.accuracy, self.prediction],
+            #     # feed_dict={self.input: self.test_inputs[100:],
+            #     #            self.activity_label: self.test_activity_labels[100:]})
+            #     feed_dict={self.input: self.test_inputs,
+            #                self.activity_label: self.test_activity_labels})
+            # print('test loss: ', loss)
+            # print('test accuracy: ', accuracy)
+            #
+            # print(np.shape(pred_output))
+            # print(np.shape(self.test_activity_labels))
+            #
+            # print('test precision score: ', precision_score(y_true=np.argmax(self.test_activity_labels, 1),
+            #                                                 y_pred=np.argmax(pred_output, 1), average=None))
+            # print('test recall score: ', recall_score(y_true=np.argmax(self.test_activity_labels, 1),
+            #                                           y_pred=np.argmax(pred_output, 1), average=None))
+            #
+            # print('test f1 score: ', f1_score(y_true=np.argmax(self.test_activity_labels, 1),
+            #                                   y_pred=np.argmax(pred_output, 1), average=None))
+            #
+            # print('test confusion matrix: ', confusion_matrix(y_true=np.argmax(self.test_activity_labels, 1),
+            #                                                   y_pred=np.argmax(pred_output, 1)))
+            #
+            # self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
+            #                              y_pred=np.argmax(pred_output, 1),
+            #                              save_addr=self.log_folder + '/score_plots.png')
+            #
+            # self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
+            #                              y_pred=np.argmax(pred_output, 1),
+            #                              save_addr=self.log_folder + '/score_plots_2.png', fig_size=[20, 20])
+            #
+            # self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
+            #                              y_pred=np.argmax(pred_output, 1),
+            #                              save_addr=self.log_folder + '/score_plots_3.png', fig_size=[5, 5])
+            #
+            # self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
+            #                              y_pred=np.argmax(pred_output, 1),
+            #                              save_addr=self.log_folder + '/score_plots_4.png', fig_size=[30, 30])
+            #
+            # self.__visualize_data(start=0, end=self.test_inputs.shape[0], predicted_labels=np.argmax(pred_output, 1),
+            #                       test_data=True)
+            #
+            # print('--------------------------------')
+            #
+            # # self.file_writer.add_summary(
+            # #     (sess.run(self.images_summary,
+            # #               feed_dict={self.input: self.test_inputs[:100],
+            # #                          self.activity_label: self.test_activity_labels[:100]}))
+            # #     , epoch)
+
+            save_path = self.saver.save(sess, self.model_path)
+            print("Survival model saved in file: %s" % save_path)
+
+    def test(self):
+        init = tf.global_variables_initializer()
+
+        config = tf.ConfigProto()  # (log_device_placement=True)
+        config.gpu_options.allow_growth = True
+
+        with tf.Session(config=config) as sess:
+            sess.run(init)
+            self.saver.restore(sess, self.model_path)
+
+            if not self.is_data_loaded():
+                self.load_data()
+
             loss, accuracy, pred_output = sess.run(
                 [self.cost, self.accuracy, self.prediction],
                 # feed_dict={self.input: self.test_inputs[100:],
@@ -481,19 +547,10 @@ class DeepConvLSTMClassifier:
                                          y_pred=np.argmax(pred_output, 1),
                                          save_addr=self.log_folder + '/score_plots_4.png', fig_size=[30, 30])
 
-            self.__visualize_data(start=0, end=self.test_inputs.shape[0], predicted_labels=np.argmax(pred_output, 1),
-                                  test_data=True)
+            # self.__visualize_data(start=0, end=self.test_inputs.shape[0], predicted_labels=np.argmax(pred_output, 1),
+            #                       test_data=True)
 
             print('--------------------------------')
-
-            # self.file_writer.add_summary(
-            #     (sess.run(self.images_summary,
-            #               feed_dict={self.input: self.test_inputs[:100],
-            #                          self.activity_label: self.test_activity_labels[:100]}))
-            #     , epoch)
-
-            save_path = self.saver.save(sess, self.model_path)
-            print("Survival model saved in file: %s" % save_path)
 
     def __draw_pred_score_plots(self, y_true, y_pred, save_addr, fig_size=[8.27, 11.69]):
         precision = np.array([precision_score(y_true=y_true, y_pred=y_pred, average=None)])
