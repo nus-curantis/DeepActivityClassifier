@@ -559,7 +559,7 @@ class DeepConvLSTMClassifier:
             clustered_train_data, clustered_train_labels, train_cluster_nums, \
                 clustered_test_data, clustered_test_labels, test_cluster_nums = \
                 clustering_executor.get_clustered_data(class_name='nordic_walking', num_segments=300,
-                                                       num_clusters=num_clusters)
+                                                       series_max_len=self.series_max_len, num_clusters=num_clusters)
 
             for cluster_num in range(num_clusters):
                 train_data = []

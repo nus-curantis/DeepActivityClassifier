@@ -152,8 +152,8 @@ class ClusteringExecutor:
         representations, min_medoid, table = find_medoid_seg(segs)
         self.test_cluster_nums = self.get_hierarchical_cluster(num_cluster=num_clusters, matrix=table)
 
-    def get_clustered_data(self, class_name='lying', num_segments=200, num_clusters=2):
-        self.load_data_of_one_class(class_name=class_name, num_segments=num_segments)
+    def get_clustered_data(self, class_name='lying', num_segments=200, series_max_len=360, num_clusters=2):
+        self.load_data_of_one_class(class_name=class_name, num_segments=num_segments, series_max_len=series_max_len)
         self.calculate_medoids_and_clusters(num_clusters=num_clusters)
 
         return self.selected_train_data, self.selected_train_labels, self.train_cluster_nums, \
