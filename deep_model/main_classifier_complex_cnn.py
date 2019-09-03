@@ -53,7 +53,7 @@ tf.flags.DEFINE_integer('num_epochs', 100, 'number of training epochs')
 tf.flags.DEFINE_integer('batch_size', 64, 'batch size')
 
 # logging parameters
-tf.flags.DEFINE_string('log_folder', 'logs_classifier_new_parallel', 'tensorboard logs folder')
+tf.flags.DEFINE_string('log_folder', 'logs_classifier_new_clustering_1', 'tensorboard logs folder')
 tf.flags.DEFINE_string('model_path', './deep_model_weights_', 'saved model folder')
 
 config = tf.flags.FLAGS
