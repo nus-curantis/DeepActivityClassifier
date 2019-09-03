@@ -558,7 +558,7 @@ class DeepConvLSTMClassifier:
             clustering_executor.set_all_data(
                 all_train_data=self.train_inputs,
                 all_test_data=self.test_inputs,
-                all_train_labels=self.test_activity_labels,
+                all_train_labels=self.train_activity_labels,
                 all_test_labels=self.test_activity_labels
             )
 
