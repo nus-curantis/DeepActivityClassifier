@@ -13,6 +13,8 @@ from preprocessing.pamap2_reader import pamap2_rnn_input_train_test, get_pamap_d
 # todo: also test normalized pamap input
 # from preprocessing.pamap2_reader_flexible import pamap2_rnn_input_train_test
 
+from clustering.segments_clusterer import ClusteringExecutor
+
 
 class DeepConvLSTMClassifier:
     def __init__(self, config):
@@ -106,23 +108,25 @@ class DeepConvLSTMClassifier:
 
         # loaded train, test data
         self.train_inputs = None
-        self.train_inputs_tuning = None
+        self.train_inputs_tuning = None  # inputs belonging to only one person or few people
         self.test_inputs = None
+        self.test_inputs_tuning = None
         self.train_activity_labels = None
         self.train_activity_labels_tuning = None
         self.test_activity_labels = None
+        self.test_activity_labels_tuning = None
 
         self.dataset_labels = None
 
-    def set_data(self,
-                 train_inputs,
-                 test_inputs,
-                 train_activity_labels,
-                 test_activity_labels):
-        self.train_inputs = train_inputs
-        self.test_inputs = test_inputs
-        self.train_activity_labels = train_activity_labels
-        self.test_activity_labels = test_activity_labels
+    # def set_data(self,
+    #              train_inputs,
+    #              test_inputs,
+    #              train_activity_labels,
+    #              test_activity_labels):
+    #     self.train_inputs = train_inputs
+    #     self.test_inputs = test_inputs
+    #     self.train_activity_labels = train_activity_labels
+    #     self.test_activity_labels = test_activity_labels
 
     def is_data_loaded(self):
         for data in [
@@ -130,6 +134,10 @@ class DeepConvLSTMClassifier:
             self.test_inputs,
             self.train_activity_labels,
             self.test_activity_labels,
+            self.train_inputs_tuning,
+            self.train_activity_labels_tuning,
+            self.test_inputs_tuning,
+            self.test_activity_labels_tuning
         ]:
             if data is None:
                 return False
@@ -141,9 +149,10 @@ class DeepConvLSTMClassifier:
             pamap2_rnn_input_train_test(target_dir='../dataset/PAMAP2_Dataset/split/1/',
                                         split_series_max_len=self.series_max_len)  # pamap2 dataset
 
-        self.train_inputs_tuning, self.test_inputs, self.train_activity_labels_tuning, self.test_activity_labels = \
+        self.train_inputs_tuning, self.test_inputs_tuning, \
+        self.train_activity_labels_tuning, self.test_activity_labels_tuning = \
             pamap2_rnn_input_train_test(target_dir='../dataset/PAMAP2_Dataset/split/2/',
-                                        split_series_max_len=self.series_max_len)  # pamap2 dataset
+                                        split_series_max_len=self.series_max_len)  # pamap2 dataset, data of one person
 
         self.dataset_labels = get_pamap_dataset_labels_names()
 
@@ -153,6 +162,8 @@ class DeepConvLSTMClassifier:
         print('len(self.train_activity_labels_tuning):', len(self.train_activity_labels_tuning))
         print('len(self.test_inputs):', len(self.test_inputs))
         print('len(self.test_activity_labels):', len(self.test_activity_labels))
+        print('len(self.test_inputs_tuning):', len(self.test_inputs_tuning))
+        print('len(self.test_activity_labels_tuning):', len(self.test_activity_labels_tuning))
 
     def build_model(self):
         # with tf.name_scope('embedding'):
@@ -415,8 +426,8 @@ class DeepConvLSTMClassifier:
 
                         self.file_writer.add_summary(
                             (sess.run(self.validation_summary,
-                                      feed_dict={self.input: self.test_inputs[:100],
-                                                 self.activity_label: self.test_activity_labels[:100]}))
+                                      feed_dict={self.input: self.test_inputs_tuning[:100],
+                                                 self.activity_label: self.test_activity_labels_tuning[:100]}))
                             , epoch)
 
             for epoch in range(self.num_epochs_tuning):
@@ -445,48 +456,72 @@ class DeepConvLSTMClassifier:
 
                         self.file_writer.add_summary(
                             (sess.run(self.validation_summary,
-                                      feed_dict={self.input: self.test_inputs[:100],
-                                                 self.activity_label: self.test_activity_labels[:100]}))
+                                      feed_dict={self.input: self.test_inputs_tuning[:100],
+                                                 self.activity_label: self.test_activity_labels_tuning[:100]}))
                             , epoch + self.num_epochs)
 
             loss, accuracy, pred_output = sess.run(
                 [self.cost, self.accuracy, self.prediction],
                 feed_dict={self.input: self.test_inputs,
                            self.activity_label: self.test_activity_labels})
-            print('test loss: ', loss)
-            print('test accuracy: ', accuracy)
+            print('test loss on all data: ', loss)
+            print('test accuracy on all data: ', accuracy)
 
             print(np.shape(pred_output))
             print(np.shape(self.test_activity_labels))
 
-            print('test precision score: ', precision_score(y_true=np.argmax(self.test_activity_labels, 1),
+            print('test precision score on all data: ', precision_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                                                        y_pred=np.argmax(pred_output, 1), average=None))
+            print('test recall score on all data: ', recall_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                                                  y_pred=np.argmax(pred_output, 1), average=None))
+
+            print('test f1 score on all data: ', f1_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                                          y_pred=np.argmax(pred_output, 1), average=None))
+
+            print('test confusion matrix on all data: ', confusion_matrix(y_true=np.argmax(self.test_activity_labels, 1),
+                                                                          y_pred=np.argmax(pred_output, 1)))
+
+            print('           --------------            ')
+
+            loss, accuracy, pred_output = sess.run(
+                [self.cost, self.accuracy, self.prediction],
+                feed_dict={self.input: self.test_inputs_tuning,
+                           self.activity_label: self.test_activity_labels_tuning})
+            print('test loss on target person: ', loss)
+            print('test accuracy on target person: ', accuracy)
+
+            print(np.shape(pred_output))
+            print(np.shape(self.test_activity_labels))
+
+            print('test precision score: ', precision_score(y_true=np.argmax(self.test_activity_labels_tuning, 1),
                                                             y_pred=np.argmax(pred_output, 1), average=None))
-            print('test recall score: ', recall_score(y_true=np.argmax(self.test_activity_labels, 1),
+            print('test recall score: ', recall_score(y_true=np.argmax(self.test_activity_labels_tuning, 1),
                                                       y_pred=np.argmax(pred_output, 1), average=None))
 
-            print('test f1 score: ', f1_score(y_true=np.argmax(self.test_activity_labels, 1),
+            print('test f1 score: ', f1_score(y_true=np.argmax(self.test_activity_labels_tuning, 1),
                                               y_pred=np.argmax(pred_output, 1), average=None))
 
-            print('test confusion matrix: ', confusion_matrix(y_true=np.argmax(self.test_activity_labels, 1),
-                                                              y_pred=np.argmax(pred_output, 1)))
+            print('test confusion matrix: ',
+                  confusion_matrix(y_true=np.argmax(self.test_activity_labels_tuning, 1),
+                                   y_pred=np.argmax(pred_output, 1)))
 
-            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
+            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels_tuning, 1),
                                          y_pred=np.argmax(pred_output, 1),
                                          save_addr=self.log_folder + '/score_plots.png')
 
-            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
+            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels_tuning, 1),
                                          y_pred=np.argmax(pred_output, 1),
                                          save_addr=self.log_folder + '/score_plots_2.png', fig_size=[20, 20])
 
-            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
+            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels_tuning, 1),
                                          y_pred=np.argmax(pred_output, 1),
                                          save_addr=self.log_folder + '/score_plots_3.png', fig_size=[5, 5])
 
-            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
+            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels_tuning, 1),
                                          y_pred=np.argmax(pred_output, 1),
                                          save_addr=self.log_folder + '/score_plots_4.png', fig_size=[30, 30])
 
-            print('--------------------------------')
+            print('-------------------------------------')
 
             # self.file_writer.add_summary(
             #     (sess.run(self.images_summary,
@@ -496,6 +531,162 @@ class DeepConvLSTMClassifier:
 
             save_path = self.saver.save(sess, self.model_path)
             print("Survival model saved in file: %s" % save_path)
+
+    def test(self):
+
+        config = tf.ConfigProto()  # (log_device_placement=True)
+        config.gpu_options.allow_growth = True
+
+        init = tf.global_variables_initializer()
+
+        with tf.Session(config=config) as sess:
+            sess.run(init)
+            self.saver.restore(sess, self.model_path)
+
+            if not self.is_data_loaded():
+                self.load_data()
+
+            loss, accuracy, pred_output = sess.run(
+                [self.cost, self.accuracy, self.prediction],
+                feed_dict={self.input: self.test_inputs,
+                           self.activity_label: self.test_activity_labels})
+            print('test loss on all data: ', loss)
+            print('test accuracy on all data: ', accuracy)
+
+            print(np.shape(pred_output))
+            print(np.shape(self.test_activity_labels))
+
+            print('test precision score on all data: ', precision_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                                                        y_pred=np.argmax(pred_output, 1), average=None))
+            print('test recall score on all data: ', recall_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                                                  y_pred=np.argmax(pred_output, 1), average=None))
+
+            print('test f1 score on all data: ', f1_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                                          y_pred=np.argmax(pred_output, 1), average=None))
+
+            print('test confusion matrix on all data: ',
+                  confusion_matrix(y_true=np.argmax(self.test_activity_labels, 1),
+                                   y_pred=np.argmax(pred_output, 1)))
+
+            print('           --------------            ')
+
+            loss, accuracy, pred_output = sess.run(
+                [self.cost, self.accuracy, self.prediction],
+                feed_dict={self.input: self.test_inputs_tuning,
+                           self.activity_label: self.test_activity_labels_tuning})
+            print('test loss on target person: ', loss)
+            print('test accuracy on target person: ', accuracy)
+
+            print(np.shape(pred_output))
+            print(np.shape(self.test_activity_labels))
+
+            print('test precision score: ', precision_score(y_true=np.argmax(self.test_activity_labels_tuning, 1),
+                                                            y_pred=np.argmax(pred_output, 1), average=None))
+            print('test recall score: ', recall_score(y_true=np.argmax(self.test_activity_labels_tuning, 1),
+                                                      y_pred=np.argmax(pred_output, 1), average=None))
+
+            print('test f1 score: ', f1_score(y_true=np.argmax(self.test_activity_labels_tuning, 1),
+                                              y_pred=np.argmax(pred_output, 1), average=None))
+
+            print('test confusion matrix: ',
+                  confusion_matrix(y_true=np.argmax(self.test_activity_labels_tuning, 1),
+                                   y_pred=np.argmax(pred_output, 1)))
+
+            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels_tuning, 1),
+                                         y_pred=np.argmax(pred_output, 1),
+                                         save_addr=self.log_folder + '/score_plots.png')
+
+            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels_tuning, 1),
+                                         y_pred=np.argmax(pred_output, 1),
+                                         save_addr=self.log_folder + '/score_plots_2.png', fig_size=[20, 20])
+
+            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels_tuning, 1),
+                                         y_pred=np.argmax(pred_output, 1),
+                                         save_addr=self.log_folder + '/score_plots_3.png', fig_size=[5, 5])
+
+            self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels_tuning, 1),
+                                         y_pred=np.argmax(pred_output, 1),
+                                         save_addr=self.log_folder + '/score_plots_4.png', fig_size=[30, 30])
+
+            print('-------------------------------------')
+
+            clustering_executor = ClusteringExecutor()
+
+            for class_name in ['nordic_walking', 'running']:
+                print('<<<<<<<<<<<<<<<<<<<< ' + class_name + ' >>>>>>>>>>>>>>>>>>>>>')
+
+                num_clusters = 3
+                clustered_train_data, clustered_train_labels, train_cluster_nums, \
+                    clustered_test_data, clustered_test_labels, test_cluster_nums = \
+                    clustering_executor.get_clustered_data(class_name=class_name, num_segments=300,
+                                                           series_max_len=self.series_max_len, num_clusters=num_clusters
+                                                           )
+
+                for cluster_num in range(num_clusters):
+                    train_data = []
+                    train_labels = []
+
+                    counter = 0
+                    for data in clustered_train_data:
+                        if train_cluster_nums[counter] == cluster_num:
+                            train_data.append(data)
+                            train_labels.append(clustered_train_labels[counter])
+
+                        counter += 1
+
+                    test_data = []
+                    test_labels = []
+
+                    counter = 0
+                    for data in clustered_test_data:
+                        if test_cluster_nums[counter] == cluster_num:
+                            test_data.append(data)
+                            test_labels.append(clustered_test_labels[counter])
+
+                        counter += 1
+
+                    train_data = np.array(train_data)
+                    train_labels = np.array(train_labels)
+                    test_data = np.array(test_data)
+                    test_labels = np.array(test_labels)
+
+                    loss, accuracy, pred_output = sess.run(
+                        [self.cost, self.accuracy, self.prediction],
+                        feed_dict={self.input: train_data,
+                                   self.activity_label: train_labels})
+                    print('train loss on cluster ' + str(cluster_num) + ': ', loss)
+                    print('train accuracy on cluster ' + str(cluster_num) + ': ', accuracy)
+
+                    print(np.shape(pred_output))
+                    print(np.shape(self.test_activity_labels))
+
+                    print('train precision score: ', precision_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                                                     y_pred=np.argmax(pred_output, 1), average=None))
+                    print('train recall score: ', recall_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                                               y_pred=np.argmax(pred_output, 1), average=None))
+
+                    print('train f1 score: ', f1_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                                       y_pred=np.argmax(pred_output, 1), average=None))
+
+                    loss, accuracy, pred_output = sess.run(
+                        [self.cost, self.accuracy, self.prediction],
+                        feed_dict={self.input: test_data,
+                                   self.activity_label: test_labels})
+                    print('test loss on cluster ' + str(cluster_num) + ': ', loss)
+                    print('test accuracy on cluster ' + str(cluster_num) + ': ', accuracy)
+
+                    print(np.shape(pred_output))
+                    print(np.shape(self.test_activity_labels))
+
+                    print('test precision score: ', precision_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                                                    y_pred=np.argmax(pred_output, 1), average=None))
+                    print('test recall score: ', recall_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                                              y_pred=np.argmax(pred_output, 1), average=None))
+
+                    print('test f1 score: ', f1_score(y_true=np.argmax(self.test_activity_labels, 1),
+                                                      y_pred=np.argmax(pred_output, 1), average=None))
+
+                    print('=======================================')
 
     def __draw_pred_score_plots(self, y_true, y_pred, save_addr, fig_size=[8.27, 11.69]):
         precision = np.array([precision_score(y_true=y_true, y_pred=y_pred, average=None)])
