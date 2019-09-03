@@ -37,11 +37,25 @@ class ClusteringExecutor:
 
         self.plots_address = None
 
-        self.load_all_data()
+        # self.load_all_data()
+
+    def set_all_data(self, all_train_data, all_test_data, all_train_labels, all_test_labels):
+        self.all_train_data = all_train_data
+        self.all_train_labels = all_train_labels
+        self.all_test_data = all_test_data
+        self.all_test_labels = all_test_labels
 
     def load_all_data(self, series_max_len=360):
         self.all_train_data, self.all_test_data, self.all_train_labels, self.all_test_labels = \
             normalized_pamap2_rnn_input_train_test(split_series_max_len=series_max_len)  # pamap2 dataset
+
+    def is_data_loaded(self):
+        for data in [self.all_train_data, self.all_test_data,
+                     self.all_train_labels, self.all_test_labels]:
+            if data is None:
+                return False
+
+        return True
 
     def load_data_of_one_class(self, class_name='ironing', axis='x', series_max_len=360, num_segments=200):
         map_class = get_map_class()
@@ -153,6 +167,9 @@ class ClusteringExecutor:
         self.test_cluster_nums = self.get_hierarchical_cluster(num_cluster=num_clusters, matrix=table)
 
     def get_clustered_data(self, class_name='lying', num_segments=200, series_max_len=360, num_clusters=2):
+        if not self.is_data_loaded():
+            self.load_all_data(series_max_len=series_max_len)
+
         self.load_data_of_one_class(class_name=class_name, num_segments=num_segments, series_max_len=series_max_len)
         self.calculate_medoids_and_clusters(num_clusters=num_clusters)
 
