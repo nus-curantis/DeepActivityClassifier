@@ -52,8 +52,8 @@ tf.flags.DEFINE_integer('num_epochs', 150, 'number of training epochs')
 tf.flags.DEFINE_integer('batch_size', 64, 'batch size')
 
 # logging parameters
-tf.flags.DEFINE_string('log_folder', 'logs_classifier_new_co', 'tensorboard logs folder')
-tf.flags.DEFINE_string('model_path', './deep_model_weights', 'saved model folder')
+tf.flags.DEFINE_string('log_folder', 'logs_classifier_new_co_clustering', 'tensorboard logs folder')
+tf.flags.DEFINE_string('model_path', './deep_model_weights_colab_1', 'saved model folder')
 
 config = tf.flags.FLAGS
 
@@ -62,3 +62,4 @@ config = tf.flags.FLAGS
 
 model = CoTeaching(config=config)
 model.train_two_networks(forget_rate=0.05)
+model.test()
