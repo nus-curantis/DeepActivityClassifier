@@ -22,11 +22,11 @@
 # test:
 import numpy as np
 
-a = np.array([[[1, 2, 3], [3, 4, 5]], [[10, 20, 7], [30, 40, 7]]])
-# a = np.array([[1, 2, 3], [3, 4, 5]])
-print(a)
-print(a.shape)
-np.save('test1', a)
-b = np.load('test1.npy')
-print('----------')
-print(b)
+# a = np.array([[[1, 2, 3], [3, 4, 5]], [[10, 20, 7], [30, 40, 7]]])
+# # a = np.array([[1, 2, 3], [3, 4, 5]])
+# print(a)
+# print(a.shape)
+# np.save('test1', a)
+# b = np.load('test1.npy')
+# print('----------')
+# print(b)

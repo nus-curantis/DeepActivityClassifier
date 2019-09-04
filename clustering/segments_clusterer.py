@@ -31,6 +31,8 @@ class ClusteringExecutor:
         self.selected_test_data = []  # This array contains all 3 dimensions of the selected test data
         self.selected_train_labels = []  # label specifying type of activity not num of cluster data belongs to
         self.selected_test_labels = []
+        self.selected_train_data_indices = []
+        self.selected_test_data_indices = []
         self.train_cluster_nums = []
         self.test_cluster_nums = []
         self.class_name = None
@@ -79,6 +81,8 @@ class ClusteringExecutor:
         class_test_data = []
         class_train_labels = []
         class_test_labels = []
+        class_train_data_indices = []
+        class_test_data_indices = []
 
         counter = 0
         for segment in self.all_train_data:
@@ -86,6 +90,7 @@ class ClusteringExecutor:
                 class_train_segments.append(segment[:, axis_num])
                 class_train_data.append(segment[:, :])
                 class_train_labels.append(self.all_train_labels[counter])
+                class_test_data_indices.append(counter)
 
             if len(class_train_segments) > num_segments:
                 break
@@ -98,6 +103,7 @@ class ClusteringExecutor:
                 class_test_segments.append(segment[:, axis_num])
                 class_test_data.append(segment[:, :])
                 class_test_labels.append(self.all_test_labels[counter])
+                class_test_data_indices.append(counter)
 
             if len(class_test_segments) > num_segments:
                 break
@@ -114,6 +120,8 @@ class ClusteringExecutor:
         self.selected_test_data = np.array(class_test_data)
         self.selected_train_labels = np.array(class_train_labels)
         self.selected_test_labels = np.array(class_test_labels)
+        self.selected_train_data_indices = np.array(class_train_data_indices)
+        self.selected_test_data_indices = np.array(class_test_data_indices)
 
     def calculate_medoids_and_clusters(self, num_clusters=2):
         def distance(seg1, seg2, relax):

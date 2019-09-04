@@ -554,47 +554,47 @@ class DeepConvLSTMClassifier:
 
             print('--------------------------------')
 
-            print('testtttttt:')
-            debug_train_data = []
-            debug_train_labels = []
-
-            counter = 0
-            for data in self.train_inputs:
-                if np.argmax(self.train_activity_labels[counter]) == 5:
-                    debug_train_data.append(data)
-                    debug_train_labels.append(self.train_activity_labels[counter])
-
-                counter += 1
-
-                if len(debug_train_data) > 50:
-                    break
-
-            debug_train_data = np.array(debug_train_data)
-            debug_train_labels = np.array(debug_train_labels)
-
-            loss, accuracy, pred_output = sess.run(
-                [self.cost, self.accuracy, self.prediction],
-                feed_dict={self.input: debug_train_data,
-                           self.activity_label: debug_train_labels})
-
-            print('train samples of the debug batch: ', len(debug_train_data))
-            print('train loss on debug batch : ', loss)
-            print('train accuracy on debug batch : ', accuracy)
-
-            print('np.shape(pred_output)', np.shape(pred_output))
-            print('np.shape(train_labels)', np.shape(debug_train_labels))
-            print('np.argmax(train_labels, 1)', np.argmax(debug_train_labels, 1))
-            print('np.argmax(pred_output, 1)', np.argmax(pred_output, 1))
-
-            print('train precision score: ', precision_score(y_true=np.argmax(debug_train_labels, 1),
-                                                             y_pred=np.argmax(pred_output, 1), average=None))
-            print('train recall score: ', recall_score(y_true=np.argmax(debug_train_labels, 1),
-                                                       y_pred=np.argmax(pred_output, 1), average=None))
-
-            print('train f1 score: ', f1_score(y_true=np.argmax(debug_train_labels, 1),
-                                               y_pred=np.argmax(pred_output, 1), average=None))
-
-            print('----------------testtttttt:')
+            # print('testtttttt:')
+            # debug_train_data = []
+            # debug_train_labels = []
+            #
+            # counter = 0
+            # for data in self.train_inputs:
+            #     if np.argmax(self.train_activity_labels[counter]) == 5:
+            #         debug_train_data.append(data)
+            #         debug_train_labels.append(self.train_activity_labels[counter])
+            #
+            #     counter += 1
+            #
+            #     if len(debug_train_data) > 50:
+            #         break
+            #
+            # debug_train_data = np.array(debug_train_data)
+            # debug_train_labels = np.array(debug_train_labels)
+            #
+            # loss, accuracy, pred_output = sess.run(
+            #     [self.cost, self.accuracy, self.prediction],
+            #     feed_dict={self.input: debug_train_data,
+            #                self.activity_label: debug_train_labels})
+            #
+            # print('train samples of the debug batch: ', len(debug_train_data))
+            # print('train loss on debug batch : ', loss)
+            # print('train accuracy on debug batch : ', accuracy)
+            #
+            # print('np.shape(pred_output)', np.shape(pred_output))
+            # print('np.shape(train_labels)', np.shape(debug_train_labels))
+            # print('np.argmax(train_labels, 1)', np.argmax(debug_train_labels, 1))
+            # print('np.argmax(pred_output, 1)', np.argmax(pred_output, 1))
+            #
+            # print('train precision score: ', precision_score(y_true=np.argmax(debug_train_labels, 1),
+            #                                                  y_pred=np.argmax(pred_output, 1), average=None))
+            # print('train recall score: ', recall_score(y_true=np.argmax(debug_train_labels, 1),
+            #                                            y_pred=np.argmax(pred_output, 1), average=None))
+            #
+            # print('train f1 score: ', f1_score(y_true=np.argmax(debug_train_labels, 1),
+            #                                    y_pred=np.argmax(pred_output, 1), average=None))
+            #
+            # print('----------------testtttttt:')
 
             clustering_executor = ClusteringExecutor()
             clustering_executor.set_all_data(
@@ -604,103 +604,192 @@ class DeepConvLSTMClassifier:
                 all_test_labels=self.test_activity_labels
             )
 
+            # for class_name in ['nordic_walking', 'running']:
+            #     print('<<<<<<<<<<<<<<<<<<<< ' + class_name + ' >>>>>>>>>>>>>>>>>>>>>')
+            #
+            #     num_clusters = 1  # 3
+            #     num_segments = 3  # 300
+            #     clustered_train_data, clustered_train_labels, train_cluster_nums, \
+            #         clustered_test_data, clustered_test_labels, test_cluster_nums = \
+            #         clustering_executor.get_clustered_data(class_name=class_name, num_segments=num_segments,
+            #                                                series_max_len=self.series_max_len, num_clusters=num_clusters
+            #                                                )
+            #
+            #     print('debug1')
+            #     print(clustered_train_data.shape)
+            #     print(clustered_train_labels.shape)
+            #     print(train_cluster_nums)
+            #     print(clustered_test_data.shape)
+            #     print(clustered_test_labels.shape)
+            #     print(train_cluster_nums)
+            #     print('X debug1')
+            #
+            #     for cluster_num in range(num_clusters):
+            #         train_data = []
+            #         train_labels = []
+            #
+            #         counter = 0
+            #         for data in clustered_train_data:
+            #             if train_cluster_nums[counter] == cluster_num:
+            #                 train_data.append(data)
+            #                 train_labels.append(clustered_train_labels[counter])
+            #
+            #             counter += 1
+            #
+            #         test_data = []
+            #         test_labels = []
+            #
+            #         counter = 0
+            #         for data in clustered_test_data:
+            #             if test_cluster_nums[counter] == cluster_num:
+            #                 test_data.append(data)
+            #                 test_labels.append(clustered_test_labels[counter])
+            #
+            #             counter += 1
+            #
+            #         train_data = np.array(train_data)
+            #         train_labels = np.array(train_labels)
+            #         test_data = np.array(test_data)
+            #         test_labels = np.array(test_labels)
+            #
+            #         print('debug2')
+            #         print(train_data.shape)
+            #         print(train_labels.shape)
+            #         print(test_data.shape)
+            #         print(test_labels.shape)
+            #         print('X debug2')
+            #
+            #         loss, accuracy, pred_output = sess.run(
+            #             [self.cost, self.accuracy, self.prediction],
+            #             feed_dict={self.input: train_data,
+            #                        self.activity_label: train_labels})
+            #
+            #         print('train samples of the cluster: ', len(train_data))
+            #         print('train loss on cluster ' + str(cluster_num) + ': ', loss)
+            #         print('train accuracy on cluster ' + str(cluster_num) + ': ', accuracy)
+            #
+            #         print('np.shape(pred_output)', np.shape(pred_output))
+            #         print('np.shape(train_labels)', np.shape(train_labels))
+            #         print('np.argmax(train_labels, 1)', np.argmax(train_labels, 1))
+            #         print('np.argmax(pred_output, 1)', np.argmax(pred_output, 1))
+            #
+            #         print('train precision score: ', precision_score(y_true=np.argmax(train_labels, 1),
+            #                                                          y_pred=np.argmax(pred_output, 1), average=None))
+            #         print('train recall score: ', recall_score(y_true=np.argmax(train_labels, 1),
+            #                                                    y_pred=np.argmax(pred_output, 1), average=None))
+            #
+            #         print('train f1 score: ', f1_score(y_true=np.argmax(train_labels, 1),
+            #                                            y_pred=np.argmax(pred_output, 1), average=None))
+            #
+            #         loss, accuracy, pred_output = sess.run(
+            #             [self.cost, self.accuracy, self.prediction],
+            #             feed_dict={self.input: test_data,
+            #                        self.activity_label: test_labels})
+            #         print('test samples of the cluster: ', len(test_data))
+            #         print('test loss on cluster ' + str(cluster_num) + ': ', loss)
+            #         print('test accuracy on cluster ' + str(cluster_num) + ': ', accuracy)
+            #
+            #         print('np.shape(pred_output)', np.shape(pred_output))
+            #         print('np.shape(test_labels)', np.shape(test_labels))
+            #         print('np.argmax(test_labels, 1)', np.argmax(test_labels, 1))
+            #         print('np.argmax(pred_output, 1)', np.argmax(pred_output, 1))
+            #
+            #         print('test precision score: ', precision_score(y_true=np.argmax(test_labels, 1),
+            #                                                         y_pred=np.argmax(pred_output, 1), average=None))
+            #         print('test recall score: ', recall_score(y_true=np.argmax(test_labels, 1),
+            #                                                   y_pred=np.argmax(pred_output, 1), average=None))
+            #
+            #         print('test f1 score: ', f1_score(y_true=np.argmax(test_labels, 1),
+            #                                           y_pred=np.argmax(pred_output, 1), average=None))
+            #
+            #         print('=======================================')
+
+            # TOF test!
             for class_name in ['nordic_walking', 'running']:
                 print('<<<<<<<<<<<<<<<<<<<< ' + class_name + ' >>>>>>>>>>>>>>>>>>>>>')
 
                 num_clusters = 1  # 3
-                num_segments = 3  # 300
+                num_segments = 50  # 300
                 clustered_train_data, clustered_train_labels, train_cluster_nums, \
                     clustered_test_data, clustered_test_labels, test_cluster_nums = \
                     clustering_executor.get_clustered_data(class_name=class_name, num_segments=num_segments,
                                                            series_max_len=self.series_max_len, num_clusters=num_clusters
                                                            )
 
-                print('debug1')
-                print(clustered_train_data.shape)
-                print(clustered_train_labels.shape)
-                print(train_cluster_nums)
-                print(clustered_test_data.shape)
-                print(clustered_test_labels.shape)
-                print(train_cluster_nums)
-                print('X debug1')
+                clustered_train_data_indices = clustering_executor.selected_train_data_indices
+                clustered_test_data_indices = clustering_executor.selected_test_data_indices
+
+                pred_output_train = sess.run(
+                    [self.prediction],
+                    feed_dict={self.input: self.train_inputs,
+                               self.activity_label: self.train_activity_labels})
+
+                pred_output_test = sess.run(
+                    [self.prediction],
+                    feed_dict={self.input: self.test_inputs,
+                               self.activity_label: self.test_activity_labels})
 
                 for cluster_num in range(num_clusters):
-                    train_data = []
-                    train_labels = []
+                    train_data_indices = []
 
                     counter = 0
-                    for data in clustered_train_data:
+                    for _ in clustered_train_data:
                         if train_cluster_nums[counter] == cluster_num:
-                            train_data.append(data)
-                            train_labels.append(clustered_train_labels[counter])
+                            train_data_indices.append(clustered_train_data_indices[counter])
 
                         counter += 1
 
-                    test_data = []
-                    test_labels = []
+                    test_data_indices = []
 
                     counter = 0
-                    for data in clustered_test_data:
+                    for _ in clustered_test_data:
                         if test_cluster_nums[counter] == cluster_num:
-                            test_data.append(data)
-                            test_labels.append(clustered_test_labels[counter])
+                            test_data_indices.append(clustered_test_data_indices[counter])
 
                         counter += 1
 
-                    train_data = np.array(train_data)
-                    train_labels = np.array(train_labels)
-                    test_data = np.array(test_data)
-                    test_labels = np.array(test_labels)
+                    cluster_pred_output_train = np.array([pred_output_train[i] for i in train_data_indices])
+                    cluster_pred_output_test = np.array([pred_output_test[i] for i in test_data_indices])
+                    cluster_labels_train = np.array([self.train_activity_labels[i] for i in train_data_indices])
+                    cluster_labels_test = np.array([self.test_activity_labels[i] for i in test_data_indices])
 
-                    print('debug2')
-                    print(train_data.shape)
-                    print(train_labels.shape)
-                    print(test_data.shape)
-                    print(test_labels.shape)
-                    print('X debug2')
+                    train_acc = np.mean(
+                        np.cast(np.equal(
+                            np.argmax(cluster_pred_output_train, 1), np.argmax(cluster_labels_train, 1)
+                        ), np.float)
+                    )
 
-                    loss, accuracy, pred_output = sess.run(
-                        [self.cost, self.accuracy, self.prediction],
-                        feed_dict={self.input: train_data,
-                                   self.activity_label: train_labels})
+                    test_acc = np.mean(
+                        np.cast(np.equal(
+                            np.argmax(cluster_pred_output_test, 1), np.argmax(cluster_labels_test, 1)
+                        ), np.float)
+                    )
 
-                    print('train samples of the cluster: ', len(train_data))
-                    print('train loss on cluster ' + str(cluster_num) + ': ', loss)
-                    print('train accuracy on cluster ' + str(cluster_num) + ': ', accuracy)
+                    print('train samples of the cluster: ', len(cluster_labels_train))
+                    print('train accuracy on cluster ' + str(cluster_num) + ': ', train_acc)
+                    print('test accuracy on cluster ' + str(cluster_num) + ': ', test_acc)
 
-                    print('np.shape(pred_output)', np.shape(pred_output))
-                    print('np.shape(train_labels)', np.shape(train_labels))
-                    print('np.argmax(train_labels, 1)', np.argmax(train_labels, 1))
-                    print('np.argmax(pred_output, 1)', np.argmax(pred_output, 1))
+                    print('train precision score: ', precision_score(y_true=np.argmax(cluster_labels_train, 1),
+                                                                     y_pred=np.argmax(cluster_pred_output_train, 1),
+                                                                     average=None))
+                    print('train recall score: ', recall_score(y_true=np.argmax(cluster_labels_train, 1),
+                                                               y_pred=np.argmax(cluster_pred_output_train, 1),
+                                                               average=None))
 
-                    print('train precision score: ', precision_score(y_true=np.argmax(train_labels, 1),
-                                                                     y_pred=np.argmax(pred_output, 1), average=None))
-                    print('train recall score: ', recall_score(y_true=np.argmax(train_labels, 1),
-                                                               y_pred=np.argmax(pred_output, 1), average=None))
+                    print('train f1 score: ', f1_score(y_true=np.argmax(cluster_labels_train, 1),
+                                                       y_pred=np.argmax(cluster_pred_output_train, 1),
+                                                       average=None))
 
-                    print('train f1 score: ', f1_score(y_true=np.argmax(train_labels, 1),
-                                                       y_pred=np.argmax(pred_output, 1), average=None))
+                    print('test samples of the cluster: ', len(cluster_labels_test))
+                    print('test accuracy on cluster ' + str(cluster_num) + ': ', test_acc)
 
-                    loss, accuracy, pred_output = sess.run(
-                        [self.cost, self.accuracy, self.prediction],
-                        feed_dict={self.input: test_data,
-                                   self.activity_label: test_labels})
-                    print('test samples of the cluster: ', len(test_data))
-                    print('test loss on cluster ' + str(cluster_num) + ': ', loss)
-                    print('test accuracy on cluster ' + str(cluster_num) + ': ', accuracy)
+                    print('test precision score: ', precision_score(y_true=np.argmax(cluster_labels_test, 1),
+                                                                    y_pred=np.argmax(pred_output_test, 1), average=None))
+                    print('test recall score: ', recall_score(y_true=np.argmax(cluster_labels_test, 1),
+                                                              y_pred=np.argmax(pred_output_test, 1), average=None))
 
-                    print('np.shape(pred_output)', np.shape(pred_output))
-                    print('np.shape(test_labels)', np.shape(test_labels))
-                    print('np.argmax(test_labels, 1)', np.argmax(test_labels, 1))
-                    print('np.argmax(pred_output, 1)', np.argmax(pred_output, 1))
-
-                    print('test precision score: ', precision_score(y_true=np.argmax(test_labels, 1),
-                                                                    y_pred=np.argmax(pred_output, 1), average=None))
-                    print('test recall score: ', recall_score(y_true=np.argmax(test_labels, 1),
-                                                              y_pred=np.argmax(pred_output, 1), average=None))
-
-                    print('test f1 score: ', f1_score(y_true=np.argmax(test_labels, 1),
-                                                      y_pred=np.argmax(pred_output, 1), average=None))
+                    print('test f1 score: ', f1_score(y_true=np.argmax(cluster_labels_test, 1),
+                                                      y_pred=np.argmax(pred_output_test, 1), average=None))
 
                     print('=======================================')
 
