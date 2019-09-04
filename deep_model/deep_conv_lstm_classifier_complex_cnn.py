@@ -565,12 +565,22 @@ class DeepConvLSTMClassifier:
             for class_name in ['nordic_walking', 'running']:
                 print('<<<<<<<<<<<<<<<<<<<< ' + class_name + ' >>>>>>>>>>>>>>>>>>>>>')
 
-                num_clusters = 3
+                num_clusters = 1  # 3
+                num_segments = 3  # 300
                 clustered_train_data, clustered_train_labels, train_cluster_nums, \
                     clustered_test_data, clustered_test_labels, test_cluster_nums = \
-                    clustering_executor.get_clustered_data(class_name=class_name, num_segments=300,
+                    clustering_executor.get_clustered_data(class_name=class_name, num_segments=num_segments,
                                                            series_max_len=self.series_max_len, num_clusters=num_clusters
                                                            )
+
+                print('debug1')
+                print(clustered_train_data.shape)
+                print(clustered_train_labels.shape)
+                print(train_cluster_nums)
+                print(clustered_test_data.shape)
+                print(clustered_test_labels.shape)
+                print(train_cluster_nums)
+                print('X debug1')
 
                 for cluster_num in range(num_clusters):
                     train_data = []
@@ -600,6 +610,13 @@ class DeepConvLSTMClassifier:
                     test_data = np.array(test_data)
                     test_labels = np.array(test_labels)
 
+                    print('debug2')
+                    print(train_data.shape)
+                    print(train_labels.shape)
+                    print(test_data.shape)
+                    print(test_labels.shape)
+                    print('X debug2')
+
                     loss, accuracy, pred_output = sess.run(
                         [self.cost, self.accuracy, self.prediction],
                         feed_dict={self.input: train_data,
@@ -611,6 +628,8 @@ class DeepConvLSTMClassifier:
 
                     print('np.shape(pred_output)', np.shape(pred_output))
                     print('np.shape(train_labels)', np.shape(train_labels))
+                    print('np.argmax(train_labels, 1)', np.argmax(train_labels, 1))
+                    print('np.argmax(pred_output, 1)', np.argmax(pred_output, 1))
 
                     print('train precision score: ', precision_score(y_true=np.argmax(train_labels, 1),
                                                                      y_pred=np.argmax(pred_output, 1), average=None))
@@ -630,6 +649,8 @@ class DeepConvLSTMClassifier:
 
                     print('np.shape(pred_output)', np.shape(pred_output))
                     print('np.shape(test_labels)', np.shape(test_labels))
+                    print('np.argmax(test_labels, 1)', np.argmax(test_labels, 1))
+                    print('np.argmax(pred_output, 1)', np.argmax(pred_output, 1))
 
                     print('test precision score: ', precision_score(y_true=np.argmax(test_labels, 1),
                                                                     y_pred=np.argmax(pred_output, 1), average=None))
