@@ -604,36 +604,39 @@ class DeepConvLSTMClassifier:
                         [self.cost, self.accuracy, self.prediction],
                         feed_dict={self.input: train_data,
                                    self.activity_label: train_labels})
+
+                    print('train samples of the cluster: ', len(train_data))
                     print('train loss on cluster ' + str(cluster_num) + ': ', loss)
                     print('train accuracy on cluster ' + str(cluster_num) + ': ', accuracy)
 
-                    print(np.shape(pred_output))
-                    print(np.shape(self.test_activity_labels))
+                    print('np.shape(pred_output)', np.shape(pred_output))
+                    print('np.shape(train_labels)', np.shape(train_labels))
 
-                    print('train precision score: ', precision_score(y_true=np.argmax(self.test_activity_labels, 1),
+                    print('train precision score: ', precision_score(y_true=np.argmax(train_labels, 1),
                                                                      y_pred=np.argmax(pred_output, 1), average=None))
-                    print('train recall score: ', recall_score(y_true=np.argmax(self.test_activity_labels, 1),
+                    print('train recall score: ', recall_score(y_true=np.argmax(train_labels, 1),
                                                                y_pred=np.argmax(pred_output, 1), average=None))
 
-                    print('train f1 score: ', f1_score(y_true=np.argmax(self.test_activity_labels, 1),
+                    print('train f1 score: ', f1_score(y_true=np.argmax(train_labels, 1),
                                                        y_pred=np.argmax(pred_output, 1), average=None))
 
                     loss, accuracy, pred_output = sess.run(
                         [self.cost, self.accuracy, self.prediction],
                         feed_dict={self.input: test_data,
                                    self.activity_label: test_labels})
+                    print('test samples of the cluster: ', len(test_data))
                     print('test loss on cluster ' + str(cluster_num) + ': ', loss)
                     print('test accuracy on cluster ' + str(cluster_num) + ': ', accuracy)
 
-                    print(np.shape(pred_output))
-                    print(np.shape(self.test_activity_labels))
+                    print('np.shape(pred_output)', np.shape(pred_output))
+                    print('np.shape(test_labels)', np.shape(test_labels))
 
-                    print('test precision score: ', precision_score(y_true=np.argmax(self.test_activity_labels, 1),
+                    print('test precision score: ', precision_score(y_true=np.argmax(test_labels, 1),
                                                                     y_pred=np.argmax(pred_output, 1), average=None))
-                    print('test recall score: ', recall_score(y_true=np.argmax(self.test_activity_labels, 1),
+                    print('test recall score: ', recall_score(y_true=np.argmax(test_labels, 1),
                                                               y_pred=np.argmax(pred_output, 1), average=None))
 
-                    print('test f1 score: ', f1_score(y_true=np.argmax(self.test_activity_labels, 1),
+                    print('test f1 score: ', f1_score(y_true=np.argmax(test_labels, 1),
                                                       y_pred=np.argmax(pred_output, 1), average=None))
 
                     print('=======================================')
