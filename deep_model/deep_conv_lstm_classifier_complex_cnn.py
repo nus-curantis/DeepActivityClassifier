@@ -554,6 +554,48 @@ class DeepConvLSTMClassifier:
 
             print('--------------------------------')
 
+            print('testtttttt:')
+            debug_train_data = []
+            debug_train_labels = []
+
+            counter = 0
+            for data in self.train_inputs:
+                if np.argmax(self.train_activity_labels[counter]) == 5:
+                    debug_train_data.append(data)
+                    debug_train_labels.append(self.train_activity_labels[counter])
+
+                counter += 1
+
+                if len(debug_train_data) > 50:
+                    break
+
+            debug_train_data = np.array(debug_train_data)
+            debug_train_labels = np.array(debug_train_labels)
+
+            loss, accuracy, pred_output = sess.run(
+                [self.cost, self.accuracy, self.prediction],
+                feed_dict={self.input: debug_train_data,
+                           self.activity_label: debug_train_labels})
+
+            print('train samples of the debug batch: ', len(debug_train_data))
+            print('train loss on debug batch : ', loss)
+            print('train accuracy on debug batch : ', accuracy)
+
+            print('np.shape(pred_output)', np.shape(pred_output))
+            print('np.shape(train_labels)', np.shape(debug_train_labels))
+            print('np.argmax(train_labels, 1)', np.argmax(debug_train_labels, 1))
+            print('np.argmax(pred_output, 1)', np.argmax(pred_output, 1))
+
+            print('train precision score: ', precision_score(y_true=np.argmax(debug_train_labels, 1),
+                                                             y_pred=np.argmax(pred_output, 1), average=None))
+            print('train recall score: ', recall_score(y_true=np.argmax(debug_train_labels, 1),
+                                                       y_pred=np.argmax(pred_output, 1), average=None))
+
+            print('train f1 score: ', f1_score(y_true=np.argmax(debug_train_labels, 1),
+                                               y_pred=np.argmax(pred_output, 1), average=None))
+
+            print('----------------testtttttt:')
+
             clustering_executor = ClusteringExecutor()
             clustering_executor.set_all_data(
                 all_train_data=self.train_inputs,
