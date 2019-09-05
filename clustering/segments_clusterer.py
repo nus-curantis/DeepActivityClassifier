@@ -90,7 +90,7 @@ class ClusteringExecutor:
                 class_train_segments.append(segment[:, axis_num])
                 class_train_data.append(segment[:, :])
                 class_train_labels.append(self.all_train_labels[counter])
-                class_test_data_indices.append(counter)
+                class_train_data_indices.append(counter)
 
             if len(class_train_segments) > num_segments:
                 break
@@ -113,6 +113,10 @@ class ClusteringExecutor:
         # print(np.array(class_train_segments).shape)
         # print(np.array(class_test_segments).shape)
         # print(class_train_segments[0])
+
+        # print('khers')
+        # print(len(class_train_data_indices))
+        # print(len(class_test_data_indices))
 
         self.selected_train_segments = np.array(class_train_segments)
         self.selected_test_segments = np.array(class_test_segments)
@@ -226,7 +230,7 @@ class ClusteringExecutor:
         return cluster.fit_predict(matrix)
 
 
-# c = ClusteringExecutor()
+c = ClusteringExecutor()
 # for class_name in ['lying',
 #                    'sitting',
 #                    'standing',
@@ -237,3 +241,5 @@ class ClusteringExecutor:
 #                    'no_activity']:
 #     c.load_data_of_one_class(class_name=class_name)
 #     c.calculate_medoids_and_clusters()
+
+c.load_data_of_one_class()

@@ -4,8 +4,6 @@
     <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clustering/segments_clusterer.py" beforeDir="false" afterPath="$PROJECT_DIR$/clustering/segments_clusterer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/data_loader.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/clustering/segments_clusterer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1998">
-              <caret line="123" column="61" selection-start-line="123" selection-start-column="61" selection-end-line="123" selection-end-column="61" />
+            <state relative-caret-position="673">
+              <caret line="118" column="29" lean-forward="true" selection-start-line="116" selection-start-column="24" selection-end-line="118" selection-end-column="29" />
               <folding>
                 <element signature="e#142#155#0" expanded="true" />
               </folding>
@@ -31,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/utils/data_loader.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="522">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -40,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/deep_model/deep_colab_conv_lstm_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="6120">
-              <caret line="347" column="75" lean-forward="true" selection-start-line="347" selection-start-column="75" selection-end-line="347" selection-end-column="75" />
+              <caret line="347" column="75" selection-start-line="347" selection-start-column="75" selection-end-line="347" selection-end-column="75" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -52,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/deep_model/main_colab_classifiers_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="900">
-              <caret line="53" column="20" lean-forward="true" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
+              <caret line="53" column="20" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -69,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="676">
-              <caret line="792" selection-start-line="792" selection-end-line="792" />
+            <state relative-caret-position="12654">
+              <caret line="719" column="73" selection-start-line="719" selection-start-column="73" selection-end-line="719" selection-end-column="73" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -85,7 +83,7 @@
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_personalizer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="4086">
-              <caret line="242" lean-forward="true" selection-start-line="242" selection-end-line="242" />
+              <caret line="242" selection-start-line="242" selection-end-line="242" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -219,9 +217,9 @@
         <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_personalize.py" />
         <option value="$PROJECT_DIR$/deep_model/main_colab_classifiers_complex_cnn.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" />
-        <option value="$PROJECT_DIR$/clustering/segments_clusterer.py" />
         <option value="$PROJECT_DIR$/utils/data_loader.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py" />
+        <option value="$PROJECT_DIR$/clustering/segments_clusterer.py" />
       </list>
     </option>
   </component>
@@ -294,7 +292,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.data_loader">
+  <component name="RunManager" selected="Python.segments_clusterer">
     <configuration name="data_loader" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DeepActivityClassifier" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -401,16 +399,16 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.data_loader" />
       <item itemvalue="Python.data_to_rnn_input_transformer" />
       <item itemvalue="Python.pamap2_reader" />
       <item itemvalue="Python.segments_clusterer" />
       <item itemvalue="Python.wharf_reader" />
-      <item itemvalue="Python.data_loader" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.data_loader" />
         <item itemvalue="Python.segments_clusterer" />
+        <item itemvalue="Python.data_loader" />
         <item itemvalue="Python.pamap2_reader" />
         <item itemvalue="Python.data_to_rnn_input_transformer" />
         <item itemvalue="Python.wharf_reader" />
@@ -789,7 +787,7 @@
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.28360656" />
+      <window_info content_ui="combo" id="Project" order="2" weight="0.28360656" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.25161988" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3725702" />
@@ -811,7 +809,7 @@
       <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.28360656" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.25161988" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3725702" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3725702" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.14794816" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1074,18 +1072,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/clustering/segments_clusterer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1998">
-          <caret line="123" column="61" selection-start-line="123" selection-start-column="61" selection-end-line="123" selection-end-column="61" />
+        <state relative-caret-position="673">
+          <caret line="118" column="29" lean-forward="true" selection-start-line="116" selection-start-column="24" selection-end-line="118" selection-end-column="29" />
           <folding>
             <element signature="e#142#155#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/utils/data_loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_colab_conv_lstm_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6120">
-          <caret line="347" column="75" lean-forward="true" selection-start-line="347" selection-start-column="75" selection-end-line="347" selection-end-column="75" />
+          <caret line="347" column="75" selection-start-line="347" selection-start-column="75" selection-end-line="347" selection-end-column="75" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
@@ -1095,7 +1100,7 @@
     <entry file="file://$PROJECT_DIR$/deep_model/main_colab_classifiers_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
-          <caret line="53" column="20" lean-forward="true" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
+          <caret line="53" column="20" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -1109,10 +1114,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12654">
+          <caret line="719" column="73" selection-start-line="719" selection-start-column="73" selection-end-line="719" selection-end-column="73" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_personalizer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4086">
-          <caret line="242" lean-forward="true" selection-start-line="242" selection-end-line="242" />
+          <caret line="242" selection-start-line="242" selection-end-line="242" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
@@ -1139,23 +1154,6 @@
           <caret line="263" column="67" selection-start-line="261" selection-start-column="4" selection-end-line="263" selection-end-column="67" />
           <folding>
             <element signature="e#308#326#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/data_loader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="792" selection-start-line="792" selection-end-line="792" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
