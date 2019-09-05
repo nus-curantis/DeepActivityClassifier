@@ -4,7 +4,7 @@ from tensorflow.contrib.layers.python.layers import batch_norm
 
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
+from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix, accuracy_score
 
 from preprocessing.time_series_reader_and_visualizer import get_our_dataset_labels_names
 from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_test, normalized_rnn_input_train_test
@@ -729,7 +729,7 @@ class DeepConvLSTMClassifier:
                     feed_dict={self.input: self.test_inputs,
                                self.activity_label: self.test_activity_labels})
 
-                pred_output_train = np.reshape(pred_output_test, newshape=[-1, np.array(pred_output_train).shape[-1]])
+                pred_output_train = np.reshape(pred_output_train, newshape=[-1, np.array(pred_output_train).shape[-1]])
                 pred_output_test = np.reshape(pred_output_test, newshape=[-1, np.array(pred_output_test).shape[-1]])
 
                 for cluster_num in range(num_clusters):
@@ -763,17 +763,23 @@ class DeepConvLSTMClassifier:
                     cluster_labels_train = np.array([self.train_activity_labels[i] for i in train_data_indices])
                     cluster_labels_test = np.array([self.test_activity_labels[i] for i in test_data_indices])
 
-                    train_acc = np.mean(
-                        np.cast(np.equal(
-                            np.argmax(cluster_pred_output_train, 1), np.argmax(cluster_labels_train, 1)
-                        ), np.float)
-                    )
+                    # train_acc = np.mean(
+                    #     np.cast(np.equal(
+                    #         np.argmax(cluster_pred_output_train, 1), np.argmax(cluster_labels_train, 1)
+                    #     ), np.float)
+                    # )
+                    #
+                    # test_acc = np.mean(
+                    #     np.cast(np.equal(
+                    #         np.argmax(cluster_pred_output_test, 1), np.argmax(cluster_labels_test, 1)
+                    #     ), np.float)
+                    # )
 
-                    test_acc = np.mean(
-                        np.cast(np.equal(
-                            np.argmax(cluster_pred_output_test, 1), np.argmax(cluster_labels_test, 1)
-                        ), np.float)
-                    )
+                    train_acc = accuracy_score(y_true=np.argmax(cluster_labels_train, 1),
+                                               y_pred=np.argmax(cluster_pred_output_train, 1))
+
+                    test_acc = accuracy_score(y_true=np.argmax(cluster_labels_test, 1),
+                                              y_pred=np.argmax(cluster_pred_output_test, 1))
 
                     print('train samples of the cluster: ', len(cluster_labels_train))
                     print('train accuracy on cluster ' + str(cluster_num) + ': ', train_acc)

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,8 +61,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="750" column="63" lean-forward="true" selection-start-line="750" selection-start-column="63" selection-end-line="750" selection-end-column="63" />
+            <state relative-caret-position="507">
+              <caret line="781" column="87" selection-start-line="781" selection-start-column="87" selection-end-line="781" selection-end-column="87" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -416,20 +417,6 @@
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
     </task>
-    <task id="LOCAL-00159" summary="CoTeaching implementation">
-      <created>1567004137061</created>
-      <option name="number" value="00159" />
-      <option name="presentableId" value="LOCAL-00159" />
-      <option name="project" value="LOCAL" />
-      <updated>1567004137061</updated>
-    </task>
-    <task id="LOCAL-00160" summary="CoTeaching implementation">
-      <created>1567004641877</created>
-      <option name="number" value="00160" />
-      <option name="presentableId" value="LOCAL-00160" />
-      <option name="project" value="LOCAL" />
-      <updated>1567004641877</updated>
-    </task>
     <task id="LOCAL-00161" summary="CoTeaching implementation">
       <created>1567004958870</created>
       <option name="number" value="00161" />
@@ -759,7 +746,21 @@
       <option name="project" value="LOCAL" />
       <updated>1567679685855</updated>
     </task>
-    <option name="localTasksCounter" value="208" />
+    <task id="LOCAL-00208" summary="model performance analysis on clustered data - debug">
+      <created>1567680146187</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
+      <option name="project" value="LOCAL" />
+      <updated>1567680146187</updated>
+    </task>
+    <task id="LOCAL-00209" summary="model performance analysis on clustered data - debug">
+      <created>1567680420474</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
+      <option name="project" value="LOCAL" />
+      <updated>1567680420475</updated>
+    </task>
+    <option name="localTasksCounter" value="210" />
     <servers />
   </component>
   <component name="TodoView">
@@ -772,7 +773,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
@@ -861,7 +862,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/tensorflow/python/ops/embedding_ops.py" />
     <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer__chest_data.py" />
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/sklearn/utils/__init__.py" />
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/tensorflow/python/layers/convolutional.py" />
@@ -1138,10 +1138,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/anaconda3/lib/python3.7/site-packages/sklearn/metrics/classification.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="114" column="4" selection-start-line="114" selection-start-column="4" selection-end-line="114" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="750" column="63" lean-forward="true" selection-start-line="750" selection-start-column="63" selection-end-line="750" selection-end-column="63" />
+        <state relative-caret-position="507">
+          <caret line="781" column="87" selection-start-line="781" selection-start-column="87" selection-end-line="781" selection-end-column="87" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
