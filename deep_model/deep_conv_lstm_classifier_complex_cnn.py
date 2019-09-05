@@ -709,7 +709,7 @@ class DeepConvLSTMClassifier:
                 print('<<<<<<<<<<<<<<<<<<<< ' + class_name + ' >>>>>>>>>>>>>>>>>>>>>')
 
                 num_clusters = 1  # 3
-                num_segments = 50  # 300
+                num_segments = 5  # 300
                 clustered_train_data, clustered_train_labels, train_cluster_nums, \
                     clustered_test_data, clustered_test_labels, test_cluster_nums = \
                     clustering_executor.get_clustered_data(class_name=class_name, num_segments=num_segments,
@@ -747,6 +747,13 @@ class DeepConvLSTMClassifier:
                             test_data_indices.append(clustered_test_data_indices[counter])
 
                         counter += 1
+
+                    print('np.shape(pred_output_train)', np.shape(pred_output_train))
+                    print('np.shape(pred_output_test)', np.shape(pred_output_test))
+                    print('np.shape(self.train_activity_labels)', np.shape(self.train_activity_labels))
+                    print('np.shape(self.test_activity_labels)', np.shape(self.test_activity_labels))
+                    print('np.shape(train_data_indices)', np.shape(train_data_indices))
+                    print('np.shape(test_data_indices)', np.shape(test_data_indices))
 
                     cluster_pred_output_train = np.array([pred_output_train[i] for i in train_data_indices])
                     cluster_pred_output_test = np.array([pred_output_test[i] for i in test_data_indices])
