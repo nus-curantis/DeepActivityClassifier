@@ -729,6 +729,9 @@ class DeepConvLSTMClassifier:
                     feed_dict={self.input: self.test_inputs,
                                self.activity_label: self.test_activity_labels})
 
+                pred_output_train = np.reshape(pred_output_test, newshape=[-1, pred_output_train.shape[-1]])
+                pred_output_test = np.reshape(pred_output_test, newshape=[-1, pred_output_test.shape[-1]])
+
                 for cluster_num in range(num_clusters):
                     train_data_indices = []
 
