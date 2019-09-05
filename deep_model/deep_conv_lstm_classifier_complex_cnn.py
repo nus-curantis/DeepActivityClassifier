@@ -704,7 +704,6 @@ class DeepConvLSTMClassifier:
             #
             #         print('=======================================')
 
-            # TOF test!
             for class_name in ['nordic_walking', 'running']:
                 print('<<<<<<<<<<<<<<<<<<<< ' + class_name + ' >>>>>>>>>>>>>>>>>>>>>')
 
