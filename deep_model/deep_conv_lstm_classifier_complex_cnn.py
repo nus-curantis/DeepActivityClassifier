@@ -800,12 +800,14 @@ class DeepConvLSTMClassifier:
                     print('test accuracy on cluster ' + str(cluster_num) + ': ', test_acc)
 
                     print('test precision score: ', precision_score(y_true=np.argmax(cluster_labels_test, 1),
-                                                                    y_pred=np.argmax(pred_output_test, 1), average=None))
+                                                                    y_pred=np.argmax(cluster_pred_output_test, 1),
+                                                                    average=None))
                     print('test recall score: ', recall_score(y_true=np.argmax(cluster_labels_test, 1),
-                                                              y_pred=np.argmax(pred_output_test, 1), average=None))
+                                                              y_pred=np.argmax(cluster_pred_output_test, 1),
+                                                              average=None))
 
                     print('test f1 score: ', f1_score(y_true=np.argmax(cluster_labels_test, 1),
-                                                      y_pred=np.argmax(pred_output_test, 1), average=None))
+                                                      y_pred=np.argmax(cluster_pred_output_test, 1), average=None))
 
                     print('=======================================')
 
