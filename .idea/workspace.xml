@@ -61,8 +61,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
-              <caret line="781" column="87" selection-start-line="781" selection-start-column="87" selection-end-line="781" selection-end-column="87" />
+            <state relative-caret-position="406">
+              <caret line="711" column="31" selection-start-line="711" selection-start-column="31" selection-end-line="711" selection-end-column="31" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -417,20 +417,6 @@
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
     </task>
-    <task id="LOCAL-00161" summary="CoTeaching implementation">
-      <created>1567004958870</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
-      <option name="project" value="LOCAL" />
-      <updated>1567004958870</updated>
-    </task>
-    <task id="LOCAL-00162" summary="CoTeaching implementation">
-      <created>1567005060834</created>
-      <option name="number" value="00162" />
-      <option name="presentableId" value="LOCAL-00162" />
-      <option name="project" value="LOCAL" />
-      <updated>1567005060834</updated>
-    </task>
     <task id="LOCAL-00163" summary="CoTeaching implementation - bug fix">
       <created>1567047088324</created>
       <option name="number" value="00163" />
@@ -760,7 +746,21 @@
       <option name="project" value="LOCAL" />
       <updated>1567680420475</updated>
     </task>
-    <option name="localTasksCounter" value="210" />
+    <task id="LOCAL-00210" summary="model performance analysis on clustered data - debug">
+      <created>1567680984077</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1567680984077</updated>
+    </task>
+    <task id="LOCAL-00211" summary="model performance analysis on clustered data - debug">
+      <created>1567681343534</created>
+      <option name="number" value="00211" />
+      <option name="presentableId" value="LOCAL-00211" />
+      <option name="project" value="LOCAL" />
+      <updated>1567681343534</updated>
+    </task>
+    <option name="localTasksCounter" value="212" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1147,8 +1147,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="781" column="87" selection-start-line="781" selection-start-column="87" selection-end-line="781" selection-end-column="87" />
+        <state relative-caret-position="406">
+          <caret line="711" column="31" selection-start-line="711" selection-start-column="31" selection-end-line="711" selection-end-column="31" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
