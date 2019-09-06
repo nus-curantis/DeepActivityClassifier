@@ -696,11 +696,12 @@ class DeepConvLSTMClassifier:
             #
             #         print('=======================================')
 
-            for class_name in ['nordic_walking', 'running']:
+            # for class_name in ['nordic_walking', 'running']:
+            for class_name in ['cycling']:
                 print('<<<<<<<<<<<<<<<<<<<< ' + class_name + ' >>>>>>>>>>>>>>>>>>>>>')
 
-                num_clusters = 3
-                num_segments = 300
+                num_clusters = 2  # 3
+                num_segments = 200  # 300
                 clustered_train_data, clustered_train_labels, train_cluster_nums, \
                     clustered_test_data, clustered_test_labels, test_cluster_nums = \
                     clustering_executor.get_clustered_data(class_name=class_name, num_segments=num_segments,
