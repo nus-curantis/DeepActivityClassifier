@@ -271,10 +271,10 @@ class CoTeaching:
 
             clustering_executor = ClusteringExecutor()
             clustering_executor.set_all_data(
-                all_train_data=self.learner_1.train_inputs,
-                all_test_data=self.learner_1.test_inputs,
-                all_train_labels=self.learner_1.train_activity_labels,
-                all_test_labels=self.learner_1.test_activity_labels
+                all_train_data=self.learner_1_train_inputs,
+                all_test_data=self.test_inputs,
+                all_train_labels=self.learner_1_train_labels,
+                all_test_labels=self.test_labels
             )
 
             # for class_name in ['nordic_walking', 'running']:
@@ -371,13 +371,13 @@ class CoTeaching:
 
                 pred_output_train = sess.run(
                     [self.learner_1.prediction],
-                    feed_dict={self.learner_1.input: self.learner_1.train_inputs,
-                               self.learner_1.activity_label: self.learner_1.train_activity_labels})
+                    feed_dict={self.learner_1.input: self.learner_1_train_inputs,
+                               self.learner_1.activity_label: self.learner_1_train_labels})
 
                 pred_output_test = sess.run(
                     [self.learner_1.prediction],
-                    feed_dict={self.learner_1.input: self.learner_1.test_inputs,
-                               self.learner_1.activity_label: self.learner_1.test_activity_labels})
+                    feed_dict={self.learner_1.input: self.test_inputs,
+                               self.learner_1.activity_label: self.test_labels})
 
                 pred_output_train = np.reshape(pred_output_train, newshape=[-1, np.array(pred_output_train).shape[-1]])
                 pred_output_test = np.reshape(pred_output_test, newshape=[-1, np.array(pred_output_test).shape[-1]])
@@ -403,8 +403,8 @@ class CoTeaching:
 
                     print('np.shape(pred_output_train)', np.shape(pred_output_train))
                     print('np.shape(pred_output_test)', np.shape(pred_output_test))
-                    print('np.shape(self.train_activity_labels)', np.shape(self.learner_1.train_activity_labels))
-                    print('np.shape(self.test_activity_labels)', np.shape(self.learner_1.test_activity_labels))
+                    print('np.shape(self.train_activity_labels)', np.shape(self.learner_1_train_labels))
+                    print('np.shape(self.test_activity_labels)', np.shape(self.test_labels))
                     print('np.shape(train_data_indices)', np.shape(train_data_indices))
                     print('np.shape(test_data_indices)', np.shape(test_data_indices))
 
