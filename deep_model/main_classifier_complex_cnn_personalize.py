@@ -19,7 +19,8 @@ tf.flags.DEFINE_integer('num_classes', 13, 'num of classes in the output')  # mh
 # tf.flags.DEFINE_integer('num_classes', 14, 'num of classes in the output')  # wharf data
 
 # tf.flags.DEFINE_integer('series_max_len', 360, 'max len of an input time series')
-tf.flags.DEFINE_integer('series_max_len', 180, 'max len of an input time series')
+# tf.flags.DEFINE_integer('series_max_len', 180, 'max len of an input time series')
+tf.flags.DEFINE_integer('series_max_len', 90, 'max len of an input time series')  # sampling rate test, todo: delete
 
 # tf.flags.DEFINE_integer('rnn_hidden_units', 32, 'hidden neurons of rnn cells')
 tf.flags.DEFINE_integer('rnn_hidden_units', 64, 'hidden neurons of rnn cells')
