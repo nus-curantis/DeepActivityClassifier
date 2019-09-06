@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deep_model/deep_colab_conv_lstm_complex_cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/deep_model/deep_colab_conv_lstm_complex_cnn.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_colab_conv_lstm_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="694">
-              <caret line="406" column="84" selection-start-line="406" selection-start-column="84" selection-end-line="406" selection-end-column="84" />
+            <state relative-caret-position="406">
+              <caret line="362" column="34" selection-start-line="362" selection-start-column="34" selection-end-line="362" selection-end-column="34" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -414,13 +413,6 @@
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
     </task>
-    <task id="LOCAL-00166" summary="CoTeaching implementation - bug fix">
-      <created>1567048092954</created>
-      <option name="number" value="00166" />
-      <option name="presentableId" value="LOCAL-00166" />
-      <option name="project" value="LOCAL" />
-      <updated>1567048092954</updated>
-    </task>
     <task id="LOCAL-00167" summary="CoTeaching implementation - bug fix">
       <created>1567048744833</created>
       <option name="number" value="00167" />
@@ -757,7 +749,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567681967439</updated>
     </task>
-    <option name="localTasksCounter" value="215" />
+    <task id="LOCAL-00215" summary="model performance analysis on clustered data - debug">
+      <created>1567745446891</created>
+      <option name="number" value="00215" />
+      <option name="presentableId" value="LOCAL-00215" />
+      <option name="project" value="LOCAL" />
+      <updated>1567745446892</updated>
+    </task>
+    <option name="localTasksCounter" value="216" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1141,8 +1140,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_colab_conv_lstm_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="406" column="84" selection-start-line="406" selection-start-column="84" selection-end-line="406" selection-end-column="84" />
+        <state relative-caret-position="406">
+          <caret line="362" column="34" selection-start-line="362" selection-start-column="34" selection-end-line="362" selection-end-column="34" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
