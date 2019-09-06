@@ -58,7 +58,7 @@ tf.flags.DEFINE_string('model_path', './deep_model_weights_colab_1', 'saved mode
 config = tf.flags.FLAGS
 
 # Setting the device to GPU 1
-# os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 model = CoTeaching(config=config)
 model.train_two_networks(forget_rate=0.05)
