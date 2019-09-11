@@ -24,3 +24,13 @@
 > cnn network(single conv layer -> 15 filters of dimension [30, 1, 1]) + rnn + time distributed layer (1 layer + dropout) + pooling(last pooling + max pooling + mean pooling) + fc (2 + 1 layers + dropout)
 
 
+## Major Findings
+
+- Readings from wrist-based accelerometer data is very noisy and we need a method to deal with the noise. 
+- Reducing sampling rate by half (36 -> 18 Hz) reduces the accuracy significantly for personalized train/testing data.
+- Embedding the inputs using a CNN layer before passing to RNN improves the performance (since CNN captures some time dependencies in the time series)
+- An activity might have multiple distributions, and we found that the network is able to learn the different distributions despite having not enough data in different distributions.  So the inaccuracy is caused by noise and not by multiple distributions.  The model is overfitting to the noise.
+- No effect on time distributed / bi-directional (except worse overfitting)
+- Shorter segments are better (2.5s is better than 5s and 10s)
+- Co-teaching for noisy data (as described in the co-teaching) did not improve (test/train accuracy around 0.64).   Idea: need to filter out the noise in some way?  (clustering to detect outliers? informativeness of a sample (cf active learning)?)
+- Overlapping segments do not improve
