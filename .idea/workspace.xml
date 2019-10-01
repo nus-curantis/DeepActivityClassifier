@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="">
+    <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="code cleanup">
+      <change afterPath="$PROJECT_DIR$/clustering/plots/cycling/train/dendrogram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clustering/plots/cycling/train/dist_mat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clustering/plots/ironing/train/dendrogram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clustering/plots/lying/train/dendrogram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clustering/plots/lying/train/dist_mat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clustering/plots/no_activity/train/dendrogram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clustering/plots/no_activity/train/dist_mat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clustering/plots/nordic_walking/train/dendrogram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clustering/plots/nordic_walking/train/dist_mat.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,8 +23,31 @@
     <session id="752244306">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="txt" value="12" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="12" />
         </counts>
       </usages-collector>
     </session>
@@ -37,7 +69,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9306">
+            <state relative-caret-position="16056">
               <caret line="908" selection-start-line="908" selection-end-line="908" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
@@ -46,11 +78,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1818">
-              <caret line="124" column="21" selection-start-line="124" selection-start-column="21" selection-end-line="124" selection-end-column="21" />
+            <state relative-caret-position="576">
+              <caret line="40" column="64" selection-start-line="40" selection-start-column="64" selection-end-line="40" selection-end-column="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/preprocessing/archive/pamap2_reader_help_code.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="389">
+              <caret line="483" column="17" lean-forward="true" selection-start-line="483" selection-start-column="17" selection-end-line="483" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -67,7 +108,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader_flexible.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4284">
+            <state relative-caret-position="4770">
               <caret line="273" selection-start-line="273" selection-end-line="273" />
               <folding>
                 <element signature="e#308#326#0" expanded="true" />
@@ -200,12 +241,28 @@
             <path>
               <item name="DeepActivityClassifier" type="b2602c69:ProjectViewProjectNode" />
               <item name="DeepActivityClassifier" type="462c0819:PsiDirectoryNode" />
-              <item name="deep_model" type="462c0819:PsiDirectoryNode" />
+              <item name="clustering" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DeepActivityClassifier" type="b2602c69:ProjectViewProjectNode" />
               <item name="DeepActivityClassifier" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="clustering" type="462c0819:PsiDirectoryNode" />
+              <item name="plots" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DeepActivityClassifier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepActivityClassifier" type="462c0819:PsiDirectoryNode" />
+              <item name="clustering" type="462c0819:PsiDirectoryNode" />
+              <item name="plots" type="462c0819:PsiDirectoryNode" />
+              <item name="cycling" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DeepActivityClassifier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepActivityClassifier" type="462c0819:PsiDirectoryNode" />
+              <item name="clustering" type="462c0819:PsiDirectoryNode" />
+              <item name="plots" type="462c0819:PsiDirectoryNode" />
+              <item name="cycling" type="462c0819:PsiDirectoryNode" />
+              <item name="train" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -375,13 +432,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
-    </task>
-    <task id="LOCAL-00172" summary="CoTeaching implementation - bug fix">
-      <created>1567050860388</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1567050860388</updated>
     </task>
     <task id="LOCAL-00173" summary="CoTeaching implementation - bug fix">
       <created>1567051034851</created>
@@ -719,7 +769,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567759746483</updated>
     </task>
-    <option name="localTasksCounter" value="221" />
+    <task id="LOCAL-00221" summary="code cleanup">
+      <created>1568117543293</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1568117543294</updated>
+    </task>
+    <option name="localTasksCounter" value="222" />
     <servers />
   </component>
   <component name="TodoView">
@@ -732,11 +789,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1533" height="875" extended-state="6" />
+    <frame x="67" y="25" width="1533" height="875" extended-state="7" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" weight="0.28344372" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.28344372" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.25161988" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3725702" />
@@ -776,7 +833,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="complex (3 layers) cnn + rnn, architecture 1, test with acc + gyr data" />
     <MESSAGE value="night tuning tests" />
     <MESSAGE value="f1 score, confusion mat, ..." />
     <MESSAGE value="f1 score, confusion mat plots" />
@@ -801,7 +857,8 @@
     <MESSAGE value="model performance analysis on clustered data - colab model" />
     <MESSAGE value="model performance analysis on clustered data - debug" />
     <MESSAGE value="model performance analysis on clustered data - other tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="model performance analysis on clustered data - other tests" />
+    <MESSAGE value="code cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="code cleanup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -846,13 +903,6 @@
     </entry>
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/rnn_cell_impl.py" />
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.7/site-packages/sklearn/model_selection/_split.py" />
-    <entry file="file://$PROJECT_DIR$/preprocessing/archive/pamap2_reader_help_code.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="498" column="28" selection-start-line="498" selection-start-column="28" selection-end-line="498" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_2.py" />
     <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_3.py" />
     <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_4.py" />
@@ -946,13 +996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/data_loader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
@@ -967,6 +1010,7 @@
     <entry file="file://$PROJECT_DIR$/deep_model/deep_colab_conv_lstm_complex_cnn.py" />
     <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_personalize.py" />
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_personalizer.py" />
+    <entry file="file://$PROJECT_DIR$/utils/data_loader.py" />
     <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="954">
@@ -979,11 +1023,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9306">
+        <state relative-caret-position="16056">
           <caret line="908" selection-start-line="908" selection-end-line="908" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="40" column="64" selection-start-line="40" selection-start-column="64" selection-end-line="40" selection-end-column="64" />
         </state>
       </provider>
     </entry>
@@ -996,7 +1047,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader_flexible.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4284">
+        <state relative-caret-position="4770">
           <caret line="273" selection-start-line="273" selection-end-line="273" />
           <folding>
             <element signature="e#308#326#0" expanded="true" />
@@ -1004,10 +1055,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
+    <entry file="file://$PROJECT_DIR$/preprocessing/archive/pamap2_reader_help_code.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1818">
-          <caret line="124" column="21" selection-start-line="124" selection-start-column="21" selection-end-line="124" selection-end-column="21" />
+        <state relative-caret-position="389">
+          <caret line="483" column="17" lean-forward="true" selection-start-line="483" selection-start-column="17" selection-end-line="483" selection-end-column="17" />
         </state>
       </provider>
     </entry>
