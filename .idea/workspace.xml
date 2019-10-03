@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="code cleanup">
-      <change afterPath="$PROJECT_DIR$/clustering/plots/cycling/train/dendrogram.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clustering/plots/cycling/train/dist_mat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clustering/plots/ironing/train/dendrogram.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clustering/plots/lying/train/dendrogram.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clustering/plots/lying/train/dist_mat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clustering/plots/no_activity/train/dendrogram.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clustering/plots/no_activity/train/dist_mat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clustering/plots/nordic_walking/train/dendrogram.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clustering/plots/nordic_walking/train/dist_mat.png" afterDir="false" />
+    <list default="true" id="55570ab5-8622-405e-9f84-9b8375986ae1" name="Default Changelist" comment="clean up and documenting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clustering/segments_clusterer.py" beforeDir="false" afterPath="$PROJECT_DIR$/clustering/segments_clusterer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/pamap2_mat_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/pamap2_mat_reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/pamap2_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/pamap2_reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/pamap2_reader_flexible.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/pamap2_reader_flexible.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/wharf_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/wharf_reader.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,96 +21,46 @@
     <session id="752244306">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="2" />
+          <entry key="py" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="2" />
+          <entry key="Python" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="txt" value="12" />
+          <entry key="py" value="4757" />
+          <entry key="txt" value="58" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="12" />
+          <entry key="PLAIN_TEXT" value="58" />
+          <entry key="Python" value="4757" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="954">
-              <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16056">
-              <caret line="908" selection-start-line="908" selection-end-line="908" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="40" column="64" selection-start-line="40" selection-start-column="64" selection-end-line="40" selection-end-column="64" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/preprocessing/archive/pamap2_reader_help_code.py">
+        <entry file="file://$PROJECT_DIR$/clustering/segments_clusterer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="483" column="17" lean-forward="true" selection-start-line="483" selection-start-column="17" selection-end-line="483" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/preprocessing/wharf_reader.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="72" column="25" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader_flexible.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4770">
-              <caret line="273" selection-start-line="273" selection-end-line="273" />
-              <folding>
-                <element signature="e#308#326#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="571">
+              <caret line="222" lean-forward="true" selection-start-line="222" selection-end-line="222" />
             </state>
           </provider>
         </entry>
@@ -128,10 +76,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pooli</find>
-      <find>dropout</find>
-      <find>adam</find>
-      <find>ada</find>
       <find>argmax</find>
       <find>split_activities</find>
       <find>map_cls</find>
@@ -158,6 +102,10 @@
       <find>def tes</find>
       <find>load</find>
       <find>samplin</find>
+      <find>exclude_activities</find>
+      <find>ACTIVITY_MAP</find>
+      <find>activity types</find>
+      <find>ignore</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -193,37 +141,37 @@
         <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_4.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_5.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_test_3.py" />
-        <option value="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_test_our.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_test_our.py" />
-        <option value="$PROJECT_DIR$/preprocessing/pamap2_mat_reader.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52_1d.py" />
-        <option value="$PROJECT_DIR$/preprocessing/pamap2_reader_flexible.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52_4conv.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_52_4d.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier.py" />
-        <option value="$PROJECT_DIR$/preprocessing/wharf_reader.py" />
-        <option value="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" />
         <option value="$PROJECT_DIR$/clustering.py" />
         <option value="$PROJECT_DIR$/utils/data_loader.py" />
-        <option value="$PROJECT_DIR$/clustering/segments_clusterer.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_personalizer.py" />
         <option value="$PROJECT_DIR$/deep_model/main_colab_classifiers_complex_cnn.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_colab_conv_lstm_complex_cnn.py" />
         <option value="$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py" />
         <option value="$PROJECT_DIR$/deep_model/main_classifier_complex_cnn_personalize.py" />
+        <option value="$PROJECT_DIR$/preprocessing/wharf_reader.py" />
+        <option value="$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py" />
         <option value="$PROJECT_DIR$/preprocessing/pamap2_reader.py" />
+        <option value="$PROJECT_DIR$/preprocessing/pamap2_reader_flexible.py" />
+        <option value="$PROJECT_DIR$/preprocessing/pamap2_mat_reader.py" />
+        <option value="$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py" />
+        <option value="$PROJECT_DIR$/clustering/segments_clusterer.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
+    <option name="x" value="833" />
     <option name="y" value="25" />
-    <option name="width" value="927" />
-    <option name="height" value="789" />
+    <option name="width" value="767" />
+    <option name="height" value="875" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -231,6 +179,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -246,29 +195,12 @@
             <path>
               <item name="DeepActivityClassifier" type="b2602c69:ProjectViewProjectNode" />
               <item name="DeepActivityClassifier" type="462c0819:PsiDirectoryNode" />
-              <item name="clustering" type="462c0819:PsiDirectoryNode" />
-              <item name="plots" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DeepActivityClassifier" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DeepActivityClassifier" type="462c0819:PsiDirectoryNode" />
-              <item name="clustering" type="462c0819:PsiDirectoryNode" />
-              <item name="plots" type="462c0819:PsiDirectoryNode" />
-              <item name="cycling" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DeepActivityClassifier" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DeepActivityClassifier" type="462c0819:PsiDirectoryNode" />
-              <item name="clustering" type="462c0819:PsiDirectoryNode" />
-              <item name="plots" type="462c0819:PsiDirectoryNode" />
-              <item name="cycling" type="462c0819:PsiDirectoryNode" />
-              <item name="train" type="462c0819:PsiDirectoryNode" />
+              <item name="preprocessing" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -432,13 +364,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1562229662713</updated>
-    </task>
-    <task id="LOCAL-00173" summary="CoTeaching implementation - bug fix">
-      <created>1567051034851</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1567051034852</updated>
     </task>
     <task id="LOCAL-00174" summary="CoTeaching implementation - bug fix">
       <created>1567051338877</created>
@@ -776,7 +701,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568117543294</updated>
     </task>
-    <option name="localTasksCounter" value="222" />
+    <task id="LOCAL-00222" summary="clustering plots">
+      <created>1569955055912</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1569955055913</updated>
+    </task>
+    <option name="localTasksCounter" value="223" />
     <servers />
   </component>
   <component name="TodoView">
@@ -789,7 +721,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1533" height="875" extended-state="7" />
+    <frame x="67" y="25" width="1533" height="875" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
@@ -833,7 +766,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="night tuning tests" />
     <MESSAGE value="f1 score, confusion mat, ..." />
     <MESSAGE value="f1 score, confusion mat plots" />
     <MESSAGE value="personalizing model" />
@@ -858,17 +790,8 @@
     <MESSAGE value="model performance analysis on clustered data - debug" />
     <MESSAGE value="model performance analysis on clustered data - other tests" />
     <MESSAGE value="code cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="code cleanup" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="clustering plots" />
+    <option name="LAST_COMMIT_MESSAGE" value="clustering plots" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointLogExpression">
@@ -880,7 +803,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer__chest_data.py" />
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/sklearn/utils/__init__.py" />
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/tensorflow/python/layers/convolutional.py" />
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/tensorflow/python/ops/rnn.py" />
@@ -925,13 +847,6 @@
     </entry>
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.7/site-packages/tensorflow/contrib/layers/python/layers/layers.py" />
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_sussex.py" />
-    <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_mat_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="954">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52_4conv.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5328">
@@ -972,27 +887,10 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/nn_ops.py" />
-    <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="52" column="31" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_bi_dir_rnn.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5706">
           <caret line="327" column="9" selection-start-line="327" selection-start-column="9" selection-end-line="327" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3204">
-          <caret line="185" column="4" selection-start-line="185" selection-start-column="4" selection-end-line="185" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1004,7 +902,6 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.7/site-packages/sklearn/metrics/classification.py" />
-    <entry file="file://$PROJECT_DIR$/clustering/segments_clusterer.py" />
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn_52.py" />
     <entry file="file://$PROJECT_DIR$/deep_model/main_colab_classifiers_complex_cnn.py" />
     <entry file="file://$PROJECT_DIR$/deep_model/deep_colab_conv_lstm_complex_cnn.py" />
@@ -1013,52 +910,72 @@
     <entry file="file://$PROJECT_DIR$/utils/data_loader.py" />
     <entry file="file://$PROJECT_DIR$/deep_model/main_classifier_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="954">
+        <state relative-caret-position="657">
           <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/deep_model/deep_conv_lstm_classifier_complex_cnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16056">
+        <state relative-caret-position="657">
           <caret line="908" selection-start-line="908" selection-end-line="908" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
+    <entry file="file://$PROJECT_DIR$/preprocessing/archive/pamap2_reader_help_code.py" />
+    <entry file="file://$PROJECT_DIR$/preprocessing/time_series_reader_and_visualizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="40" column="64" selection-start-line="40" selection-start-column="64" selection-end-line="40" selection-end-column="64" />
+        <state relative-caret-position="18">
+          <caret line="182" column="24" selection-start-line="182" selection-start-column="24" selection-end-line="182" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/wharf_reader.py">
+    <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_mat_reader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="72" column="25" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
+        <state relative-caret-position="-378">
+          <caret line="17" column="81" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="17" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocessing/data_to_rnn_input_transformer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="69" selection-start-line="9" selection-start-column="69" selection-end-line="9" selection-end-column="69" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader_flexible.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4770">
-          <caret line="273" selection-start-line="273" selection-end-line="273" />
-          <folding>
-            <element signature="e#308#326#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="162">
+          <caret line="272" column="32" lean-forward="true" selection-start-line="271" selection-start-column="29" selection-end-line="272" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/archive/pamap2_reader_help_code.py">
+    <entry file="file://$PROJECT_DIR$/preprocessing/pamap2_reader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="483" column="17" lean-forward="true" selection-start-line="483" selection-start-column="17" selection-end-line="483" selection-end-column="17" />
+        <state relative-caret-position="396">
+          <caret line="117" column="93" lean-forward="true" selection-start-line="117" selection-start-column="29" selection-end-line="117" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocessing/wharf_reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="101" column="115" lean-forward="true" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1091776642/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clustering/segments_clusterer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="222" lean-forward="true" selection-start-line="222" selection-end-line="222" />
         </state>
       </provider>
     </entry>

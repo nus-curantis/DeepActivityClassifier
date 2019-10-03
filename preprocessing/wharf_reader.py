@@ -1,3 +1,7 @@
+"""
+Wharf dataset reader and preprocessor
+"""
+
 import os
 from preprocessing.time_series_reader_and_visualizer import Activity, split_segments_of_activity
 from preprocessing.data_to_rnn_input_transformer import normalized_rnn_input_train_test_
@@ -21,6 +25,17 @@ activity_to_num = {
 
 
 def read_all_files(data_path='../dataset/WHARF/Data/', split_series_max_len=360):
+    """
+
+    :param data_path: The folder where all the text files of the dataset are
+    :param split_series_max_len:  shows the maximum length of the output segments. (Original activity time series are
+    divided into segments and length of these segments doesn't exceed this param)
+
+    :return:
+        activities: extracted activities from dataset with complete recorded time series
+        split_activities: activities with time series divided to smaller segments
+    """
+
     files = []
     activity_names = []
     task_conductors = []
@@ -51,6 +66,16 @@ def read_all_files(data_path='../dataset/WHARF/Data/', split_series_max_len=360)
 
 
 def extract_activity(file_addr, activity_name):
+    """
+    Extract activities of one file
+
+    :param file_addr: file address
+    :param activity_name: name of the activity it's data is available inside the file
+
+    :return:
+        activity: extracted activity
+    """
+
     activity_num = activity_to_num[activity_name]
     activity = Activity(activity_num)
 
@@ -69,11 +94,13 @@ def extract_activity(file_addr, activity_name):
 
 
 def normalized_wharf_rnn_input_train_test(data_path='../dataset/WHARF/Data/', split_series_max_len=360):
+    """
+    :param data_path: The folder where all the text files of the dataset are
+    :param split_series_max_len:  shows the maximum length of the output segments. (Original activity time series are
+    divided into segments and length of these segments doesn't exceed this param)
+
+    :return: Normalized time series formatted properly for RNN input. RNN input is divided into train and test data
+    """
     _, split_activities = read_all_files(data_path, split_series_max_len=split_series_max_len)
     return normalized_rnn_input_train_test_(split_activities=split_activities,
                                             split_series_max_len=split_series_max_len)
-
-
-# read_all_files()
-# train_data, test_data, train_labels, test_labels = normalized_wharf_rnn_input_train_test()
-# print(train_data.shape, test_data.shape, train_labels.shape, test_labels.shape)

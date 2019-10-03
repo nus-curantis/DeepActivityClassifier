@@ -1,3 +1,8 @@
+"""
+Functions used for preprocessing different datasets. Functions and Activity class of this file are used in other
+preprocessing scripts too.
+"""
+
 import os
 import csv
 import matplotlib.pyplot as plt
@@ -45,6 +50,12 @@ class Activity:
 
 
 def read_all_files(data_path='../dataset/CC2650/'):
+    """
+
+    :param data_path: The folder where all the text files of the dataset are
+    :return: extracted activities from dataset with complete recorded time series
+    """
+
     files = []
     # r = root, d = directories, f = files
     for r, d, f in os.walk(data_path):
@@ -72,6 +83,11 @@ def read_all_files(data_path='../dataset/CC2650/'):
 
 
 def visualize_all_files(data_path='../dataset/CC2650/'):  # path containing all files of dataset
+    """
+    Draws plots of activity time series
+
+    :param data_path: The folder where all the text files of the dataset are
+    """
 
     recorded_activities = read_all_files(data_path)
 
@@ -89,6 +105,11 @@ def visualize_all_files(data_path='../dataset/CC2650/'):  # path containing all 
 
 
 def count_activities_num(file_addr):
+    """
+
+    :param file_addr: Path of one data file
+    :return: number of activities in the file
+    """
     with open(file_addr, 'r') as file:
         activities = 0
 
@@ -106,6 +127,11 @@ def count_activities_num(file_addr):
 
 
 def extract_activities(file_addr):
+    """
+
+    :param file_addr: file address
+    :return: extracted activities
+    """
     with open(file_addr, 'r') as file:
         activities = []
 
@@ -127,6 +153,13 @@ def extract_activities(file_addr):
 
 
 def plot_activity_data(activity, record_num, axis='x'):
+    """
+    Plots one of the axises of time series of an activity
+
+    :param activity: activity which is going to be plotted
+    :param record_num: index of this activity in list of all activities
+    :param axis: x, y or z
+    """
     plt.clf()
 
     series = activity.acc_x_series
@@ -148,6 +181,14 @@ def plot_activity_data(activity, record_num, axis='x'):
 
 
 def split_segments_of_activity(activity, split_series_max_len=360, overlap=0):
+    """
+
+    :param activity: input activity
+    :param split_series_max_len: time series of the activity will be divided to small segments. This param indicates
+           the maximum length of segments
+    :param overlap: declares overlap percentage of output segments
+    :return: activities with short segments
+    """
     split_activities = []
 
     overlap_len = int(split_series_max_len * overlap)
@@ -176,6 +217,16 @@ def split_segments_of_activity(activity, split_series_max_len=360, overlap=0):
 
 def split_segments_into_parts_with_same_len(data_path='../dataset/CC2650/', split_series_max_len=360,
                                             ignore_classes=[]):
+    """
+    calls split_segments_of_activity function for all the activities of dataset
+
+    :param data_path: The folder where all the text files of the dataset are
+    :param split_series_max_len: shows the maximum length of the output segments. (Original activity time series are
+    divided into segments and length of these segments doesn't exceed this param)
+    :param ignore_classes: includes activity types which are going to be ignored in this process. Data of these classes
+           won't be fed to deep model.
+    :return: activities with short segments
+    """
     recorded_activities = read_all_files(data_path)
 
     split_activities = []
@@ -188,6 +239,11 @@ def split_segments_into_parts_with_same_len(data_path='../dataset/CC2650/', spli
 
 
 def get_our_dataset_labels_names(ignore_classes=[]):
+    """
+
+    :param ignore_classes: includes activity types which are going to be ignored in this process.
+    :return: names of activities present in our dataset ( This func only works on our own dataset )
+    """
     labels_names = []
 
     if -1 not in ignore_classes and 19 - 1 not in ignore_classes:  # todo: clean this code
@@ -200,8 +256,8 @@ def get_our_dataset_labels_names(ignore_classes=[]):
     return labels_names
 
 
-if __name__ == '__main__':
-    # visualize_all_files()
-    small_observations = split_segments_into_parts_with_same_len()
-    print(len(small_observations))
-    print(len(small_observations[-1].acc_x_series))
+# if __name__ == '__main__':
+#     # visualize_all_files()
+#     small_observations = split_segments_into_parts_with_same_len()
+#     print(len(small_observations))
+#     print(len(small_observations[-1].acc_x_series))

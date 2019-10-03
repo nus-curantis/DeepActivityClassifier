@@ -1,6 +1,6 @@
 """
 Some parts of this code are copied from nus_curantis/medoid project developed by Zhang Tianyang
-Codes are changeed by Pouya Kananian
+Codes are changed by Pouya Kananian
 """
 
 import random
@@ -109,14 +109,6 @@ class ClusteringExecutor:
                 break
 
             counter += 1
-
-        # print(np.array(class_train_segments).shape)
-        # print(np.array(class_test_segments).shape)
-        # print(class_train_segments[0])
-
-        # print('khers')
-        # print(len(class_train_data_indices))
-        # print(len(class_test_data_indices))
 
         self.selected_train_segments = np.array(class_train_segments)
         self.selected_test_segments = np.array(class_test_segments)
@@ -228,18 +220,3 @@ class ClusteringExecutor:
     def get_hierarchical_cluster(num_cluster, matrix):
         cluster = AgglomerativeClustering(n_clusters=num_cluster, affinity='precomputed', linkage='complete')
         return cluster.fit_predict(matrix)
-
-
-c = ClusteringExecutor()
-# for class_name in ['lying',
-#                    'sitting',
-#                    'standing',
-#                    'walking',
-#                    'running',
-#                    'cycling',
-#                    'nordic_walking',
-#                    'no_activity']:
-#     c.load_data_of_one_class(class_name=class_name)
-#     c.calculate_medoids_and_clusters()
-
-c.load_data_of_one_class()

@@ -1,4 +1,6 @@
 """
+ PAMAP2 dataset reader and preprocessor
+
  !! Some parts of this code is copied from
  https://github.com/NLeSC/mcfly-tutorial/blob/master/utils/tutorial_pamap2.py
 """
@@ -46,6 +48,18 @@ class Activity:
 
 def read_all_files(target_dir='../dataset/', include_gyr_data=False,
                    exclude_activities=[], split_series_max_len=360):
+    """
+
+    :param target_dir: The path where PAMAP2_Dataset is in
+    :param include_gyr_data: if True gyroscope data will be used alongside accelerometer data
+    :param exclude_activities: activity types which are going to be ignored in this process.
+    :param split_series_max_len: shows the maximum length of the output segments. (Original activity time series are
+    divided into segments and length of these segments doesn't exceed this param)
+
+    :return:
+        activities: extracted activities from dataset with complete recorded time series
+        split_activities: activities with time series divided to smaller segments
+    """
     columns_to_use = ['activityID', 'hand_acc_16g_x', 'hand_acc_16g_y', 'hand_acc_16g_z']
     if include_gyr_data:
         columns_to_use += ['hand_gyroscope_x', 'hand_gyroscope_y', 'hand_gyroscope_z']
@@ -64,9 +78,6 @@ def read_all_files(target_dir='../dataset/', include_gyr_data=False,
                 for fn in file_names]
     datasets = add_header(datasets)  # add headers to the datasets
 
-    # for dataset in datasets:
-    #     print(dataset)
-
     # interpolate dataset to get same sample rate between channels
     datasets_filled = [d.interpolate() for d in datasets]
 
@@ -77,10 +88,9 @@ def read_all_files(target_dir='../dataset/', include_gyr_data=False,
 
     selected_datas = [np.array(data[columns_to_use]) for data in datasets_filled]
 
-    print('kherrrrrrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss')
-    print(class_labels)
-    print(nr_classes)
-    print(map_classes)
+    # print(class_labels)
+    # print(nr_classes)
+    # print(map_classes)
 
     activities = []
     for data in selected_datas:
@@ -88,10 +98,6 @@ def read_all_files(target_dir='../dataset/', include_gyr_data=False,
         activities += extract_activities(data, map_classes, include_gyr_data=include_gyr_data)
 
     print('total recorded activities: ', len(activities))
-
-    # for activity in activities:
-    #     print(activity.num, len(activity.acc_x_series))
-    #     print(activity.acc_x_series[0:10])
 
     split_activities = []
     for activity in activities:
@@ -103,6 +109,15 @@ def read_all_files(target_dir='../dataset/', include_gyr_data=False,
 
 
 def extract_activities(selected_data, map_classes, include_gyr_data=False):
+    """
+
+    :param selected_data: a selected data file in dataset
+    :param map_classes: in PAMAP2 dataset all of the activity types listed in ACTIVITY_MAP are not present. 0, 1, 2, ...
+     is used for labelling the present data.This map is used for projecting 0, 1, 2, 3 ... to the index used in
+     ACTIVITY_MAP
+    :param include_gyr_data: if True gyroscope data will be used alongside accelerometer data
+    :return: extracted activities from dataset with complete recorded time series
+    """
     activities = []
 
     previous_activity_num = -10
@@ -126,6 +141,14 @@ def extract_activities(selected_data, map_classes, include_gyr_data=False):
 
 
 def split_segments_of_activity(activity, split_series_max_len=360, overlap=0, include_gyr_data=False):
+    """
+
+    :param activity: input activity
+    :param split_series_max_len: shows the maximum length of the output segments
+    :param overlap: declares overlap percentage of output segments
+    :param include_gyr_data: if True gyroscope data will be used alongside accelerometer data
+    :return: multiple activities extracted from the input activity with smaller segments of the original activity
+    """
     split_activities = []
 
     overlap_len = int(split_series_max_len * overlap)
@@ -201,6 +224,17 @@ def get_header():
 
 
 def map_class(datasets_filled, exclude_activities):
+    """
+
+    :param datasets_filled: datasets with no null data in
+    :param exclude_activities: activity types which are going to be ignored in this process.
+    :return:
+        class_labels: list of labels
+        nr_classes: number of different classes
+        map_class: in PAMAP2 dataset all of the activity types listed in ACTIVITY_MAP are not present. 0, 1, 2, ...
+     is used for labelling the present data.This map is generated for projecting 0, 1, 2, 3 ... to the index used in
+     ACTIVITY_MAP
+    """
     y_set_all = [set(np.array(data.activityID)) - set(exclude_activities)
                  for data in datasets_filled]
     class_ids = list(set.union(*[set(y) for y in y_set_all]))
@@ -212,6 +246,17 @@ def map_class(datasets_filled, exclude_activities):
 
 def get_map_class(target_dir='../dataset/', include_gyr_data=False,
                   exclude_activities=[], split_series_max_len=360):
+    """
+    :param target_dir: The path where PAMAP2_Dataset is in
+    :param include_gyr_data: if True gyroscope data will be used alongside accelerometer data
+    :param exclude_activities: activity types which are going to be ignored in this process.
+    :param split_series_max_len: shows the maximum length of the output segments. (Original activity time series are
+    divided into segments and length of these segments doesn't exceed this param)
+    :return:
+        map_class: in PAMAP2 dataset all of the activity types listed in ACTIVITY_MAP are not present. 0, 1, 2, ...
+     is used for labelling the present data.This map is generated for projecting 0, 1, 2, 3 ... to the index used in
+     ACTIVITY_MAP
+    """
     columns_to_use = ['activityID', 'hand_acc_16g_x', 'hand_acc_16g_y', 'hand_acc_16g_z']
     if include_gyr_data:
         columns_to_use += ['hand_gyroscope_x', 'hand_gyroscope_y', 'hand_gyroscope_z']
@@ -241,29 +286,17 @@ def get_map_class(target_dir='../dataset/', include_gyr_data=False,
 
 def get_inverted_map_class(target_dir='../dataset/', include_gyr_data=False,
                            exclude_activities=[], split_series_max_len=360):
-    # columns_to_use = ['activityID', 'hand_acc_16g_x', 'hand_acc_16g_y', 'hand_acc_16g_z']
-    # if include_gyr_data:
-    #     columns_to_use += ['hand_gyroscope_x', 'hand_gyroscope_y', 'hand_gyroscope_z']
-    #
-    # data_dir = os.path.join(target_dir, 'PAMAP2_Dataset', 'Protocol')
-    # file_names = listdir(data_dir)
-    # file_names.sort()
-    #
-    # # load the files and put them in a list of pandas dataframes:
-    # datasets = [pd.read_csv(os.path.join(data_dir, fn), header=None, sep=' ')
-    #             for fn in file_names]
-    # datasets = add_header(datasets)  # add headers to the datasets
-    #
-    # # for dataset in datasets:
-    # #     print(dataset)
-    #
-    # # interpolate dataset to get same sample rate between channels
-    # datasets_filled = [d.interpolate() for d in datasets]
-    #
-    # print(datasets_filled[0].columns)
-    #
-    # # Create mapping for class labels
-    # class_labels, nr_classes, map_classes = map_class(datasets_filled, exclude_activities)
+    """
+    :param target_dir: The path where PAMAP2_Dataset is in
+    :param include_gyr_data: if True gyroscope data will be used alongside accelerometer data
+    :param exclude_activities: activity types which are going to be ignored in this process.
+    :param split_series_max_len: shows the maximum length of the output segments. (Original activity time series are
+    divided into segments and length of these segments doesn't exceed this param)
+    :return:
+        inverted version of map_class: in PAMAP2 dataset all of the activity types listed in ACTIVITY_MAP are not
+        present. 0, 1, 2, ... is used for labelling the present data.This map is generated for projecting 0, 1, 2, 3 ...
+        to the index used in ACTIVITY_MAP
+    """
 
     map_classes = get_map_class(target_dir, include_gyr_data, exclude_activities, split_series_max_len)
     return dict(map(reversed, map_classes.items()))
@@ -293,6 +326,14 @@ ACTIVITIES_MAP = {
 
 
 def normalized_pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=360, include_gyr_data=False):
+    """
+
+    :param target_dir: The path where PAMAP2_Dataset is in
+    :param split_series_max_len: shows the maximum length of the output segments. (Original activity time series are
+    divided into segments and length of these segments doesn't exceed this param)
+    :param include_gyr_data: if True gyroscope data will be used alongside accelerometer data
+    :return: Normalized time series formatted properly for RNN input. RNN input is divided into train and test data
+    """
     _, split_activities = read_all_files(target_dir, split_series_max_len=split_series_max_len,
                                          include_gyr_data=include_gyr_data)
     return normalized_rnn_input_train_test_(split_activities=split_activities,
@@ -301,7 +342,18 @@ def normalized_pamap2_rnn_input_train_test(target_dir='../dataset/', split_serie
 
 
 def pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=360, include_gyr_data=False):
-    # todo: add 'ignore classes' and etc
+    """
+
+    :param target_dir: The path where PAMAP2_Dataset is in
+    :param split_series_max_len: shows the maximum length of the output segments. (Original activity time series are
+    divided into segments and length of these segments doesn't exceed this param)
+    :param include_gyr_data: if True gyroscope data will be used alongside accelerometer data
+    :return: Time series formatted properly for RNN input without normalization. RNN input is divided into train and
+             test data
+    """
+
+    # todo: add 'ignore classes'
+
     _, split_activities = read_all_files(target_dir, split_series_max_len=split_series_max_len,
                                          include_gyr_data=include_gyr_data)
     return data_to_rnn_input_train_test_(split_activities=split_activities,
@@ -309,7 +361,13 @@ def pamap2_rnn_input_train_test(target_dir='../dataset/', split_series_max_len=3
                                          include_gyr_data=include_gyr_data)
 
 
-def get_pamap_dataset_labels_names(ignore_classes=[]):  # todo: clean this code
+def get_pamap_dataset_labels_names(ignore_classes=[]):
+    """
+
+    :param ignore_classes: classes that are going to be ignored in this function
+    :return: a list of activity names
+    """
+
     return ['no_activity', 'lying', 'sitting', 'standing', 'walking', 'running', 'cycling', 'nordic_walking',
             'ascending_stairs', 'descending_stairs', 'vaccuum_cleaning', 'ironing', 'rope_jumping']
 
@@ -327,6 +385,16 @@ inverted_class_map = get_inverted_map_class()
 
 
 def plot_series(save_folder, record_num, time_series, axis_name, label, pred_label=None):
+    """
+
+    :param save_folder: path to save plots in
+    :param record_num: index of record in activities list
+    :param time_series: The series that is going to be plotted
+    :param axis_name: x, y or z. Used for lableing the plot
+    :param label: True label of the activity
+    :param pred_label: Predicted label
+    """
+
     corrected_label = inverted_class_map[label]
     corrected_pred_label = inverted_class_map[pred_label]
 
@@ -354,7 +422,3 @@ def plot_series(save_folder, record_num, time_series, axis_name, label, pred_lab
     plt.savefig(save_folder + 'series_' +
                 str(record_num) + '_' + str(ACTIVITIES_MAP[corrected_label]) + '_axis_' + axis_name + '.png')
 
-
-# read_all_files()
-# tr, ts, tr_l, ts_l = normalized_pamap2_rnn_input_train_test()  # pamap2 dataset
-# analyze_train_test_data(tr_l, ts_l)

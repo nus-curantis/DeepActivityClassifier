@@ -1,4 +1,6 @@
-# This file reads pamap file from the matfile created by LSTMEnsemble4HAR, the data in this file is normalized
+"""
+ This file reads pamap file from the matfile created by LSTMEnsemble4HAR, the data in this file is normalized
+"""
 
 import scipy.io
 import pandas as pd
@@ -9,6 +11,15 @@ from preprocessing.data_to_rnn_input_transformer import data_to_rnn_input_train_
 
 
 def read_data(data_path='../dataset/PAMAP2.mat', split_series_max_len=360):
+    """
+
+    :param data_path: path of the .mat file
+    :param split_series_max_len: shows the maximum length of the output segments. (Original activity time series are
+    divided into segments and length of these segments doesn't exceed this param)
+    :return:
+        activities: extracted activities from dataset with complete recorded time series
+        split_activities: activities with time series divided to smaller segments
+    """
     data = scipy.io.loadmat(data_path)
 
     X_train = data['X_train']
@@ -35,6 +46,12 @@ def read_data(data_path='../dataset/PAMAP2.mat', split_series_max_len=360):
 
 
 def extract_activities(data, labels):
+    """
+
+    :param data: data read from the .mat file
+    :param labels: labels read from the .mat file with order
+    :return: data formatted into a list of Activity objects
+    """
     activities = []
 
     counter = 0
@@ -53,11 +70,13 @@ def extract_activities(data, labels):
 
 
 def pamap_rnn_input_train_test(data_path='../dataset/PAMAP2.mat', split_series_max_len=360):
+    """
+
+    :param data_path: path of the .mat file
+    :param split_series_max_len: shows the maximum length of the output segments. (Original activity time series are
+    divided into segments and length of these segments doesn't exceed this param)
+    :return: train and test data suitable to be fed to an RNN
+    """
     _, split_activities = read_data(data_path, split_series_max_len=split_series_max_len)
     return data_to_rnn_input_train_test_(split_activities=split_activities,
                                          split_series_max_len=split_series_max_len)
-
-
-d, l = read_data()
-# print(l[10])
-extract_activities(d, l)
