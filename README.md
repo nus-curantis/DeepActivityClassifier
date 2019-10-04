@@ -1,4 +1,10 @@
-### Deep Models Explanations: 
+### Deep Models Explanations:
+- For more info please check the README file in `deep_model` folder
+
+- Please find through the following paragraphs a summary of structures of some of the tested models.
+*Explanations and details of the newer models and more info about older ones could be find in the report.* 
+Please check : `report_deep_activity_classifier.pdf`
+ 
 *simple_deep_activity_classifier*: A simple rnn without any embedding_layer or pooling_layer
 > rnn + fc (2 + 1 layers) 
 
@@ -22,6 +28,7 @@
 
 *deep_conv_lstm_classifier_bi_dir_rnn* cnn + bi dir rnn + time distributed layer (+ dropout) + pooling layer (+ dropout)
 > cnn network(single conv layer -> 15 filters of dimension [30, 1, 1]) + rnn + time distributed layer (1 layer + dropout) + pooling(last pooling + max pooling + mean pooling) + fc (2 + 1 layers + dropout)
+
 
 
 ## Major Findings
