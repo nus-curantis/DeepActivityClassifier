@@ -8,7 +8,7 @@ from deep_model.deep_colab_conv_lstm_complex_cnn import CoTeaching
 
 # model parameters
 tf.flags.DEFINE_integer('input_representations', 3, 'num of input representations')
-# tf.flags.DEFINE_integer('input_representations', 6, 'num of input representations')
+# tf.flags.DEFINE_integer('input_representations', 6, 'num of input representations')  # accelerometer and gyroscope
 # tf.flags.DEFINE_integer('input_representations', 52, 'num of input representations')
 
 tf.flags.DEFINE_integer('num_classes', 13, 'num of classes in the output')  # mhealth dataset and pamap2

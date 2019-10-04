@@ -141,69 +141,43 @@ class DeepConvLSTMClassifier:
     def load_data(self):
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
             normalized_pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
-            # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
-            # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len, include_gyr_data=True)  # pamap2 dataset
-            # pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
-            # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
-            #                                 ignore_classes=[0, 2, 5, 6],
-            #                                 split_series_max_len=self.series_max_len)  # chest dataset
-            # data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/', ignore_classes=[0, 12],
-            #                              split_series_max_len=self.series_max_len)
-            # data_to_rnn_input_train_test(
-            #     split_series_max_len=self.series_max_len,
-            #     ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])  # our dataset
-            # data_to_rnn_input_train_test(split_series_max_len=self.series_max_len)  # our dataset
-            # data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/',
-            #                              split_series_max_len=self.series_max_len)  # big dataset
-            # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
-            #                                 split_series_max_len=self.series_max_len)  # chest dataset
-            # normalized_wharf_rnn_input_train_test(split_series_max_len=self.series_max_len)  # wahrf
-            # data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')  # chest without normalizing
+
+        """
+            pamap2 dataset, normalized:
+                normalized_pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)
+            pamap2 dataset, without normalization:
+                pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len, include_gyr_data=True)
+            
+            our dataset, normalized: normalized_rnn_input_train_test()
+            our dataset, without normalization: # data_to_rnn_input_train_test()
+
+            Chest Accelerometer dataset, normalized: 
+                normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
+                                               ignore_classes=[0, 2, 5, 6],
+                                               split_series_max_len=self.series_max_len)
+            Chest Accelerometer dataset, without normalization: 
+                data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
+                                             split_series_max_len=self.series_max_len)
+
+            MHealth dataset:
+                data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/', ignore_classes=[0, 12],
+                                            split_series_max_len=self.series_max_len)
+
+            Wharf dataset, normalized:
+                normalized_wharf_rnn_input_train_test(split_series_max_len=self.series_max_len)            
+        """
 
         self.dataset_labels = get_pamap_dataset_labels_names()
-        #
+
         # self.dataset_labels = get_our_dataset_labels_names(
         #     ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])
 
-        print('len(self.train_inputs):', len(self.train_inputs))
-        print('len(self.train_activity_labels):', len(self.train_activity_labels))
-        print('len(self.test_inputs):', len(self.test_inputs))
-        print('len(self.test_activity_labels):', len(self.test_activity_labels))
+        # print('len(self.train_inputs):', len(self.train_inputs))
+        # print('len(self.train_activity_labels):', len(self.train_activity_labels))
+        # print('len(self.test_inputs):', len(self.test_inputs))
+        # print('len(self.test_activity_labels):', len(self.test_activity_labels))
 
     def build_model(self):
-        # with tf.name_scope('embedding'):
-        #     # self.embedded_input = self.input
-        #
-        #     self.embedding = tf.Variable(tf.truncated_normal([self.input_representations, self.embedding_out_size]))
-        #     # flattened_embedded_input = tf.nn.embedding_lookup(  # todo: solve the problem of this
-        #     #     self.embedding, tf.reshape(self.input, shape=[-1, self.input_representations]))
-        #     flattened_embedded_input = tf.matmul(
-        #         tf.reshape(self.input, shape=[-1, self.input_representations]), self.embedding)
-        #     self.embedded_input = tf.reshape(flattened_embedded_input,
-        #                                      shape=[-1, self.series_max_len, self.embedding_out_size])
-
-        # with tf.name_scope('cnn'):
-        #     self.conv_w = tf.Variable(tf.truncated_normal([self.split_len, self.input_representations,
-        #                                                   1, self.filters_num]))
-        #     self.conv_b = tf.Variable(tf.zeros([self.filters_num]))
-        #
-        #     expanded_input = tf.expand_dims(self.input, -1)
-        #     self.embedded_input = tf.nn.conv2d(expanded_input,
-        #                                        filter=self.conv_w,
-        #                                        strides=[1, self.split_len, 1, 1],
-        #                                        # strides=[1, int(self.split_len / 2), 1, 1],
-        #                                        padding='VALID') + self.conv_b
-        #
-        #     print('expanded_input: ', expanded_input)
-        #     print('self.embedded_input : ', self.embedded_input)
-        #
-        #     self.embedded_input = tf.reshape(self.embedded_input,
-        #                                      shape=[-1,
-        #                                             self.embedded_input.shape[1] * self.embedded_input.shape[2],
-        #                                             self.filters_num])
-        #
-        #     print('self.embedded_input : ', self.embedded_input)
-
         with tf.name_scope(self.model_name + 'cnn'):
             self.conv_w_1 = tf.Variable(tf.truncated_normal([self.filter_1_x, self.filter_1_y, 1, self.filters_num_1]))
             self.conv_b_1 = tf.Variable(tf.zeros([self.filters_num_1]))
@@ -238,13 +212,6 @@ class DeepConvLSTMClassifier:
                                                 filter=self.conv_w_2,
                                                 strides=[1, self.stride_2_x, self.stride_2_y, 1],
                                                 padding='VALID') + self.conv_b_2
-
-            # print('self.cnn_layer_2_out before reshape : ', self.cnn_layer_2_out)
-            #
-            # self.cnn_layer_2_out = tf.reshape(self.cnn_layer_2_out,
-            #                                   shape=[-1,
-            #                                          self.cnn_layer_2_out.shape[1],
-            #                                          self.filters_num_2 * self.cnn_layer_2_out.shape[2], 1])
 
             self.cnn_layer_2_out = self.activation_function(batch_norm(self.cnn_layer_2_out))
 
@@ -327,7 +294,7 @@ class DeepConvLSTMClassifier:
 
             self.hidden_layer_1 = self.activation_function(self.hidden_layer_1)
 
-            # test:
+            # dropout:
             self.hidden_layer_1 = tf.nn.dropout(self.hidden_layer_1, self.dropout_prob)
 
             self.hidden_layer_2 = batch_norm(tf.matmul(
@@ -377,21 +344,6 @@ class DeepConvLSTMClassifier:
         self.validation_accuracy_summary = tf.summary.scalar(self.model_name + 'pred validation accuracy', self.accuracy)
         self.validation_summary = tf.summary.merge([self.validation_loss_summary,
                                                     self.validation_accuracy_summary])
-
-        # self.conv_filters_summary = tf.summary.image(
-        #     'conv filters', tf.reshape(self.conv_w, shape=[self.filters_num, self.split_len, 1, 1]))
-        # self.conv_output_summary = tf.summary.image('conv outputs', tf.expand_dims(self.embedded_input, -1),
-        #                                             max_outputs=30)
-        # self.avg_pooling_summary = tf.summary.image(
-        #     'avg pooling', tf.reshape(self.avg_pooling, shape=[-1, 2 * self.rnn_hidden_units, 1, 1]), max_outputs=30)
-        # self.max_pooling_summary = tf.summary.image(
-        #     'max pooling', tf.reshape(self.max_pooling, shape=[-1, 2 * self.rnn_hidden_units, 1, 1]), max_outputs=30)
-        # self.last_pooling_summary = tf.summary.image(
-        #     'mean pooling', tf.reshape(self.last_pooling, shape=[-1, 2 * self.rnn_hidden_units, 1, 1]), max_outputs=30)
-        #
-        # self.images_summary = tf.summary.merge([self.conv_filters_summary, self.conv_output_summary,
-        #                                         self.avg_pooling_summary, self.max_pooling_summary,
-        #                                         self.last_pooling_summary])
 
         self.file_writer = tf.summary.FileWriter(self.log_folder)
 
@@ -443,56 +395,6 @@ class DeepConvLSTMClassifier:
                                       feed_dict={self.input: self.test_inputs[:100],
                                                  self.activity_label: self.test_activity_labels[:100]}))
                             , epoch)
-
-            # loss, accuracy, pred_output = sess.run(
-            #     [self.cost, self.accuracy, self.prediction],
-            #     # feed_dict={self.input: self.test_inputs[100:],
-            #     #            self.activity_label: self.test_activity_labels[100:]})
-            #     feed_dict={self.input: self.test_inputs,
-            #                self.activity_label: self.test_activity_labels})
-            # print('test loss: ', loss)
-            # print('test accuracy: ', accuracy)
-            #
-            # print(np.shape(pred_output))
-            # print(np.shape(self.test_activity_labels))
-            #
-            # print('test precision score: ', precision_score(y_true=np.argmax(self.test_activity_labels, 1),
-            #                                                 y_pred=np.argmax(pred_output, 1), average=None))
-            # print('test recall score: ', recall_score(y_true=np.argmax(self.test_activity_labels, 1),
-            #                                           y_pred=np.argmax(pred_output, 1), average=None))
-            #
-            # print('test f1 score: ', f1_score(y_true=np.argmax(self.test_activity_labels, 1),
-            #                                   y_pred=np.argmax(pred_output, 1), average=None))
-            #
-            # print('test confusion matrix: ', confusion_matrix(y_true=np.argmax(self.test_activity_labels, 1),
-            #                                                   y_pred=np.argmax(pred_output, 1)))
-            #
-            # self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
-            #                              y_pred=np.argmax(pred_output, 1),
-            #                              save_addr=self.log_folder + '/score_plots.png')
-            #
-            # self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
-            #                              y_pred=np.argmax(pred_output, 1),
-            #                              save_addr=self.log_folder + '/score_plots_2.png', fig_size=[20, 20])
-            #
-            # self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
-            #                              y_pred=np.argmax(pred_output, 1),
-            #                              save_addr=self.log_folder + '/score_plots_3.png', fig_size=[5, 5])
-            #
-            # self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
-            #                              y_pred=np.argmax(pred_output, 1),
-            #                              save_addr=self.log_folder + '/score_plots_4.png', fig_size=[30, 30])
-            #
-            # self.__visualize_data(start=0, end=self.test_inputs.shape[0], predicted_labels=np.argmax(pred_output, 1),
-            #                       test_data=True)
-            #
-            # print('--------------------------------')
-            #
-            # # self.file_writer.add_summary(
-            # #     (sess.run(self.images_summary,
-            # #               feed_dict={self.input: self.test_inputs[:100],
-            # #                          self.activity_label: self.test_activity_labels[:100]}))
-            # #     , epoch)
 
             save_path = self.saver.save(sess, self.model_path)
             print("Survival model saved in file: %s" % save_path)
@@ -554,47 +456,7 @@ class DeepConvLSTMClassifier:
 
             print('--------------------------------')
 
-            # print('testtttttt:')
-            # debug_train_data = []
-            # debug_train_labels = []
-            #
-            # counter = 0
-            # for data in self.train_inputs:
-            #     if np.argmax(self.train_activity_labels[counter]) == 5:
-            #         debug_train_data.append(data)
-            #         debug_train_labels.append(self.train_activity_labels[counter])
-            #
-            #     counter += 1
-            #
-            #     if len(debug_train_data) > 50:
-            #         break
-            #
-            # debug_train_data = np.array(debug_train_data)
-            # debug_train_labels = np.array(debug_train_labels)
-            #
-            # loss, accuracy, pred_output = sess.run(
-            #     [self.cost, self.accuracy, self.prediction],
-            #     feed_dict={self.input: debug_train_data,
-            #                self.activity_label: debug_train_labels})
-            #
-            # print('train samples of the debug batch: ', len(debug_train_data))
-            # print('train loss on debug batch : ', loss)
-            # print('train accuracy on debug batch : ', accuracy)
-            #
-            # print('np.shape(pred_output)', np.shape(pred_output))
-            # print('np.shape(train_labels)', np.shape(debug_train_labels))
-            # print('np.argmax(train_labels, 1)', np.argmax(debug_train_labels, 1))
-            # print('np.argmax(pred_output, 1)', np.argmax(pred_output, 1))
-            #
-            # print('train precision score: ', precision_score(y_true=np.argmax(debug_train_labels, 1),
-            #                                                  y_pred=np.argmax(pred_output, 1), average=None))
-            # print('train recall score: ', recall_score(y_true=np.argmax(debug_train_labels, 1),
-            #                                            y_pred=np.argmax(pred_output, 1), average=None))
-            #
-            # print('train f1 score: ', f1_score(y_true=np.argmax(debug_train_labels, 1),
-            #                                    y_pred=np.argmax(pred_output, 1), average=None))
-            #
-            # print('----------------testtttttt:')
+            # Checking performance of the model on different clusters of some of the activities:
 
             clustering_executor = ClusteringExecutor()
             clustering_executor.set_all_data(
@@ -603,106 +465,6 @@ class DeepConvLSTMClassifier:
                 all_train_labels=self.train_activity_labels,
                 all_test_labels=self.test_activity_labels
             )
-
-            # for class_name in ['nordic_walking', 'running']:
-            #     print('<<<<<<<<<<<<<<<<<<<< ' + class_name + ' >>>>>>>>>>>>>>>>>>>>>')
-            #
-            #     num_clusters = 1  # 3
-            #     num_segments = 3  # 300
-            #     clustered_train_data, clustered_train_labels, train_cluster_nums, \
-            #         clustered_test_data, clustered_test_labels, test_cluster_nums = \
-            #         clustering_executor.get_clustered_data(class_name=class_name, num_segments=num_segments,
-            #                                                series_max_len=self.series_max_len, num_clusters=num_clusters
-            #                                                )
-            #
-            #     print('debug1')
-            #     print(clustered_train_data.shape)
-            #     print(clustered_train_labels.shape)
-            #     print(train_cluster_nums)
-            #     print(clustered_test_data.shape)
-            #     print(clustered_test_labels.shape)
-            #     print(train_cluster_nums)
-            #     print('X debug1')
-            #
-            #     for cluster_num in range(num_clusters):
-            #         train_data = []
-            #         train_labels = []
-            #
-            #         counter = 0
-            #         for data in clustered_train_data:
-            #             if train_cluster_nums[counter] == cluster_num:
-            #                 train_data.append(data)
-            #                 train_labels.append(clustered_train_labels[counter])
-            #
-            #             counter += 1
-            #
-            #         test_data = []
-            #         test_labels = []
-            #
-            #         counter = 0
-            #         for data in clustered_test_data:
-            #             if test_cluster_nums[counter] == cluster_num:
-            #                 test_data.append(data)
-            #                 test_labels.append(clustered_test_labels[counter])
-            #
-            #             counter += 1
-            #
-            #         train_data = np.array(train_data)
-            #         train_labels = np.array(train_labels)
-            #         test_data = np.array(test_data)
-            #         test_labels = np.array(test_labels)
-            #
-            #         print('debug2')
-            #         print(train_data.shape)
-            #         print(train_labels.shape)
-            #         print(test_data.shape)
-            #         print(test_labels.shape)
-            #         print('X debug2')
-            #
-            #         loss, accuracy, pred_output = sess.run(
-            #             [self.cost, self.accuracy, self.prediction],
-            #             feed_dict={self.input: train_data,
-            #                        self.activity_label: train_labels})
-            #
-            #         print('train samples of the cluster: ', len(train_data))
-            #         print('train loss on cluster ' + str(cluster_num) + ': ', loss)
-            #         print('train accuracy on cluster ' + str(cluster_num) + ': ', accuracy)
-            #
-            #         print('np.shape(pred_output)', np.shape(pred_output))
-            #         print('np.shape(train_labels)', np.shape(train_labels))
-            #         print('np.argmax(train_labels, 1)', np.argmax(train_labels, 1))
-            #         print('np.argmax(pred_output, 1)', np.argmax(pred_output, 1))
-            #
-            #         print('train precision score: ', precision_score(y_true=np.argmax(train_labels, 1),
-            #                                                          y_pred=np.argmax(pred_output, 1), average=None))
-            #         print('train recall score: ', recall_score(y_true=np.argmax(train_labels, 1),
-            #                                                    y_pred=np.argmax(pred_output, 1), average=None))
-            #
-            #         print('train f1 score: ', f1_score(y_true=np.argmax(train_labels, 1),
-            #                                            y_pred=np.argmax(pred_output, 1), average=None))
-            #
-            #         loss, accuracy, pred_output = sess.run(
-            #             [self.cost, self.accuracy, self.prediction],
-            #             feed_dict={self.input: test_data,
-            #                        self.activity_label: test_labels})
-            #         print('test samples of the cluster: ', len(test_data))
-            #         print('test loss on cluster ' + str(cluster_num) + ': ', loss)
-            #         print('test accuracy on cluster ' + str(cluster_num) + ': ', accuracy)
-            #
-            #         print('np.shape(pred_output)', np.shape(pred_output))
-            #         print('np.shape(test_labels)', np.shape(test_labels))
-            #         print('np.argmax(test_labels, 1)', np.argmax(test_labels, 1))
-            #         print('np.argmax(pred_output, 1)', np.argmax(pred_output, 1))
-            #
-            #         print('test precision score: ', precision_score(y_true=np.argmax(test_labels, 1),
-            #                                                         y_pred=np.argmax(pred_output, 1), average=None))
-            #         print('test recall score: ', recall_score(y_true=np.argmax(test_labels, 1),
-            #                                                   y_pred=np.argmax(pred_output, 1), average=None))
-            #
-            #         print('test f1 score: ', f1_score(y_true=np.argmax(test_labels, 1),
-            #                                           y_pred=np.argmax(pred_output, 1), average=None))
-            #
-            #         print('=======================================')
 
             # for class_name in ['nordic_walking', 'running']:
             for class_name in ['cycling']:
@@ -750,13 +512,6 @@ class DeepConvLSTMClassifier:
                             test_data_indices.append(clustered_test_data_indices[counter])
 
                         counter += 1
-
-                    print('np.shape(pred_output_train)', np.shape(pred_output_train))
-                    print('np.shape(pred_output_test)', np.shape(pred_output_test))
-                    print('np.shape(self.train_activity_labels)', np.shape(self.train_activity_labels))
-                    print('np.shape(self.test_activity_labels)', np.shape(self.test_activity_labels))
-                    print('np.shape(train_data_indices)', np.shape(train_data_indices))
-                    print('np.shape(test_data_indices)', np.shape(test_data_indices))
 
                     cluster_pred_output_train = np.array([pred_output_train[i] for i in train_data_indices])
                     cluster_pred_output_test = np.array([pred_output_test[i] for i in test_data_indices])

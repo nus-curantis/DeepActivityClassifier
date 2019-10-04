@@ -8,7 +8,7 @@ from deep_model.deep_conv_lstm_classifier_complex_cnn_52 import DeepConvLSTMClas
 
 # model parameters
 # tf.flags.DEFINE_integer('input_representations', 3, 'num of input representations')
-# tf.flags.DEFINE_integer('input_representations', 6, 'num of input representations')
+# tf.flags.DEFINE_integer('input_representations', 6, 'num of input representations')  # Accelerometer and gyroscope
 tf.flags.DEFINE_integer('input_representations', 52, 'num of input representations')
 
 tf.flags.DEFINE_integer('num_classes', 13, 'num of classes in the output')  # mhealth dataset and pamap2

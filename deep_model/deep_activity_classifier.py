@@ -99,23 +99,23 @@ class DeepActivityClassifier:
         return True
 
     def load_data(self):
-        # self.train_inputs, self.train_activity_labels = data_to_rnn_input()
-        #
-        # self.train_inputs = self.train_inputs[:, :, -1]  # todo: delete this test
-        # self.train_inputs = np.reshape(self.train_inputs,
-        #                                newshape=[self.train_inputs.shape[0], self.train_inputs.shape[1], 1])
-
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
             normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')
             # data_to_rnn_input_train_test()
 
+        """
+            our dataset, normalized: normalized_rnn_input_train_test()
+            our dataset, without normalization: # data_to_rnn_input_train_test()
+            
+            Chest Accelerometer dataset, normalized: 
+                normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')
+            Chest Accelerometer dataset, without normalization: 
+                data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')
+        """
+
     def build_model(self):
         with tf.name_scope('embedding'):
-            # self.embedded_input = self.input
-
             self.embedding = tf.Variable(tf.truncated_normal([self.input_representations, self.embedding_out_size]))
-            # flattened_embedded_input = tf.nn.embedding_lookup(  # todo: solve the problem of this
-            #     self.embedding, tf.reshape(self.input, shape=[-1, self.input_representations]))
             flattened_embedded_input = tf.matmul(
                 tf.reshape(self.input, shape=[-1, self.input_representations]), self.embedding)
             self.embedded_input = tf.reshape(flattened_embedded_input,
@@ -160,16 +160,10 @@ class DeepActivityClassifier:
                 self.concatenated_poolings, self.dense_weights['first']) + self.dense_biases['first'])
                 # self.last_pooling, self.dense_weights['first']) + self.dense_biases['first'])
 
-            # self.hidden_layer_1 = tf.matmul(
-            #     self.concatenated_poolings, self.dense_weights['first']) + self.dense_biases['first']
-
             self.hidden_layer_1 = self.activation_function(self.hidden_layer_1)
 
             self.hidden_layer_2 = batch_norm(tf.matmul(
                 self.hidden_layer_1, self.dense_weights['second']) + self.dense_biases['second'])
-
-            # self.hidden_layer_2 = tf.matmul(
-            #     self.hidden_layer_1, self.dense_weights['second']) + self.dense_biases['second']
 
             self.hidden_layer_2 = self.activation_function(self.hidden_layer_2)
 
@@ -183,8 +177,6 @@ class DeepActivityClassifier:
 
         with tf.name_scope('prediction_optimizer'):
             self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(
-                # logits=tf.reshape(self.prediction_logits, shape=[-1]),
-                # labels=tf.reshape(self.activity_label, shape=[-1])))
                 logits=self.prediction_logits,
                 labels=self.activity_label))
 
@@ -260,8 +252,6 @@ class DeepActivityClassifier:
                 [self.cost, self.accuracy],
                 feed_dict={self.input: self.test_inputs,
                            self.activity_label: self.test_activity_labels})
-                # feed_dict={self.input: self.test_inputs[100:],
-                #            self.activity_label: self.test_activity_labels[100:]})
 
             print('test loss: ', loss)
             print('test accuracy: ', accuracy)

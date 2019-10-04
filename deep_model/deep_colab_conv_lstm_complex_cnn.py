@@ -62,28 +62,16 @@ class CoTeaching:
                     learner_2_inputs_batch = self.learner_2_train_inputs[i: i + self.batch_size]
                     learner_2_labels_batch = self.learner_2_train_labels[i: i + self.batch_size]
 
-                    print(np.shape(learner_1_inputs_batch))
-                    print(np.shape(learner_1_labels_batch))
-                    print(np.shape(learner_2_inputs_batch))
-                    print(np.shape(learner_2_labels_batch))
-
                     detailed_loss_1 = sess.run([self.learner_1.detailed_cost],
                                                feed_dict={self.learner_1.input: learner_1_inputs_batch,
                                                           self.learner_1.activity_label: learner_1_labels_batch})
                     detailed_loss_1 = np.array(detailed_loss_1)
 
-                    learner1_min_loss_indices = np.argsort(detailed_loss_1)[0:int(np.floor(detailed_loss_1.shape[1]*remember_rate))]
+                    learner1_min_loss_indices = np.argsort(detailed_loss_1)[0:int(np.floor(detailed_loss_1.shape[1]*
+                                                                                           remember_rate))]
                     learner1_min_loss_samples = np.array([learner_1_inputs_batch for i in learner1_min_loss_indices])
                     learner1_samples_shape = np.shape(learner1_min_loss_samples)
-                    print('rem rate:', remember_rate)
-                    print('int(len(detailed_loss_1)*remember_rate)', int(len(detailed_loss_1)*remember_rate))
-                    print('khers', np.argsort(detailed_loss_1))
-                    print('learner1_all_batches_shape: ', self.learner_1_train_inputs.shape)
-                    print('learner1_all_samples_shape: ', learner_1_inputs_batch.shape)
-                    print('detailed_loss_1.shape', detailed_loss_1.shape)
-                    print('learner1_min_loss_indices.shape', learner1_min_loss_indices.shape)
-                    print('learner1_min_loss_indices', learner1_min_loss_indices)
-                    print('learner1_samples_shape: ', learner1_samples_shape)
+
                     learner1_min_loss_samples = np.reshape(learner1_min_loss_samples,
                                                            newshape=[learner1_samples_shape[1],
                                                                      learner1_samples_shape[2],
@@ -97,10 +85,10 @@ class CoTeaching:
                                                           self.learner_2.activity_label: learner_2_labels_batch})
                     detailed_loss_2 = np.array(detailed_loss_2)
 
-                    learner2_min_loss_indices = np.argsort(detailed_loss_2)[0:int(np.floor(detailed_loss_2.shape[1]*remember_rate))]
+                    learner2_min_loss_indices = np.argsort(detailed_loss_2)[0:int(np.floor(detailed_loss_2.shape[1]*
+                                                                                           remember_rate))]
                     learner2_min_loss_samples = np.array([learner_2_inputs_batch for i in learner2_min_loss_indices])
                     learner2_samples_shape = np.shape(learner2_min_loss_samples)
-                    # print('learner2_samples_shape: ', learner2_samples_shape)
                     learner2_min_loss_samples = np.reshape(learner2_min_loss_samples,
                                                            newshape=[learner2_samples_shape[1],
                                                                      learner2_samples_shape[2],
@@ -122,8 +110,6 @@ class CoTeaching:
                     print(i, ',', epoch)
                     print('learner1 loss: ', loss_1)
                     print('learner1 acc: ', accuracy_1)
-                    # print(np.argmax(pred_output, 1).tolist())
-                    # print(np.argmax(labels_batch, 1).tolist())
                     print('learner2 loss: ', loss_2)
                     print('learner2 acc: ', accuracy_2)
                     print('--------------------------------')
@@ -180,25 +166,6 @@ class CoTeaching:
             print('learner_1 test confusion matrix: ', confusion_matrix(y_true=np.argmax(self.test_labels, 1),
                                                                         y_pred=np.argmax(pred_output, 1)))
 
-            # self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
-            #                              y_pred=np.argmax(pred_output, 1),
-            #                              save_addr=self.log_folder + '/score_plots.png')
-            #
-            # self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
-            #                              y_pred=np.argmax(pred_output, 1),
-            #                              save_addr=self.log_folder + '/score_plots_2.png', fig_size=[20, 20])
-            #
-            # self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
-            #                              y_pred=np.argmax(pred_output, 1),
-            #                              save_addr=self.log_folder + '/score_plots_3.png', fig_size=[5, 5])
-            #
-            # self.__draw_pred_score_plots(y_true=np.argmax(self.test_activity_labels, 1),
-            #                              y_pred=np.argmax(pred_output, 1),
-            #                              save_addr=self.log_folder + '/score_plots_4.png', fig_size=[30, 30])
-            #
-            # self.__visualize_data(start=0, end=self.test_inputs.shape[0], predicted_labels=np.argmax(pred_output, 1),
-            #                       test_data=True)
-
             print('--------------------------------')
 
             loss_2, accuracy_2, pred_output = sess.run(
@@ -223,15 +190,6 @@ class CoTeaching:
                                                                         y_pred=np.argmax(pred_output, 1)))
 
             print('================================')
-
-            # self.file_writer.add_summary(
-            #     (sess.run(self.images_summary,
-            #               feed_dict={self.input: self.test_inputs[:100],
-            #                          self.activity_label: self.test_activity_labels[:100]}))
-            #     , epoch)
-
-            # save_path = self.saver.save(sess, self.model_path)
-            # print("Survival model saved in file: %s" % save_path)
 
     def test(self):  # tests the first network
         init = tf.global_variables_initializer()
@@ -277,83 +235,7 @@ class CoTeaching:
                 all_test_labels=self.test_labels
             )
 
-            # for class_name in ['nordic_walking', 'running']:
-            #     print('<<<<<<<<<<<<<<<<<<<< ' + class_name + ' >>>>>>>>>>>>>>>>>>>>>')
-            #
-            #     num_clusters = 3
-            #     clustered_train_data, clustered_train_labels, train_cluster_nums, \
-            #         clustered_test_data, clustered_test_labels, test_cluster_nums = \
-            #         clustering_executor.get_clustered_data(class_name=class_name, num_segments=300,
-            #                                                series_max_len=self.series_max_len, num_clusters=num_clusters
-            #                                                )
-            #
-            #     for cluster_num in range(num_clusters):
-            #         train_data = []
-            #         train_labels = []
-            #
-            #         counter = 0
-            #         for data in clustered_train_data:
-            #             if train_cluster_nums[counter] == cluster_num:
-            #                 train_data.append(data)
-            #                 train_labels.append(clustered_train_labels[counter])
-            #
-            #             counter += 1
-            #
-            #         test_data = []
-            #         test_labels = []
-            #
-            #         counter = 0
-            #         for data in clustered_test_data:
-            #             if test_cluster_nums[counter] == cluster_num:
-            #                 test_data.append(data)
-            #                 test_labels.append(clustered_test_labels[counter])
-            #
-            #             counter += 1
-            #
-            #         train_data = np.array(train_data)
-            #         train_labels = np.array(train_labels)
-            #         test_data = np.array(test_data)
-            #         test_labels = np.array(test_labels)
-            #
-            #         loss, accuracy, pred_output = sess.run(
-            #             [self.learner_1.cost, self.learner_1.accuracy, self.learner_1.prediction],
-            #             feed_dict={self.learner_1.input: train_data,
-            #                        self.learner_1.activity_label: train_labels})
-            #         print('train samples of the cluster: ', len(train_data))
-            #         print('train loss on cluster ' + str(cluster_num) + ': ', loss)
-            #         print('train accuracy on cluster ' + str(cluster_num) + ': ', accuracy)
-            #
-            #         print('np.shape(pred_output)', np.shape(pred_output))
-            #         print('np.shape(train_labels)', np.shape(train_labels))
-            #
-            #         print('train precision score: ', precision_score(y_true=np.argmax(train_labels, 1),
-            #                                                          y_pred=np.argmax(pred_output, 1), average=None))
-            #         print('train recall score: ', recall_score(y_true=np.argmax(train_labels, 1),
-            #                                                    y_pred=np.argmax(pred_output, 1), average=None))
-            #
-            #         print('train f1 score: ', f1_score(y_true=np.argmax(train_labels, 1),
-            #                                            y_pred=np.argmax(pred_output, 1), average=None))
-            #
-            #         loss, accuracy, pred_output = sess.run(
-            #             [self.learner_1.cost, self.learner_1.accuracy, self.learner_1.prediction],
-            #             feed_dict={self.learner_1.input: test_data,
-            #                        self.learner_1.activity_label: test_labels})
-            #         print('test samples of the cluster: ', len(test_data))
-            #         print('test loss on cluster ' + str(cluster_num) + ': ', loss)
-            #         print('test accuracy on cluster ' + str(cluster_num) + ': ', accuracy)
-            #
-            #         print('np.shape(pred_output)', np.shape(pred_output))
-            #         print('np.shape(test_labels)', np.shape(test_labels))
-            #
-            #         print('test precision score: ', precision_score(y_true=np.argmax(test_labels, 1),
-            #                                                         y_pred=np.argmax(pred_output, 1), average=None))
-            #         print('test recall score: ', recall_score(y_true=np.argmax(test_labels, 1),
-            #                                                   y_pred=np.argmax(pred_output, 1), average=None))
-            #
-            #         print('test f1 score: ', f1_score(y_true=np.argmax(test_labels, 1),
-            #                                           y_pred=np.argmax(pred_output, 1), average=None))
-            #
-            #         print('=======================================')
+            # The following code tests performance of the model on different clusters of some selected activities
 
             for class_name in ['nordic_walking', 'running']:
             # for class_name in ['cycling']:

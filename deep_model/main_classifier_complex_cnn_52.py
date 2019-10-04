@@ -7,9 +7,9 @@ sys.path.append("../../DeepActivityClassifier")
 from deep_model.deep_conv_lstm_classifier_complex_cnn_52 import DeepConvLSTMClassifier
 
 # model parameters
-# tf.flags.DEFINE_integer('input_representations', 3, 'num of input representations')
-# tf.flags.DEFINE_integer('input_representations', 6, 'num of input representations')
 tf.flags.DEFINE_integer('input_representations', 52, 'num of input representations')
+# tf.flags.DEFINE_integer('input_representations', 3, 'num of input representations')
+# tf.flags.DEFINE_integer('input_representations', 6, 'num of input representations')  # accelerometer and gyroscope
 
 tf.flags.DEFINE_integer('num_classes', 13, 'num of classes in the output')  # mhealth dataset and pamap2
 # tf.flags.DEFINE_integer('num_classes', 5, 'num of classes in the output')  # our dataset after ignoring some classes
@@ -18,12 +18,12 @@ tf.flags.DEFINE_integer('num_classes', 13, 'num of classes in the output')  # mh
 # tf.flags.DEFINE_integer('num_classes', 8, 'num of classes in the output')  # chest accelerometer data
 # tf.flags.DEFINE_integer('num_classes', 14, 'num of classes in the output')  # wharf data
 
-# tf.flags.DEFINE_integer('series_max_len', 360, 'max len of an input time series')
 tf.flags.DEFINE_integer('series_max_len', 180, 'max len of an input time series')
+# tf.flags.DEFINE_integer('series_max_len', 360, 'max len of an input time series')
 
+tf.flags.DEFINE_integer('rnn_hidden_units', 256, 'hidden neurons of rnn cells')
 # tf.flags.DEFINE_integer('rnn_hidden_units', 32, 'hidden neurons of rnn cells')
 # tf.flags.DEFINE_integer('rnn_hidden_units', 64, 'hidden neurons of rnn cells')
-tf.flags.DEFINE_integer('rnn_hidden_units', 256, 'hidden neurons of rnn cells')
 
 # tf.flags.DEFINE_integer('filter_1_x', 6, 'conv layer 1 - filter x dim')
 # tf.flags.DEFINE_integer('filter_1_y', 6, 'conv layer 1 - filter y dim')

@@ -111,61 +111,28 @@ class DeepConvLSTMClassifier:
     def load_data(self):
         self.train_inputs, self.test_inputs, self.train_activity_labels, self.test_activity_labels = \
             pamap2_rnn_input_train_test(split_series_max_len=self.series_max_len)  # pamap2 dataset
-            # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
-            #                                 ignore_classes=[0, 2, 5, 6],
-            #                                 split_series_max_len=self.series_max_len)  # chest dataset
-            # data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/', ignore_classes=[0, 12],
-            #                              split_series_max_len=self.series_max_len)
-            # data_to_rnn_input_train_test(
-            #     split_series_max_len=self.series_max_len,
-            #     ignore_classes=[1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17])  # our dataset
-            # data_to_rnn_input_train_test(split_series_max_len=self.series_max_len)  # our dataset
-            # data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/',
-            #                              split_series_max_len=self.series_max_len)  # big dataset
-            # normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
-            #                                 split_series_max_len=self.series_max_len)  # chest dataset
-            # normalized_wharf_rnn_input_train_test(split_series_max_len=self.series_max_len)  # wahrf
-            # data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/')  # chest without normalizing
 
-        print(len(self.train_inputs))
-        print(len(self.train_activity_labels))
-        print(len(self.test_inputs))
-        print(len(self.test_activity_labels))
+        """
+            our dataset, normalized: normalized_rnn_input_train_test()
+            our dataset, without normalization: # data_to_rnn_input_train_test()
+
+            Chest Accelerometer dataset, normalized: 
+                normalized_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
+                                               ignore_classes=[0, 2, 5, 6],
+                                               split_series_max_len=self.series_max_len)
+            Chest Accelerometer dataset, without normalization: 
+                data_to_rnn_input_train_test(data_path='../dataset/Chest_Accelerometer/data/',
+                                             split_series_max_len=self.series_max_len)
+                                             
+            MHealth dataset:
+                data_to_rnn_input_train_test(data_path='../dataset/MHEALTHDATASET/', ignore_classes=[0, 12],
+                                            split_series_max_len=self.series_max_len)
+
+            Wharf dataset, normalized:
+                normalized_wharf_rnn_input_train_test(split_series_max_len=self.series_max_len)            
+        """
 
     def build_model(self):
-        # with tf.name_scope('embedding'):
-        #     # self.embedded_input = self.input
-        #
-        #     self.embedding = tf.Variable(tf.truncated_normal([self.input_representations, self.embedding_out_size]))
-        #     # flattened_embedded_input = tf.nn.embedding_lookup(  # todo: solve the problem of this
-        #     #     self.embedding, tf.reshape(self.input, shape=[-1, self.input_representations]))
-        #     flattened_embedded_input = tf.matmul(
-        #         tf.reshape(self.input, shape=[-1, self.input_representations]), self.embedding)
-        #     self.embedded_input = tf.reshape(flattened_embedded_input,
-        #                                      shape=[-1, self.series_max_len, self.embedding_out_size])
-
-        # with tf.name_scope('cnn'):
-        #     self.conv_w = tf.Variable(tf.truncated_normal([self.split_len, self.input_representations,
-        #                                                   1, self.filters_num]))
-        #     self.conv_b = tf.Variable(tf.zeros([self.filters_num]))
-        #
-        #     expanded_input = tf.expand_dims(self.input, -1)
-        #     self.embedded_input = tf.nn.conv2d(expanded_input,
-        #                                        filter=self.conv_w,
-        #                                        strides=[1, self.split_len, 1, 1],
-        #                                        # strides=[1, int(self.split_len / 2), 1, 1],
-        #                                        padding='VALID') + self.conv_b
-        #
-        #     print('expanded_input: ', expanded_input)
-        #     print('self.embedded_input : ', self.embedded_input)
-        #
-        #     self.embedded_input = tf.reshape(self.embedded_input,
-        #                                      shape=[-1,
-        #                                             self.embedded_input.shape[1] * self.embedded_input.shape[2],
-        #                                             self.filters_num])
-        #
-        #     print('self.embedded_input : ', self.embedded_input)
-
         with tf.name_scope('cnn'):
             self.conv_w = tf.Variable(tf.truncated_normal([self.split_len, 1, 1, self.filters_num]))
             self.conv_b = tf.Variable(tf.zeros([self.filters_num]))
@@ -179,11 +146,6 @@ class DeepConvLSTMClassifier:
 
             print('expanded_input: ', expanded_input)
             print('self.embedded_input : ', self.embedded_input)
-
-            # self.embedded_input = tf.reshape(self.embedded_input,
-            #                                  shape=[-1,
-            #                                         self.embedded_input.shape[1] * self.embedded_input.shape[2],
-            #                                         self.filters_num])
 
             self.embedded_input = tf.reshape(self.embedded_input,
                                              shape=[-1,
@@ -229,10 +191,6 @@ class DeepConvLSTMClassifier:
             self.time_distributed_output = tf.nn.dropout(self.time_distributed_output, self.dropout_prob)
 
         with tf.name_scope('pooling'):
-            # self.avg_pooling = tf.reduce_mean(self.rnn_output, axis=1)
-            # self.max_pooling = tf.reduce_max(self.rnn_output, axis=1)
-            # self.last_pooling = self.__last_relevant(self.rnn_output, self.__length(self.embedded_input))
-
             self.avg_pooling = tf.reduce_mean(self.time_distributed_output, axis=1)
             self.max_pooling = tf.reduce_max(self.time_distributed_output, axis=1)
             self.last_pooling = self.__last_relevant(self.time_distributed_output, self.__length(self.embedded_input))
@@ -263,7 +221,7 @@ class DeepConvLSTMClassifier:
 
             self.hidden_layer_1 = self.activation_function(self.hidden_layer_1)
 
-            # test:
+            # dropout:
             self.hidden_layer_1 = tf.nn.dropout(self.hidden_layer_1, self.dropout_prob)
 
             self.hidden_layer_2 = batch_norm(tf.matmul(
@@ -281,8 +239,6 @@ class DeepConvLSTMClassifier:
 
         with tf.name_scope('prediction_optimizer'):
             self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(
-                # logits=tf.reshape(self.prediction_logits, shape=[-1]),
-                # labels=tf.reshape(self.activity_label, shape=[-1])))
                 logits=self.prediction_logits,
                 labels=self.activity_label))
 
